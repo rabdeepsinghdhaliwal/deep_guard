@@ -1,0 +1,16 @@
+# Deep-Guard Stage 1 — local backend dependencies.
+#
+# Install with: pip install -r requirements.txt
+#
+# torch/torchvision: installed WITHOUT a CUDA build here on purpose.
+# Inference on a single image or one video frame takes well under a
+# second on a CPU — there is no reason to fight with local GPU driver
+# and CUDA-toolkit versions just to serve predictions. Training (the
+# only GPU-hungry part) already happened in Colab.
+fastapi>=0.111
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
+torch>=2.2
+torchvision>=0.17
+pillow>=10.2
+opencv-python-headless>=4.9

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep-Guard — Check if an image or video is AI-generated</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="/">
+      <svg class="brand__mark" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M13 2.5 3.5 6.2v6.4c0 5.6 3.9 10.2 9.5 11.4 5.6-1.2 9.5-5.8 9.5-11.4V6.2L13 2.5Z"
+              stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M9.3 12.8l2.6 2.6 5-5" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand__name">Deep-Guard</span>
+    </a>
+    <span class="status" id="status" title="Analysis service status">
+      <span class="status__dot" id="statusDot"></span>
+      <span id="statusText">connecting&hellip;</span>
+    </span>
+  </header>
+
+  <main class="main">
+
+    <section class="intro">
+      <h1 class="intro__title">Is this media real?</h1>
+      <p class="intro__body">
+        Upload a photo or a video and Deep-Guard examines it for the traces that AI
+        generators leave behind. Videos are checked frame by frame across their
+        full length, so manipulation affecting only part of a clip still shows up.
+      </p>
+    </section>
+
+    <section class="panel">
+      <label class="dropzone" id="dropzone" for="fileInput">
+        <div class="dropzone__empty" id="dropzoneEmpty">
+          <svg class="dropzone__icon" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+            <rect x="3" y="6" width="28" height="22" rx="3" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="11.5" cy="14" r="2.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M3.5 23.5 12 16l7 6 4-3 7.5 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p class="dropzone__title">Drop a photo or video here</p>
+          <p class="dropzone__hint">or click to browse &mdash; JPG, PNG, MP4, MOV, WEBM, AVI, MKV</p>
+        </div>
+
+        <div class="dropzone__preview" id="previewWrap" hidden>
+          <div class="preview__media">
+            <img id="previewImg" alt="Preview of the file you selected" hidden />
+            <video id="previewVideo" muted playsinline hidden></video>
+          </div>
+          <div class="preview__meta">
+            <p class="preview__name" id="fileName"></p>
+            <p class="preview__note" id="fileNote"></p>
+            <button class="preview__change" id="changeBtn" type="button">Choose a different file</button>
+          </div>
+        </div>
+
+        <input type="file" id="fileInput"
+               accept="image/*,video/mp4,video/quicktime,video/x-matroska,video/webm" hidden />
+      </label>
+
+      <button class="analyse" id="runBtn" type="button" disabled>Select a file to begin</button>
+      <p class="error" id="errorMsg" role="alert" hidden></p>
+    </section>
+
+    <section class="verdict" id="result" data-verdict="" hidden aria-live="polite">
+      <p class="verdict__headline" id="verdictHeadline">&mdash;</p>
+
+      <div class="gauge">
+        <div class="gauge__track">
+          <div class="gauge__fill" id="gaugeFill"></div>
+        </div>
+        <div class="gauge__scale">
+          <span>Definitely real</span>
+          <span>Uncertain</span>
+          <span>Definitely AI</span>
+        </div>
+      </div>
+
+      <div class="readout">
+        <div class="readout__figure" id="readoutFigure">0%</div>
+        <p class="readout__explain" id="readoutExplain"></p>
+      </div>
+
+      <div class="timeline" id="timelineBlock" hidden>
+        <h2 class="timeline__title">Frame-by-frame analysis</h2>
+        <p class="timeline__intro" id="timelineIntro"></p>
+        <div class="timeline__chart" id="timelineChart"></div>
+        <div class="timeline__axis">
+          <span id="axisStart">0:00</span>
+          <span id="axisEnd"></span>
+        </div>
+        <dl class="stats" id="statsBlock"></dl>
+      </div>
+
+      <p class="verdict__legend" id="verdictLegend"></p>
+
+      <p class="verdict__caveat">
+        This is an estimate from a model trained on a large set of real and
+        AI-generated media, not a definitive answer. 
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Deep-Guard analyses media locally on this machine. Nothing you upload is stored or sent elsewhere.</p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

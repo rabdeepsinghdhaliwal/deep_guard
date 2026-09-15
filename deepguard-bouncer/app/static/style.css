@@ -1,0 +1,530 @@
+/* ==========================================================================
+   Deep-Guard — interface styles
+
+   Direction: this is a tool about trust and doubt, used by journalists,
+   teachers and ordinary people — not a military console. So: warm paper
+   ground, ink-dark text, one restrained indigo accent, a serif display
+   face for warmth against a clean sans for everything functional.
+   Generous whitespace. The verdict is the hero; everything else recedes.
+   ========================================================================== */
+
+:root {
+  --paper:        #FBF9F5;
+  --paper-raised: #FFFFFF;
+  --ink:          #1C1A17;
+  --ink-soft:     #55504A;
+  --ink-faint:    #8A837A;
+  --rule:         #E6E1D8;
+  --rule-strong:  #D2CBBE;
+
+  --indigo:       #3A4CB4;
+  --indigo-soft:  #EEF0FB;
+
+  --true:         #2E7D5B;
+  --true-soft:    #E8F3ED;
+  --false:        #B23B34;
+  --false-soft:   #FBECEA;
+  --unsure:       #B07A1E;
+  --unsure-soft:  #FBF2E0;
+
+  --serif: "Fraunces", Georgia, serif;
+  --sans:  "Inter", system-ui, -apple-system, sans-serif;
+
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------ header ---- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand__mark { color: var(--indigo); flex: none; }
+
+.brand__name {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.status__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  flex: none;
+}
+.status__dot.is-ok  { background: var(--true); }
+.status__dot.is-bad { background: var(--false); }
+
+/* -------------------------------------------------------------- main ---- */
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 56px 24px 72px;
+}
+
+.intro { margin-bottom: 40px; }
+
+.intro__title {
+  font-family: var(--serif);
+  font-size: clamp(34px, 6vw, 46px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+
+.intro__body {
+  margin: 0;
+  max-width: 54ch;
+  font-size: 17px;
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------- dropzone ---- */
+
+.panel { margin-bottom: 8px; }
+
+.dropzone {
+  display: block;
+  background: var(--paper-raised);
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--radius);
+  padding: 44px 28px;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.dropzone:hover,
+.dropzone:focus-within { border-color: var(--indigo); }
+
+.dropzone.is-dragover {
+  border-color: var(--indigo);
+  background: var(--indigo-soft);
+}
+
+.dropzone.is-busy { cursor: progress; opacity: 0.75; }
+
+.dropzone__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.dropzone__icon { color: var(--ink-faint); margin-bottom: 8px; }
+
+.dropzone__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.dropzone__hint {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+/* ----------------------------------------------------------- preview ---- */
+
+.dropzone__preview {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.preview__media {
+  flex: none;
+  width: 112px;
+  height: 112px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  display: grid;
+  place-items: center;
+}
+
+.preview__media img,
+.preview__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.preview__meta { min-width: 0; }
+
+.preview__name {
+  margin: 0 0 2px;
+  font-weight: 500;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.preview__note {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+.preview__change {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--indigo);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ------------------------------------------------------------ button ---- */
+
+.analyse {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 15px 22px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--indigo);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 140ms ease;
+}
+
+.analyse:not(:disabled):hover { background: #32419B; }
+
+.analyse:disabled {
+  background: var(--paper-raised);
+  color: var(--ink-faint);
+  border: 1px solid var(--rule-strong);
+  cursor: not-allowed;
+}
+
+.error {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--false-soft);
+  color: var(--false);
+  font-size: 14px;
+}
+
+/* ----------------------------------------------------------- verdict ---- */
+
+.verdict {
+  margin-top: 36px;
+  padding: 32px;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  animation: rise 300ms ease both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.verdict__headline {
+  margin: 0 0 24px;
+  font-family: var(--serif);
+  font-size: clamp(23px, 4.4vw, 29px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.verdict[data-verdict="authentic"]    .verdict__headline { color: var(--true); }
+.verdict[data-verdict="manipulated"]  .verdict__headline { color: var(--false); }
+.verdict[data-verdict="uncertain"]    .verdict__headline { color: var(--unsure); }
+
+/* gauge — a single continuous scale from real to AI, with the reading
+   placed along it. Clearer than a bare number: it shows where this
+   result sits relative to certainty at either end. */
+
+.gauge { margin-bottom: 26px; }
+
+.gauge__track {
+  position: relative;
+  height: 8px;
+  border-radius: 99px;
+  background: linear-gradient(90deg,
+              var(--true) 0%, var(--unsure) 50%, var(--false) 100%);
+  opacity: 0.22;
+}
+
+.gauge__fill {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 3px solid var(--paper-raised);
+  transform: translateY(-50%);
+  left: 0;
+  transition: left 620ms cubic-bezier(.22,.9,.3,1);
+  box-shadow: 0 1px 4px rgba(0,0,0,.18);
+}
+
+.verdict[data-verdict="authentic"]   .gauge__fill { background: var(--true); }
+.verdict[data-verdict="manipulated"] .gauge__fill { background: var(--false); }
+.verdict[data-verdict="uncertain"]   .gauge__fill { background: var(--unsure); }
+
+.gauge__scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+/* readout */
+
+.readout {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 20px 0 18px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.readout__figure {
+  flex: none;
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.verdict[data-verdict="authentic"]   .readout__figure { color: var(--true); }
+.verdict[data-verdict="manipulated"] .readout__figure { color: var(--false); }
+.verdict[data-verdict="uncertain"]   .readout__figure { color: var(--unsure); }
+
+.readout__explain {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.verdict__legend {
+  margin: 18px 0 0;
+  padding: 13px 15px;
+  border-radius: 8px;
+  background: var(--indigo-soft);
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+
+.verdict__caveat {
+  margin: 16px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  max-width: 60ch;
+}
+
+/* ------------------------------------------------------------ footer ---- */
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  padding: 20px 28px;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* ----------------------------------------------------------- responsive - */
+
+@media (max-width: 520px) {
+  .main { padding: 40px 18px 56px; }
+  .verdict { padding: 24px 20px; }
+  .dropzone { padding: 34px 20px; }
+  .dropzone__preview { flex-direction: column; align-items: flex-start; }
+  .readout { flex-direction: column; gap: 8px; }
+  .gauge__scale span:nth-child(2) { display: none; }
+}
+
+/* ------------------------------------------------------- a11y / motion -- */
+
+.analyse:focus-visible,
+.preview__change:focus-visible,
+.dropzone:focus-within {
+  outline: 2px solid var(--indigo);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .verdict { animation: none; }
+  .gauge__fill { transition: none; }
+}
+
+/* ==========================================================================
+   Frame-by-frame timeline (videos only)
+
+   A column per sampled frame, height = P(AI). Reading it left to right
+   is reading the clip start to end, so a burst of manipulation in one
+   section is immediately visible as a cluster of tall bars — the thing
+   a single averaged number hides completely.
+   ========================================================================== */
+
+.timeline {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+
+.timeline__title {
+  margin: 0 0 6px;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.timeline__intro {
+  margin: 0 0 16px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+
+.timeline__chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 108px;
+  padding: 10px 12px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.bar {
+  flex: 1 1 0;
+  min-width: 3px;
+  border-radius: 2px 2px 0 0;
+  background: var(--true);
+  min-height: 2px;
+  transition: height 420ms cubic-bezier(.22,.9,.3,1);
+  position: relative;
+  cursor: default;
+}
+
+.bar.is-flagged { background: var(--false); }
+.bar.is-mid     { background: var(--unsure); }
+
+.bar:hover::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: calc(100% + 7px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--ink);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 5px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.timeline__axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 14px 18px;
+  margin: 20px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--rule);
+}
+
+.stats div { margin: 0; }
+
+.stats dt {
+  margin: 0 0 2px;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 520px) {
+  .timeline__chart { height: 84px; gap: 2px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar { transition: none; }
+}
