@@ -183,6 +183,29 @@ deepguard-bouncer/
 
 ---
 
+## Running the tests
+
+```bash
+cd app
+pip install -r requirements.txt -r requirements-dev.txt
+pytest -v
+```
+
+47 tests: unit tests for the pure-logic modules (fingerprint hashing/
+signing, frequency-domain peak detection, model architecture shapes)
+plus integration tests against a real FastAPI `TestClient` with real
+models loaded — every API endpoint, across all 8 real labeled test
+images. Two of them pin, by name, bugs that were actually found and
+fixed this project (a flat-image edge case in the frequency panel, an
+oversized-body DoS on `/api/fingerprint/verify`) so those exact
+regressions can't silently come back. The Content Registry's
+persisted files are redirected to a temp directory for the test run —
+running the suite never touches the real `models/content_registry.*`
+files. Takes about 15 seconds, dominated by loading ~130MB of real
+model weights once at session start.
+
+---
+
 ## Retraining
 
 Both notebooks in `colab_notebook/` follow the same disciplined
@@ -238,6 +261,5 @@ list is worth more than pretending everything is finished:
   labels) — the tool works, the data behind it isn't trustworthy yet.
 - **Generator Attribution's cross-generator generalization is
   untested** — only measured against generators it trained on.
-- **No automated test suite is committed to this repo yet.**
 - **Live/webcam temporal detection** was scoped out of this phase
   entirely, not attempted.
