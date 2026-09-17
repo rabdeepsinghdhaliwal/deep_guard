@@ -19,9 +19,60 @@ What this file does, in order:
   4. Exposes GET /api/health — a diagnostic endpoint the frontend pings
      on load, so a broken setup is visible immediately instead of
      failing silently on first upload.
+  5. Every /api/analyze response also carries an authenticity fingerprint
+     (see fingerprint.py — Stage 2): an exact SHA-256 hash, a perceptual
+     hash that survives re-compression, and both signed with this
+     server's Ed25519 key. This is independent of the AI verdict above —
+     it doesn't check anything against a registry (that's Stage 3, not
+     built yet), it just produces and signs the fingerprint an upload
+     WOULD be registered under, so the mechanism is demoable today.
+  6. Exposes POST /api/fingerprint/compression-test — re-saves an
+     uploaded image at several JPEG qualities server-side and reports
+     both fingerprints for each, live, so the "exact hash breaks, visual
+     hash survives" claim is a one-click browser feature, not something
+     that only shows up when someone runs a script.
+  7. Every image explainability result also carries a frequency-domain
+     panel (see frequency_analysis.py — Phase 2, Idea 5b): a Fourier
+     spectrum of the exact image the model saw, plus any anomalous
+     frequency peaks detected in it. This needs no model at all — real
+     cameras and AI generators leave measurably different traces in an
+     image's frequency spectrum, so this is independent physical
+     evidence shown alongside Grad-CAM's model-derived heatmap, not a
+     replacement for it.
+  8. Exposes POST /api/explain/shap-regions — an opt-in, separate-click
+     breakdown (see shap_explain.py — Phase 2, Idea 5a) of exactly how
+     many percentage points each region of an image pushed the verdict
+     toward fake or real, using Shapley values over superpixel regions.
+     Kept as its own endpoint rather than folded into /api/analyze
+     because it costs several seconds of extra CPU inference — worth it
+     for a deliberate "show me why" click, not for every upload.
+  9. Exposes GET /bias-map and GET /api/bias-map (Phase 2, Idea 1): a
+     dashboard showing accuracy sliced by generator/subject/style,
+     instead of one aggregate number that can hide a subgroup the model
+     does badly on (exactly how this project's own hidden 91.5%/8.5%
+     split was found). This endpoint only READS bias_map/results.json —
+     see bias_map/build_bias_map.py, a standalone script run by hand,
+     for how that file gets produced.
+ 10. Exposes GET /registry, POST /api/registry/register, and POST
+     /api/registry/check (Phase 2, Idea 4 — see content_registry.py):
+     the first real piece of Stage 3 (the ledger), upgraded from
+     "was this exact file registered" to "was any registered content
+     used as the basis for this file, even cropped, rotated, or
+     recoloured" — using Meta's pretrained SSCD model plus a FAISS
+     index, not the perceptual hash above (which is a global hash of
+     the whole frame and breaks under cropping almost immediately).
+ 11. Every image /api/analyze verdicts as "manipulated" also carries a
+     generator_attribution field (Phase 2, Idea 2 — see attribution.py
+     and model.py's GENERATOR_CLASSES): which of 8 specific tools
+     (4 GAN, 4 diffusion) most likely produced it, from a SEPARATE
+     model trained on ArtiFact (not Stage 1's detector, which never
+     changes). Requires models/deepguard_attribution.pth to exist —
+     additive, like everything else here; absent that checkpoint this
+     field is simply never present, not a broken app.
 """
 
 import io
+import json
 import logging
 import tempfile
 import time
@@ -31,13 +82,22 @@ from typing import Optional
 
 import cv2
 import torch
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from PIL import Image
 from torchvision import transforms
 
+import base64
+
+import attribution
+import content_registry
+import fingerprint
+import frequency_analysis
+import gradcam
+import shap_explain
+import uncertainty
 from model import build_model
 
 logging.basicConfig(level=logging.INFO)
@@ -51,6 +111,14 @@ APP_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = APP_DIR.parent
 STATIC_DIR = APP_DIR / "static"
 MODEL_PATH = PROJECT_ROOT / "models" / "deepguard_bouncer.pth"
+SIGNER_PRIVATE_KEY_PATH = PROJECT_ROOT / "models" / "demo_signer_private.pem"
+SIGNER_PUBLIC_KEY_PATH = PROJECT_ROOT / "models" / "demo_signer_public.pem"
+BIAS_MAP_RESULTS_PATH = PROJECT_ROOT / "bias_map" / "results.json"
+SSCD_MODEL_PATH = PROJECT_ROOT / "models" / "sscd_disc_mixup.torchscript.pt"
+CONTENT_REGISTRY_INDEX_PATH = PROJECT_ROOT / "models" / "content_registry.index"
+CONTENT_REGISTRY_METADATA_PATH = PROJECT_ROOT / "models" / "content_registry_metadata.json"
+DEMO_ARTWORKS_DIR = PROJECT_ROOT / "demo_artworks"
+ATTRIBUTION_MODEL_PATH = PROJECT_ROOT / "models" / "deepguard_attribution.pth"
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".mkv", ".webm", ".avi"}
@@ -77,6 +145,11 @@ STATE = {
     "normalize_std": None,
     "preprocess": None,
     "load_error": None,
+    "signer_private_key": None,
+    "signer_public_key": None,
+    "sscd_model": None,
+    "content_registry": None,
+    "attribution": None,
 }
 
 
@@ -104,6 +177,15 @@ def load_model() -> None:
     try:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         checkpoint = torch.load(MODEL_PATH, map_location=device)
+
+        if "model_state_dict" not in checkpoint:
+            # The training notebook also writes a raw state_dict (no
+            # metadata) to the same filename mid-run, before the final
+            # cell overwrites it with this wrapped format. If someone
+            # downloads that intermediate file by mistake, treat the
+            # whole checkpoint as the state_dict itself rather than
+            # failing on a confusing KeyError below.
+            checkpoint = {"model_state_dict": checkpoint}
 
         architecture = checkpoint.get("architecture", "efficientnet_b0")
         if architecture != "efficientnet_b0":
@@ -154,9 +236,103 @@ def load_model() -> None:
         logger.exception("Model load failed")
 
 
+def load_or_create_signing_key() -> None:
+    """
+    Loads the demo signing keypair from disk, generating and persisting one
+    on first run. Persisting it (rather than generating a fresh key every
+    startup) means the same "signer" identity is used across restarts —
+    otherwise a fingerprint signed before a restart would appear to come
+    from a different signer than one signed after, which would break the
+    "same server, same signer" story before Stage 3 (the registry) even
+    exists to make that story matter.
+    """
+    try:
+        if SIGNER_PRIVATE_KEY_PATH.exists() and SIGNER_PUBLIC_KEY_PATH.exists():
+            private_pem = SIGNER_PRIVATE_KEY_PATH.read_bytes()
+            public_pem = SIGNER_PUBLIC_KEY_PATH.read_bytes()
+        else:
+            private_pem, public_pem = fingerprint.generate_keypair()
+            SIGNER_PRIVATE_KEY_PATH.write_bytes(private_pem)
+            SIGNER_PUBLIC_KEY_PATH.write_bytes(public_pem)
+            logger.info(f"Generated new demo signing key at {SIGNER_PRIVATE_KEY_PATH}")
+
+        STATE["signer_private_key"] = private_pem
+        STATE["signer_public_key"] = public_pem
+    except Exception:  # noqa: BLE001 — fingerprinting is additive; don't crash startup over it
+        logger.exception("Failed to load or create signing key — fingerprints will not be signed")
+
+
+def load_content_registry() -> None:
+    """
+    Loads the pretrained SSCD model and the persisted FAISS registry
+    (Phase 2, Idea 4). On first run only, seeds the registry with a few
+    public-domain artworks (demo_artworks/) so the "register → crop it →
+    still gets caught" demo has something in it immediately, rather than
+    starting empty. Seeding is idempotent via is_registered() — it will
+    not re-add the same title on a later restart.
+
+    Entirely additive, like signing: if the SSCD weights are missing or
+    fail to load, the registry endpoints report 503 rather than this
+    taking down the AI-detection half of the app, which doesn't depend
+    on it at all.
+    """
+    if not SSCD_MODEL_PATH.exists():
+        logger.warning(f"No SSCD model at {SSCD_MODEL_PATH} — content registry disabled.")
+        return
+
+    try:
+        STATE["sscd_model"] = content_registry.load_sscd_model(SSCD_MODEL_PATH)
+        registry = content_registry.ContentRegistry(CONTENT_REGISTRY_INDEX_PATH, CONTENT_REGISTRY_METADATA_PATH)
+        STATE["content_registry"] = registry
+
+        if DEMO_ARTWORKS_DIR.exists():
+            for image_path in sorted(DEMO_ARTWORKS_DIR.glob("*.jpg")):
+                title = image_path.stem.replace("_", " ").title()
+                if registry.is_registered(title):
+                    continue
+                image = Image.open(image_path).convert("RGB")
+                embedding = content_registry.compute_content_embedding(STATE["sscd_model"], image)
+                file_bytes = image_path.read_bytes()
+                record = fingerprint.build_and_sign_record(
+                    STATE["signer_private_key"], STATE["signer_public_key"],
+                    **fingerprint.compute_file_fingerprint(file_bytes),
+                    title=title,
+                    source="Wikimedia Commons (public domain)",
+                )
+                registry.register(embedding, record)
+                logger.info(f"Seeded content registry with '{title}'")
+
+        logger.info(f"Content registry loaded: {len(registry.metadata)} entries")
+    except Exception:  # noqa: BLE001 — additive; don't crash startup over it
+        logger.exception("Failed to load content registry — /api/registry/* will report unavailable")
+
+
+def load_attribution_model() -> None:
+    """
+    Loads the Generator Attribution checkpoint (Phase 2, Idea 2) if one
+    has been trained and placed at ATTRIBUTION_MODEL_PATH. Additive, like
+    every other optional capability here: no checkpoint means /api/analyze
+    simply never adds a generator_attribution field, not a broken app —
+    this is expected right up until the Colab training notebook has
+    actually been run once.
+    """
+    try:
+        state = attribution.load_attribution_model(ATTRIBUTION_MODEL_PATH, STATE["device"] or torch.device("cpu"))
+        if state is None:
+            logger.info(f"No attribution checkpoint at {ATTRIBUTION_MODEL_PATH} — generator attribution disabled.")
+            return
+        STATE["attribution"] = state
+        logger.info(f"Attribution model loaded: {len(state['class_order'])} generator classes")
+    except Exception:  # noqa: BLE001 — additive; don't crash startup over it
+        logger.exception("Failed to load attribution model — generator_attribution will be unavailable")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     load_model()
+    load_or_create_signing_key()
+    load_content_registry()
+    load_attribution_model()
     yield
 
 
@@ -184,6 +360,16 @@ async def serve_index():
     return FileResponse(str(STATIC_DIR / "index.html"))
 
 
+@app.get("/bias-map")
+async def serve_bias_map_page():
+    return FileResponse(str(STATIC_DIR / "bias-map.html"))
+
+
+@app.get("/registry")
+async def serve_registry_page():
+    return FileResponse(str(STATIC_DIR / "registry.html"))
+
+
 # ---------------------------------------------------------------------------
 # Health check
 # ---------------------------------------------------------------------------
@@ -195,7 +381,125 @@ async def health():
         "model_loaded": STATE["model"] is not None,
         "device": str(STATE["device"]) if STATE["device"] else None,
         "error": STATE["load_error"],
+        "signer_public_key": (
+            STATE["signer_public_key"].decode("ascii") if STATE["signer_public_key"] else None
+        ),
     }
+
+
+@app.get("/api/bias-map")
+async def bias_map():
+    """
+    Reads bias_map/results.json and returns it as-is — nothing is
+    computed on the request path. That file is written by hand-running
+    bias_map/build_bias_map.py, not by this endpoint, so this stays
+    fast and safe to call regardless of how large the labeled test set
+    ever grows. Returns a clear "not generated yet" response rather
+    than a 404 or a crash if the script has never been run.
+    """
+    if not BIAS_MAP_RESULTS_PATH.exists():
+        return {
+            "generated": False,
+            "message": "No bias map has been generated yet. Run bias_map/build_bias_map.py first.",
+        }
+    return {"generated": True, **json.loads(BIAS_MAP_RESULTS_PATH.read_text(encoding="utf-8"))}
+
+
+# ---------------------------------------------------------------------------
+# Content registry (Phase 2, Idea 4)
+# ---------------------------------------------------------------------------
+
+def _check_upload_size(file_bytes: bytes) -> None:
+    """
+    Shared by every upload endpoint. Found during the round-1 adversarial
+    review: /api/analyze was the ONLY endpoint enforcing MAX_UPLOAD_BYTES —
+    compression-test, shap-regions, and both registry endpoints all read
+    the full upload into memory with no size check at all, an unbounded
+    memory-exhaustion gap on four of five upload paths. Centralised here
+    so a sixth upload endpoint can't reintroduce the same gap by omission.
+    """
+    if len(file_bytes) > MAX_UPLOAD_BYTES:
+        raise HTTPException(
+            status_code=413,
+            detail=f"File too large ({len(file_bytes) / 1e6:.1f} MB). Limit is {MAX_UPLOAD_BYTES / 1e6:.0f} MB.",
+        )
+
+
+MAX_TITLE_LENGTH = 200
+
+
+def _clean_registry_title(title: str) -> str:
+    """
+    Found during the round-1 review: titles were stored completely
+    unvalidated — empty, whitespace-only, or arbitrarily long strings were
+    all accepted as-is. Trimmed and length-capped here, at the one place
+    a title enters the system, rather than trusting every future caller
+    to remember to check.
+    """
+    cleaned = title.strip()
+    if not cleaned:
+        raise HTTPException(status_code=400, detail="Title can't be empty.")
+    if len(cleaned) > MAX_TITLE_LENGTH:
+        raise HTTPException(status_code=400, detail=f"Title is too long (limit {MAX_TITLE_LENGTH} characters).")
+    return cleaned
+
+
+def _read_registry_upload_image(file_bytes: bytes) -> Image.Image:
+    if len(file_bytes) == 0:
+        raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+    _check_upload_size(file_bytes)
+    try:
+        return Image.open(io.BytesIO(file_bytes)).convert("RGB")
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=422, detail=f"Couldn't read that image: {exc}") from exc
+
+
+@app.post("/api/registry/register")
+async def registry_register(file: UploadFile = File(...), title: str = Form(...)):
+    """
+    Registers an image's content in the registry: computes its SSCD
+    embedding (for future crop/edit-robust lookups) AND its existing
+    SHA-256 + perceptual hash fingerprint, signs the combined record
+    with this server's Ed25519 key (reusing fingerprint.py exactly as
+    /api/analyze does), and adds the embedding to the FAISS index.
+    """
+    if STATE["sscd_model"] is None or STATE["content_registry"] is None:
+        raise HTTPException(status_code=503, detail="Content registry is unavailable on this server.")
+
+    title = _clean_registry_title(title)
+    file_bytes = await file.read()
+    image = _read_registry_upload_image(file_bytes)
+
+    embedding = content_registry.compute_content_embedding(STATE["sscd_model"], image)
+    record = fingerprint.build_and_sign_record(
+        STATE["signer_private_key"], STATE["signer_public_key"],
+        **fingerprint.compute_file_fingerprint(file_bytes),
+        phash=fingerprint.compute_image_phash(image),
+        title=title,
+        source="user upload",
+    )
+    STATE["content_registry"].register(embedding, record)
+    return record
+
+
+@app.post("/api/registry/check")
+async def registry_check(file: UploadFile = File(...)):
+    """
+    Searches the registry for anything registered that shares
+    substantial content with the uploaded image — including a crop,
+    rotation, recolour, or heavy recompression of it. Returns matches
+    (empty list if none clear MATCH_THRESHOLD) with their similarity
+    score and the original signed registration record.
+    """
+    if STATE["sscd_model"] is None or STATE["content_registry"] is None:
+        raise HTTPException(status_code=503, detail="Content registry is unavailable on this server.")
+
+    file_bytes = await file.read()
+    image = _read_registry_upload_image(file_bytes)
+
+    embedding = content_registry.compute_content_embedding(STATE["sscd_model"], image)
+    matches = STATE["content_registry"].search(embedding)
+    return {"matches": matches, "registry_size": STATE["content_registry"].index.ntotal}
 
 
 # ---------------------------------------------------------------------------
@@ -362,6 +666,285 @@ def aggregate_video_scores(probabilities: list[float]) -> dict:
     }
 
 
+def build_fingerprint(file_bytes: bytes, phash_field: dict) -> Optional[dict]:
+    """
+    Computes and signs the authenticity fingerprint for an upload (Stage 2).
+    Returns None (rather than raising) if the signing key never loaded —
+    this is additive to the AI verdict, so a fingerprinting problem
+    shouldn't take down /api/analyze's core function.
+    """
+    private_key = STATE["signer_private_key"]
+    public_key = STATE["signer_public_key"]
+    if private_key is None or public_key is None:
+        logger.warning("Signing key unavailable — returning fingerprint unsigned fields only")
+        return None
+
+    try:
+        file_fp = fingerprint.compute_file_fingerprint(file_bytes)
+        record = fingerprint.build_and_sign_record(
+            private_key, public_key, **file_fp, **phash_field
+        )
+        return record
+    except Exception:  # noqa: BLE001 — fingerprinting is additive; never break analysis over it
+        logger.exception("Fingerprinting failed")
+        return None
+
+
+# How many stochastic forward passes to average for the consistency check.
+# 16 keeps the extra latency small (one batched forward call) while still
+# giving a stable standard deviation estimate.
+MC_DROPOUT_SAMPLES = 16
+
+
+def build_explainability(image: Image.Image) -> Optional[dict]:
+    """
+    Computes the Grad-CAM heatmap and Monte Carlo Dropout consistency for a
+    single image (for video, the caller passes the single most-suspicious
+    sampled frame rather than running this per frame). Additive, like
+    build_fingerprint — returns None on any failure rather than breaking
+    the core AI verdict.
+    """
+    try:
+        preprocess = STATE["preprocess"]
+        model = STATE["model"]
+        device = STATE["device"]
+
+        tensor = preprocess(image).unsqueeze(0).to(device)
+
+        heatmap = gradcam.compute_gradcam(model, tensor)
+        # The overlay is drawn on exactly what the model saw (resized and
+        # centre-cropped, before normalization) rather than the original
+        # photo — see gradcam.py's docstring for why that's the honest
+        # choice here. The frequency panel below reuses this same
+        # model-view image for the same reason.
+        model_view_transform = transforms.Compose(preprocess.transforms[:2])
+        model_view_image = model_view_transform(image)
+        heatmap_png = gradcam.render_heatmap_overlay(model_view_image, heatmap)
+
+        mean_p, std_p = uncertainty.score_with_uncertainty(model, tensor, n_samples=MC_DROPOUT_SAMPLES)
+
+        # Frequency-domain panel (Phase 2, Idea 5b) — pure signal
+        # processing on the pixels, no model involved. Wrapped in its
+        # own try/except: it's additive evidence alongside Grad-CAM, not
+        # a dependency of it, so a failure here shouldn't blank out the
+        # heatmap and consistency numbers above, which just succeeded.
+        frequency_result = None
+        try:
+            spectrum = frequency_analysis.compute_fft_spectrum(model_view_image)
+            peak_info = frequency_analysis.detect_spectral_peaks(spectrum, model_view_image)
+            spectrum_png = frequency_analysis.render_spectrum_png(spectrum)
+            frequency_result = {
+                "spectrum_png_base64": base64.b64encode(spectrum_png).decode("ascii"),
+                **peak_info,
+            }
+        except Exception:  # noqa: BLE001 — additive only
+            logger.exception("Frequency-domain analysis failed")
+
+        return {
+            "heatmap_png_base64": base64.b64encode(heatmap_png).decode("ascii"),
+            "frequency_analysis": frequency_result,
+            "model_consistency": {
+                "mean_probability": round(mean_p, 4),
+                "std_probability": round(std_p, 4),
+                # Empirically (see the retrain investigation), a confidently
+                # WRONG verdict tends to show LOW std here, not high, because
+                # the sigmoid is saturated near 0 or 1. A low std means the
+                # model is internally consistent, not that it's correct.
+                "note": "Low std means the model is internally consistent about this "
+                        "reading -- not that the reading is correct. High std means "
+                        "the model itself is unstable here; treat the headline number "
+                        "with extra caution.",
+            },
+        }
+    except Exception:  # noqa: BLE001 — additive only, never break the core verdict
+        logger.exception("Explainability computation failed")
+        return None
+
+
+def build_generator_attribution(image: Image.Image) -> Optional[dict]:
+    """
+    Phase 2, Idea 2. Only meaningful to call when the Stage 1 verdict is
+    already "manipulated" — the caller is responsible for that check, not
+    this function, so this stays a pure "is the capability available"
+    gate. Additive like everything else here: returns None if no
+    checkpoint was ever loaded, never raises into the core verdict.
+    """
+    if STATE["attribution"] is None:
+        return None
+    try:
+        return attribution.predict_generator(STATE["attribution"], image, STATE["device"])
+    except Exception:  # noqa: BLE001 — additive only
+        logger.exception("Generator attribution failed")
+        return None
+
+
+# JPEG quality levels used for the live compression-resilience demo below.
+# 95 down to 30 spans "barely touched" to "heavily squeezed, WhatsApp-style."
+COMPRESSION_TEST_QUALITIES = [95, 85, 70, 50, 30]
+
+
+@app.post("/api/fingerprint/compression-test")
+async def compression_test(file: UploadFile = File(...)):
+    """
+    Demonstrates the core Stage 2 claim live, in the browser, without
+    needing an external script: re-saves the SAME uploaded image at
+    several JPEG quality levels server-side, and reports that the exact
+    fingerprint changes completely every time while the perceptual
+    fingerprint barely moves. This is the same test proven once via a
+    standalone script earlier in the project; this endpoint makes it a
+    permanent, repeatable, one-click feature of the app itself.
+    """
+    if STATE["signer_private_key"] is None:
+        raise HTTPException(status_code=503, detail="Signing key unavailable.")
+
+    file_bytes = await file.read()
+    if len(file_bytes) == 0:
+        raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+    _check_upload_size(file_bytes)
+
+    try:
+        image = Image.open(io.BytesIO(file_bytes)).convert("RGB")
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=422, detail=f"Couldn't read that image: {exc}") from exc
+
+    original_fingerprint = fingerprint.compute_file_fingerprint(file_bytes)
+    original_phash = fingerprint.compute_image_phash(image)
+
+    recompressed_results = []
+    for quality in COMPRESSION_TEST_QUALITIES:
+        buffer = io.BytesIO()
+        image.save(buffer, format="JPEG", quality=quality)
+        recompressed_bytes = buffer.getvalue()
+        recompressed_image = Image.open(io.BytesIO(recompressed_bytes)).convert("RGB")
+
+        recompressed_fingerprint = fingerprint.compute_file_fingerprint(recompressed_bytes)
+        recompressed_phash = fingerprint.compute_image_phash(recompressed_image)
+
+        recompressed_results.append({
+            "quality": quality,
+            "file_size_bytes": len(recompressed_bytes),
+            "sha256_merkle_root": recompressed_fingerprint["sha256_merkle_root"],
+            "sha256_unchanged": (
+                recompressed_fingerprint["sha256_merkle_root"] == original_fingerprint["sha256_merkle_root"]
+            ),
+            "phash": recompressed_phash,
+            "phash_bits_different": fingerprint.hamming_distance(original_phash, recompressed_phash),
+        })
+
+    return {
+        "original": {
+            "file_size_bytes": len(file_bytes),
+            "sha256_merkle_root": original_fingerprint["sha256_merkle_root"],
+            "phash": original_phash,
+        },
+        "recompressed": recompressed_results,
+        "phash_bits_total": 256,
+    }
+
+
+MAX_RECORD_BYTES = 1 * 1024 * 1024  # 1 MB — a real record is a few hundred bytes to a few KB
+
+
+@app.post("/api/fingerprint/verify")
+async def verify_fingerprint(request: Request):
+    """
+    Found missing in the round-1 adversarial review: fingerprint.py's
+    verify_signature() was written, tested once from a standalone script
+    earlier in the project, and then never actually called from the
+    running app — every fingerprint the app produced could be SIGNED,
+    but the app itself had no way to VERIFY one. Since "anyone can
+    independently verify this" is the actual point of Stage 2, that gap
+    meant the core claim wasn't demonstrable in the app at all.
+
+    Accepts any record this server produced (from /api/analyze,
+    /api/fingerprint/compression-test's "original", or a registry
+    record) and checks its signature against this server's OWN public
+    key. That's still a meaningful, honest demo — it exercises the exact
+    same verify_signature() a real independent verifier would call with
+    the public key shown in the footer — it just isn't a substitute for
+    an outside party doing the same check with no need to trust this
+    server at all, which is what the exposed public key is actually for.
+
+    Takes a raw Request (not a `dict = Body(...)` param) specifically to
+    enforce MAX_RECORD_BYTES before parsing — found in round-2 review:
+    the first version of this endpoint used Body(...), which has no
+    size limit of its own, reopening exactly the unbounded-upload gap
+    round 1 had just closed on every file-upload endpoint. A 50 MB JSON
+    body was accepted in ~0.65s before this fix. A real record never
+    exceeds a few KB, so 1 MB has wide margin without being unbounded.
+    """
+    content_length = request.headers.get("content-length")
+    if content_length and int(content_length) > MAX_RECORD_BYTES:
+        raise HTTPException(status_code=413, detail=f"Record too large. Limit is {MAX_RECORD_BYTES} bytes.")
+
+    body = await request.body()
+    if len(body) > MAX_RECORD_BYTES:
+        raise HTTPException(status_code=413, detail=f"Record too large. Limit is {MAX_RECORD_BYTES} bytes.")
+
+    try:
+        record = json.loads(body)
+    except json.JSONDecodeError as exc:
+        raise HTTPException(status_code=422, detail=f"Invalid JSON: {exc}") from exc
+
+    if STATE["signer_public_key"] is None:
+        raise HTTPException(status_code=503, detail="Signing key unavailable.")
+
+    signature = record.get("signature") if isinstance(record, dict) else None
+    if not signature:
+        raise HTTPException(status_code=400, detail="Record has no 'signature' field to verify.")
+
+    is_valid = fingerprint.verify_signature(STATE["signer_public_key"], record, signature)
+    return {"valid": is_valid}
+
+
+@app.post("/api/explain/shap-regions")
+async def shap_regions(file: UploadFile = File(...)):
+    """
+    Opt-in region-attribution breakdown (Phase 2, Idea 5a) — deliberately
+    a separate endpoint the frontend calls only on request, not part of
+    /api/analyze's automatic response. On this model, on CPU, this costs
+    several seconds (it re-runs inference ~200 times on masked variants
+    of the image); fine for a deliberate "show me why" click, too slow
+    to tax on every single upload the way Grad-CAM and the frequency
+    panel are fast enough to do.
+    """
+    if STATE["model"] is None:
+        raise HTTPException(status_code=503, detail=STATE["load_error"] or "Model is not loaded.")
+
+    extension = Path(file.filename or "").suffix.lower()
+    if extension not in IMAGE_EXTENSIONS:
+        raise HTTPException(
+            status_code=400,
+            detail="Region attribution only supports still images right now, not video.",
+        )
+
+    file_bytes = await file.read()
+    if len(file_bytes) == 0:
+        raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+    _check_upload_size(file_bytes)
+
+    try:
+        image = Image.open(io.BytesIO(file_bytes)).convert("RGB")
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=422, detail=f"Couldn't read that image: {exc}") from exc
+
+    preprocess = STATE["preprocess"]
+    model_view_transform = transforms.Compose(preprocess.transforms[:2])
+    model_view_image = model_view_transform(image)
+
+    try:
+        segments = shap_explain.segment_superpixels(model_view_image)
+        regions = shap_explain.compute_region_shap(score_frames, model_view_image, segments)
+    except Exception as exc:  # noqa: BLE001
+        logger.exception("SHAP region attribution failed")
+        raise HTTPException(status_code=500, detail="Region attribution failed on the server.") from exc
+
+    return {
+        "regions": regions,
+        "segments_total": int(segments.max()) + 1,
+    }
+
+
 @app.post("/api/analyze")
 async def analyze(file: UploadFile = File(...)):
     if STATE["model"] is None:
@@ -375,11 +958,7 @@ async def analyze(file: UploadFile = File(...)):
 
     if len(file_bytes) == 0:
         raise HTTPException(status_code=400, detail="Uploaded file is empty.")
-    if len(file_bytes) > MAX_UPLOAD_BYTES:
-        raise HTTPException(
-            status_code=413,
-            detail=f"File too large ({len(file_bytes) / 1e6:.1f} MB). Limit is {MAX_UPLOAD_BYTES / 1e6:.0f} MB.",
-        )
+    _check_upload_size(file_bytes)
 
     started = time.perf_counter()
 
@@ -396,13 +975,27 @@ async def analyze(file: UploadFile = File(...)):
             logger.exception("Inference failed")
             raise HTTPException(status_code=500, detail="Inference failed on the server.") from exc
 
+        fingerprint_record = build_fingerprint(
+            file_bytes, {"phash": fingerprint.compute_image_phash(image)}
+        )
+        explainability = build_explainability(image)
+
+        # Only worth asking "which generator" once the image is already
+        # believed to be AI-generated — the attribution model was never
+        # trained to answer that question about a real photo.
+        verdict = "manipulated" if probability_fake >= 0.5 else "authentic"
+        generator_attribution = build_generator_attribution(image) if verdict == "manipulated" else None
+
         return {
             "input_type": "image",
             "filename": file.filename,
             "probability_fake": round(probability_fake, 4),
             "probability_real": round(1.0 - probability_fake, 4),
-            "verdict": "manipulated" if probability_fake >= 0.5 else "authentic",
+            "verdict": verdict,
             "elapsed_seconds": round(time.perf_counter() - started, 2),
+            "fingerprint": fingerprint_record,
+            "explainability": explainability,
+            "generator_attribution": generator_attribution,
         }
 
     # ---------------------------------------------------------------- video
@@ -429,6 +1022,23 @@ async def analyze(file: UploadFile = File(...)):
             for i, p in enumerate(probabilities)
         ]
 
+        # Same sampled frames used for AI scoring are reused here for the
+        # visual fingerprint — one video-decode pass serves both purposes.
+        fingerprint_record = build_fingerprint(
+            file_bytes, {"phash_frames": fingerprint.compute_video_phash(frames)}
+        )
+
+        # Explainability runs on the single most-suspicious frame only —
+        # not all 32 — so cost stays fixed regardless of clip length. It's
+        # also the most informative frame to show "why": if anything in
+        # the clip triggered the model, this is where.
+        peak_index = probabilities.index(max(probabilities))
+        explainability = build_explainability(frames[peak_index])
+        if explainability is not None:
+            explainability["frame_timestamp"] = (
+                timestamps[peak_index] if peak_index < len(timestamps) else None
+            )
+
         return {
             "input_type": "video",
             "filename": file.filename,
@@ -437,6 +1047,8 @@ async def analyze(file: UploadFile = File(...)):
             "timeline": timeline,
             "video": meta,
             "elapsed_seconds": round(time.perf_counter() - started, 2),
+            "fingerprint": fingerprint_record,
+            "explainability": explainability,
             **summary,
         }
 

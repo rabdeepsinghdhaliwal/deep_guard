@@ -67,3 +67,60 @@ def build_model(pretrained: bool = False) -> nn.Module:
     model.classifier[1] = nn.Linear(in_features, 1)
 
     return model
+
+
+# ---------------------------------------------------------------------------
+# Phase 2, Idea 2 -- Generator Attribution (a SEPARATE model, not a second
+# head on the one above -- see the Phase 2 build plan's Decision 1: a
+# shared multi-task model risks the two tasks fighting each other during
+# training, and a second model is simpler to build, debug, and roll back
+# independently of Stage 1, which stays completely untouched by any of
+# this).
+# ---------------------------------------------------------------------------
+
+# 8 classes, chosen from ArtiFact's 25 for genuine architectural diversity
+# on both sides, not just a coarse GAN-vs-diffusion split -- so a
+# generalization test (train on some, hold out others within each family)
+# is actually meaningful. Order matters: index position IS the class
+# label everywhere this list is used, in this file, the training
+# notebook, and attribution.py -- same one-source-of-truth discipline as
+# CLASS_ORDER above, for the same reason (a silently reordered list here
+# would retrain nothing and just relabel every prediction).
+GENERATOR_CLASSES = [
+    # GAN family
+    "stylegan2",       # classic unconditional GAN
+    "pro_gan",         # progressive growing
+    "big_gan",         # class-conditional
+    "cycle_gan",       # image-to-image translation -- architecturally distinct from the other three
+    # Diffusion family
+    "ddpm",            # foundational / vanilla diffusion, no conditioning
+    "latent_diffusion",  # Stable Diffusion's direct architectural ancestor
+    "stable_diffusion",  # the most widely recognized name in this list
+    "glide",           # text-guided, a different diffusion lineage (OpenAI)
+]
+
+
+def build_attribution_model(pretrained: bool = False) -> nn.Module:
+    """
+    Same EfficientNet-B0 backbone as build_model(), a different head:
+    Linear(in_features, len(GENERATOR_CLASSES)) instead of Linear(in_features, 1).
+    Multi-class, not binary -- softmax over GENERATOR_CLASSES, not a
+    single sigmoid probability. Train with nn.CrossEntropyLoss (expects
+    raw logits, applies log-softmax internally) and take
+    torch.softmax(logits, dim=-1) at inference for a probability per
+    generator.
+
+    CRITICAL, same warning as build_model() above: this must match the
+    matching cell in DeepGuard_Attribution_Training.ipynb exactly. If
+    GENERATOR_CLASSES' length or order ever changes here, the notebook's
+    copy must change identically and the model must be retrained -- a
+    saved checkpoint's output layer shape and meaning are both frozen at
+    training time.
+    """
+    weights = EfficientNet_B0_Weights.DEFAULT if pretrained else None
+    model = efficientnet_b0(weights=weights)
+
+    in_features = model.classifier[1].in_features
+    model.classifier[1] = nn.Linear(in_features, len(GENERATOR_CLASSES))
+
+    return model
