@@ -338,7 +338,10 @@ function renderAttribution(data, displayedVerdict) {
 
   attributionIntro.textContent =
     `Once an image is flagged as AI-generated, this model (trained separately from the detector above) `
-    + `estimates which specific tool most likely made it.`;
+    + `estimates which specific tool most likely made it. It only recognizes 8 specific tools, though — `
+    + `on a generator it's never seen (tested against real MidJourney and DALL-E 3 images; see the README), `
+    + `it still confidently names one of its known 8 rather than admitting it doesn't recognize the source, `
+    + `so treat this panel skeptically if you have reason to think the image came from something else.`;
 
   const entries = Object.entries(attr.probabilities); // already sorted highest-first by the server
   attributionBars.innerHTML = entries.map(([name, prob], i) => `

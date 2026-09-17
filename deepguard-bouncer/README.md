@@ -71,7 +71,12 @@ to part of a clip still shows up instead of being averaged away.
 under-detects AI images styled like polished, professional stock
 photography. It was found by testing, not assumed — see `bias_map/`
 below for how that kind of gap gets caught systematically instead of
-by hand.
+by hand. The generalization test below (`generalization_test/`)
+independently reproduced the same weakness on a different, real-world
+sample: 30 real DALL·E 3 images were flagged at the app's real
+80%-confidence threshold 100% of the time, but only 35.7% of real
+MidJourney images were — MidJourney's more photorealistic house style
+appears to hit the same blind spot.
 
 ### Stage 2 — the authenticity fingerprint
 
@@ -141,12 +146,21 @@ GLIDE — since every generator leaves faint, characteristic statistical
 traces. Trained on a real subset of the ArtiFact dataset (Kaggle);
 current checkpoint scores 81.85% on its own held-out test split.
 
-> **Honest limitation:** that accuracy is against generators the model
-> *trained on*. It has not been tested against a generator it never
-> saw (e.g. MidJourney, Flux) — a known hard problem in this research
-> area (GAN fingerprints often don't transfer to diffusion models,
-> and vice versa). That generalization test is the natural next step,
-> not yet done.
+> **Honest limitation, now measured (see `generalization_test/`):**
+> tested against 44 real images from two generators it never trained
+> on — 14 from MidJourney's public showcase, 30 from OpenAI's own
+> official DALL·E 3 examples page, both first-party sources. The model
+> cannot say "I don't know" (it's a fixed 8-class softmax), so every
+> prediction on these is wrong by construction — what matters is *how*
+> it's wrong. The result is mixed: when wrong, it's usually
+> *coherently* wrong (90.9% of the time it lands on another diffusion-
+> family tool rather than a GAN, most often defaulting to "Stable
+> Diffusion") — a real, if coarse, transferable signal, not noise. But
+> it is **not** appropriately less confident on unfamiliar input: mean
+> confidence on these wrong guesses (74.2%) is about as high as on
+> data it actually trained on, so the confidence number alone gives no
+> warning the panel might be unreliable. The live "Likely source"
+> panel's own copy now discloses this directly.
 
 **Idea 3 — Live temporal (webcam) detection** was deliberately scoped
 *out* of this phase — it needs real-time video infrastructure this
@@ -259,7 +273,10 @@ list is worth more than pretending everything is finished:
 
 - **Bias Map's dataset is a placeholder** (8 images, no real generator
   labels) — the tool works, the data behind it isn't trustworthy yet.
-- **Generator Attribution's cross-generator generalization is
-  untested** — only measured against generators it trained on.
+- **Generator Attribution's confidence doesn't drop on unseen
+  generators** — measured (see `generalization_test/`), not a guess:
+  it's family-coherent 91% of the time but not appropriately less
+  confident, so the confidence number alone can't warn a user the
+  panel is guessing outside its training set.
 - **Live/webcam temporal detection** was scoped out of this phase
   entirely, not attempted.
