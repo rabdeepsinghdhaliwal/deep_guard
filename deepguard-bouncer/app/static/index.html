@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Deep-Guard — Check if an image or video is AI-generated</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
@@ -21,16 +22,27 @@
       </svg>
       <span class="brand__name">Deep-Guard</span>
     </a>
-    <span class="status" id="status" title="Analysis service status">
-      <span class="status__dot" id="statusDot"></span>
-      <span id="statusText">connecting&hellip;</span>
-    </span>
+    <nav class="site-nav">
+      <a class="site-nav__link" href="/bias-map">Bias Map</a>
+      <a class="site-nav__link" href="/registry">Registry</a>
+      <span class="status" id="status" title="Analysis service status">
+        <span class="status__dot" id="statusDot"></span>
+        <span id="statusText">connecting&hellip;</span>
+      </span>
+    </nav>
   </header>
 
   <main class="main">
 
-    <section class="intro">
-      <h1 class="intro__title">Is this media real?</h1>
+    <section class="intro reveal">
+      <svg class="intro__mark" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M13 2.5 3.5 6.2v6.4c0 5.6 3.9 10.2 9.5 11.4 5.6-1.2 9.5-5.8 9.5-11.4V6.2L13 2.5Z"
+              stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+        <path d="M9.3 12.8l2.6 2.6 5-5" stroke="currentColor" stroke-width="1.1"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="intro__kicker">AI image &amp; video forensics</p>
+      <h1 class="intro__title">Is this <em>real</em>?</h1>
       <p class="intro__body">
         Upload a photo or a video and Deep-Guard examines it for the traces that AI
         generators leave behind. Videos are checked frame by frame across their
@@ -38,7 +50,7 @@
       </p>
     </section>
 
-    <section class="panel">
+    <section class="panel reveal">
       <label class="dropzone" id="dropzone" for="fileInput">
         <div class="dropzone__empty" id="dropzoneEmpty">
           <svg class="dropzone__icon" width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
@@ -100,20 +112,105 @@
         <dl class="stats" id="statsBlock"></dl>
       </div>
 
+      <div class="explain" id="explainBlock" hidden>
+        <h2 class="explain__title">Where the model looked</h2>
+        <div class="explain__body">
+          <img class="explain__heatmap" id="heatmapImg"
+               alt="Heatmap highlighting which regions of the image most influenced the verdict" />
+          <div class="explain__meta">
+            <p class="explain__caption">
+              Warm colours mark regions that pushed the verdict toward &ldquo;AI-generated&rdquo;;
+              cool colours were mostly ignored. Shown on the exact cropped image the model
+              itself analysed.
+            </p>
+            <dl class="consistency" id="consistencyBlock"></dl>
+
+            <button class="explain__shap-btn" id="shapBtn" type="button">
+              Show region-by-region contribution &rarr;
+            </button>
+            <p class="explain__shap-hint" id="shapHint" hidden></p>
+          </div>
+        </div>
+
+        <div class="shap-regions" id="shapRegionsBlock" hidden>
+          <p class="shap-regions__intro" id="shapRegionsIntro"></p>
+          <div class="shap-regions__list" id="shapRegionsList"></div>
+        </div>
+
+        <div class="frequency" id="frequencyBlock" hidden>
+          <h3 class="frequency__title">Frequency signature</h3>
+          <div class="frequency__body">
+            <img class="frequency__plot" id="frequencySpectrumImg"
+                 alt="Fourier spectrum of the image, showing the distribution of energy across spatial frequencies" />
+            <div class="frequency__meta">
+              <p class="frequency__caption" id="frequencyCaption"></p>
+              <dl class="frequency__stats" id="frequencyStats"></dl>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="attribution" id="attributionBlock" hidden>
+        <h2 class="attribution__title">Likely source</h2>
+        <p class="attribution__intro" id="attributionIntro"></p>
+        <div class="attribution__bars" id="attributionBars"></div>
+      </div>
+
+      <div class="fingerprint" id="fingerprintBlock" hidden>
+        <h2 class="fingerprint__title">Authenticity fingerprint</h2>
+        <p class="fingerprint__intro">
+          Every upload is cryptographically fingerprinted and signed &mdash; computed and shown
+          right here, not just claimed. This is the exact mechanism a future public registry
+          (not built yet) would search against.
+        </p>
+        <dl class="fingerprint__fields" id="fingerprintFields"></dl>
+
+        <div class="fingerprint__actions">
+          <button class="fingerprint__test-btn" id="verifyBtn" type="button">
+            Verify independently &rarr;
+          </button>
+          <button class="fingerprint__test-btn" id="compressionTestBtn" type="button">
+            Test compression resilience &rarr;
+          </button>
+        </div>
+        <p class="fingerprint__test-hint" id="verifyHint" hidden></p>
+        <p class="fingerprint__test-hint" id="compressionTestHint" hidden></p>
+
+        <div class="compression-test" id="compressionTestBlock" hidden>
+          <p class="compression-test__intro" id="compressionTestIntro"></p>
+          <div class="table-wrap">
+            <table class="compression-test__table" id="compressionTestTable"></table>
+          </div>
+        </div>
+      </div>
+
       <p class="verdict__legend" id="verdictLegend"></p>
 
       <p class="verdict__caveat">
         This is an estimate from a model trained on a large set of real and
-        AI-generated media, not a definitive answer. 
+        AI-generated media, not a definitive answer. Known current weak spot:
+        it can miss AI-generated images that are styled like polished,
+        professional stock photography &mdash; treat an "authentic" verdict
+        on that kind of clean, studio-quality image with extra skepticism.
       </p>
     </section>
 
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer reveal">
     <p>Deep-Guard analyses media locally on this machine. Nothing you upload is stored or sent elsewhere.</p>
+    <details class="signer-key">
+      <summary>This server's public signing key</summary>
+      <p class="signer-key__note">
+        Every fingerprint on this page is signed with the matching private key. Anyone can
+        take this public key and independently verify a signature &mdash; offline, with no
+        access to this server at all.
+      </p>
+      <pre class="signer-key__value" id="signerPublicKey">loading&hellip;</pre>
+    </details>
   </footer>
 
+  <script src="/static/motion.js"></script>
   <script src="/static/script.js"></script>
 </body>
 </html>
