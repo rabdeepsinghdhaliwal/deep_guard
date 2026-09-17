@@ -1,298 +1,243 @@
-# Deep-Guard Stage 1 — "The Bouncer" — Execution Directive
+# Deep-Guard
 
-This document assumes you have never done any of this before. Every
-command is exact. Copy them character-for-character. If a step's
-output doesn't match what's described, stop and read the
-Troubleshooting section (Part 7) before continuing to the next step.
+A local web app that answers three separate questions about a photo or
+video someone shows you: **is this AI-generated**, **has this exact
+file been tampered with since it was checked**, and **is this a crop,
+edit, or reuse of something already registered**. All three run
+locally — nothing you upload is stored or sent anywhere.
 
-**The end result:** a website at `http://127.0.0.1:8000` on your own
-Ubuntu machine, where you upload a photo or video, click a button, and
-see a percentage telling you how likely the model thinks it's
-AI-manipulated.
-
----
-
-## Part 0 — The shape of what you're about to do (2 minutes, read only)
-
-There are three phases, done in this order:
-
-1. **Train in the cloud (Google Colab).** You will open a notebook file
-   in your browser, upload a small credentials file, and click "Run"
-   repeatedly. Google's computer does the heavy lifting. At the end,
-   a file called `deepguard_bouncer.pth` downloads to your computer.
-   This takes roughly 30–60 minutes of mostly-waiting.
-2. **Move that file onto your Ubuntu machine.** One folder, one file.
-3. **Start the local server and open the website.** A handful of
-   terminal commands, run once.
-
-You will not write or edit any code yourself. You are only running
-what has already been written, in the order given.
+This document covers the whole project as it stands today. If you only
+want to run it, skip to **Quick start**. If you want the reasoning
+behind each feature, skip to **What's actually in here**.
 
 ---
 
-## Part 1 — Get your Kaggle API key (`kaggle.json`)
+## Quick start
 
-You need this so the Colab notebook is allowed to download the
-training dataset on your behalf.
-
-1. Go to **kaggle.com** in your browser. If you don't have an account,
-   click **Register** and create one (it's free).
-2. Once logged in, click your profile picture in the top-right corner,
-   then click **Settings**.
-3. Scroll down to the section called **API**.
-4. Click the button **Create New Token**.
-5. Your browser will immediately download a file named `kaggle.json`.
-   It will land in your Downloads folder. **Do not open or edit this
-   file.** Do not rename it.
-6. Leave it in Downloads for now — you'll upload it directly from
-   there in Part 2.
-
----
-
-## Part 2 — Run the Colab training notebook
-
-1. Go to **colab.research.google.com** in your browser.
-2. Click **File → Upload notebook** (top-left menu).
-3. Click **Browse** and select the file
-   `colab_notebook/DeepGuard_Bouncer_Training.ipynb` from the project
-   folder you were given. It will open in a new Colab tab.
-4. **Turn on the GPU before running anything:** click the **Runtime**
-   menu → **Change runtime type** → under "Hardware accelerator" choose
-   **T4 GPU** → click **Save**.
-5. You will now run every cell from top to bottom. The easiest way:
-   click the menu **Runtime → Run all**. Colab will ask "This notebook
-   was not authored by Google" — click **Run anyway**.
-6. Partway through, a cell will show a small **Choose Files** button
-   (this is the credentials-upload cell from Part 1). Click it,
-   navigate to your Downloads folder, and select `kaggle.json`.
-   Training cannot proceed until you do this — the notebook will wait
-   for you.
-7. After that, everything runs automatically. You'll see progress
-   printed under each cell — dataset image counts, then training
-   progress for two phases, then a test accuracy number, then a
-   confusion matrix. **You do not need to understand every printed
-   line to know it's working** — just confirm no cell shows a red
-   error box. A red box means something needs fixing before the next
-   cell will succeed (see Part 7).
-8. Near the very end, a cell runs `files.download(...)`. Your browser
-   will prompt a file download — **allow it**. A file named
-   `deepguard_bouncer.pth` (a few tens of MB) will land in your
-   Downloads folder. This is the trained model. Keep track of where
-   it lands.
-9. **Expected total time:** roughly 5 minutes of setup/waiting for
-   downloads, plus 20–45 minutes of training, depending on which GPU
-   Colab assigns you.
-
-You will know Part 2 succeeded when: `deepguard_bouncer.pth` exists in
-your Downloads folder, and the last two cells' output showed a test
-accuracy number and a "Saved final checkpoint to..." message with no
-red error boxes anywhere above it.
-
----
-
-## Part 3 — Set up the local project folder structure on Ubuntu
-
-Open **VS Code**. Open its integrated terminal: menu **Terminal → New
-Terminal**, or the shortcut `` Ctrl+` ``.
-
-You should already have the `deepguard-bouncer` project folder (the one
-containing this README) somewhere on your machine — e.g. if it's in
-your Downloads, move it somewhere sensible first:
+Requires Python 3.10+. All three model files below are already
+included in `models/` — you do not need to train or download anything
+to run the server.
 
 ```bash
-mkdir -p ~/projects
-mv ~/Downloads/deepguard-bouncer ~/projects/
-cd ~/projects/deepguard-bouncer
+cd deepguard-bouncer
+python -m venv venv
 ```
 
-Confirm you're in the right place — this command should print a
-listing that includes `app`, `colab_notebook`, `models`, and this
-`README.md`:
+Activate it (pick the line for your shell):
 
 ```bash
-ls
+venv\Scripts\activate          # Windows (cmd/PowerShell)
+source venv/bin/activate        # macOS/Linux
 ```
 
-Now move the trained weights file from Part 2 into the `models/`
-folder, **with this exact filename**:
-
-```bash
-mv ~/Downloads/deepguard_bouncer.pth ~/projects/deepguard-bouncer/models/deepguard_bouncer.pth
-```
-
-Confirm it landed correctly:
-
-```bash
-ls -la models/
-```
-
-You should see `deepguard_bouncer.pth` listed with a non-zero file
-size. If it says "No such file or directory," the file is not in
-Downloads under that exact name — check Part 7.
-
----
-
-## Part 4 — Create the virtual environment and install dependencies
-
-Still inside `~/projects/deepguard-bouncer` in your VS Code terminal,
-run these commands **one at a time**, waiting for each to finish:
-
-```bash
-python3 -m venv venv
-```
-
-This creates an isolated Python environment inside a new `venv/`
-folder, so these dependencies never conflict with anything else on
-your system. It will take a few seconds and print nothing on success.
-
-```bash
-source venv/bin/activate
-```
-
-Your terminal prompt should now show `(venv)` at the start of the
-line. **Every command from here on assumes you see that `(venv)`
-prefix.** If you close the terminal and reopen it later, you must run
-this `source` command again before continuing.
+Install dependencies and start the server:
 
 ```bash
 cd app
 pip install -r requirements.txt
-```
-
-This installs FastAPI, PyTorch, OpenCV, and everything else the
-backend needs. It will print a lot of text and take a few minutes —
-PyTorch is a large download. Let it finish completely.
-
-You'll know it succeeded if the last line is something like
-`Successfully installed ...` with no red `ERROR:` text above it.
-
----
-
-## Part 5 — Run the server and open the website
-
-Still inside `~/projects/deepguard-bouncer/app`, with `(venv)` showing
-in your prompt:
-
-```bash
 uvicorn main:app --reload
 ```
 
-You should see output ending in a line like:
+Open **http://127.0.0.1:8000**. The status pill at the top right
+should read "Ready" with a green dot within a few seconds — that means
+the base detector loaded correctly. If it reads "Model unavailable,"
+see **Troubleshooting** below.
 
-```
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
+Three other pages exist off the same server:
 
-**Leave this terminal window open and running.** This is your server —
-closing the terminal or pressing `Ctrl+C` stops the website.
-
-Now open a browser and go to:
-
-```
-http://127.0.0.1:8000
-```
-
-You should see the Deep-Guard interface: a dark upload panel with
-corner brackets, and a small status line at the bottom of the page.
-That status line is your first diagnostic — it should read something
-like `model loaded · running on cpu` with a green dot. If it shows a
-red dot with an error message, see Part 7 before doing anything else.
-
-**To stop the server later:** click into that terminal and press
-`Ctrl+C`. To start it again in a future session: reopen the terminal,
-`cd` into the project's `app` folder, run `source ../venv/bin/activate`
-(or `source venv/bin/activate` if you're already in the project root),
-then `uvicorn main:app --reload` again.
+| Page | What it's for |
+|---|---|
+| `/` | Upload a photo/video, get the AI-verdict + fingerprint + explainability panels |
+| `/bias-map` | See the detector's accuracy sliced by category instead of one aggregate number |
+| `/registry` | Register an image's content, or check whether an upload is a crop/edit of something already registered |
 
 ---
 
-## Part 6 — Use it, and sanity-check both directions
+## What's actually in here
 
-1. Drag a photo onto the panel (or click it to open a file picker),
-   then click **Run analysis**. Within a second or two you'll see a
-   percentage and a verdict.
-2. To sanity-check the model is actually discriminating and not just
-   guessing one answer every time, test it against **both** kinds of
-   input:
-   - An ordinary photo you took yourself (a phone photo of anything
-     with a face works well) — this should score low on "manipulated."
-   - A GAN-generated face — the website **thispersondoesnotexist.com**
-     generates a fresh one on every reload; download one and upload it
-     to Deep-Guard — this should score high on "manipulated," since
-     StyleGAN-style images are exactly what the training dataset's
-     "fake" class was built from.
-3. If both directions come out looking reasonable, Stage 1 is working
-   correctly.
+Deep-Guard was built in stages. Each one is real, working code today —
+nothing described below is a mockup.
+
+### Stage 1 — the detector
+
+`model.py` fine-tunes an EfficientNet-B0 (transfer learning, two-phase:
+frozen backbone warm-up, then full unfreeze) to output one number:
+P(this image/video is AI-generated). `POST /api/analyze` accepts an
+image or video; videos are sampled across their full duration (not
+just one frame) and reported as a timeline, so manipulation confined
+to part of a clip still shows up instead of being averaged away.
+
+**Known limitation, disclosed on the result page itself:** this model
+under-detects AI images styled like polished, professional stock
+photography. It was found by testing, not assumed — see `bias_map/`
+below for how that kind of gap gets caught systematically instead of
+by hand.
+
+### Stage 2 — the authenticity fingerprint
+
+`fingerprint.py` computes, for every analyzed file: an exact SHA-256
+hash (changes completely if even one byte changes) and a perceptual
+hash (survives re-compression — the WhatsApp/Twitter problem, where
+lossy compression shouldn't make a genuine photo look "tampered").
+Both are signed with the server's own Ed25519 private key. Two
+endpoints make this provable rather than just asserted:
+
+- `POST /api/fingerprint/compression-test` — re-saves your upload at
+  several JPEG qualities server-side and shows both fingerprints
+  changing (or not) at each quality, live.
+- `POST /api/fingerprint/verify` — independently re-verifies a
+  fingerprint record's signature against the server's public key,
+  offline logic anyone could run themselves. Flip one character of a
+  hash and verification correctly fails.
+
+### Phase 2 — five extensions, each addressing a specific gap
+
+**Idea 1 — Bias Map** (`bias_map/`, `GET /bias-map`, `GET
+/api/bias-map`). One aggregate accuracy number can hide a subgroup the
+model does badly on — exactly what happened here: an early 98.17%
+score was 91.5% one easy category and 8.5% one hard one. This slices
+accuracy by generator/subject/style and renders it as a grid instead
+of one number. Run `bias_map/build_bias_map.py` by hand to regenerate
+`results.json` against a new labeled test set; the endpoint only
+reads that file.
+
+> **Honest limitation:** the shipped `results.json` was generated on
+> 8 images with no real generator labels — enough to prove the
+> pipeline works end-to-end, not enough to trust the numbers. The page
+> says this explicitly rather than hiding it. A real bias map needs a
+> properly labeled 300–500 image set across generator × subject ×
+> style.
+
+**Idea 5a/5b — Quantified explainability** (`shap_explain.py`,
+`frequency_analysis.py`, folded into `/api/analyze`'s
+`explainability` field). Grad-CAM shows *where* the model looked as a
+heatmap; these answer the two follow-ups a heatmap can't. SHAP
+(`POST /api/explain/shap-regions`) breaks the verdict down by image
+region into signed numbers ("this region contributed +0.31 toward
+fake") using Shapley values over superpixel segments. The frequency
+panel computes a Fourier spectrum of the actual pixels — no model
+involved — since real cameras and AI generators leave measurably
+different traces in an image's frequency domain.
+
+**Idea 4 — Content Registry** (`content_registry.py`, `/registry`,
+`POST /api/registry/register`, `POST /api/registry/check`). The
+fingerprint above proves "is this the exact same file" — a crop
+breaks that almost immediately, since a perceptual hash describes the
+whole frame. This answers a harder question: *is this a crop, edit,
+or partial reuse of something already registered?* — the mechanism
+behind catching someone who crops a signature off a registered
+artwork and resells it. Uses Meta AI's pretrained **SSCD** model
+(`sscd_disc_mixup.torchscript.pt`) to embed image content into a
+vector that survives cropping/rotation/recolouring, searched via
+**FAISS**. Seeded on first run with three public-domain artworks from
+`demo_artworks/`.
+
+**Idea 2 — Generator Attribution** (`attribution.py`, `model.py`'s
+`GENERATOR_CLASSES`). Once an image is flagged as AI-generated, a
+*separate* model (trained independently from the Stage 1 detector)
+estimates which of 8 specific tools most likely made it — StyleGAN2,
+ProGAN, BigGAN, CycleGAN, DDPM, Latent Diffusion, Stable Diffusion, or
+GLIDE — since every generator leaves faint, characteristic statistical
+traces. Trained on a real subset of the ArtiFact dataset (Kaggle);
+current checkpoint scores 81.85% on its own held-out test split.
+
+> **Honest limitation:** that accuracy is against generators the model
+> *trained on*. It has not been tested against a generator it never
+> saw (e.g. MidJourney, Flux) — a known hard problem in this research
+> area (GAN fingerprints often don't transfer to diffusion models,
+> and vice versa). That generalization test is the natural next step,
+> not yet done.
+
+**Idea 3 — Live temporal (webcam) detection** was deliberately scoped
+*out* of this phase — it needs real-time video infrastructure this
+project doesn't have yet. Not started, not attempted.
 
 ---
 
-## Part 7 — Troubleshooting
+## Project structure
 
-**`nvidia-smi` fails in Colab, or training is extremely slow.**
-You're on a CPU runtime. Runtime → Change runtime type → GPU → Save,
-then Runtime → Restart runtime, then Run all again from the top.
-
-**The `kaggle.json` upload cell says "No file named kaggle.json was uploaded."**
-Your browser may have appended a number to the filename on a repeat
-download (e.g. `kaggle(1).json`). Find it in Downloads and rename it
-back to exactly `kaggle.json` before re-running that cell.
-
-**A Colab cell shows a red error box.**
-Read the last line of the red text — it usually names the exact
-problem. Common ones:
-- `403 Forbidden` on the Kaggle download cell: your `kaggle.json` is
-  invalid or expired — go back to kaggle.com/settings and generate a
-  fresh token, then re-run from Step 3 of Part 2.
-- `RuntimeError: CUDA out of memory`: rare on this dataset/model
-  combination, but if it happens, reduce `BATCH_SIZE = 64` to `32` in
-  the "Data loaders" cell and re-run from that cell onward.
-
-**`ls` in Part 3 doesn't show `app`, `colab_notebook`, etc.**
-You're not inside the project folder. Run `pwd` to see where you
-actually are, then `cd` to the correct path.
-
-**`mv: cannot stat '~/Downloads/deepguard_bouncer.pth': No such file or directory`**
-The file either downloaded somewhere other than `~/Downloads`
-(check your browser's download settings/history) or the Colab download
-step didn't actually complete — go back to Part 2, Step 8.
-
-**`pip install -r requirements.txt` shows red `ERROR:` text.**
-Confirm `(venv)` is showing in your prompt — if it isn't, run
-`source venv/bin/activate` from the project root first, then retry the
-`pip install` command. If it still fails, copy the exact error text —
-it almost always names a missing system library, most commonly
-resolved with:
-```bash
-sudo apt update && sudo apt install -y python3-dev build-essential
 ```
-then re-run the `pip install` command.
-
-**Opening `http://127.0.0.1:8000` shows "This site can't be reached."**
-The `uvicorn` command isn't running, or errored before it started
-listening. Look at the terminal where you ran it — if it shows a
-Python traceback instead of the "Uvicorn running on..." line, copy the
-last few lines of the error.
-
-**The website loads, but the status line at the bottom is red / says "model not loaded."**
-The server can't find `models/deepguard_bouncer.pth`. Re-check Part 3 —
-the file must be at exactly `deepguard-bouncer/models/deepguard_bouncer.pth`,
-spelled exactly that way, not inside a further subfolder.
-
-**Uploading a file shows "Couldn't reach the analysis service."**
-The `uvicorn` server stopped running (check its terminal window) or
-crashed mid-request (check that terminal for a traceback).
+deepguard-bouncer/
+├── app/
+│   ├── main.py                # FastAPI app — every endpoint, see its module docstring
+│   ├── model.py                # EfficientNet-B0 architectures (detector + attribution)
+│   ├── fingerprint.py          # SHA-256 + perceptual hash + Ed25519 signing (Stage 2)
+│   ├── gradcam.py              # Heatmap explainability
+│   ├── uncertainty.py          # Monte Carlo Dropout consistency check
+│   ├── frequency_analysis.py   # Idea 5b — Fourier spectrum panel
+│   ├── shap_explain.py         # Idea 5a — Shapley-value region attribution
+│   ├── content_registry.py     # Idea 4 — SSCD embeddings + FAISS search
+│   ├── attribution.py          # Idea 2 — generator attribution inference
+│   ├── requirements.txt
+│   └── static/                 # Plain HTML/CSS/JS frontend, no build step
+├── bias_map/
+│   ├── build_bias_map.py       # Standalone script — run by hand, not by a request
+│   ├── labeled_test_set.csv    # filename, generator, subject, style
+│   └── results.json            # Written by the script above; read by /api/bias-map
+├── colab_notebook/
+│   ├── DeepGuard_Training_MASSIVE.ipynb        # Trains deepguard_bouncer.pth
+│   └── DeepGuard_Attribution_Training.ipynb    # Trains deepguard_attribution.pth
+├── demo_artworks/              # Seed images for the Content Registry
+└── models/                     # See PUT_WEIGHTS_HERE.md — all three files included
+```
 
 ---
 
-## Part 8 — Where this fits, and what comes next
+## Retraining
 
-This is **Phase 1** of the full Deep-Guard project. It stands alone —
-you now have a working, demoable deepfake-probability checker. Later
-phases (the fingerprinting engine, the Merkle-linked provenance
-ledger, the public Block Explorer) build *around* this component
-without requiring you to rebuild anything delivered here: this
-FastAPI endpoint becomes one internal call in the larger pipeline
-instead of the final answer shown to the user.
+Both notebooks in `colab_notebook/` follow the same disciplined
+two-phase approach (frozen backbone warm-up, then full fine-tune with
+a proper train/val/test split) and are meant to run on Google Colab
+with a free GPU:
 
-See the main project blueprint document for the full phase breakdown
-and how each later phase integrates with what you just built.
+1. Open the notebook in Colab, enable a GPU runtime (**Runtime → Change
+   runtime type → T4 GPU**), and **Runtime → Run all**.
+2. Partway through, upload your Kaggle API credentials (`kaggle.json`,
+   from kaggle.com → Settings → API → Create New Token) when prompted
+   — needed to download the training dataset.
+3. At the end, the notebook downloads a `.pth` checkpoint. Move it into
+   `models/`, replacing the existing file with the same name.
+4. Restart the server.
+
+`DeepGuard_Training_MASSIVE.ipynb` produces `deepguard_bouncer.pth`
+(the real/AI detector). `DeepGuard_Attribution_Training.ipynb` produces
+`deepguard_attribution.pth` (the generator-attribution model, trained
+on the ArtiFact dataset). Both notebooks assert their own data-split
+integrity as they run — a red error box means something needs fixing
+before the next cell will succeed, not something to skip past.
+
+---
+
+## Troubleshooting
+
+**Status pill shows "Model unavailable."** The server can't find
+`models/deepguard_bouncer.pth` — see `models/PUT_WEIGHTS_HERE.md`.
+
+**"Couldn't reach the analysis service."** The `uvicorn` process
+stopped or crashed — check its terminal for a traceback.
+
+**Content Registry pages return "unavailable" / 503.** Either
+`faiss-cpu` didn't install (check `pip install -r requirements.txt`
+output for errors) or `models/sscd_disc_mixup.torchscript.pt` is
+missing. Both the base detector and the attribution model still work
+fine regardless — this feature degrades independently, by design.
+
+**"Likely source" panel never appears.** It only shows once an image
+is confidently flagged as AI-generated (server-side ≥50% *and* the
+displayed verdict is "manipulated," a stricter client-side bar) —
+requires `models/deepguard_attribution.pth` to exist at all.
+
+---
+
+## What's not done yet
+
+Kept here deliberately instead of hidden, since an honest limitations
+list is worth more than pretending everything is finished:
+
+- **Bias Map's dataset is a placeholder** (8 images, no real generator
+  labels) — the tool works, the data behind it isn't trustworthy yet.
+- **Generator Attribution's cross-generator generalization is
+  untested** — only measured against generators it trained on.
+- **No automated test suite is committed to this repo yet.**
+- **Live/webcam temporal detection** was scoped out of this phase
+  entirely, not attempted.
