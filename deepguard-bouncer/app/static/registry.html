@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep-Guard — Content Registry</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="/">
+      <svg class="brand__mark" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M13 2.5 3.5 6.2v6.4c0 5.6 3.9 10.2 9.5 11.4 5.6-1.2 9.5-5.8 9.5-11.4V6.2L13 2.5Z"
+              stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M9.3 12.8l2.6 2.6 5-5" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand__name">Deep-Guard</span>
+    </a>
+    <a class="site-nav__link" href="/">&larr; Back to analysis</a>
+  </header>
+
+  <main class="main">
+
+    <section class="intro reveal">
+      <p class="intro__kicker">Crop &amp; edit-robust matching</p>
+      <h1 class="intro__title">Content Registry</h1>
+      <p class="intro__body">
+        The Authenticity Fingerprint on the main page proves &ldquo;is this the exact same
+        file&rdquo; and &ldquo;does this still look the same after recompression.&rdquo; Neither
+        one survives a <strong>crop</strong> &mdash; the perceptual hash there is a description of
+        the whole frame, and cropping it breaks the comparison almost immediately. This page
+        answers a different, harder question: <strong>is this a crop, edit, or partial reuse of
+        something already registered?</strong> That's the actual mechanism behind stopping
+        someone from cropping a signature off a registered artwork and reselling it as new.
+      </p>
+      <p class="intro__body">
+        Registering stores only a signed fingerprint record and a content-similarity vector
+        &mdash; never the image itself, the same &ldquo;nothing you upload is stored&rdquo;
+        promise as the rest of this app.
+      </p>
+    </section>
+
+    <div class="registry__columns reveal">
+      <section class="registry__panel">
+        <h2 class="registry__panel-title">Register content</h2>
+        <p class="registry__panel-hint">Add an image to the registry under a title.</p>
+        <form id="registerForm">
+          <input type="file" id="registerFile" accept="image/*" required />
+          <input type="text" id="registerTitle" placeholder="Title (e.g. artist &amp; work name)" required />
+          <button type="submit" id="registerBtn">Register</button>
+        </form>
+        <div id="registerResult" class="registry__result" hidden></div>
+      </section>
+
+      <section class="registry__panel">
+        <h2 class="registry__panel-title">Check for copies</h2>
+        <p class="registry__panel-hint">Upload an image — including a crop, rotation, or edited version of something registered — to search the registry by content.</p>
+        <form id="checkForm">
+          <input type="file" id="checkFile" accept="image/*" required />
+          <button type="submit" id="checkBtn">Check registry</button>
+        </form>
+        <div id="checkResult" class="registry__result" hidden></div>
+      </section>
+    </div>
+
+  </main>
+
+  <footer class="site-footer reveal">
+    <p>Deep-Guard analyses media locally on this machine. Nothing you upload is stored or sent elsewhere — registering keeps only a signed fingerprint record and a content vector, never the image.</p>
+  </footer>
+
+  <script src="/static/motion.js"></script>
+  <script src="/static/registry.js"></script>
+</body>
+</html>
