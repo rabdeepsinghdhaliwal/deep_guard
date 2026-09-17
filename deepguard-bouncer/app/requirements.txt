@@ -1,4 +1,4 @@
-# Deep-Guard Stage 1 — local backend dependencies.
+# Deep-Guard — local backend dependencies.
 #
 # Install with: pip install -r requirements.txt
 #
@@ -14,3 +14,20 @@ torch>=2.2
 torchvision>=0.17
 pillow>=10.2
 opencv-python-headless>=4.9
+
+# Stage 2 (fingerprint.py): perceptual hashing, its DCT dependency, and
+# Ed25519 signing for the fingerprint/authenticity engine.
+imagehash>=4.3
+scipy>=1.11
+cryptography>=42
+
+# Phase 2, Idea 5a (shap_explain.py): superpixel segmentation + Shapley-
+# value region attribution. Idea 5b (frequency_analysis.py) needs no new
+# dependency -- it only uses scipy.fft, already listed above.
+shap>=0.45
+scikit-image>=0.22
+
+# Phase 2, Idea 4 (content_registry.py): vector similarity search over
+# SSCD embeddings, so a cropped/rotated/recoloured copy of a registered
+# image still gets found.
+faiss-cpu>=1.8

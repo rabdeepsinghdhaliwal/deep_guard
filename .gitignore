@@ -1,0 +1,21 @@
+# Ed25519 signing private key, generated on first server startup
+# (see app/main.py: load_or_create_signing_key). Never commit a private
+# key, even a demo one with nothing real at stake -- it's just a bad
+# habit to let slide. The matching public key IS meant to be shared/
+# committed, since verifying a signature requires it.
+deepguard-bouncer/models/demo_signer_private.pem
+
+# Python bytecode cache -- machine- and interpreter-version-specific,
+# regenerated automatically, never meant to be committed.
+__pycache__/
+*.pyc
+
+# Virtual environment -- python -m venv already drops its own
+# venv/.gitignore (a bare "*"), this just makes the exclusion visible
+# at the project root too instead of relying on that alone.
+venv/
+
+# Registry index files are regenerated automatically on server startup
+# (seeded from demo_artworks/) -- persisted local state, not source.
+deepguard-bouncer/models/content_registry.index
+deepguard-bouncer/models/content_registry_metadata.json
