@@ -1,0 +1,9 @@
+filename,true_label,generator,subject,style
+real1.png,real,unknown,face,studio
+real2.jpg,real,unknown,face,casual
+real3.jpg,real,unknown,group,casual
+real4.jpg,real,unknown,face,casual
+ai1.png,fake,unknown,face,stock
+ai2.png,fake,unknown,face,stock
+ai3.png,fake,unknown,face,casual
+ai4.png,fake,unknown,face,stock

@@ -1,0 +1,147 @@
+{
+  "generated_at_utc": "2026-09-17T09:36:02.578021+00:00",
+  "total_images": 8,
+  "overall_accuracy": 0.5,
+  "min_trustworthy_group_size": 20,
+  "scope_warning": "The numbers below are not yet meaningful -- please don't read anything into them. This run used only 8 images (the project's original test set), far below the 20+ needed per group before an accuracy number means anything, and generator is 'unknown' for every one of them because nobody recorded which AI tool made them. What this run DOES prove: the pipeline -- score every image, slice by category, render as a dashboard -- works correctly end to end. Turning it into a real bias map needs a properly sized, generator-labeled dataset (300-500 images; see the Phase 2 build plan) in place of this placeholder one.",
+  "by_generator": {
+    "unknown": {
+      "accuracy": 0.5,
+      "sample_count": 8,
+      "trustworthy": false
+    }
+  },
+  "by_subject": {
+    "face": {
+      "accuracy": 0.4286,
+      "sample_count": 7,
+      "trustworthy": false
+    },
+    "group": {
+      "accuracy": 1.0,
+      "sample_count": 1,
+      "trustworthy": false
+    }
+  },
+  "by_style": {
+    "studio": {
+      "accuracy": 1.0,
+      "sample_count": 1,
+      "trustworthy": false
+    },
+    "casual": {
+      "accuracy": 0.5,
+      "sample_count": 4,
+      "trustworthy": false
+    },
+    "stock": {
+      "accuracy": 0.3333,
+      "sample_count": 3,
+      "trustworthy": false
+    }
+  },
+  "by_combination": {
+    "unknown / face / studio": {
+      "accuracy": 1.0,
+      "sample_count": 1,
+      "trustworthy": false
+    },
+    "unknown / face / casual": {
+      "accuracy": 0.3333,
+      "sample_count": 3,
+      "trustworthy": false
+    },
+    "unknown / group / casual": {
+      "accuracy": 1.0,
+      "sample_count": 1,
+      "trustworthy": false
+    },
+    "unknown / face / stock": {
+      "accuracy": 0.3333,
+      "sample_count": 3,
+      "trustworthy": false
+    }
+  },
+  "rows": [
+    {
+      "filename": "real1.png",
+      "true_label": "real",
+      "generator": "unknown",
+      "subject": "face",
+      "style": "studio",
+      "probability_fake": 0.0065,
+      "predicted_label": "real",
+      "correct": true
+    },
+    {
+      "filename": "real2.jpg",
+      "true_label": "real",
+      "generator": "unknown",
+      "subject": "face",
+      "style": "casual",
+      "probability_fake": 0.5337,
+      "predicted_label": "fake",
+      "correct": false
+    },
+    {
+      "filename": "real3.jpg",
+      "true_label": "real",
+      "generator": "unknown",
+      "subject": "group",
+      "style": "casual",
+      "probability_fake": 0.0083,
+      "predicted_label": "real",
+      "correct": true
+    },
+    {
+      "filename": "real4.jpg",
+      "true_label": "real",
+      "generator": "unknown",
+      "subject": "face",
+      "style": "casual",
+      "probability_fake": 0.0002,
+      "predicted_label": "real",
+      "correct": true
+    },
+    {
+      "filename": "ai1.png",
+      "true_label": "fake",
+      "generator": "unknown",
+      "subject": "face",
+      "style": "stock",
+      "probability_fake": 0.045,
+      "predicted_label": "real",
+      "correct": false
+    },
+    {
+      "filename": "ai2.png",
+      "true_label": "fake",
+      "generator": "unknown",
+      "subject": "face",
+      "style": "stock",
+      "probability_fake": 0.0439,
+      "predicted_label": "real",
+      "correct": false
+    },
+    {
+      "filename": "ai3.png",
+      "true_label": "fake",
+      "generator": "unknown",
+      "subject": "face",
+      "style": "casual",
+      "probability_fake": 0.0,
+      "predicted_label": "real",
+      "correct": false
+    },
+    {
+      "filename": "ai4.png",
+      "true_label": "fake",
+      "generator": "unknown",
+      "subject": "face",
+      "style": "stock",
+      "probability_fake": 0.5674,
+      "predicted_label": "fake",
+      "correct": true
+    }
+  ]
+}

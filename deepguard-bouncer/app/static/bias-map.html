@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep-Guard — Bias Map</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="/">
+      <svg class="brand__mark" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M13 2.5 3.5 6.2v6.4c0 5.6 3.9 10.2 9.5 11.4 5.6-1.2 9.5-5.8 9.5-11.4V6.2L13 2.5Z"
+              stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M9.3 12.8l2.6 2.6 5-5" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand__name">Deep-Guard</span>
+    </a>
+    <a class="site-nav__link" href="/">&larr; Back to analysis</a>
+  </header>
+
+  <main class="main">
+
+    <section class="intro reveal">
+      <p class="intro__kicker">Accuracy by subgroup</p>
+      <h1 class="intro__title">Bias Map</h1>
+      <p class="intro__body">
+        One accuracy number can hide a subgroup the model does badly on — that's exactly how
+        this project found that a 98% overall score was hiding a near-failure on one category
+        of AI image. This page slices accuracy by generator, subject, and style so a hidden
+        gap like that shows up on sight instead of by luck.
+      </p>
+      <p class="intro__body">
+        <strong>This is not one of the live checks on the main page.</strong> Grad-CAM, the
+        frequency panel, and the region breakdown all answer &ldquo;what does the model think
+        of <em>this</em> photo, and why&rdquo; &mdash; computed fresh on whatever you upload.
+        This page answers a different question that a single upload can never answer on its
+        own: &ldquo;across many photos, where is the model <em>systematically</em> wrong?&rdquo;
+        Answering that requires already knowing the correct answer for every image in the set,
+        to check whether the model's answer matches it. A live upload is exactly the situation
+        where nobody knows the correct answer yet &mdash; that's the whole reason to ask the
+        model in the first place. So this has to be a separate, deliberately pre-labeled set,
+        scored all at once by hand-running a script, not something computed per upload.
+      </p>
+    </section>
+
+    <div id="scopeWarning" class="bias-map__warning" hidden></div>
+
+    <section class="bias-map__overall" id="overallBlock" hidden>
+      <div class="bias-map__stat">
+        <div class="bias-map__stat-value" id="overallAccuracy">—</div>
+        <div class="bias-map__stat-label">Overall accuracy</div>
+      </div>
+      <div class="bias-map__stat">
+        <div class="bias-map__stat-value" id="totalImages">—</div>
+        <div class="bias-map__stat-label">Images in this run</div>
+      </div>
+      <div class="bias-map__stat">
+        <div class="bias-map__stat-value" id="generatedAt">—</div>
+        <div class="bias-map__stat-label">Last generated</div>
+      </div>
+    </section>
+
+    <section class="bias-map__section" id="bySubjectSection" hidden>
+      <h2 class="bias-map__section-title">By subject</h2>
+      <div class="bias-map__grid" id="bySubjectGrid"></div>
+    </section>
+
+    <section class="bias-map__section" id="byStyleSection" hidden>
+      <h2 class="bias-map__section-title">By style</h2>
+      <div class="bias-map__grid" id="byStyleGrid"></div>
+    </section>
+
+    <section class="bias-map__section" id="byGeneratorSection" hidden>
+      <h2 class="bias-map__section-title">By generator</h2>
+      <div class="bias-map__grid" id="byGeneratorGrid"></div>
+    </section>
+
+    <section class="bias-map__section" id="byComboSection" hidden>
+      <h2 class="bias-map__section-title">By generator &times; subject &times; style</h2>
+      <div class="bias-map__grid" id="byComboGrid"></div>
+    </section>
+
+    <section class="bias-map__empty" id="emptyBlock" hidden>
+      <p>No bias map has been generated yet. Run <code>bias_map/build_bias_map.py</code> on the server, then reload this page.</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer reveal">
+    <p>Deep-Guard analyses media locally on this machine. Nothing you upload is stored or sent elsewhere.</p>
+  </footer>
+
+  <script src="/static/motion.js"></script>
+  <script src="/static/bias-map.js"></script>
+</body>
+</html>
