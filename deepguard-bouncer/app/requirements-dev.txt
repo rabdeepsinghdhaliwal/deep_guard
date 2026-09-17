@@ -1,0 +1,14 @@
+# Deep-Guard — test-only dependencies.
+#
+# Kept separate from requirements.txt on purpose: running the actual
+# server never needs these, only running the test suite does.
+#
+# Install with: pip install -r requirements.txt -r requirements-dev.txt
+# Run with:     pytest -v   (from this app/ directory)
+
+pytest>=8.0
+
+# httpx is what FastAPI's TestClient uses under the hood to make
+# requests against the app in-process, with no real server/socket
+# needed.
+httpx>=0.27
