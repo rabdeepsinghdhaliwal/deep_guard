@@ -1,0 +1,482 @@
+{
+  "generated_at_utc": "2026-09-17T15:14:44.524668+00:00",
+  "total_images": 44,
+  "generators_tested": [
+    "dalle3",
+    "midjourney"
+  ],
+  "note": "Every image here is from a generator OUTSIDE GENERATOR_CLASSES (the 8 classes the attribution model was trained on). The model cannot say 'unknown' -- it is a fixed 8-class softmax -- so every prediction below is necessarily wrong by construction. What's being measured is HOW it's wrong: whether confidence drops appropriately on unfamiliar input, and whether the wrong guess at least lands in the right generator family (GAN vs diffusion).",
+  "overall_attribution_mean_confidence": 0.742,
+  "overall_attribution_family_coherence_rate": 0.909,
+  "by_generator": {
+    "midjourney": {
+      "n": 14,
+      "stage1_catch_rate_50pct": 0.5,
+      "stage1_catch_rate_80pct_headline": 0.357,
+      "attribution_mean_confidence": 0.707,
+      "attribution_family_coherence_rate": 0.786,
+      "attribution_predicted_label_distribution": {
+        "glide": 4,
+        "stylegan2": 2,
+        "stable_diffusion": 6,
+        "latent_diffusion": 1,
+        "pro_gan": 1
+      }
+    },
+    "dalle3": {
+      "n": 30,
+      "stage1_catch_rate_50pct": 1.0,
+      "stage1_catch_rate_80pct_headline": 1.0,
+      "attribution_mean_confidence": 0.759,
+      "attribution_family_coherence_rate": 0.967,
+      "attribution_predicted_label_distribution": {
+        "stable_diffusion": 22,
+        "glide": 6,
+        "cycle_gan": 1,
+        "latent_diffusion": 1
+      }
+    }
+  },
+  "per_image": [
+    {
+      "filename": "midjourney-v5_002.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.9955,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.8627,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_003.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.6428,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": false,
+      "attribution_predicted_generator": "stylegan2",
+      "attribution_confidence": 0.5189,
+      "attribution_family_coherent": false
+    },
+    {
+      "filename": "midjourney-v5_005.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.3677,
+      "stage1_would_flag_manipulated_50pct": false,
+      "stage1_would_show_manipulated_headline_80pct": false,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.9142,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_007.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.776,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": false,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.3304,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_010.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.0397,
+      "stage1_would_flag_manipulated_50pct": false,
+      "stage1_would_show_manipulated_headline_80pct": false,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.8129,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_012.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.8642,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.5289,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_015.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.8055,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.9146,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_019.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.0015,
+      "stage1_would_flag_manipulated_50pct": false,
+      "stage1_would_show_manipulated_headline_80pct": false,
+      "attribution_predicted_generator": "latent_diffusion",
+      "attribution_confidence": 0.5845,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_020.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.928,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "pro_gan",
+      "attribution_confidence": 0.9005,
+      "attribution_family_coherent": false
+    },
+    {
+      "filename": "midjourney-v5_021.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.0001,
+      "stage1_would_flag_manipulated_50pct": false,
+      "stage1_would_show_manipulated_headline_80pct": false,
+      "attribution_predicted_generator": "stylegan2",
+      "attribution_confidence": 0.9323,
+      "attribution_family_coherent": false
+    },
+    {
+      "filename": "midjourney-v5_022.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.3608,
+      "stage1_would_flag_manipulated_50pct": false,
+      "stage1_would_show_manipulated_headline_80pct": false,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.4389,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_023.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.4167,
+      "stage1_would_flag_manipulated_50pct": false,
+      "stage1_would_show_manipulated_headline_80pct": false,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.4031,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_029.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.9949,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.95,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "midjourney-v5_034.webp",
+      "true_generator": "midjourney",
+      "stage1_probability_fake": 0.0058,
+      "stage1_would_flag_manipulated_50pct": false,
+      "stage1_would_show_manipulated_headline_80pct": false,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.8086,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_000.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.4561,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_001.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 0.9999,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.5288,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_002.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.7818,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_003.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 0.9908,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.7786,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_004.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.5722,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_005.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 0.9987,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.9858,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_006.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.912,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_007.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.943,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_008.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 0.9909,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.9812,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_009.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.5529,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_010.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.8583,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_011.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 0.9983,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.7032,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_012.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "cycle_gan",
+      "attribution_confidence": 0.4288,
+      "attribution_family_coherent": false
+    },
+    {
+      "filename": "dalle3_013.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.7382,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_014.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.8447,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_015.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.8568,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_016.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.8892,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_017.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.797,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_018.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.8488,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_019.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "latent_diffusion",
+      "attribution_confidence": 0.4861,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_020.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.5414,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_021.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.8611,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_022.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 0.9999,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "glide",
+      "attribution_confidence": 0.9341,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_023.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.5971,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_024.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.8024,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_025.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 0.999,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.9897,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_026.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.8403,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_027.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.597,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_028.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 1.0,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.7195,
+      "attribution_family_coherent": true
+    },
+    {
+      "filename": "dalle3_029.webp",
+      "true_generator": "dalle3",
+      "stage1_probability_fake": 0.9442,
+      "stage1_would_flag_manipulated_50pct": true,
+      "stage1_would_show_manipulated_headline_80pct": true,
+      "attribution_predicted_generator": "stable_diffusion",
+      "attribution_confidence": 0.933,
+      "attribution_family_coherent": true
+    }
+  ]
+}
