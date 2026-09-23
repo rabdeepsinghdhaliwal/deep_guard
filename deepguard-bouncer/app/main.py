@@ -183,9 +183,11 @@ def load_model() -> None:
     """
     if not MODEL_PATH.exists():
         STATE["load_error"] = (
-            f"No model file found at {MODEL_PATH}. Train the model in "
-            f"Colab, download deepguard_bouncer.pth, and place it at "
-            f"exactly that path. See README.md, Part 4."
+            f"No model file found at {MODEL_PATH}. It is part of the "
+            f"repository, so restore it (git checkout -- "
+            f"deepguard-bouncer/models/deepguard_bouncer.pth) or clone "
+            f"again; to retrain it instead, see the README's Retraining "
+            f"section and models/PUT_WEIGHTS_HERE.md."
         )
         logger.error(STATE["load_error"])
         return

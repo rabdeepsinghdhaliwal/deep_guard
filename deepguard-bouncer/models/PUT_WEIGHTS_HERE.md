@@ -41,4 +41,5 @@ FAISS index, the signed records, and each entry's distinctive points
 (no pixels). They are seeded from `demo_artworks/` on first start;
 delete all three to reset the registry.
 
-See `README.md` for the exact setup commands.
+See the `README.md` at the root of the repository for the exact setup
+commands.

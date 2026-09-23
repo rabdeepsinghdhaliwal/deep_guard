@@ -53,7 +53,7 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 Content Registry names each area of an image ("face", "landscape") with
 a CLIP model that is too big for GitHub, so it is built locally. It
 needs internet: it downloads 605 MB from Hugging Face (into Hugging
-Face's own cache, not this repo) and writes a 176 MB file to `models/`,
+Face's own cache, not this repo) and writes a 176 MB file to `deepguard-bouncer/models/`,
 which git ignores. Skip it and everything still works — areas are just
 named by position ("top left area") instead of by content.
 
@@ -78,19 +78,19 @@ see **Troubleshooting** below.
 
 | What | Where it comes from |
 |---|---|
-| Detector, attribution and SSCD models (`models/*.pth`, `models/sscd_disc_mixup.torchscript.pt`) | In the repo — `git clone` downloads them |
+| Detector, attribution and SSCD models (`deepguard-bouncer/models/*.pth`, `deepguard-bouncer/models/sscd_disc_mixup.torchscript.pt`) | In the repo — `git clone` downloads them |
 | Demo paintings, the 8 test photos, the 44 generalization-test images | In the repo |
 | Python packages | `pip install -r requirements.txt` (plus `requirements-dev.txt` for the tests and the namer build) |
-| Registry namer (`models/concept_labeler_*`) | Optional — built once by `tools/build_concept_labeler.py` (step 4) |
-| Signing key pair (`models/demo_signer_*.pem`) | Created by the server on first start — every installation signs with its own key |
-| Registry index, records and stored points (`models/content_registry*`) | Created on first start, seeded with the three demo paintings |
+| Registry namer (`deepguard-bouncer/models/concept_labeler_*`) | Optional — built once by `deepguard-bouncer/tools/build_concept_labeler.py` (step 4) |
+| Signing key pair (`deepguard-bouncer/models/demo_signer_*.pem`) | Created by the server on first start — every installation signs with its own key |
+| Registry index, records and stored points (`deepguard-bouncer/models/content_registry*`) | Created on first start, seeded with the three demo paintings |
 
 Because every installation gets its own signing key, after your first
-start git shows `models/demo_signer_public.pem` as changed. That file is
+start git shows `deepguard-bouncer/models/demo_signer_public.pem` as changed. That file is
 now *your* server's public key — leave it changed, but **don't commit
 it**: it would replace the key the original server's signatures are
 checked against. Your private key is gitignored and never leaves
-`models/`.
+`deepguard-bouncer/models/`.
 
 Three other pages exist off the same server:
 
@@ -118,7 +118,7 @@ to part of a clip still shows up instead of being averaged away.
 
 **Known limitation, disclosed on the result page itself:** this model
 under-detects AI images styled like polished, professional stock
-photography. It was found by testing, not assumed — see `bias_map/`
+photography. It was found by testing, not assumed — see `deepguard-bouncer/bias_map/`
 below for how that kind of gap gets caught systematically instead of
 by hand. The generalization test below (`generalization_test/`)
 independently reproduced the same weakness on a different, real-world
@@ -146,12 +146,12 @@ endpoints make this provable rather than just asserted:
 
 ### Phase 2 — five extensions, each addressing a specific gap
 
-**Idea 1 — Bias Map** (`bias_map/`, `GET /bias-map`, `GET
+**Idea 1 — Bias Map** (`deepguard-bouncer/bias_map/`, `GET /bias-map`, `GET
 /api/bias-map`). One aggregate accuracy number can hide a subgroup the
 model does badly on — exactly what happened here: an early 98.17%
 score was 91.5% one easy category and 8.5% one hard one. This slices
 accuracy by generator/subject/style and renders it as a grid instead
-of one number. Run `bias_map/build_bias_map.py` by hand to regenerate
+of one number. Run `deepguard-bouncer/bias_map/build_bias_map.py` by hand to regenerate
 `results.json` against a new labeled test set; the endpoint only
 reads that file.
 
@@ -184,7 +184,7 @@ artwork and resells it. Uses Meta AI's pretrained **SSCD** model
 (`sscd_disc_mixup.torchscript.pt`) to embed image content into a
 vector that survives cropping/rotation/recolouring, searched via
 **FAISS**. Seeded on first run with three public-domain artworks from
-`demo_artworks/`.
+`deepguard-bouncer/demo_artworks/`.
 
 **The registry explains itself** (`registry_explain.py`,
 `local_features.py`, `concept_labels.py`). SSCD's 512 numbers decide
@@ -205,7 +205,7 @@ points both prints share:
    once aligned, whether colour was removed, changed or brightened.
 2. **Named areas** — at registration the original is split 3×3 and a
    CLIP model (OpenCLIP ViT-B/32, DataComp-XL weights, MIT licence; image
-   half only, vocabulary pre-encoded by `tools/build_concept_labeler.py`)
+   half only, vocabulary pre-encoded by `deepguard-bouncer/tools/build_concept_labeler.py`)
    names each area. This gives the list of *things* ("face", "hands",
    "landscape"). Names are a model's guess and are shown as one.
 3. **Responsibility** — SSCD's own score is split exactly among those
@@ -216,7 +216,7 @@ points both prints share:
    that made the detection. Content that isn't from the original — an
    added border, rotation padding — gets a negative share.
 
-Measured (`../registry_explanations_test/run_measurements.py`, results
+Measured (`registry_explanations_test/run_measurements.py`, results
 in its `results.json`): **all 24 real copies** tested (18 edits of the
 Mona Lisa — crops from 80% down to 25%, rotations, a mirror, black and
 white, sepia, brightening, blur, heavy compression, text overlay, an
@@ -295,7 +295,7 @@ deepguard-bouncer/
 └── models/                     # See PUT_WEIGHTS_HERE.md — the three core files included
 ```
 
-Next to `deepguard-bouncer/` at the repo root: `test_images/` (the 8
+At the repo root, next to `deepguard-bouncer/`: `test_images/` (the 8
 labelled demo photos), `generalization_test/` (attribution on unseen
 generators) and `registry_explanations_test/` (the measurements behind
 the registry's explanations).
@@ -305,7 +305,7 @@ the registry's explanations).
 ## Running the tests
 
 ```bash
-cd app
+cd deepguard-bouncer/app
 pip install -r requirements.txt -r requirements-dev.txt
 pytest -v
 ```
@@ -324,7 +324,7 @@ correctly, by the exact-split property (shares add up to the score),
 and by the graceful paths (no namer, an entry registered before
 explanations existed, a stale features file). The Content Registry's
 persisted files are redirected to a temp directory for the test run —
-running the suite never touches the real `models/content_registry*`
+running the suite never touches the real `deepguard-bouncer/models/content_registry*`
 files. Takes about 40 seconds, dominated by loading the real model
 weights once at session start.
 
@@ -332,7 +332,7 @@ weights once at session start.
 
 ## Retraining
 
-Both notebooks in `colab_notebook/` follow the same disciplined
+Both notebooks in `deepguard-bouncer/colab_notebook/` follow the same disciplined
 two-phase approach (frozen backbone warm-up, then full fine-tune with
 a proper train/val/test split) and are meant to run on Google Colab
 with a free GPU:
@@ -343,7 +343,7 @@ with a free GPU:
    from kaggle.com → Settings → API → Create New Token) when prompted
    — needed to download the training dataset.
 3. At the end, the notebook downloads a `.pth` checkpoint. Move it into
-   `models/`, replacing the existing file with the same name.
+   `deepguard-bouncer/models/`, replacing the existing file with the same name.
 4. Restart the server.
 
 `DeepGuard_Training_MASSIVE.ipynb` produces `deepguard_bouncer.pth`
@@ -358,34 +358,34 @@ before the next cell will succeed, not something to skip past.
 ## Troubleshooting
 
 **Status pill shows "Model unavailable."** The server can't find
-`models/deepguard_bouncer.pth` — see `models/PUT_WEIGHTS_HERE.md`.
+`deepguard-bouncer/models/deepguard_bouncer.pth` — see `deepguard-bouncer/models/PUT_WEIGHTS_HERE.md`.
 
 **"Couldn't reach the analysis service."** The `uvicorn` process
 stopped or crashed — check its terminal for a traceback.
 
 **Content Registry pages return "unavailable" / 503.** Either
 `faiss-cpu` didn't install (check `pip install -r requirements.txt`
-output for errors) or `models/sscd_disc_mixup.torchscript.pt` is
+output for errors) or `deepguard-bouncer/models/sscd_disc_mixup.torchscript.pt` is
 missing. Both the base detector and the attribution model still work
 fine regardless — this feature degrades independently, by design.
 
 **"Likely source" panel never appears.** It only shows once an image
 is confidently flagged as AI-generated (server-side ≥50% *and* the
 displayed verdict is "manipulated," a stricter client-side bar) —
-requires `models/deepguard_attribution.pth` to exist at all.
+requires `deepguard-bouncer/models/deepguard_attribution.pth` to exist at all.
 
 **Registry areas are named "top left area" etc. instead of "face".**
 The optional namer isn't built on this machine — see the end of
-**Quick start** (`tools/build_concept_labeler.py`).
+**Quick start** (`deepguard-bouncer/tools/build_concept_labeler.py`).
 
 **A match says "explanation unavailable".** That entry was registered
 before the registry kept distinctive points, and since the registry
 never keeps images there is nothing to rebuild them from. Register the
 image again. (The three demo artworks are rebuilt automatically on
-startup, since their files are in `demo_artworks/`.) To reset the
-registry completely, delete `models/content_registry.index`,
-`models/content_registry_metadata.json` and the
-`models/content_registry_features/` folder.
+startup, since their files are in `deepguard-bouncer/demo_artworks/`.) To reset the
+registry completely, delete `deepguard-bouncer/models/content_registry.index`,
+`deepguard-bouncer/models/content_registry_metadata.json` and the
+`deepguard-bouncer/models/content_registry_features/` folder.
 
 ---
 
