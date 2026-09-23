@@ -12,29 +12,60 @@ behind each feature, skip to **What's actually in here**.
 
 ---
 
-## Quick start
+## Quick start (on a new machine)
 
-Requires Python 3.10+. All three model files below are already
-included in `models/` — you do not need to train or download anything
-to run the server.
+Requires git and Python 3.10 or newer (developed on Windows 11 with
+Python 3.13). No GPU needed — everything runs on the CPU.
+
+**1. Get the code.** The three model files the app needs are part of the
+repository, so cloning downloads them (about 125 MB). There is nothing
+to train and no separate model download.
 
 ```bash
-cd deepguard-bouncer
+git clone https://github.com/rabdeepsinghdhaliwal/deep_guard.git
+cd deep_guard/deepguard-bouncer
 python -m venv venv
 ```
 
-Activate it (pick the line for your shell):
+**2. Activate the virtual environment** (pick the line for your shell):
 
 ```bash
 venv\Scripts\activate          # Windows (cmd/PowerShell)
 source venv/bin/activate        # macOS/Linux
 ```
 
-Install dependencies and start the server:
+**3. Install the dependencies.**
 
 ```bash
 cd app
 pip install -r requirements.txt
+```
+
+On Linux, a plain `pip install torch` fetches the multi-gigabyte CUDA
+build. The app only uses the CPU, so there run this first, then the
+line above:
+
+```bash
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+```
+
+**4. Optional, once per machine: build the registry's "namer".** The
+Content Registry names each area of an image ("face", "landscape") with
+a CLIP model that is too big for GitHub, so it is built locally. It
+needs internet: it downloads 605 MB from Hugging Face (into Hugging
+Face's own cache, not this repo) and writes a 176 MB file to `models/`,
+which git ignores. Skip it and everything still works — areas are just
+named by position ("top left area") instead of by content.
+
+```bash
+pip install -r requirements-dev.txt
+python ../tools/build_concept_labeler.py
+```
+
+**5. Start the server.** (If you build the namer later, restart the
+server so it picks it up.)
+
+```bash
 uvicorn main:app --reload
 ```
 
@@ -43,20 +74,23 @@ should read "Ready" with a green dot within a few seconds — that means
 the base detector loaded correctly. If it reads "Model unavailable,"
 see **Troubleshooting** below.
 
-**Optional, once per checkout: the registry's "namer".** The Content
-Registry explains its matches area by area. Naming what an area shows
-("face", "landscape") uses a CLIP model that is too big for GitHub, so
-it is built locally, once (needs internet the first time: downloads
-605 MB from Hugging Face, writes a 176 MB file to `models/`, gitignored):
+### What you need, and where it comes from
 
-```bash
-pip install -r requirements-dev.txt
-cd ..
-python tools/build_concept_labeler.py
-```
+| What | Where it comes from |
+|---|---|
+| Detector, attribution and SSCD models (`models/*.pth`, `models/sscd_disc_mixup.torchscript.pt`) | In the repo — `git clone` downloads them |
+| Demo paintings, the 8 test photos, the 44 generalization-test images | In the repo |
+| Python packages | `pip install -r requirements.txt` (plus `requirements-dev.txt` for the tests and the namer build) |
+| Registry namer (`models/concept_labeler_*`) | Optional — built once by `tools/build_concept_labeler.py` (step 4) |
+| Signing key pair (`models/demo_signer_*.pem`) | Created by the server on first start — every installation signs with its own key |
+| Registry index, records and stored points (`models/content_registry*`) | Created on first start, seeded with the three demo paintings |
 
-Without it everything still works — areas are just named by position
-("top left area") instead of by content.
+Because every installation gets its own signing key, after your first
+start git shows `models/demo_signer_public.pem` as changed. That file is
+now *your* server's public key — leave it changed, but **don't commit
+it**: it would replace the key the original server's signatures are
+checked against. Your private key is gitignored and never leaves
+`models/`.
 
 Three other pages exist off the same server:
 
