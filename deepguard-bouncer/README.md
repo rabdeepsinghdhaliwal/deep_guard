@@ -43,6 +43,21 @@ should read "Ready" with a green dot within a few seconds — that means
 the base detector loaded correctly. If it reads "Model unavailable,"
 see **Troubleshooting** below.
 
+**Optional, once per checkout: the registry's "namer".** The Content
+Registry explains its matches area by area. Naming what an area shows
+("face", "landscape") uses a CLIP model that is too big for GitHub, so
+it is built locally, once (needs internet the first time: downloads
+605 MB from Hugging Face, writes a 176 MB file to `models/`, gitignored):
+
+```bash
+pip install -r requirements-dev.txt
+cd ..
+python tools/build_concept_labeler.py
+```
+
+Without it everything still works — areas are just named by position
+("top left area") instead of by content.
+
 Three other pages exist off the same server:
 
 | Page | What it's for |
@@ -137,6 +152,52 @@ vector that survives cropping/rotation/recolouring, searched via
 **FAISS**. Seeded on first run with three public-domain artworks from
 `demo_artworks/`.
 
+**The registry explains itself** (`registry_explain.py`,
+`local_features.py`, `concept_labels.py`). SSCD's 512 numbers decide
+*whether* something is a copy, but none of them individually means
+anything a person could read — so on their own they can't say what two
+images have in common. Every upload now gets its **distinct features**,
+and every match a **"why it matched"**. Three measured layers, the same
+way a fingerprint examiner backs up "these match" by marking the ridge
+points both prints share:
+
+1. **Distinctive points** — SIFT keypoints (Lowe, *Distinctive Image
+   Features from Scale-Invariant Keypoints*, IJCV 2004), compared as
+   RootSIFT, paired with Lowe's ratio test and verified with RANSAC:
+   only points that agree on one placement of the copy inside the
+   original count as shared. The placement itself says what was done to
+   the copy: how much of the original it shows and from where, rotation,
+   mirroring, size, added borders — and, comparing an 8×8 colour grid
+   once aligned, whether colour was removed, changed or brightened.
+2. **Named areas** — at registration the original is split 3×3 and a
+   CLIP model (OpenCLIP ViT-B/32, DataComp-XL weights, MIT licence; image
+   half only, vocabulary pre-encoded by `tools/build_concept_labeler.py`)
+   names each area. This gives the list of *things* ("face", "hands",
+   "landscape"). Names are a model's guess and are shown as one.
+3. **Responsibility** — SSCD's own score is split exactly among those
+   named things with Shapley values over its grid of feature cells
+   (9×14 for the Mona Lisa; GeM pooling makes every subset of cells computable without another
+   network pass). The shares add back up to the reported similarity, so
+   "what was responsible for the detection" is answered by the network
+   that made the detection. Content that isn't from the original — an
+   added border, rotation padding — gets a negative share.
+
+Measured (`../registry_explanations_test/run_measurements.py`, results
+in its `results.json`): **all 24 real copies** tested (18 edits of the
+Mona Lisa — crops from 80% down to 25%, rotations, a mirror, black and
+white, sepia, brightening, blur, heavy compression, text overlay, an
+added border — plus 6 colour edits of the Great Wave) were confirmed by 61 to
+1,504 shared points, **with every fact correct** — crop area, position,
+rotation (15.0° and 90.0°), mirroring, black-and-white, sepia,
+brightening. Across **594 pairs of unrelated images** (paintings and
+test photos against each other and against the 44 MidJourney/DALL·E 3
+images) the most points ever shared by chance was **9** (mean 1.4), so
+"confirmed" is set at 20. The match decision itself is unchanged —
+SSCD at 0.4 still decides; explanations never add or remove a match.
+The registry still never keeps the image: a registration now also keeps
+its points' positions and descriptions, the area names and an 8×8 grid
+of average colours (about 100–200 KB).
+
 **Idea 2 — Generator Attribution** (`attribution.py`, `model.py`'s
 `GENERATOR_CLASSES`). Once an image is flagged as AI-generated, a
 *separate* model (trained independently from the Stage 1 detector)
@@ -180,7 +241,10 @@ deepguard-bouncer/
 │   ├── uncertainty.py          # Monte Carlo Dropout consistency check
 │   ├── frequency_analysis.py   # Idea 5b — Fourier spectrum panel
 │   ├── shap_explain.py         # Idea 5a — Shapley-value region attribution
-│   ├── content_registry.py     # Idea 4 — SSCD embeddings + FAISS search
+│   ├── content_registry.py     # Idea 4 — SSCD embeddings + FAISS search (+ exact Shapley split of its score)
+│   ├── local_features.py       # Registry explanations — SIFT points, RANSAC placement, colour comparison
+│   ├── concept_labels.py       # Registry explanations — CLIP "namer" (optional, image half only)
+│   ├── registry_explain.py     # Registry explanations — distinct features + "why it matched"
 │   ├── attribution.py          # Idea 2 — generator attribution inference
 │   ├── requirements.txt
 │   └── static/                 # Plain HTML/CSS/JS frontend, no build step
@@ -192,8 +256,15 @@ deepguard-bouncer/
 │   ├── DeepGuard_Training_MASSIVE.ipynb        # Trains deepguard_bouncer.pth
 │   └── DeepGuard_Attribution_Training.ipynb    # Trains deepguard_attribution.pth
 ├── demo_artworks/              # Seed images for the Content Registry
-└── models/                     # See PUT_WEIGHTS_HERE.md — all three files included
+├── tools/
+│   └── build_concept_labeler.py   # One-time build of the registry's CLIP namer (optional)
+└── models/                     # See PUT_WEIGHTS_HERE.md — the three core files included
 ```
+
+Next to `deepguard-bouncer/` at the repo root: `test_images/` (the 8
+labelled demo photos), `generalization_test/` (attribution on unseen
+generators) and `registry_explanations_test/` (the measurements behind
+the registry's explanations).
 
 ---
 
@@ -205,18 +276,23 @@ pip install -r requirements.txt -r requirements-dev.txt
 pytest -v
 ```
 
-47 tests: unit tests for the pure-logic modules (fingerprint hashing/
-signing, frequency-domain peak detection, model architecture shapes)
-plus integration tests against a real FastAPI `TestClient` with real
-models loaded — every API endpoint, across all 8 real labeled test
-images. Two of them pin, by name, bugs that were actually found and
-fixed this project (a flat-image edge case in the frequency panel, an
-oversized-body DoS on `/api/fingerprint/verify`) so those exact
-regressions can't silently come back. The Content Registry's
+89 tests: unit tests for the pure-logic modules (fingerprint hashing/
+signing, frequency-domain peak detection, model architecture shapes,
+distinctive-point matching) plus integration tests against a real
+FastAPI `TestClient` with real models loaded — every API endpoint,
+across all 8 real labeled test images. Two of them pin, by name, bugs
+that were actually found and fixed this project (a flat-image edge
+case in the frequency panel, an oversized-body DoS on
+`/api/fingerprint/verify`) so those exact regressions can't silently
+come back. The registry explanations are pinned by a parametrised
+table of 20 real edits that must each be confirmed *and* described
+correctly, by the exact-split property (shares add up to the score),
+and by the graceful paths (no namer, an entry registered before
+explanations existed, a stale features file). The Content Registry's
 persisted files are redirected to a temp directory for the test run —
-running the suite never touches the real `models/content_registry.*`
-files. Takes about 15 seconds, dominated by loading ~130MB of real
-model weights once at session start.
+running the suite never touches the real `models/content_registry*`
+files. Takes about 40 seconds, dominated by loading the real model
+weights once at session start.
 
 ---
 
@@ -264,6 +340,19 @@ is confidently flagged as AI-generated (server-side ≥50% *and* the
 displayed verdict is "manipulated," a stricter client-side bar) —
 requires `models/deepguard_attribution.pth` to exist at all.
 
+**Registry areas are named "top left area" etc. instead of "face".**
+The optional namer isn't built on this machine — see the end of
+**Quick start** (`tools/build_concept_labeler.py`).
+
+**A match says "explanation unavailable".** That entry was registered
+before the registry kept distinctive points, and since the registry
+never keeps images there is nothing to rebuild them from. Register the
+image again. (The three demo artworks are rebuilt automatically on
+startup, since their files are in `demo_artworks/`.) To reset the
+registry completely, delete `models/content_registry.index`,
+`models/content_registry_metadata.json` and the
+`models/content_registry_features/` folder.
+
 ---
 
 ## What's not done yet
@@ -280,3 +369,17 @@ list is worth more than pretending everything is finished:
   panel is guessing outside its training set.
 - **Live/webcam temporal detection** was scoped out of this phase
   entirely, not attempted.
+- **The registry still misses a 25% fragment** (SSCD scores it 0.285,
+  under the 0.4 line) even though it shares 61 distinctive points with
+  the original — far above the 9 that chance ever produced. Using
+  points to rescue near-misses would catch it, but it changes which
+  images match, so it's a separate, deliberate decision, not part of
+  the explanations.
+- **Registry area names are CLIP's guesses** and can be wrong,
+  especially on black-and-white copies and close-up faces (a 3×3 area
+  of a face is often just "face" or "person"). The 3×3 grid can also
+  cut one object into two areas. The points and the score split are
+  measured; the names are not evidence.
+- **Stored distinctive points are sensitive data.** The registry keeps
+  no pixels, but research has reconstructed rough pictures from SIFT
+  descriptors (Weinzaepfel et al., CVPR 2011).
