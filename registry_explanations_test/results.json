@@ -1,0 +1,3667 @@
+{
+ "summary": {
+  "copies_tested": 24,
+  "copies_confirmed": 24,
+  "copies_fewest_shared_points": 61,
+  "copies_all_facts_correct": 24,
+  "unrelated_pairs": 594,
+  "unrelated_max_shared_points": 9,
+  "unrelated_mean_shared_points": 1.44,
+  "unrelated_pairs_at_or_above_weak": 0,
+  "unrelated_pairs_at_or_above_confirmed": 0,
+  "thresholds": {
+   "weak": 10,
+   "confirmed": 20,
+   "strong": 50
+  },
+  "seconds": 19.0
+ },
+ "copies": [
+  {
+   "painting": "mona_lisa",
+   "edit": "Same file, re-encoded JPEG q=90",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 1208,
+   "ms": 138,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Heavy compression (JPEG q=10)",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 542,
+   "ms": 142,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Shrunk to 1/6 size, blown back up",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 207,
+   "ms": 109,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Crop: centre 80%",
+   "truth": {
+    "area": 0.64,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 764,
+   "ms": 129,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 0.64,
+   "shown_position": "centre",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Crop: centre 60%",
+   "truth": {
+    "area": 0.36,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 295,
+   "ms": 89,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 0.36,
+   "shown_position": "centre",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Crop: centre 40%",
+   "truth": {
+    "area": 0.16,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 108,
+   "ms": 75,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 0.16,
+   "shown_position": "centre",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Crop: centre 25%",
+   "truth": {
+    "area": 0.0625,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 61,
+   "ms": 25,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 0.062,
+   "shown_position": "centre",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Crop: top-left quarter",
+   "truth": {
+    "area": 0.25,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 249,
+   "ms": 67,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 0.25,
+   "shown_position": "top left",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Mirror (left-right flip)",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": true,
+    "colour": "kept"
+   },
+   "shared_points": 1368,
+   "ms": 123,
+   "rotation_deg": 0.0,
+   "mirrored": true,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Rotate 15 degrees",
+   "truth": {
+    "area": 1.0,
+    "rot": 15,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 617,
+   "ms": 151,
+   "rotation_deg": 15.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.353,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Rotate 90 degrees",
+   "truth": {
+    "area": 1.0,
+    "rot": 90,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 1303,
+   "ms": 127,
+   "rotation_deg": 90.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 0.999,
+   "shown_position": "almost all of it",
+   "added_area": 0.001,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Black & white",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "removed"
+   },
+   "shared_points": 1280,
+   "ms": 128,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "removed",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Sepia recolour",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "recoloured"
+   },
+   "shared_points": 886,
+   "ms": 124,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "recoloured",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Brightness +60%",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept",
+    "brightness": "brighter"
+   },
+   "shared_points": 1150,
+   "ms": 147,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "brighter",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Blur (radius 4)",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 112,
+   "ms": 121,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Text watermark overlay",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 1347,
+   "ms": 131,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Screenshot-style white border",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 494,
+   "ms": 125,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.408,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "mona_lisa",
+   "edit": "Combo: crop 60% + B&W + JPEG q=30",
+   "truth": {
+    "area": 0.36,
+    "rot": 0,
+    "mirror": false,
+    "colour": "removed"
+   },
+   "shared_points": 273,
+   "ms": 97,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 0.36,
+   "shown_position": "centre",
+   "added_area": 0.0,
+   "colour": "removed",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "great_wave",
+   "edit": "Same file, re-encoded JPEG q=90",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 1381,
+   "ms": 141,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "great_wave",
+   "edit": "Heavy compression (JPEG q=10)",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept"
+   },
+   "shared_points": 735,
+   "ms": 130,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "great_wave",
+   "edit": "Black & white",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "removed"
+   },
+   "shared_points": 1504,
+   "ms": 132,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "removed",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "great_wave",
+   "edit": "Sepia recolour",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "recoloured"
+   },
+   "shared_points": 1480,
+   "ms": 138,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "recoloured",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "great_wave",
+   "edit": "Brightness +60%",
+   "truth": {
+    "area": 1.0,
+    "rot": 0,
+    "mirror": false,
+    "colour": "kept",
+    "brightness": "brighter"
+   },
+   "shared_points": 745,
+   "ms": 134,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 1.0,
+   "shown_position": "almost all of it",
+   "added_area": 0.0,
+   "colour": "kept",
+   "brightness": "brighter",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  },
+  {
+   "painting": "great_wave",
+   "edit": "Combo: crop 60% + B&W + JPEG q=30",
+   "truth": {
+    "area": 0.36,
+    "rot": 0,
+    "mirror": false,
+    "colour": "removed"
+   },
+   "shared_points": 474,
+   "ms": 75,
+   "rotation_deg": 0.0,
+   "mirrored": false,
+   "size_ratio": 1.0,
+   "original_area_shown": 0.36,
+   "shown_position": "centre",
+   "added_area": 0.0,
+   "colour": "removed",
+   "brightness": "same",
+   "confirmed": true,
+   "correct": {
+    "area": true,
+    "rotation": true,
+    "mirror": true,
+    "colour": true,
+    "brightness": true
+   }
+  }
+ ],
+ "unrelated": [
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "great_wave.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "great_wave.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "great_wave.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "great_wave.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "great_wave.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "great_wave.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "great_wave.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "great_wave.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "great_wave.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "great_wave.jpg",
+   "shared_points": 4
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "mona_lisa.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "mona_lisa.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "mona_lisa.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "mona_lisa.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "mona_lisa.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "mona_lisa.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "mona_lisa.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "mona_lisa.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "mona_lisa.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "mona_lisa.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "starry_night.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "starry_night.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "starry_night.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "starry_night.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "starry_night.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "starry_night.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "starry_night.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "starry_night.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "starry_night.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "starry_night.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "ai1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "ai1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "ai1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai2.png",
+   "query": "ai1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai3.png",
+   "query": "ai1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai4.png",
+   "query": "ai1.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "ai1.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "ai1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "ai1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "ai1.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "ai2.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "ai2.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "ai2.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "ai2.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai3.png",
+   "query": "ai2.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "ai2.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "ai2.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "ai2.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "ai2.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "ai2.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "ai3.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "ai3.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "ai3.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "ai3.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "ai3.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "ai3.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "ai3.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "ai3.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "ai3.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "ai3.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "ai4.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "ai4.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "ai4.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "ai4.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai2.png",
+   "query": "ai4.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "ai4.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "ai4.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "ai4.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "ai4.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "ai4.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "real1.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "real1.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "real1.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "real1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai2.png",
+   "query": "real1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai3.png",
+   "query": "real1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai4.png",
+   "query": "real1.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "real1.png",
+   "shared_points": 3
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "real1.png",
+   "shared_points": 2
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "real1.png",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "real2.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "real2.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "real2.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "real2.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai2.png",
+   "query": "real2.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai3.png",
+   "query": "real2.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai4.png",
+   "query": "real2.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "real2.jpg",
+   "shared_points": 5
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "real2.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "real2.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "real3.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "real3.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "real3.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "real3.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai2.png",
+   "query": "real3.jpg",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai3.png",
+   "query": "real3.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "real3.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "real3.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "real3.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "real3.jpg",
+   "shared_points": 4
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "real4.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "real4.jpg",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "real4.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "real4.jpg",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "real4.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "real4.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "real4.jpg",
+   "shared_points": 5
+  },
+  {
+   "reference": "real1.png",
+   "query": "real4.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "real4.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "real4.jpg",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_000.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 6
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 6
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 9
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_001.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_002.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_003.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_004.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_005.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_006.webp",
+   "shared_points": 7
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 6
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 6
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_008.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_009.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_011.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_012.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_013.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_014.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 6
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_016.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_017.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_018.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_019.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_021.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_023.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_024.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_025.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_026.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_027.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_028.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai2.png",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "ai3.png",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai4.png",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "dalle3/dalle3_029.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_002.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_003.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 5
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_005.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_007.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_010.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_012.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_015.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_019.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_020.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_021.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_022.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_023.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_029.webp",
+   "shared_points": 4
+  },
+  {
+   "reference": "great_wave.jpg",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "mona_lisa.jpg",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "starry_night.jpg",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 0
+  },
+  {
+   "reference": "ai1.png",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai2.png",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai3.png",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "ai4.png",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real1.png",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real2.jpg",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 3
+  },
+  {
+   "reference": "real3.jpg",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 2
+  },
+  {
+   "reference": "real4.jpg",
+   "query": "midjourney/midjourney-v5_034.webp",
+   "shared_points": 2
+  }
+ ]
+}
