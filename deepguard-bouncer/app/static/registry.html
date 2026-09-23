@@ -40,9 +40,16 @@
         someone from cropping a signature off a registered artwork and reselling it as new.
       </p>
       <p class="intro__body">
-        Registering stores only a signed fingerprint record and a content-similarity vector
-        &mdash; never the image itself, the same &ldquo;nothing you upload is stored&rdquo;
-        promise as the rest of this app.
+        It also shows its work. Every upload gets its <strong>distinct features</strong> &mdash;
+        the distinctive points the registry recognises it by, what each part of it looks like,
+        its colours &mdash; and every match says <strong>what the two images have in common</strong>,
+        how many distinctive points confirm it, what was done to the copy, and how much of the
+        score each shared part is responsible for.
+      </p>
+      <p class="intro__body">
+        Registering stores a signed fingerprint record, a content-similarity vector and the
+        image's distinctive points (positions and short descriptions, plus an 8&times;8 grid of
+        average colours) &mdash; never the image itself.
       </p>
     </section>
 
@@ -69,10 +76,14 @@
       </section>
     </div>
 
+    <!-- Filled by registry.js after a register or a check: the upload's
+         distinct features, and a "why it matched" for every match. -->
+    <section id="explainSection" class="registry__explain" hidden aria-live="polite"></section>
+
   </main>
 
   <footer class="site-footer reveal">
-    <p>Deep-Guard analyses media locally on this machine. Nothing you upload is stored or sent elsewhere — registering keeps only a signed fingerprint record and a content vector, never the image.</p>
+    <p>Deep-Guard analyses media locally on this machine. Nothing you upload is sent elsewhere — registering keeps a signed fingerprint record, a content vector and the image's distinctive points, never the image.</p>
   </footer>
 
   <script src="/static/motion.js"></script>
