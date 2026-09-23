@@ -29,8 +29,9 @@ def client(tmp_path_factory):
     real model weights (base detector + attribution + SSCD) load once,
     not once per test.
 
-    The Content Registry's two persisted files are redirected to a
-    session-scoped tmp directory BEFORE the TestClient is created --
+    The Content Registry's persisted files (index, metadata, features)
+    are redirected to a session-scoped tmp directory BEFORE the
+    TestClient is created --
     TestClient triggers main.py's lifespan() startup (which seeds the
     registry from demo_artworks/) on __enter__, so this has to happen
     first or it seeds straight into the real models/content_registry.*
@@ -40,6 +41,7 @@ def client(tmp_path_factory):
     registry_dir = tmp_path_factory.mktemp("registry")
     main.CONTENT_REGISTRY_INDEX_PATH = registry_dir / "test_registry.index"
     main.CONTENT_REGISTRY_METADATA_PATH = registry_dir / "test_registry_metadata.json"
+    main.CONTENT_REGISTRY_FEATURES_DIR = registry_dir / "features"
 
     with TestClient(main.app) as test_client:
         yield test_client

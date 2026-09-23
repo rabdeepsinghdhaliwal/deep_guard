@@ -69,6 +69,15 @@ What this file does, in order:
      changes). Requires models/deepguard_attribution.pth to exist —
      additive, like everything else here; absent that checkpoint this
      field is simply never present, not a broken app.
+ 12. The registry explains itself (see registry_explain.py): every
+     registered or checked image gets a distinct_features summary
+     (distinctive points, named 3x3 areas, colours), and every match an
+     explanation — which named parts the two images share, how many
+     distinctive points confirm it, what edit was made, and how much of
+     the SSCD score each shared part is responsible for. Names come from
+     an optional CLIP "namer" (models/concept_labeler_*, built by
+     tools/build_concept_labeler.py); without it areas are named by
+     position. Explanations never change which images match.
 """
 
 import io
@@ -92,10 +101,13 @@ from torchvision import transforms
 import base64
 
 import attribution
+import concept_labels
 import content_registry
 import fingerprint
 import frequency_analysis
 import gradcam
+import local_features
+import registry_explain
 import shap_explain
 import uncertainty
 from model import build_model
@@ -117,8 +129,11 @@ BIAS_MAP_RESULTS_PATH = PROJECT_ROOT / "bias_map" / "results.json"
 SSCD_MODEL_PATH = PROJECT_ROOT / "models" / "sscd_disc_mixup.torchscript.pt"
 CONTENT_REGISTRY_INDEX_PATH = PROJECT_ROOT / "models" / "content_registry.index"
 CONTENT_REGISTRY_METADATA_PATH = PROJECT_ROOT / "models" / "content_registry_metadata.json"
+CONTENT_REGISTRY_FEATURES_DIR = PROJECT_ROOT / "models" / "content_registry_features"
 DEMO_ARTWORKS_DIR = PROJECT_ROOT / "demo_artworks"
 ATTRIBUTION_MODEL_PATH = PROJECT_ROOT / "models" / "deepguard_attribution.pth"
+CONCEPT_LABELER_ENCODER_PATH = PROJECT_ROOT / "models" / "concept_labeler_image_encoder.torchscript.pt"
+CONCEPT_LABELER_VOCAB_PATH = PROJECT_ROOT / "models" / "concept_labeler_vocabulary.npz"
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".mkv", ".webm", ".avi"}
@@ -150,6 +165,7 @@ STATE = {
     "sscd_model": None,
     "content_registry": None,
     "attribution": None,
+    "concept_labeler": None,
 }
 
 
@@ -282,13 +298,16 @@ def load_content_registry() -> None:
 
     try:
         STATE["sscd_model"] = content_registry.load_sscd_model(SSCD_MODEL_PATH)
-        registry = content_registry.ContentRegistry(CONTENT_REGISTRY_INDEX_PATH, CONTENT_REGISTRY_METADATA_PATH)
+        registry = content_registry.ContentRegistry(
+            CONTENT_REGISTRY_INDEX_PATH, CONTENT_REGISTRY_METADATA_PATH, features_dir=CONTENT_REGISTRY_FEATURES_DIR,
+        )
         STATE["content_registry"] = registry
 
         if DEMO_ARTWORKS_DIR.exists():
             for image_path in sorted(DEMO_ARTWORKS_DIR.glob("*.jpg")):
                 title = image_path.stem.replace("_", " ").title()
                 if registry.is_registered(title):
+                    _backfill_demo_features(registry, title, image_path)
                     continue
                 image = Image.open(image_path).convert("RGB")
                 embedding = content_registry.compute_content_embedding(STATE["sscd_model"], image)
@@ -299,12 +318,65 @@ def load_content_registry() -> None:
                     title=title,
                     source="Wikimedia Commons (public domain)",
                 )
-                registry.register(embedding, record)
+                registry.register(embedding, record, _registry_features(image))
                 logger.info(f"Seeded content registry with '{title}'")
 
         logger.info(f"Content registry loaded: {len(registry.metadata)} entries")
     except Exception:  # noqa: BLE001 — additive; don't crash startup over it
         logger.exception("Failed to load content registry — /api/registry/* will report unavailable")
+
+
+def _registry_features(image: Image.Image) -> Optional[dict]:
+    """What a registration stores for explaining future matches (see
+    registry_explain.storable), or None if describing the image failed —
+    the registration itself must never fail over its explanation."""
+    try:
+        upload = registry_explain.describe(image, STATE["concept_labeler"], local_features.MAX_STORED_POINTS)
+        return registry_explain.storable(upload, STATE["concept_labeler"])
+    except Exception:  # noqa: BLE001 — additive
+        logger.exception("Couldn't extract distinct features — registering without an explanation")
+        return None
+
+
+def _backfill_demo_features(registry: content_registry.ContentRegistry, title: str, image_path: Path) -> None:
+    """The demo artworks were first registered before the registry kept
+    distinctive points. Their pixels are right here in demo_artworks/, so
+    their features can be rebuilt — and rebuilt again whenever the namer's
+    vocabulary or the feature format changes, so their area names never go
+    stale. (A user's own earlier registration can't be backfilled: the
+    registry never kept their image.)"""
+    labeler = STATE["concept_labeler"]
+    current = (labeler.vocab_hash if labeler is not None else None, registry_explain.FEATURE_VERSION)
+    for entry_id in registry.entry_ids_titled(title):
+        stored = registry.load_features(entry_id)
+        if stored is not None:
+            meta = registry_explain.stored_meta(stored)
+            if (meta.get("vocab_hash"), meta.get("feature_version")) == current:
+                continue
+        features = _registry_features(Image.open(image_path).convert("RGB"))
+        if features is not None:
+            registry.save_features(entry_id, features)
+            logger.info(f"Rebuilt distinct features for registry entry {entry_id} ('{title}')")
+
+
+def load_concept_labeler() -> None:
+    """
+    Loads the registry's optional "namer" (see concept_labels.py): CLIP's
+    image half plus a pre-encoded vocabulary, built once by
+    tools/build_concept_labeler.py. Additive, like every model here:
+    without it, registry explanations name areas by position ("top left
+    area") instead of by content, and nothing else changes.
+    """
+    try:
+        labeler = concept_labels.load_concept_labeler(CONCEPT_LABELER_ENCODER_PATH, CONCEPT_LABELER_VOCAB_PATH)
+        if labeler is None:
+            logger.info("No concept labeler in models/ — registry areas will be named by position. "
+                        "Run tools/build_concept_labeler.py once to enable names.")
+            return
+        STATE["concept_labeler"] = labeler
+        logger.info(f"Concept labeler loaded: {labeler.model_card}, {len(labeler.thing_labels)} names")
+    except Exception:  # noqa: BLE001 — additive; don't crash startup over it
+        logger.exception("Failed to load the concept labeler — registry areas will be named by position")
 
 
 def load_attribution_model() -> None:
@@ -331,6 +403,7 @@ def load_attribution_model() -> None:
 async def lifespan(app: FastAPI):
     load_model()
     load_or_create_signing_key()
+    load_concept_labeler()   # before the registry, so seeded artworks get named areas
     load_content_registry()
     load_attribution_model()
     yield
@@ -462,6 +535,9 @@ async def registry_register(file: UploadFile = File(...), title: str = Form(...)
     SHA-256 + perceptual hash fingerprint, signs the combined record
     with this server's Ed25519 key (reusing fingerprint.py exactly as
     /api/analyze does), and adds the embedding to the FAISS index.
+    Also keeps the image's distinct features (distinctive points, named
+    areas, colour grid — no pixels) so later matches can be explained,
+    and returns a summary of them as `distinct_features`.
     """
     if STATE["sscd_model"] is None or STATE["content_registry"] is None:
         raise HTTPException(status_code=503, detail="Content registry is unavailable on this server.")
@@ -478,8 +554,26 @@ async def registry_register(file: UploadFile = File(...), title: str = Form(...)
         title=title,
         source="user upload",
     )
-    STATE["content_registry"].register(embedding, record)
-    return record
+    upload = _describe_upload(image, local_features.MAX_STORED_POINTS)
+    features = None
+    if upload is not None:
+        try:
+            features = registry_explain.storable(upload, STATE["concept_labeler"])
+        except Exception:  # noqa: BLE001 — additive: register without an explanation rather than not at all
+            logger.exception("Couldn't prepare distinct features for storage")
+            upload = None
+    STATE["content_registry"].register(embedding, record, features)
+
+    # The signed record is returned exactly as stored; distinct_features is
+    # added alongside it (the same pattern as `similarity` on a match), so
+    # verifying the record means verifying everything except that key.
+    response = dict(record)
+    if upload is not None:
+        response["distinct_features"] = {
+            **upload.summary,
+            "stored_kb": registry_explain.stored_size_kb(features),
+        }
+    return response
 
 
 @app.post("/api/registry/check")
@@ -489,7 +583,10 @@ async def registry_check(file: UploadFile = File(...)):
     substantial content with the uploaded image — including a crop,
     rotation, recolour, or heavy recompression of it. Returns matches
     (empty list if none clear MATCH_THRESHOLD) with their similarity
-    score and the original signed registration record.
+    score and the original signed registration record, plus for each an
+    `explanation` (what the two share, what edit was made, how much of
+    the score each shared part is responsible for), and the upload's own
+    `upload_features`. Which images match is decided by SSCD alone.
     """
     if STATE["sscd_model"] is None or STATE["content_registry"] is None:
         raise HTTPException(status_code=503, detail="Content registry is unavailable on this server.")
@@ -497,9 +594,39 @@ async def registry_check(file: UploadFile = File(...)):
     file_bytes = await file.read()
     image = _read_registry_upload_image(file_bytes)
 
-    embedding = content_registry.compute_content_embedding(STATE["sscd_model"], image)
-    matches = STATE["content_registry"].search(embedding)
-    return {"matches": matches, "registry_size": STATE["content_registry"].index.ntotal}
+    registry = STATE["content_registry"]
+    embedding, feature_map = content_registry.compute_content_features(STATE["sscd_model"], image)
+    matches = registry.search(embedding)
+    upload = _describe_upload(image, local_features.MAX_QUERY_POINTS)
+    for match in matches:
+        match["explanation"] = _explain_match(registry, upload, match, feature_map)
+
+    response = {"matches": matches, "registry_size": registry.index.ntotal}
+    if upload is not None:
+        response["upload_features"] = upload.summary
+    return response
+
+
+def _describe_upload(image: Image.Image, max_points: int) -> Optional["registry_explain.Upload"]:
+    try:
+        return registry_explain.describe(image, STATE["concept_labeler"], max_points)
+    except Exception:  # noqa: BLE001 — additive: a registry answer must never fail over its explanation
+        logger.exception("Couldn't describe the upload's distinct features")
+        return None
+
+
+def _explain_match(registry: content_registry.ContentRegistry, upload, match: dict, feature_map) -> dict:
+    if upload is None:
+        return {"available": False, "reason": "The upload's distinctive points couldn't be extracted."}
+    try:
+        entry_id = match["entry_id"]
+        return registry_explain.explain_match(
+            upload, match["similarity"], registry.load_features(entry_id), STATE["sscd_model"],
+            registry.stored_vector(entry_id), feature_map,
+        )
+    except Exception:  # noqa: BLE001 — additive
+        logger.exception("Couldn't explain a registry match")
+        return {"available": False, "reason": "Something went wrong explaining this match; the match itself stands."}
 
 
 # ---------------------------------------------------------------------------
