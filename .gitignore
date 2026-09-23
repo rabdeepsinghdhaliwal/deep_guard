@@ -19,3 +19,11 @@ venv/
 # (seeded from demo_artworks/) -- persisted local state, not source.
 deepguard-bouncer/models/content_registry.index
 deepguard-bouncer/models/content_registry_metadata.json
+deepguard-bouncer/models/content_registry_features/
+
+# The registry's "namer" (CLIP image encoder + its name vocabulary), built
+# once per checkout by deepguard-bouncer/tools/build_concept_labeler.py.
+# The encoder is ~176 MB, over GitHub's 100 MB file limit, so it is never
+# committed; without it the registry names areas by position instead.
+deepguard-bouncer/models/concept_labeler_image_encoder.torchscript.pt
+deepguard-bouncer/models/concept_labeler_vocabulary.npz

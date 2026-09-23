@@ -12,3 +12,8 @@ pytest>=8.0
 # requests against the app in-process, with no real server/socket
 # needed.
 httpx>=0.27
+
+# Only for tools/build_concept_labeler.py, the one-time build of the
+# registry's CLIP "namer" (see models/PUT_WEIGHTS_HERE.md). The server
+# itself loads the exported file with plain torch and never imports it.
+open_clip_torch>=3.0
