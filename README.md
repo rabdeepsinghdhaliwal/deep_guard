@@ -134,15 +134,35 @@ hash (changes completely if even one byte changes) and a perceptual
 hash (survives re-compression — the WhatsApp/Twitter problem, where
 lossy compression shouldn't make a genuine photo look "tampered").
 Both are signed with the server's own Ed25519 private key. Two
-endpoints make this provable rather than just asserted:
+endpoints and a standalone script make this provable rather than just
+asserted:
 
 - `POST /api/fingerprint/compression-test` — re-saves your upload at
   several JPEG qualities server-side and shows both fingerprints
   changing (or not) at each quality, live.
-- `POST /api/fingerprint/verify` — independently re-verifies a
-  fingerprint record's signature against the server's public key,
-  offline logic anyone could run themselves. Flip one character of a
-  hash and verification correctly fails.
+- `POST /api/fingerprint/verify` — re-verifies a fingerprint record's
+  signature against the server's public key. Flip one character of a
+  hash and verification correctly fails. This is the server checking
+  its own seal, which demonstrates the mechanism but isn't independent.
+- `deepguard-bouncer/tools/verify_offline.py` — the same check with no
+  server at all, the way an outside party would do it: it needs only the
+  `cryptography` package, a saved record and the signer's public key
+  from a source you trust (for your own server,
+  `deepguard-bouncer/models/demo_signer_public.pem`, also shown in the
+  page footer), never the key inside the record. It takes a bare record
+  or a server answer saved as-is from `/api/analyze`,
+  `/api/registry/register` or `/api/registry/check`:
+
+  ```bash
+  cd deepguard-bouncer
+  curl -F "file=@photo.jpg" http://127.0.0.1:8000/api/analyze -o saved.json
+  python tools/verify_offline.py saved.json models/demo_signer_public.pem
+  ```
+
+  (In Windows PowerShell, type `curl.exe` instead of `curl`.) Exit code 0
+  means every record is valid, 1 that one isn't, 2 that it couldn't
+  check. A valid seal proves the record is genuine and unchanged, not
+  that the picture is true or who created it.
 
 ### Phase 2 — five extensions, each addressing a specific gap
 
@@ -291,7 +311,8 @@ deepguard-bouncer/
 │   └── DeepGuard_Attribution_Training.ipynb    # Trains deepguard_attribution.pth
 ├── demo_artworks/              # Seed images for the Content Registry
 ├── tools/
-│   └── build_concept_labeler.py   # One-time build of the registry's CLIP namer (optional)
+│   ├── build_concept_labeler.py   # One-time build of the registry's CLIP namer (optional)
+│   └── verify_offline.py          # Check a signed record with only a public key, no server
 └── models/                     # See PUT_WEIGHTS_HERE.md — the three core files included
 ```
 
@@ -310,7 +331,7 @@ pip install -r requirements.txt -r requirements-dev.txt
 pytest -v
 ```
 
-89 tests: unit tests for the pure-logic modules (fingerprint hashing/
+94 tests: unit tests for the pure-logic modules (fingerprint hashing/
 signing, frequency-domain peak detection, model architecture shapes,
 distinctive-point matching) plus integration tests against a real
 FastAPI `TestClient` with real models loaded — every API endpoint,
@@ -322,7 +343,10 @@ come back. The registry explanations are pinned by a parametrised
 table of 20 real edits that must each be confirmed *and* described
 correctly, by the exact-split property (shares add up to the score),
 and by the graceful paths (no namer, an entry registered before
-explanations existed, a stale features file). The Content Registry's
+explanations existed, a stale features file). The offline verifier
+(`tools/verify_offline.py`) is checked against the server's own signing
+code and against real server answers saved to disk, including a forger
+who embeds their own key in a record. The Content Registry's
 persisted files are redirected to a temp directory for the test run —
 running the suite never touches the real `deepguard-bouncer/models/content_registry*`
 files. Takes about 40 seconds, dominated by loading the real model
