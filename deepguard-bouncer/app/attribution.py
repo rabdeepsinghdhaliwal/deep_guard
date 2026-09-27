@@ -64,13 +64,26 @@ def load_attribution_model(checkpoint_path: Path, device: torch.device) -> Optio
     return {"model": model, "class_order": class_order}
 
 
-def predict_generator(attribution_state: dict, image: Image.Image, device: torch.device) -> dict:
+def predict_generator(attribution_state: dict, image: Image.Image, device: torch.device,
+                      unknown_threshold: Optional[float] = None) -> dict:
     """
     Returns {"predicted_generator": str, "probabilities": {name: float, ...}},
     probabilities sorted highest first. Called only when the Stage 1
     verdict is already "manipulated" -- asking "which generator" about an
     image the detector itself thinks is real is a question this model
     was never trained to answer meaningfully.
+
+    With `unknown_threshold` (from models/detector_calibration.json), it
+    also says whether it is sure enough to name a tool at all: "answer" is
+    "known" when the top probability is above the threshold and "unknown"
+    ("can't tell") when it isn't -- instead of a confident wrong name.
+    predicted_generator stays the closest match either way, so the page can
+    still say what it came nearest to. The threshold is fitted on the
+    calibration set by evaluation/run_exam.py (never on the exam set it is
+    judged on). Measured there: this model is *more* confident on tools it
+    has never seen than on its own 8 (AUROC below 0.5), so the rule switches
+    naming off (threshold 1.0) and "unknown" is the answer for every image --
+    read it as "not identified", never as "definitely not one of the 8".
     """
     model = attribution_state["model"]
     class_order = attribution_state["class_order"]
@@ -81,7 +94,13 @@ def predict_generator(attribution_state: dict, image: Image.Image, device: torch
         probs = torch.softmax(logits, dim=-1).squeeze(0).cpu().tolist()
 
     paired = sorted(zip(class_order, probs), key=lambda p: p[1], reverse=True)
-    return {
+    result = {
         "predicted_generator": paired[0][0],
         "probabilities": {name: round(float(p), 4) for name, p in paired},
     }
+    if unknown_threshold is not None:
+        # Strictly above: a threshold of 1.0 therefore means "never name a
+        # tool" (softmax can round to exactly 1.0 in float32).
+        result["answer"] = "known" if paired[0][1] > unknown_threshold else "unknown"
+        result["unknown_threshold"] = round(float(unknown_threshold), 4)
+    return result

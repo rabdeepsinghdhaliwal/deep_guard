@@ -1,0 +1,210 @@
+{
+ "meta": {
+  "label": "2026-09-27_baseline",
+  "captured_at_utc": "2026-09-27T05:57:47.826462+00:00",
+  "base_url": "http://127.0.0.1:8000",
+  "git": {
+   "commit": "4b6bf77",
+   "branch": "step0-exam-set",
+   "uncommitted_files": 4
+  },
+  "python": "3.13.7",
+  "registry_titles": [
+   "Great Wave",
+   "Mona Lisa",
+   "Starry Night",
+   "jn familyh",
+   "delhi image"
+  ],
+  "inputs": {
+   "real1": {
+    "path": "test_images\\real1.png",
+    "sha256": "74c5d5237a2befa01d9753e9fb1f41463a1e51f13ff49073feaa2db67fdb8c4c"
+   },
+   "real3": {
+    "path": "test_images\\real3.jpg",
+    "sha256": "2e5cc9312e01873464ae7c9dcfb483d7165fb4cba969074d559221fee68d578c"
+   },
+   "ai1": {
+    "path": "test_images\\ai1.png",
+    "sha256": "3bb56c60ad8800cfac7f58d5705a134848d4fe9303ee0f3a981afa5f54af0dbd"
+   },
+   "ai3": {
+    "path": "test_images\\ai3.png",
+    "sha256": "1ca2de8f25fbeb310b7f060cf387fb608c7f807dd5e50f8c1920758b6780cce9"
+   },
+   "dalle3_000": {
+    "path": "generalization_test\\held_out_images\\dalle3\\dalle3_000.webp",
+    "sha256": "de9262cc37992fa3615c229d2965a8973b9feea04b4d2715098c59662cfa0987"
+   },
+   "midjourney_002": {
+    "path": "generalization_test\\held_out_images\\midjourney\\midjourney-v5_002.webp",
+    "sha256": "74fc3fab1da72c7f668303272d3fa5f37350ce42c66fed782b79ce35ac2dbf9d"
+   },
+   "mona_lisa": {
+    "path": "deepguard-bouncer\\demo_artworks\\mona_lisa.jpg",
+    "sha256": "6cdf101762e6c1ad5168ee64707e926a7d16796f5abc2131dbc70ff292b874b6"
+   },
+   "canary_video": {
+    "path": "deepguard-bouncer\\evaluation\\snapshots\\2026-09-27_baseline\\inputs\\canary_video.mp4",
+    "sha256": "de76ee118f0569984d050b45ef8f4c18560a4b9c1dc141091b16fd9b4436ee4e"
+   },
+   "mona_copy": {
+    "path": "deepguard-bouncer\\evaluation\\snapshots\\2026-09-27_baseline\\inputs\\mona_copy.jpg",
+    "sha256": "d573497eacb647c3f8dac7016adddf6bb007da2d9db03ff2aa59be83e26fd831"
+   }
+  }
+ },
+ "analyze": {
+  "real1": {
+   "input_type": "image",
+   "probability_fake": 0.0065,
+   "server_verdict": "authentic",
+   "page_verdict": "looks authentic",
+   "attribution_top": null,
+   "attribution_top_p": null,
+   "attribution_answer": null,
+   "consistency_mean": 0.0081,
+   "consistency_std": 0.0057,
+   "frequency_anomaly": 0.5903,
+   "phash": "99b4e66c71933a64b399d3c6c669998ecc6fcb39d32439323838339c6ccccc64",
+   "sha256_merkle_root": "74c5d5237a2befa01d9753e9fb1f41463a1e51f13ff49073feaa2db67fdb8c4c"
+  },
+  "real3": {
+   "input_type": "image",
+   "probability_fake": 0.0083,
+   "server_verdict": "authentic",
+   "page_verdict": "looks authentic",
+   "attribution_top": null,
+   "attribution_top_p": null,
+   "attribution_answer": null,
+   "consistency_mean": 0.0101,
+   "consistency_std": 0.0045,
+   "frequency_anomaly": 0.3263,
+   "phash": "95676eee0e204949a2ced5f084abb61b5e4448bae35fd14494fa2f55a4a49f1b",
+   "sha256_merkle_root": "2e5cc9312e01873464ae7c9dcfb483d7165fb4cba969074d559221fee68d578c"
+  },
+  "ai1": {
+   "input_type": "image",
+   "probability_fake": 0.045,
+   "server_verdict": "authentic",
+   "page_verdict": "looks authentic",
+   "attribution_top": null,
+   "attribution_top_p": null,
+   "attribution_answer": null,
+   "consistency_mean": 0.0439,
+   "consistency_std": 0.0368,
+   "frequency_anomaly": 0.3843,
+   "phash": "e66cd3468c63199b439935cde3169ae527337a4516ac695eca919c319dcb3835",
+   "sha256_merkle_root": "3bb56c60ad8800cfac7f58d5705a134848d4fe9303ee0f3a981afa5f54af0dbd"
+  },
+  "ai3": {
+   "input_type": "image",
+   "probability_fake": 0.0,
+   "server_verdict": "authentic",
+   "page_verdict": "looks authentic",
+   "attribution_top": null,
+   "attribution_top_p": null,
+   "attribution_answer": null,
+   "consistency_mean": 0.0,
+   "consistency_std": 0.0,
+   "frequency_anomaly": 0.3123,
+   "phash": "9d7c6308b1c77e82e245851a6ecc9d7193bbca6599a6c479e24cf19a16b70366",
+   "sha256_merkle_root": "1ca2de8f25fbeb310b7f060cf387fb608c7f807dd5e50f8c1920758b6780cce9"
+  },
+  "dalle3_000": {
+   "input_type": "image",
+   "probability_fake": 1.0,
+   "server_verdict": "manipulated",
+   "page_verdict": "looks AI-generated",
+   "attribution_top": "stable_diffusion",
+   "attribution_top_p": 0.4561,
+   "attribution_answer": null,
+   "consistency_mean": 1.0,
+   "consistency_std": 0.0,
+   "frequency_anomaly": 0.3566,
+   "phash": "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+   "sha256_merkle_root": "de9262cc37992fa3615c229d2965a8973b9feea04b4d2715098c59662cfa0987"
+  },
+  "midjourney_002": {
+   "input_type": "image",
+   "probability_fake": 0.9955,
+   "server_verdict": "manipulated",
+   "page_verdict": "looks AI-generated",
+   "attribution_top": "glide",
+   "attribution_top_p": 0.8627,
+   "attribution_answer": null,
+   "consistency_mean": 0.9959,
+   "consistency_std": 0.0022,
+   "frequency_anomaly": 0.396,
+   "phash": "996130f3679ece6c3cf0cd8e938c39399e736624ce623c72c8cc338e99316653",
+   "sha256_merkle_root": "74fc3fab1da72c7f668303272d3fa5f37350ce42c66fed782b79ce35ac2dbf9d"
+  },
+  "mona_lisa": {
+   "input_type": "image",
+   "probability_fake": 0.8908,
+   "server_verdict": "manipulated",
+   "page_verdict": "looks AI-generated",
+   "attribution_top": "stable_diffusion",
+   "attribution_top_p": 0.7488,
+   "attribution_answer": null,
+   "consistency_mean": 0.8985,
+   "consistency_std": 0.0478,
+   "frequency_anomaly": 0.3126,
+   "phash": "ccc3acd3e7ecf22c9838cb3c33244e818c3399f3e586618ecceaec5a3ccd1e18",
+   "sha256_merkle_root": "6cdf101762e6c1ad5168ee64707e926a7d16796f5abc2131dbc70ff292b874b6"
+  },
+  "canary_video": {
+   "input_type": "video",
+   "probability_fake": 0.6213,
+   "server_verdict": "manipulated",
+   "page_verdict": "part of this video looks AI-generated",
+   "attribution_top": null,
+   "attribution_top_p": null,
+   "attribution_answer": null,
+   "consistency_mean": 1.0,
+   "consistency_std": 0.0,
+   "frequency_anomaly": 0.3671,
+   "phash": null,
+   "sha256_merkle_root": "de76ee118f0569984d050b45ef8f4c18560a4b9c1dc141091b16fd9b4436ee4e",
+   "mean_probability": 0.4951,
+   "peak_probability": 1.0,
+   "frames_analysed": 29,
+   "frames_flagged": 14,
+   "flagged_ratio": 0.4828
+  }
+ },
+ "registry_check": {
+  "mona_lisa": {
+   "matches": [
+    {
+     "title": "Mona Lisa",
+     "similarity": 1.0,
+     "shared_points": 1368,
+     "strength": "strong",
+     "mirrored": false,
+     "original_area_shown": 1.0
+    }
+   ]
+  },
+  "mona_copy": {
+   "matches": [
+    {
+     "title": "Mona Lisa",
+     "similarity": 0.7592,
+     "shared_points": 367,
+     "strength": "strong",
+     "mirrored": true,
+     "original_area_shown": 0.455
+    }
+   ]
+  },
+  "real3": {
+   "matches": []
+  }
+ },
+ "bias_map": {
+  "total_images": 8,
+  "overall_accuracy": 0.5
+ }
+}

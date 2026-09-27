@@ -152,6 +152,7 @@
 
       <div class="attribution" id="attributionBlock" hidden>
         <h2 class="attribution__title">Likely source</h2>
+        <p class="attribution__answer" id="attributionAnswer" hidden></p>
         <p class="attribution__intro" id="attributionIntro"></p>
         <div class="attribution__bars" id="attributionBars"></div>
       </div>
@@ -188,10 +189,13 @@
 
       <p class="verdict__caveat">
         This is an estimate from a model trained on a large set of real and
-        AI-generated media, not a definitive answer. Known current weak spot:
-        it can miss AI-generated images that are styled like polished,
-        professional stock photography &mdash; treat an "authentic" verdict
-        on that kind of clean, studio-quality image with extra skepticism.
+        AI-generated media, not a definitive answer. Measured on
+        <span id="caveatN">621</span> labelled pictures it had never seen, it
+        called <span id="caveatMissed">27%</span> of the AI images
+        &ldquo;authentic&rdquo; and <span id="caveatFalseAlarm">14%</span> of
+        the real photos &ldquo;AI-generated&rdquo;, and it is weakest on generators it was not
+        trained on &mdash; see the <a href="/bias-map">Bias Map</a> for where.
+        Treat an &ldquo;authentic&rdquo; verdict with particular care.
       </p>
     </section>
 

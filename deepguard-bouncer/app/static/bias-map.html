@@ -31,10 +31,11 @@
       <p class="intro__kicker">Accuracy by subgroup</p>
       <h1 class="intro__title">Bias Map</h1>
       <p class="intro__body">
-        One accuracy number can hide a subgroup the model does badly on — that's exactly how
+        One accuracy number can hide a subgroup the model does badly on &mdash; that's exactly how
         this project found that a 98% overall score was hiding a near-failure on one category
-        of AI image. This page slices accuracy by generator, subject, and style so a hidden
-        gap like that shows up on sight instead of by luck.
+        of AI image. This page slices the analysis page's results by generator, by where the
+        pictures came from, by subject, size and file format, so a hidden gap like that shows up
+        on sight instead of by luck.
       </p>
       <p class="intro__body">
         <strong>This is not one of the live checks on the main page.</strong> Grad-CAM, the
@@ -45,50 +46,20 @@
         Answering that requires already knowing the correct answer for every image in the set,
         to check whether the model's answer matches it. A live upload is exactly the situation
         where nobody knows the correct answer yet &mdash; that's the whole reason to ask the
-        model in the first place. So this has to be a separate, deliberately pre-labeled set,
-        scored all at once by hand-running a script, not something computed per upload.
+        model in the first place. So this is scored on a separate, labelled exam set, all at
+        once by hand-running a script, not computed per upload.
       </p>
     </section>
 
     <div id="scopeWarning" class="bias-map__warning" hidden></div>
+    <p id="scopeNote" class="bias-map__note" hidden></p>
 
-    <section class="bias-map__overall" id="overallBlock" hidden>
-      <div class="bias-map__stat">
-        <div class="bias-map__stat-value" id="overallAccuracy">—</div>
-        <div class="bias-map__stat-label">Overall accuracy</div>
-      </div>
-      <div class="bias-map__stat">
-        <div class="bias-map__stat-value" id="totalImages">—</div>
-        <div class="bias-map__stat-label">Images in this run</div>
-      </div>
-      <div class="bias-map__stat">
-        <div class="bias-map__stat-value" id="generatedAt">—</div>
-        <div class="bias-map__stat-label">Last generated</div>
-      </div>
-    </section>
+    <section class="bias-map__overall" id="overallBlock" hidden></section>
 
-    <section class="bias-map__section" id="bySubjectSection" hidden>
-      <h2 class="bias-map__section-title">By subject</h2>
-      <div class="bias-map__grid" id="bySubjectGrid"></div>
-    </section>
-
-    <section class="bias-map__section" id="byStyleSection" hidden>
-      <h2 class="bias-map__section-title">By style</h2>
-      <div class="bias-map__grid" id="byStyleGrid"></div>
-    </section>
-
-    <section class="bias-map__section" id="byGeneratorSection" hidden>
-      <h2 class="bias-map__section-title">By generator</h2>
-      <div class="bias-map__grid" id="byGeneratorGrid"></div>
-    </section>
-
-    <section class="bias-map__section" id="byComboSection" hidden>
-      <h2 class="bias-map__section-title">By generator &times; subject &times; style</h2>
-      <div class="bias-map__grid" id="byComboGrid"></div>
-    </section>
+    <div id="sections"></div>
 
     <section class="bias-map__empty" id="emptyBlock" hidden>
-      <p>No bias map has been generated yet. Run <code>bias_map/build_bias_map.py</code> on the server, then reload this page.</p>
+      <p>No bias map has been generated yet. Run <code>python evaluation/run_exam.py &lt;label&gt; --write-bias-map</code> on the server, then reload this page.</p>
     </section>
 
   </main>

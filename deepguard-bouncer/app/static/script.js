@@ -43,6 +43,7 @@ const shapRegionsList   = document.getElementById("shapRegionsList");
 
 const attributionBlock   = document.getElementById("attributionBlock");
 const attributionIntro   = document.getElementById("attributionIntro");
+const attributionAnswer  = document.getElementById("attributionAnswer");
 const attributionBars    = document.getElementById("attributionBars");
 
 const fingerprintBlock  = document.getElementById("fingerprintBlock");
@@ -321,6 +322,15 @@ function formatGeneratorName(slug) {
     || slug.split("_").map(w => w[0].toUpperCase() + w.slice(1)).join(" ");
 }
 
+// Whole percentages, except never "100%" or "0%" for a value that is not
+// exactly that -- the text above quotes one decimal, and the two must agree.
+function barPercent(p) {
+  const r = Math.round(p * 100);
+  if (r === 100 && p < 1) return ">99%";
+  if (r === 0 && p > 0) return "<1%";
+  return r + "%";
+}
+
 function renderAttribution(data, displayedVerdict) {
   // Deliberately checks the VERDICT ACTUALLY SHOWN as the headline
   // (displayedVerdict, computed in render() below), not the server's own
@@ -336,19 +346,47 @@ function renderAttribution(data, displayedVerdict) {
     return;
   }
 
-  attributionIntro.textContent =
-    `Once an image is flagged as AI-generated, this model (trained separately from the detector above) `
-    + `estimates which specific tool most likely made it. It only recognizes 8 specific tools, though — `
-    + `on a generator it's never seen (tested against real MidJourney and DALL-E 3 images; see the README), `
-    + `it still confidently names one of its known 8 rather than admitting it doesn't recognize the source, `
-    + `so treat this panel skeptically if you have reason to think the image came from something else.`;
-
   const entries = Object.entries(attr.probabilities); // already sorted highest-first by the server
+  const [topName, topProb] = entries[0];
+  const unknown = attr.answer === "unknown";
+  attributionBlock.classList.toggle("is-unknown", unknown);
+
+  if (attr.answer) {
+    // A calibration file is loaded: the panel may say "not one I know".
+    // One decimal throughout, so a 99.7% closest match never reads "100%".
+    const bar = (attr.unknown_threshold * 100).toFixed(1);
+    const namingOff = attr.unknown_threshold >= 1;
+    // "unknown" means "can't tell", not "definitely another tool": on the exam
+    // set this model was just as sure of itself on tools it had never seen as
+    // on its own 8 (evaluation/BASELINE.md), so it names one only when almost
+    // certain -- which it rarely is.
+    attributionAnswer.textContent = unknown
+      ? "Can't tell which tool made this."
+      : `Most likely: ${formatGeneratorName(topName)}.`;
+    attributionIntro.textContent = unknown
+      ? `Its closest match is ${formatGeneratorName(topName)} (${(topProb * 100).toFixed(1)}%), but that is not `
+        + `enough to go on. Tested on images it had never seen, this model was just as sure of itself on tools `
+        + `outside its 8 as on its own, so `
+        + (namingOff ? `it no longer names a tool — the bars below are its raw guesses, not an answer.`
+                     : `it now names a tool only when it is more than ${bar}% sure.`)
+      : `This model (trained separately from the detector above) names a tool only when it is more than ${bar}% `
+        + `sure. Treat the name as a hint: on images it had never seen, its tool names were often wrong.`;
+    attributionAnswer.hidden = false;
+  } else {
+    attributionAnswer.hidden = true;
+    attributionIntro.textContent =
+      `Once an image is flagged as AI-generated, this model (trained separately from the detector above) `
+      + `estimates which specific tool most likely made it. It only recognizes 8 specific tools, though — `
+      + `on a generator it's never seen (tested against real MidJourney and DALL-E 3 images; see the README), `
+      + `it still confidently names one of its known 8 rather than admitting it doesn't recognize the source, `
+      + `so treat this panel skeptically if you have reason to think the image came from something else.`;
+  }
+
   attributionBars.innerHTML = entries.map(([name, prob], i) => `
     <div class="attribution__bar-row ${i === 0 ? "is-top" : ""}">
       <div class="attribution__bar-label">${formatGeneratorName(name)}</div>
       <div class="attribution__bar-track"><div class="attribution__bar-fill" style="width: ${Math.round(prob * 100)}%"></div></div>
-      <div class="attribution__bar-value">${Math.round(prob * 100)}%</div>
+      <div class="attribution__bar-value">${barPercent(prob)}</div>
     </div>
   `).join("");
 
@@ -594,6 +632,21 @@ function render(data) {
 
   result.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
+
+/* ------------------------------------------------------- measured caveat -- */
+
+// The caveat under every verdict quotes the latest exam run (the same
+// numbers the Bias Map shows), so it never goes stale when the model does.
+// The figures already in the page are the fallback if this fails.
+(async function fillMeasuredCaveat() {
+  try {
+    const data = await (await fetch("/api/bias-map")).json();
+    if (!data.generated || !data.headline) return;
+    document.getElementById("caveatN").textContent = data.total_images;
+    document.getElementById("caveatMissed").textContent = Math.round(data.headline.missed * 100) + "%";
+    document.getElementById("caveatFalseAlarm").textContent = Math.round(data.headline.false_alarm * 100) + "%";
+  } catch (err) { /* keep the figures already in the page */ }
+})();
 
 /* --------------------------------------------------------------- submit -- */
 

@@ -27,3 +27,15 @@ deepguard-bouncer/models/content_registry_features/
 # committed; without it the registry names areas by position instead.
 deepguard-bouncer/models/concept_labeler_image_encoder.torchscript.pt
 deepguard-bouncer/models/concept_labeler_vocabulary.npz
+
+# Evaluation (deepguard-bouncer/evaluation/). The exam and calibration
+# images live outside the repo in $DEEPGUARD_DATA (default ~/deepguard-data);
+# the manifests that pin them are committed. Snapshot screenshots, their
+# generated inputs and the compare diff images are for looking at, and are rebuilt by
+# the next capture. Each exam run's full per-image JSONL stays local (it
+# feeds run_exam.py --reuse); its per_image.csv, summary.json and report
+# are committed.
+deepguard-bouncer/evaluation/snapshots/*/screens/
+deepguard-bouncer/evaluation/snapshots/*/inputs/
+deepguard-bouncer/evaluation/snapshots/compare_*/*.jpg
+deepguard-bouncer/evaluation/results/*/per_image.jsonl

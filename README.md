@@ -170,17 +170,12 @@ asserted:
 /api/bias-map`). One aggregate accuracy number can hide a subgroup the
 model does badly on — exactly what happened here: an early 98.17%
 score was 91.5% one easy category and 8.5% one hard one. This slices
-accuracy by generator/subject/style and renders it as a grid instead
-of one number. Run `deepguard-bouncer/bias_map/build_bias_map.py` by hand to regenerate
-`results.json` against a new labeled test set; the endpoint only
-reads that file.
-
-> **Honest limitation:** the shipped `results.json` was generated on
-> 8 images with no real generator labels — enough to prove the
-> pipeline works end-to-end, not enough to trust the numbers. The page
-> says this explicitly rather than hiding it. A real bias map needs a
-> properly labeled 300–500 image set across generator × subject ×
-> style.
+the analysis page's results by generator, source, subject, image size
+and file format and renders them as a grid instead of one number.
+Since Step 0 it is computed on the exam set (see **Step 0** below):
+`python evaluation/run_exam.py <label> --write-bias-map` regenerates
+`results.json`; the endpoint only reads that file. (Until Step 0 it ran
+on 8 placeholder images and said so.)
 
 **Idea 5a/5b — Quantified explainability** (`shap_explain.py`,
 `frequency_analysis.py`, folded into `/api/analyze`'s
@@ -275,11 +270,54 @@ current checkpoint scores 81.85% on its own held-out test split.
 > confidence on these wrong guesses (74.2%) is about as high as on
 > data it actually trained on, so the confidence number alone gives no
 > warning the panel might be unreliable. The live "Likely source"
-> panel's own copy now discloses this directly.
+> panel's own copy now discloses this directly, and since Step 0 it
+> no longer names a tool at all: it answers "can't tell which tool made
+> this", because on fresh images its confidence turned out not to
+> separate its 8 tools from others (see **Step 0** below).
 
 **Idea 3 — Live temporal (webcam) detection** was deliberately scoped
 *out* of this phase — it needs real-time video infrastructure this
 project doesn't have yet. Not started, not attempted.
+
+### Step 0 — the exam set (measure first, then build)
+
+The roadmap turns the three engines into one layered trust check
+(Content Credentials → watermarks → two detectors → known-content
+match → one sealed report). Before adding any layer, the project needed
+a fair way to tell whether a layer *helps* — so Step 0 built the exam
+first. Everything is in `deepguard-bouncer/evaluation/` (see its
+README):
+
+- **The exam set** — labelled images the detector was never tuned on:
+  OpenFake's held-out test split (generators no training split
+  contains, including GPT Image 1.5/2, Nano Banana Pro, Midjourney 7,
+  Seedream 5, and frames from Sora 2 and Veo 3), OpenFake's Reddit set
+  (pictures as they circulate), older GANs and diffusion models
+  (CNNDetection, GenImage), our 44 outside images and 15 Commons
+  pictures. Alongside: the C2PA public test files and watermarked
+  samples for the layers still to come, and messaging-app-style copies.
+  Every image's source is pinned in `exam_set_manifest.csv` with its
+  licence and SHA-256; the images themselves live outside the repo.
+- **A separate calibration set** — the only place anything is fitted.
+- **`run_exam.py`** scores every exam image through `POST /api/analyze`
+  and writes the report card; **`snapshot.py`** records the running
+  app's answers and screenshots before and after every change.
+
+**What today's system scores** is in `evaluation/BASELINE.md` — the
+numbers every later step is judged against.
+
+Three additive changes came with it: the source panel can now answer
+**"can't tell which tool made this"** — and, because its confidence
+turned out to be no guide to whether it knows the tool (AUROC below
+0.5 on the calibration set), the rule written into
+`models/detector_calibration.json` switches naming off entirely;
+`/api/analyze` reports a **temperature-scaled
+reading** next to the raw one (`calibrated_probability_fake`; the
+verdict still uses the raw number until the trust report, Step 1,
+re-derives its thresholds on calibrated numbers); and the **Bias Map**
+now shows the exam set instead of 8 placeholder images.
+`app/evidence.py` defines the one answer format every layer of the
+trust check will return.
 
 ---
 
@@ -299,13 +337,22 @@ deepguard-bouncer/
 │   ├── local_features.py       # Registry explanations — SIFT points, RANSAC placement, colour comparison
 │   ├── concept_labels.py       # Registry explanations — CLIP "namer" (optional, image half only)
 │   ├── registry_explain.py     # Registry explanations — distinct features + "why it matched"
-│   ├── attribution.py          # Idea 2 — generator attribution inference
+│   ├── attribution.py          # Idea 2 — generator attribution inference (+ "can't tell which tool")
+│   ├── calibration.py          # Step 0 — does "90%" mean right 9 times in 10? (temperature scaling)
+│   ├── evidence.py             # Step 0 — the one answer format every trust-check layer will return
 │   ├── requirements.txt
 │   └── static/                 # Plain HTML/CSS/JS frontend, no build step
 ├── bias_map/
-│   ├── build_bias_map.py       # Standalone script — run by hand, not by a request
-│   ├── labeled_test_set.csv    # filename, generator, subject, style
-│   └── results.json            # Written by the script above; read by /api/bias-map
+│   ├── labeled_test_set.csv    # labels of the original 8 test images (now part of the exam set)
+│   └── results.json            # Written by evaluation/run_exam.py --write-bias-map; read by /api/bias-map
+├── evaluation/                 # Step 0 — the exam set, its scorer, before/after snapshots (see its README)
+│   ├── build_exam_set.py       # Builds/checks the exam + calibration sets (images live outside the repo)
+│   ├── run_exam.py             # Scores the exam through /api/analyze; writes the report card
+│   ├── snapshot.py             # Records the running app's answers + screenshots; compares two recordings
+│   ├── exam_set_manifest.csv   # Every exam image: source (pinned), label, licence, SHA-256
+│   ├── calibration_set_manifest.csv
+│   ├── BASELINE.md             # Today's system on the exam — the numbers every later step is judged against
+│   └── results/                # One folder per scored run
 ├── colab_notebook/
 │   ├── DeepGuard_Training_MASSIVE.ipynb        # Trains deepguard_bouncer.pth
 │   └── DeepGuard_Attribution_Training.ipynb    # Trains deepguard_attribution.pth
@@ -313,7 +360,8 @@ deepguard-bouncer/
 ├── tools/
 │   ├── build_concept_labeler.py   # One-time build of the registry's CLIP namer (optional)
 │   └── verify_offline.py          # Check a signed record with only a public key, no server
-└── models/                     # See PUT_WEIGHTS_HERE.md — the three core files included
+└── models/                     # See PUT_WEIGHTS_HERE.md — the three core files included,
+                                #   plus detector_calibration.json (fitted by run_exam.py --fit)
 ```
 
 At the repo root, next to `deepguard-bouncer/`: `test_images/` (the 8
@@ -331,7 +379,7 @@ pip install -r requirements.txt -r requirements-dev.txt
 pytest -v
 ```
 
-94 tests: unit tests for the pure-logic modules (fingerprint hashing/
+119 tests: unit tests for the pure-logic modules (fingerprint hashing/
 signing, frequency-domain peak detection, model architecture shapes,
 distinctive-point matching) plus integration tests against a real
 FastAPI `TestClient` with real models loaded — every API endpoint,
@@ -346,7 +394,16 @@ and by the graceful paths (no namer, an entry registered before
 explanations existed, a stale features file). The offline verifier
 (`tools/verify_offline.py`) is checked against the server's own signing
 code and against real server answers saved to disk, including a forger
-who embeds their own key in a record. The Content Registry's
+who embeds their own key in a record. Step 0's pieces are pinned too:
+temperature scaling (it never moves an image across 50%, and the fit
+recovers a known temperature), the answer format's rules (e.g. only a
+verified signature may count as proof), and the source panel's
+"unknown" answer. The evaluation tools have their own 17 tests
+(`python -m pytest evaluation/test_evaluation_tools.py` from
+`deepguard-bouncer/`) — the scorer's arithmetic, the source panel's
+naming rule, the file-name collision guard, WhatsApp copies being paired
+with their originals, and the before/after tool catching a changed value
+(not just a changed field). The Content Registry's
 persisted files are redirected to a temp directory for the test run —
 running the suite never touches the real `deepguard-bouncer/models/content_registry*`
 files. Takes about 40 seconds, dominated by loading the real model
@@ -418,13 +475,26 @@ registry completely, delete `deepguard-bouncer/models/content_registry.index`,
 Kept here deliberately instead of hidden, since an honest limitations
 list is worth more than pretending everything is finished:
 
-- **Bias Map's dataset is a placeholder** (8 images, no real generator
-  labels) — the tool works, the data behind it isn't trustworthy yet.
-- **Generator Attribution's confidence doesn't drop on unseen
-  generators** — measured (see `generalization_test/`), not a guess:
-  it's family-coherent 91% of the time but not appropriately less
-  confident, so the confidence number alone can't warn a user the
-  panel is guessing outside its training set.
+- **The detector misses generators it never saw.** On the exam set
+  (`evaluation/BASELINE.md`) it calls 58% of AI images AI-generated,
+  27% *authentic*, and false-alarms on 14% of real photos (AUC 0.76):
+  34 of 34 DALL-E 3 images, 6 of 10 each for Midjourney 7, GPT Image 2
+  and Nano Banana Pro, and 25% on older research generators. The file's
+  size makes little difference (the detector resizes everything to
+  256×256 first); what it cannot handle is generators — and their
+  formats and subjects — that it never saw. The fix is training data
+  from many generators — roadmap Step 4.
+- **The detector's percentages overclaim.** Of images it scores below
+  10% AI, 39% really are AI; honest (temperature-scaled, T = 10.6)
+  readings are almost always between 20% and 80%. The page still shows
+  the raw verdicts until the trust report (Step 1) re-words them on
+  calibrated numbers; `/api/analyze` already reports both.
+- **The source panel does not identify tools on fresh images.** On
+  fresh images of its own 8 tools it named the right one only 39% of
+  the time, and it is *more* confident on tools it has never seen
+  (AUROC 0.40 — see `generalization_test/` for the first sign of this).
+  So it no longer names a tool: it answers "can't tell which tool made
+  this" for every image. A useful answer needs a retrained source model.
 - **Live/webcam temporal detection** was scoped out of this phase
   entirely, not attempted.
 - **The registry still misses a 25% fragment** (SSCD scores it 0.285,

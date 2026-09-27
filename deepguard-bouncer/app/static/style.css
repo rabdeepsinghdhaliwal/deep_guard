@@ -976,6 +976,13 @@ a { color: inherit; }
   border-top: 1px solid var(--rule);
 }
 
+.attribution__answer {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
 .attribution__intro {
   margin: 0 0 18px;
   font-size: 14px;
@@ -1028,6 +1035,10 @@ a { color: inherit; }
   color: var(--ink-faint);
 }
 .attribution__bar-row.is-top .attribution__bar-value { color: var(--false); font-weight: 600; }
+/* "Not one of the tools it knows": the closest match is shown, but not in
+   the verdict colour -- it is a comparison, not an answer. */
+.attribution.is-unknown .attribution__bar-row.is-top .attribution__bar-fill { background: var(--ink-faint); }
+.attribution.is-unknown .attribution__bar-row.is-top .attribution__bar-value { color: var(--ink-soft); }
 
 /* --------------------------------------------------------- fingerprint -- */
 
@@ -1191,7 +1202,7 @@ a { color: inherit; }
 
 /* ==========================================================================
    Bias Map page (bias-map.html) — accuracy sliced by generator/subject/style
-   instead of one aggregate number. See bias_map/build_bias_map.py.
+   instead of one aggregate number. See evaluation/run_exam.py --write-bias-map.
    ========================================================================== */
 
 .bias-map__warning {
@@ -1202,6 +1213,14 @@ a { color: inherit; }
   padding: 14px 18px;
   font-size: 14px;
   margin-bottom: 32px;
+}
+
+.bias-map__note {
+  border-left: 3px solid var(--rule-strong);
+  color: var(--ink-soft);
+  padding: 4px 0 4px 18px;
+  font-size: 14px;
+  margin: 0 0 32px;
 }
 
 .bias-map__overall {
@@ -1265,7 +1284,8 @@ a { color: inherit; }
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.01em;
-  text-transform: capitalize;
+  /* No text-transform: group names are generator names ("gpt-image-2",
+     "sd-1.4") that capitalising would mangle; they arrive already written. */
   color: var(--ink-soft);
   margin-bottom: 8px;
   word-break: break-word;
@@ -1277,6 +1297,18 @@ a { color: inherit; }
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
+}
+
+.bias-map__cell-detail {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+.bias-map__section-note {
+  margin: -6px 0 14px;
+  font-size: 13px;
+  color: var(--ink-soft);
 }
 
 .bias-map__cell-n {

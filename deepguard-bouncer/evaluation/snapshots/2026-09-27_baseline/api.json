@@ -1,0 +1,11761 @@
+{
+ "meta": {
+  "label": "2026-09-27_baseline",
+  "captured_at_utc": "2026-09-27T05:57:47.826462+00:00",
+  "base_url": "http://127.0.0.1:8000",
+  "git": {
+   "commit": "4b6bf77",
+   "branch": "step0-exam-set",
+   "uncommitted_files": 4
+  },
+  "python": "3.13.7",
+  "registry_titles": [
+   "Great Wave",
+   "Mona Lisa",
+   "Starry Night",
+   "jn familyh",
+   "delhi image"
+  ],
+  "inputs": {
+   "real1": {
+    "path": "test_images\\real1.png",
+    "sha256": "74c5d5237a2befa01d9753e9fb1f41463a1e51f13ff49073feaa2db67fdb8c4c"
+   },
+   "real3": {
+    "path": "test_images\\real3.jpg",
+    "sha256": "2e5cc9312e01873464ae7c9dcfb483d7165fb4cba969074d559221fee68d578c"
+   },
+   "ai1": {
+    "path": "test_images\\ai1.png",
+    "sha256": "3bb56c60ad8800cfac7f58d5705a134848d4fe9303ee0f3a981afa5f54af0dbd"
+   },
+   "ai3": {
+    "path": "test_images\\ai3.png",
+    "sha256": "1ca2de8f25fbeb310b7f060cf387fb608c7f807dd5e50f8c1920758b6780cce9"
+   },
+   "dalle3_000": {
+    "path": "generalization_test\\held_out_images\\dalle3\\dalle3_000.webp",
+    "sha256": "de9262cc37992fa3615c229d2965a8973b9feea04b4d2715098c59662cfa0987"
+   },
+   "midjourney_002": {
+    "path": "generalization_test\\held_out_images\\midjourney\\midjourney-v5_002.webp",
+    "sha256": "74fc3fab1da72c7f668303272d3fa5f37350ce42c66fed782b79ce35ac2dbf9d"
+   },
+   "mona_lisa": {
+    "path": "deepguard-bouncer\\demo_artworks\\mona_lisa.jpg",
+    "sha256": "6cdf101762e6c1ad5168ee64707e926a7d16796f5abc2131dbc70ff292b874b6"
+   },
+   "canary_video": {
+    "path": "deepguard-bouncer\\evaluation\\snapshots\\2026-09-27_baseline\\inputs\\canary_video.mp4",
+    "sha256": "de76ee118f0569984d050b45ef8f4c18560a4b9c1dc141091b16fd9b4436ee4e"
+   },
+   "mona_copy": {
+    "path": "deepguard-bouncer\\evaluation\\snapshots\\2026-09-27_baseline\\inputs\\mona_copy.jpg",
+    "sha256": "d573497eacb647c3f8dac7016adddf6bb007da2d9db03ff2aa59be83e26fd831"
+   }
+  }
+ },
+ "health": {
+  "status": "ok",
+  "model_loaded": true,
+  "device": "cpu",
+  "error": null,
+  "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n"
+ },
+ "analyze": {
+  "real1": {
+   "input_type": "image",
+   "filename": "real1.png",
+   "probability_fake": 0.0065,
+   "probability_real": 0.9935,
+   "verdict": "authentic",
+   "elapsed_seconds": 0.56,
+   "fingerprint": {
+    "sha256_merkle_root": "74c5d5237a2befa01d9753e9fb1f41463a1e51f13ff49073feaa2db67fdb8c4c",
+    "chunk_count": 1,
+    "file_size_bytes": 129111,
+    "phash": "99b4e66c71933a64b399d3c6c669998ecc6fcb39d32439323838339c6ccccc64",
+    "timestamp_utc": "2026-09-27T05:57:38.198560+00:00",
+    "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+    "signature": "e7793296751283ec48ffad55ee54505a9beef51bf866028b1471d1c1ad2bafb1ed4479b130c561045c20e12b970937e9c9100498cc14ef63df7a93a433faaa0c"
+   },
+   "explainability": {
+    "heatmap_png_base64": {
+     "bytes": 48635,
+     "sha256": "8ff98cda48668e9c17b53d33c0375ed89f4ac1b7a2d4f9efbd56efa4ce4f63bf"
+    },
+    "frequency_analysis": {
+     "spectrum_png_base64": {
+      "bytes": 86991,
+      "sha256": "407641d78dceeda6a51bd3fe25dff03ac21c2fbb6427e7bea22687e144c8f8c8"
+     },
+     "anomaly_score": 0.5903,
+     "peak_count": 5,
+     "peaks": [
+      {
+       "radius_normalized": 0.1966,
+       "magnitude": 0.6786,
+       "z_score": 3.566
+      },
+      {
+       "radius_normalized": 0.1966,
+       "magnitude": 0.6786,
+       "z_score": 3.566
+      },
+      {
+       "radius_normalized": 0.1963,
+       "magnitude": 0.6714,
+       "z_score": 3.423
+      },
+      {
+       "radius_normalized": 0.1963,
+       "magnitude": 0.6714,
+       "z_score": 3.423
+      },
+      {
+       "radius_normalized": 0.1903,
+       "magnitude": 0.6773,
+       "z_score": 3.212
+      }
+     ]
+    },
+    "model_consistency": {
+     "mean_probability": 0.0081,
+     "std_probability": 0.0057,
+     "note": "Low std means the model is internally consistent about this reading -- not that the reading is correct. High std means the model itself is unstable here; treat the headline number with extra caution."
+    }
+   },
+   "generator_attribution": null
+  },
+  "real3": {
+   "input_type": "image",
+   "filename": "real3.jpg",
+   "probability_fake": 0.0083,
+   "probability_real": 0.9917,
+   "verdict": "authentic",
+   "elapsed_seconds": 0.86,
+   "fingerprint": {
+    "sha256_merkle_root": "2e5cc9312e01873464ae7c9dcfb483d7165fb4cba969074d559221fee68d578c",
+    "chunk_count": 1,
+    "file_size_bytes": 298078,
+    "phash": "95676eee0e204949a2ced5f084abb61b5e4448bae35fd14494fa2f55a4a49f1b",
+    "timestamp_utc": "2026-09-27T05:57:39.047018+00:00",
+    "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+    "signature": "8c6e30d9382e46451c76cb74c349242ab8f496a4999c00e2adf079c9456c65be1ee02d4d8c1623de1901a0da524b514b88b201ec731b92308ba184d4de64750b"
+   },
+   "explainability": {
+    "heatmap_png_base64": {
+     "bytes": 68613,
+     "sha256": "04ac189a738a1ecdcc3c17e63bb5850616afabd80403cea901193ba609c0faad"
+    },
+    "frequency_analysis": {
+     "spectrum_png_base64": {
+      "bytes": 92836,
+      "sha256": "e493cd4762501a9c1cdc7d3f06326fdd8237edd3b71fd20eb0b91ac9ef411374"
+     },
+     "anomaly_score": 0.3263,
+     "peak_count": 5,
+     "peaks": [
+      {
+       "radius_normalized": 0.6843,
+       "magnitude": 0.4396,
+       "z_score": 2.642
+      },
+      {
+       "radius_normalized": 0.6843,
+       "magnitude": 0.4396,
+       "z_score": 2.642
+      },
+      {
+       "radius_normalized": 0.5797,
+       "magnitude": 0.465,
+       "z_score": 2.566
+      },
+      {
+       "radius_normalized": 0.5797,
+       "magnitude": 0.465,
+       "z_score": 2.566
+      },
+      {
+       "radius_normalized": 0.5735,
+       "magnitude": 0.468,
+       "z_score": 2.556
+      }
+     ]
+    },
+    "model_consistency": {
+     "mean_probability": 0.0101,
+     "std_probability": 0.0045,
+     "note": "Low std means the model is internally consistent about this reading -- not that the reading is correct. High std means the model itself is unstable here; treat the headline number with extra caution."
+    }
+   },
+   "generator_attribution": null
+  },
+  "ai1": {
+   "input_type": "image",
+   "filename": "ai1.png",
+   "probability_fake": 0.045,
+   "probability_real": 0.955,
+   "verdict": "authentic",
+   "elapsed_seconds": 0.75,
+   "fingerprint": {
+    "sha256_merkle_root": "3bb56c60ad8800cfac7f58d5705a134848d4fe9303ee0f3a981afa5f54af0dbd",
+    "chunk_count": 1,
+    "file_size_bytes": 143119,
+    "phash": "e66cd3468c63199b439935cde3169ae527337a4516ac695eca919c319dcb3835",
+    "timestamp_utc": "2026-09-27T05:57:39.625551+00:00",
+    "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+    "signature": "0645c5843f17dcabf8b142c2b1c7b001fc524c223c5f1c179fb02fc07dc3c5b69b9ef463e7b9f4bf3f8ab9d8229ce430470a2a03b83ca83e6be0bf911ade5d0b"
+   },
+   "explainability": {
+    "heatmap_png_base64": {
+     "bytes": 62919,
+     "sha256": "1d2fda43c7b4834336df6af625dee779ce01f8c8020b5ae31e233a9fce6a0858"
+    },
+    "frequency_analysis": {
+     "spectrum_png_base64": {
+      "bytes": 89410,
+      "sha256": "817228167256b399197a3dc402afdb0ef12fd4e1524907a50c8c31e268d7d614"
+     },
+     "anomaly_score": 0.3843,
+     "peak_count": 5,
+     "peaks": [
+      {
+       "radius_normalized": 0.7294,
+       "magnitude": 0.439,
+       "z_score": 2.845
+      },
+      {
+       "radius_normalized": 0.7294,
+       "magnitude": 0.439,
+       "z_score": 2.845
+      },
+      {
+       "radius_normalized": 0.7311,
+       "magnitude": 0.4356,
+       "z_score": 2.793
+      },
+      {
+       "radius_normalized": 0.7311,
+       "magnitude": 0.4356,
+       "z_score": 2.793
+      },
+      {
+       "radius_normalized": 0.665,
+       "magnitude": 0.4665,
+       "z_score": 2.707
+      }
+     ]
+    },
+    "model_consistency": {
+     "mean_probability": 0.0439,
+     "std_probability": 0.0368,
+     "note": "Low std means the model is internally consistent about this reading -- not that the reading is correct. High std means the model itself is unstable here; treat the headline number with extra caution."
+    }
+   },
+   "generator_attribution": null
+  },
+  "ai3": {
+   "input_type": "image",
+   "filename": "ai3.png",
+   "probability_fake": 0.0,
+   "probability_real": 1.0,
+   "verdict": "authentic",
+   "elapsed_seconds": 0.51,
+   "fingerprint": {
+    "sha256_merkle_root": "1ca2de8f25fbeb310b7f060cf387fb608c7f807dd5e50f8c1920758b6780cce9",
+    "chunk_count": 1,
+    "file_size_bytes": 155586,
+    "phash": "9d7c6308b1c77e82e245851a6ecc9d7193bbca6599a6c479e24cf19a16b70366",
+    "timestamp_utc": "2026-09-27T05:57:40.381456+00:00",
+    "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+    "signature": "81b59c631d44c7b4bca2c8c90f390f3e23985385a061089a6a3256a34de1f4a480a7c131d32e50365991627616ffefb50b6539cefc27598ed1024ebcfd83fd0e"
+   },
+   "explainability": {
+    "heatmap_png_base64": {
+     "bytes": 58472,
+     "sha256": "d74e83e2507be5775eb1062f43c0760e7af2a530f6dfc44fdf8c9a3842fe27a8"
+    },
+    "frequency_analysis": {
+     "spectrum_png_base64": {
+      "bytes": 92731,
+      "sha256": "b84321eb9d9abf94548188be7adb9878cc5ed847a8f909e35db0716b0c38e3e9"
+     },
+     "anomaly_score": 0.3123,
+     "peak_count": 2,
+     "peaks": [
+      {
+       "radius_normalized": 0.4684,
+       "magnitude": 0.4976,
+       "z_score": 2.593
+      },
+      {
+       "radius_normalized": 0.4684,
+       "magnitude": 0.4976,
+       "z_score": 2.593
+      },
+      {
+       "radius_normalized": 0.1282,
+       "magnitude": 0.6828,
+       "z_score": 2.351
+      },
+      {
+       "radius_normalized": 0.1282,
+       "magnitude": 0.6828,
+       "z_score": 2.351
+      },
+      {
+       "radius_normalized": 0.3726,
+       "magnitude": 0.5389,
+       "z_score": 2.339
+      }
+     ]
+    },
+    "model_consistency": {
+     "mean_probability": 0.0,
+     "std_probability": 0.0,
+     "note": "Low std means the model is internally consistent about this reading -- not that the reading is correct. High std means the model itself is unstable here; treat the headline number with extra caution."
+    }
+   },
+   "generator_attribution": null
+  },
+  "dalle3_000": {
+   "input_type": "image",
+   "filename": "dalle3_000.webp",
+   "probability_fake": 1.0,
+   "probability_real": 0.0,
+   "verdict": "manipulated",
+   "elapsed_seconds": 0.79,
+   "fingerprint": {
+    "sha256_merkle_root": "de9262cc37992fa3615c229d2965a8973b9feea04b4d2715098c59662cfa0987",
+    "chunk_count": 1,
+    "file_size_bytes": 86608,
+    "phash": "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+    "timestamp_utc": "2026-09-27T05:57:40.930056+00:00",
+    "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+    "signature": "bae2b149140e160ddd20613f5078183b2a8b69d3aba94c3a508093353d2284d0ee56c71be5ee9472408b4a9bbbb35dd39eb52d9063b861febc3d3b2685a37a0a"
+   },
+   "explainability": {
+    "heatmap_png_base64": {
+     "bytes": 45161,
+     "sha256": "c941b5f96fa3b18bbf6bae3d649604f8931f9f5386ddbb25751575b07fe37040"
+    },
+    "frequency_analysis": {
+     "spectrum_png_base64": {
+      "bytes": 103699,
+      "sha256": "4e7fe55f0b98d121891de9a3d1a097ef3a1c69d921342b3483512af95eb15ef4"
+     },
+     "anomaly_score": 0.3566,
+     "peak_count": 5,
+     "peaks": [
+      {
+       "radius_normalized": 0.6393,
+       "magnitude": 0.5168,
+       "z_score": 2.748
+      },
+      {
+       "radius_normalized": 0.6393,
+       "magnitude": 0.5168,
+       "z_score": 2.748
+      },
+      {
+       "radius_normalized": 0.4051,
+       "magnitude": 0.5957,
+       "z_score": 2.734
+      },
+      {
+       "radius_normalized": 0.4051,
+       "magnitude": 0.5957,
+       "z_score": 2.734
+      },
+      {
+       "radius_normalized": 0.7026,
+       "magnitude": 0.5007,
+       "z_score": 2.648
+      }
+     ]
+    },
+    "model_consistency": {
+     "mean_probability": 1.0,
+     "std_probability": 0.0,
+     "note": "Low std means the model is internally consistent about this reading -- not that the reading is correct. High std means the model itself is unstable here; treat the headline number with extra caution."
+    }
+   },
+   "generator_attribution": {
+    "predicted_generator": "stable_diffusion",
+    "probabilities": {
+     "stable_diffusion": 0.4561,
+     "glide": 0.2793,
+     "latent_diffusion": 0.2468,
+     "pro_gan": 0.0171,
+     "stylegan2": 0.0004,
+     "cycle_gan": 0.0002,
+     "ddpm": 0.0,
+     "big_gan": 0.0
+    }
+   }
+  },
+  "midjourney_002": {
+   "input_type": "image",
+   "filename": "midjourney-v5_002.webp",
+   "probability_fake": 0.9955,
+   "probability_real": 0.0045,
+   "verdict": "manipulated",
+   "elapsed_seconds": 0.6,
+   "fingerprint": {
+    "sha256_merkle_root": "74fc3fab1da72c7f668303272d3fa5f37350ce42c66fed782b79ce35ac2dbf9d",
+    "chunk_count": 1,
+    "file_size_bytes": 13964,
+    "phash": "996130f3679ece6c3cf0cd8e938c39399e736624ce623c72c8cc338e99316653",
+    "timestamp_utc": "2026-09-27T05:57:41.709987+00:00",
+    "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+    "signature": "c0e7ab841569961da1e6c9ef4173100b8cd7f701c616468e9bd17e50ed21d777dc554e181f2a7a0f8a08b08eef2cb1453d59ad2672ffd810750ab19fd4a0bd0c"
+   },
+   "explainability": {
+    "heatmap_png_base64": {
+     "bytes": 37948,
+     "sha256": "207d716c61072bf9331b6b472494d29ba539ad0c9bc7d918c12cb673b9f116f3"
+    },
+    "frequency_analysis": {
+     "spectrum_png_base64": {
+      "bytes": 86566,
+      "sha256": "414600b434ff07b030793e25ea19099f3b4e879c87317b0b521c0b3eb6b221e0"
+     },
+     "anomaly_score": 0.396,
+     "peak_count": 5,
+     "peaks": [
+      {
+       "radius_normalized": 0.4886,
+       "magnitude": 0.5051,
+       "z_score": 2.886
+      },
+      {
+       "radius_normalized": 0.4886,
+       "magnitude": 0.5051,
+       "z_score": 2.886
+      },
+      {
+       "radius_normalized": 0.4844,
+       "magnitude": 0.5061,
+       "z_score": 2.854
+      },
+      {
+       "radius_normalized": 0.4844,
+       "magnitude": 0.5061,
+       "z_score": 2.854
+      },
+      {
+       "radius_normalized": 0.4905,
+       "magnitude": 0.5017,
+       "z_score": 2.814
+      }
+     ]
+    },
+    "model_consistency": {
+     "mean_probability": 0.9959,
+     "std_probability": 0.0022,
+     "note": "Low std means the model is internally consistent about this reading -- not that the reading is correct. High std means the model itself is unstable here; treat the headline number with extra caution."
+    }
+   },
+   "generator_attribution": {
+    "predicted_generator": "glide",
+    "probabilities": {
+     "glide": 0.8627,
+     "latent_diffusion": 0.0738,
+     "stable_diffusion": 0.0212,
+     "stylegan2": 0.0146,
+     "big_gan": 0.013,
+     "pro_gan": 0.0096,
+     "cycle_gan": 0.0036,
+     "ddpm": 0.0013
+    }
+   }
+  },
+  "mona_lisa": {
+   "input_type": "image",
+   "filename": "mona_lisa.jpg",
+   "probability_fake": 0.8908,
+   "probability_real": 0.1092,
+   "verdict": "manipulated",
+   "elapsed_seconds": 0.84,
+   "fingerprint": {
+    "sha256_merkle_root": "6cdf101762e6c1ad5168ee64707e926a7d16796f5abc2131dbc70ff292b874b6",
+    "chunk_count": 1,
+    "file_size_bytes": 435991,
+    "phash": "ccc3acd3e7ecf22c9838cb3c33244e818c3399f3e586618ecceaec5a3ccd1e18",
+    "timestamp_utc": "2026-09-27T05:57:42.319362+00:00",
+    "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+    "signature": "6a15be896cfbfb8631064454deed96a34038f9ac9c39b374393cb274e423b1648edc54550302a504fc6f0919a78661ba8bdb043dc0ba6219170acfeff8f97403"
+   },
+   "explainability": {
+    "heatmap_png_base64": {
+     "bytes": 72895,
+     "sha256": "4cae75ad6332b73f1a89f5bd087719d5ffca3473a97bd0c5cbb99602ffdee3cb"
+    },
+    "frequency_analysis": {
+     "spectrum_png_base64": {
+      "bytes": 102144,
+      "sha256": "1c9bdfe14245412d440fbbc969786ec2ae339bf32f95e9a0a29ec92970131e1a"
+     },
+     "anomaly_score": 0.3126,
+     "peak_count": 5,
+     "peaks": [
+      {
+       "radius_normalized": 0.3988,
+       "magnitude": 0.543,
+       "z_score": 2.594
+      },
+      {
+       "radius_normalized": 0.3988,
+       "magnitude": 0.543,
+       "z_score": 2.594
+      },
+      {
+       "radius_normalized": 0.3124,
+       "magnitude": 0.5805,
+       "z_score": 2.561
+      },
+      {
+       "radius_normalized": 0.3124,
+       "magnitude": 0.5805,
+       "z_score": 2.561
+      },
+      {
+       "radius_normalized": 0.3482,
+       "magnitude": 0.5541,
+       "z_score": 2.513
+      }
+     ]
+    },
+    "model_consistency": {
+     "mean_probability": 0.8985,
+     "std_probability": 0.0478,
+     "note": "Low std means the model is internally consistent about this reading -- not that the reading is correct. High std means the model itself is unstable here; treat the headline number with extra caution."
+    }
+   },
+   "generator_attribution": {
+    "predicted_generator": "stable_diffusion",
+    "probabilities": {
+     "stable_diffusion": 0.7488,
+     "latent_diffusion": 0.1201,
+     "stylegan2": 0.0604,
+     "pro_gan": 0.0269,
+     "cycle_gan": 0.0217,
+     "ddpm": 0.0112,
+     "glide": 0.0073,
+     "big_gan": 0.0037
+    }
+   }
+  },
+  "canary_video": {
+   "input_type": "video",
+   "filename": "canary_video.mp4",
+   "verdict": "manipulated",
+   "probability_real": 0.3787,
+   "timeline": [
+    {
+     "t": 0.12,
+     "p": 0.0209
+    },
+    {
+     "t": 0.25,
+     "p": 0.0219
+    },
+    {
+     "t": 0.38,
+     "p": 0.0253
+    },
+    {
+     "t": 0.5,
+     "p": 0.0236
+    },
+    {
+     "t": 0.62,
+     "p": 0.025
+    },
+    {
+     "t": 0.75,
+     "p": 0.0245
+    },
+    {
+     "t": 0.88,
+     "p": 0.0246
+    },
+    {
+     "t": 1.0,
+     "p": 0.0245
+    },
+    {
+     "t": 1.12,
+     "p": 0.025
+    },
+    {
+     "t": 1.25,
+     "p": 0.0245
+    },
+    {
+     "t": 1.38,
+     "p": 0.025
+    },
+    {
+     "t": 1.5,
+     "p": 0.0225
+    },
+    {
+     "t": 1.62,
+     "p": 0.0208
+    },
+    {
+     "t": 1.75,
+     "p": 0.0245
+    },
+    {
+     "t": 1.88,
+     "p": 0.0251
+    },
+    {
+     "t": 2.12,
+     "p": 1.0
+    },
+    {
+     "t": 2.25,
+     "p": 1.0
+    },
+    {
+     "t": 2.38,
+     "p": 1.0
+    },
+    {
+     "t": 2.5,
+     "p": 1.0
+    },
+    {
+     "t": 2.62,
+     "p": 1.0
+    },
+    {
+     "t": 2.75,
+     "p": 1.0
+    },
+    {
+     "t": 2.88,
+     "p": 1.0
+    },
+    {
+     "t": 3.0,
+     "p": 1.0
+    },
+    {
+     "t": 3.12,
+     "p": 1.0
+    },
+    {
+     "t": 3.25,
+     "p": 1.0
+    },
+    {
+     "t": 3.38,
+     "p": 1.0
+    },
+    {
+     "t": 3.5,
+     "p": 1.0
+    },
+    {
+     "t": 3.62,
+     "p": 1.0
+    },
+    {
+     "t": 3.75,
+     "p": 1.0
+    }
+   ],
+   "video": {
+    "total_frames": 32,
+    "fps": 8.0,
+    "duration_seconds": 4.0,
+    "resolution": "640x480"
+   },
+   "elapsed_seconds": 1.49,
+   "fingerprint": {
+    "sha256_merkle_root": "de76ee118f0569984d050b45ef8f4c18560a4b9c1dc141091b16fd9b4436ee4e",
+    "chunk_count": 1,
+    "file_size_bytes": 142855,
+    "phash_frames": [
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204959a2ced5f080abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204949a2ced5f084abb61b5e4448bae35fc14494fa2f55e4a49f1b",
+     "95676eee0e204959a2ced5f084abb61b5e4448bae35fc14494fa2f55a4a49f1b",
+     "95676eee0e204959a2ced5f084abb61b5e4448bae35fc14494fa2f55a4a49f1b",
+     "95676eee0e204959a2ced5f084abb61b5e4448bae35fc14494fa2f55a4a49f1b",
+     "95676eee0e204959a2ced5f084abb61b5e4448bae35fc14494fa2f55a4a49f1b",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c",
+     "bf0b8693c0f4787c99cb93c36632661e639839e19b6acb0e348534f16b3a8f8c"
+    ],
+    "timestamp_utc": "2026-09-27T05:57:44.133796+00:00",
+    "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+    "signature": "11341513eb990bb6ecca85d2d895c8d4c60ecbec6728694ceddc7395b0114b75519149a3829690290f9394b0f6c3e8287eee77ee365e9e34b356108ecde27204"
+   },
+   "explainability": {
+    "heatmap_png_base64": {
+     "bytes": 46783,
+     "sha256": "16fec5dd59d5399c40ada2a61ac5e12197365d4a9739729ea5d60681b8d02928"
+    },
+    "frequency_analysis": {
+     "spectrum_png_base64": {
+      "bytes": 103291,
+      "sha256": "159ad0cc490ae890dab1352600bec2887eca374d3f7aec030116ce0ffc180c68"
+     },
+     "anomaly_score": 0.3671,
+     "peak_count": 5,
+     "peaks": [
+      {
+       "radius_normalized": 0.6393,
+       "magnitude": 0.5099,
+       "z_score": 2.785
+      },
+      {
+       "radius_normalized": 0.6393,
+       "magnitude": 0.5099,
+       "z_score": 2.785
+      },
+      {
+       "radius_normalized": 0.4051,
+       "magnitude": 0.5909,
+       "z_score": 2.755
+      },
+      {
+       "radius_normalized": 0.4051,
+       "magnitude": 0.5909,
+       "z_score": 2.755
+      },
+      {
+       "radius_normalized": 0.7025,
+       "magnitude": 0.4932,
+       "z_score": 2.704
+      }
+     ]
+    },
+    "model_consistency": {
+     "mean_probability": 1.0,
+     "std_probability": 0.0,
+     "note": "Low std means the model is internally consistent about this reading -- not that the reading is correct. High std means the model itself is unstable here; treat the headline number with extra caution."
+    },
+    "frame_timestamp": 3.0
+   },
+   "probability_fake": 0.6213,
+   "mean_probability": 0.4951,
+   "median_probability": 0.0253,
+   "peak_probability": 1.0,
+   "min_probability": 0.0208,
+   "frames_analysed": 29,
+   "frames_flagged": 14,
+   "flagged_ratio": 0.4828
+  }
+ },
+ "registry_check": {
+  "mona_lisa": {
+   "matches": [
+    {
+     "similarity": 1.0,
+     "entry_id": 1,
+     "sha256_merkle_root": "6cdf101762e6c1ad5168ee64707e926a7d16796f5abc2131dbc70ff292b874b6",
+     "chunk_count": 1,
+     "file_size_bytes": 435991,
+     "title": "Mona Lisa",
+     "source": "Wikimedia Commons (public domain)",
+     "timestamp_utc": "2026-09-24T07:09:41.883545+00:00",
+     "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+     "signature": "3b25c10b544e5df806df516c69ad061a3327940c2f0f938ac2aba8d660217ec81b6e3c31cbc846dbfd5ad8221e6016e9a72679bf1c979af413b45875f972b205",
+     "explanation": {
+      "available": true,
+      "similarity": 1.0,
+      "shared_points": 1368,
+      "candidate_pairs": 1368,
+      "strength": "strong",
+      "namer": "OpenCLIP ViT-B/32, DataComp-XL weights (MIT licence)",
+      "confirmed": true,
+      "geometry": {
+       "rotation_deg": 0.0,
+       "mirrored": false,
+       "size_ratio": 1.0,
+       "original_area_shown": 1.0,
+       "shown_position": "almost all of it",
+       "added_area": 0.0,
+       "footprint": [
+        [
+         0.0,
+         0.0
+        ],
+        [
+         1.0,
+         0.0
+        ],
+        [
+         1.0,
+         1.0
+        ],
+        [
+         0.0,
+         1.0
+        ]
+       ]
+      },
+      "colour": {
+       "change": "kept",
+       "brightness": "same",
+       "chroma_ratio": 1.0,
+       "hue_shift_deg": 0.5,
+       "lightness_shift": -0.0,
+       "colour_shift": 0.4,
+       "cells_compared": 64
+      },
+      "common": [
+       {
+        "name": "landscape",
+        "named": true,
+        "positions": [
+         "top left",
+         "top right",
+         "middle left",
+         "middle right"
+        ],
+        "confidence": 0.451,
+        "shared_points": 736,
+        "share": 0.2909,
+        "in_upload": true,
+        "index": 0
+       },
+       {
+        "name": "person",
+        "named": true,
+        "positions": [
+         "centre"
+        ],
+        "confidence": 0.201,
+        "shared_points": 167,
+        "share": 0.19,
+        "in_upload": true,
+        "index": 2
+       },
+       {
+        "name": "face",
+        "named": true,
+        "positions": [
+         "top centre"
+        ],
+        "confidence": 0.638,
+        "shared_points": 145,
+        "share": 0.1714,
+        "in_upload": true,
+        "index": 1
+       },
+       {
+        "name": "hands",
+        "named": true,
+        "positions": [
+         "bottom centre"
+        ],
+        "confidence": 0.352,
+        "shared_points": 118,
+        "share": 0.1582,
+        "in_upload": true,
+        "index": 4
+       },
+       {
+        "name": "sleeve",
+        "named": true,
+        "positions": [
+         "bottom left"
+        ],
+        "confidence": 0.295,
+        "shared_points": 172,
+        "share": 0.0969,
+        "in_upload": true,
+        "index": 3
+       },
+       {
+        "name": "dark background",
+        "named": true,
+        "positions": [
+         "bottom right"
+        ],
+        "confidence": 0.866,
+        "shared_points": 30,
+        "share": 0.0926,
+        "in_upload": true,
+        "index": 5
+       }
+      ],
+      "only_in_original": [],
+      "not_from_original_share": 0.0,
+      "shares_total": 1.0,
+      "figure": {
+       "original_aspect": 0.6611,
+       "original_points": [
+        [
+         0.4799,
+         0.4845
+        ],
+        [
+         0.4511,
+         0.1684
+        ],
+        [
+         0.4394,
+         0.3379
+        ],
+        [
+         0.3628,
+         0.7999
+        ],
+        [
+         0.2069,
+         0.7565
+        ],
+        [
+         0.3554,
+         0.1653
+        ],
+        [
+         0.3554,
+         0.1653
+        ],
+        [
+         0.4512,
+         0.2891
+        ],
+        [
+         0.4027,
+         0.2263
+        ],
+        [
+         0.2113,
+         0.753
+        ],
+        [
+         0.2113,
+         0.753
+        ],
+        [
+         0.5046,
+         0.2257
+        ],
+        [
+         0.5827,
+         0.1395
+        ],
+        [
+         0.3989,
+         0.2638
+        ],
+        [
+         0.4893,
+         0.8031
+        ],
+        [
+         0.508,
+         0.1099
+        ],
+        [
+         0.508,
+         0.1099
+        ],
+        [
+         0.4738,
+         0.8201
+        ],
+        [
+         0.4738,
+         0.8201
+        ],
+        [
+         0.5137,
+         0.2604
+        ],
+        [
+         0.3439,
+         0.2129
+        ],
+        [
+         0.467,
+         0.2191
+        ],
+        [
+         0.4039,
+         0.1202
+        ],
+        [
+         0.4062,
+         0.1191
+        ],
+        [
+         0.4062,
+         0.1191
+        ],
+        [
+         0.2259,
+         0.7533
+        ],
+        [
+         0.5233,
+         0.223
+        ],
+        [
+         0.5233,
+         0.223
+        ],
+        [
+         0.2676,
+         0.2116
+        ],
+        [
+         0.1794,
+         0.7555
+        ],
+        [
+         0.1794,
+         0.7555
+        ],
+        [
+         0.4672,
+         0.2619
+        ],
+        [
+         0.4662,
+         0.24
+        ],
+        [
+         0.4187,
+         0.2844
+        ],
+        [
+         0.4187,
+         0.2844
+        ],
+        [
+         0.6629,
+         0.3005
+        ],
+        [
+         0.5879,
+         0.8025
+        ],
+        [
+         0.1487,
+         0.7471
+        ],
+        [
+         0.4117,
+         0.3069
+        ],
+        [
+         0.4117,
+         0.3069
+        ],
+        [
+         0.4208,
+         0.3074
+        ],
+        [
+         0.4208,
+         0.3074
+        ],
+        [
+         0.1891,
+         0.7491
+        ],
+        [
+         0.1891,
+         0.7491
+        ],
+        [
+         0.3885,
+         0.2319
+        ],
+        [
+         0.5712,
+         0.8047
+        ],
+        [
+         0.2875,
+         0.8615
+        ],
+        [
+         0.2875,
+         0.8615
+        ],
+        [
+         0.4884,
+         0.2306
+        ],
+        [
+         0.3875,
+         0.2195
+        ],
+        [
+         0.2283,
+         0.7387
+        ],
+        [
+         0.1581,
+         0.5547
+        ],
+        [
+         0.1642,
+         0.5549
+        ],
+        [
+         0.4615,
+         0.8317
+        ],
+        [
+         0.8406,
+         0.412
+        ],
+        [
+         0.4207,
+         0.2966
+        ],
+        [
+         0.6839,
+         0.7988
+        ],
+        [
+         0.1628,
+         0.7402
+        ],
+        [
+         0.2345,
+         0.8343
+        ],
+        [
+         0.1564,
+         0.7433
+        ],
+        [
+         0.1564,
+         0.7433
+        ],
+        [
+         0.1932,
+         0.1624
+        ],
+        [
+         0.1618,
+         0.7397
+        ],
+        [
+         0.1618,
+         0.7397
+        ],
+        [
+         0.2292,
+         0.7449
+        ],
+        [
+         0.9761,
+         0.5059
+        ],
+        [
+         0.9761,
+         0.5059
+        ],
+        [
+         0.8845,
+         0.4603
+        ],
+        [
+         0.2332,
+         0.7368
+        ],
+        [
+         0.4378,
+         0.2311
+        ],
+        [
+         0.3789,
+         0.2015
+        ],
+        [
+         0.7008,
+         0.1547
+        ],
+        [
+         0.291,
+         0.7423
+        ],
+        [
+         0.4411,
+         0.3224
+        ],
+        [
+         0.8262,
+         0.4363
+        ],
+        [
+         0.8262,
+         0.4363
+        ],
+        [
+         0.5716,
+         0.8137
+        ],
+        [
+         0.5716,
+         0.8137
+        ],
+        [
+         0.541,
+         0.8068
+        ],
+        [
+         0.555,
+         0.8092
+        ],
+        [
+         0.9391,
+         0.5004
+        ],
+        [
+         0.3089,
+         0.2818
+        ],
+        [
+         0.3089,
+         0.2818
+        ],
+        [
+         0.2645,
+         0.7506
+        ],
+        [
+         0.4059,
+         0.2192
+        ],
+        [
+         0.582,
+         0.8097
+        ],
+        [
+         0.1989,
+         0.7465
+        ],
+        [
+         0.2679,
+         0.7477
+        ],
+        [
+         0.698,
+         0.492
+        ],
+        [
+         0.2116,
+         0.7411
+        ],
+        [
+         0.1307,
+         0.7637
+        ],
+        [
+         0.4155,
+         0.7675
+        ],
+        [
+         0.9503,
+         0.5011
+        ],
+        [
+         0.6724,
+         0.7975
+        ],
+        [
+         0.4653,
+         0.3853
+        ],
+        [
+         0.2524,
+         0.7446
+        ],
+        [
+         0.2524,
+         0.7446
+        ],
+        [
+         0.8857,
+         0.2329
+        ],
+        [
+         0.4322,
+         0.2771
+        ],
+        [
+         0.0893,
+         0.6147
+        ],
+        [
+         0.0893,
+         0.6147
+        ],
+        [
+         0.1911,
+         0.7697
+        ],
+        [
+         0.2431,
+         0.7698
+        ],
+        [
+         0.2289,
+         0.2277
+        ],
+        [
+         0.5952,
+         0.8035
+        ],
+        [
+         0.374,
+         0.2241
+        ],
+        [
+         0.2311,
+         0.8402
+        ],
+        [
+         0.2001,
+         0.7362
+        ],
+        [
+         0.2001,
+         0.7362
+        ],
+        [
+         0.2429,
+         0.7429
+        ],
+        [
+         0.2279,
+         0.2348
+        ],
+        [
+         0.158,
+         0.5574
+        ],
+        [
+         0.4828,
+         0.3067
+        ],
+        [
+         0.274,
+         0.741
+        ],
+        [
+         0.2795,
+         0.7427
+        ],
+        [
+         0.5987,
+         0.812
+        ],
+        [
+         0.1324,
+         0.7133
+        ],
+        [
+         0.2455,
+         0.7623
+        ],
+        [
+         0.278,
+         0.7461
+        ],
+        [
+         0.3987,
+         0.2309
+        ],
+        [
+         0.5116,
+         0.3649
+        ],
+        [
+         0.5991,
+         0.8041
+        ],
+        [
+         0.3021,
+         0.7386
+        ],
+        [
+         0.158,
+         0.7713
+        ],
+        [
+         0.2056,
+         0.5046
+        ],
+        [
+         0.945,
+         0.4648
+        ],
+        [
+         0.9534,
+         0.5037
+        ],
+        [
+         0.5,
+         0.2294
+        ],
+        [
+         0.2815,
+         0.8112
+        ],
+        [
+         0.3123,
+         0.7408
+        ],
+        [
+         0.4422,
+         0.5268
+        ],
+        [
+         0.3636,
+         0.2315
+        ],
+        [
+         0.2084,
+         0.7514
+        ],
+        [
+         0.8131,
+         0.444
+        ],
+        [
+         0.1461,
+         0.751
+        ],
+        [
+         0.3175,
+         0.1669
+        ],
+        [
+         0.4154,
+         0.3147
+        ],
+        [
+         0.6215,
+         0.8106
+        ],
+        [
+         0.2564,
+         0.8286
+        ],
+        [
+         0.2911,
+         0.8319
+        ],
+        [
+         0.6821,
+         0.4994
+        ],
+        [
+         0.5704,
+         0.81
+        ],
+        [
+         0.5704,
+         0.81
+        ],
+        [
+         0.2423,
+         0.2322
+        ],
+        [
+         0.4872,
+         0.2858
+        ],
+        [
+         0.1318,
+         0.7217
+        ],
+        [
+         0.5783,
+         0.8092
+        ],
+        [
+         0.1073,
+         0.7512
+        ],
+        [
+         0.6102,
+         0.8066
+        ],
+        [
+         0.4619,
+         0.7648
+        ],
+        [
+         0.2062,
+         0.7519
+        ],
+        [
+         0.6754,
+         0.1737
+        ],
+        [
+         0.2663,
+         0.3773
+        ],
+        [
+         0.2663,
+         0.3773
+        ],
+        [
+         0.3881,
+         0.2162
+        ],
+        [
+         0.673,
+         0.4867
+        ],
+        [
+         0.4764,
+         0.7834
+        ],
+        [
+         0.1198,
+         0.4809
+        ],
+        [
+         0.1738,
+         0.7448
+        ],
+        [
+         0.3057,
+         0.7408
+        ],
+        [
+         0.6993,
+         0.4956
+        ],
+        [
+         0.2253,
+         0.2413
+        ],
+        [
+         0.17,
+         0.7354
+        ],
+        [
+         0.17,
+         0.7354
+        ],
+        [
+         0.3969,
+         0.3437
+        ],
+        [
+         0.1926,
+         0.7584
+        ],
+        [
+         0.5307,
+         0.8738
+        ],
+        [
+         0.5307,
+         0.8738
+        ],
+        [
+         0.2147,
+         0.7205
+        ],
+        [
+         0.2147,
+         0.7205
+        ],
+        [
+         0.2695,
+         0.75
+        ],
+        [
+         0.8956,
+         0.4606
+        ],
+        [
+         0.8956,
+         0.4606
+        ],
+        [
+         0.4036,
+         0.5623
+        ],
+        [
+         0.6705,
+         0.8095
+        ],
+        [
+         0.6705,
+         0.8095
+        ],
+        [
+         0.4858,
+         0.7863
+        ],
+        [
+         0.689,
+         0.212
+        ],
+        [
+         0.9024,
+         0.4522
+        ],
+        [
+         0.2449,
+         0.7365
+        ],
+        [
+         0.1464,
+         0.7878
+        ],
+        [
+         0.6781,
+         0.1706
+        ],
+        [
+         0.1467,
+         0.7679
+        ],
+        [
+         0.2707,
+         0.8239
+        ],
+        [
+         0.5815,
+         0.8133
+        ],
+        [
+         0.5815,
+         0.8133
+        ],
+        [
+         0.1453,
+         0.5545
+        ],
+        [
+         0.4974,
+         0.2323
+        ],
+        [
+         0.0612,
+         0.0306
+        ],
+        [
+         0.0612,
+         0.0306
+        ],
+        [
+         0.2297,
+         0.7351
+        ],
+        [
+         0.168,
+         0.4022
+        ],
+        [
+         0.168,
+         0.4022
+        ],
+        [
+         0.147,
+         0.7411
+        ],
+        [
+         0.5834,
+         0.5805
+        ],
+        [
+         0.4192,
+         0.2897
+        ],
+        [
+         0.1097,
+         0.474
+        ],
+        [
+         0.2393,
+         0.2469
+        ],
+        [
+         0.743,
+         0.5709
+        ],
+        [
+         0.256,
+         0.759
+        ],
+        [
+         0.2555,
+         0.7594
+        ],
+        [
+         0.4378,
+         0.2037
+        ],
+        [
+         0.4378,
+         0.2037
+        ],
+        [
+         0.647,
+         0.8157
+        ],
+        [
+         0.5291,
+         0.8128
+        ],
+        [
+         0.5291,
+         0.8128
+        ],
+        [
+         0.3634,
+         0.5275
+        ],
+        [
+         0.67,
+         0.1629
+        ],
+        [
+         0.185,
+         0.7116
+        ],
+        [
+         0.2423,
+         0.7775
+        ],
+        [
+         0.4108,
+         0.5664
+        ],
+        [
+         0.8428,
+         0.4701
+        ],
+        [
+         0.2493,
+         0.7735
+        ],
+        [
+         0.5907,
+         0.5476
+        ],
+        [
+         0.1686,
+         0.5204
+        ],
+        [
+         0.1686,
+         0.5204
+        ],
+        [
+         0.869,
+         0.4742
+        ],
+        [
+         0.537,
+         0.8087
+        ],
+        [
+         0.3642,
+         0.4694
+        ],
+        [
+         0.1232,
+         0.475
+        ],
+        [
+         0.4279,
+         0.5394
+        ],
+        [
+         0.9631,
+         0.5088
+        ],
+        [
+         0.3801,
+         0.2218
+        ],
+        [
+         0.3801,
+         0.2218
+        ],
+        [
+         0.5187,
+         0.2393
+        ],
+        [
+         0.8679,
+         0.4732
+        ],
+        [
+         0.4163,
+         0.3031
+        ],
+        [
+         0.4927,
+         0.0864
+        ],
+        [
+         0.2753,
+         0.2329
+        ],
+        [
+         0.2318,
+         0.2439
+        ],
+        [
+         0.2798,
+         0.8945
+        ],
+        [
+         0.5146,
+         0.802
+        ],
+        [
+         0.4846,
+         0.0862
+        ],
+        [
+         0.2742,
+         0.2375
+        ],
+        [
+         0.9716,
+         0.4486
+        ],
+        [
+         0.2454,
+         0.8303
+        ],
+        [
+         0.6192,
+         0.1126
+        ],
+        [
+         0.365,
+         0.4758
+        ],
+        [
+         0.1113,
+         0.4769
+        ],
+        [
+         0.3647,
+         0.5584
+        ],
+        [
+         0.1476,
+         0.718
+        ],
+        [
+         0.4351,
+         0.094
+        ],
+        [
+         0.562,
+         0.8088
+        ],
+        [
+         0.873,
+         0.4774
+        ],
+        [
+         0.1854,
+         0.5106
+        ],
+        [
+         0.4004,
+         0.5607
+        ],
+        [
+         0.4004,
+         0.5607
+        ],
+        [
+         0.1876,
+         0.736
+        ],
+        [
+         0.1641,
+         0.3993
+        ],
+        [
+         0.6783,
+         0.8123
+        ],
+        [
+         0.6783,
+         0.8123
+        ],
+        [
+         0.4509,
+         0.0927
+        ],
+        [
+         0.7445,
+         0.4894
+        ],
+        [
+         0.6408,
+         0.1198
+        ],
+        [
+         0.9527,
+         0.4864
+        ],
+        [
+         0.9527,
+         0.4864
+        ],
+        [
+         0.5065,
+         0.8588
+        ],
+        [
+         0.5065,
+         0.8588
+        ],
+        [
+         0.5877,
+         0.8156
+        ],
+        [
+         0.4902,
+         0.2153
+        ],
+        [
+         0.5364,
+         0.7886
+        ],
+        [
+         0.3643,
+         0.4717
+        ],
+        [
+         0.5968,
+         0.4416
+        ],
+        [
+         0.1545,
+         0.4529
+        ],
+        [
+         0.7719,
+         0.3884
+        ],
+        [
+         0.1211,
+         0.7733
+        ],
+        [
+         0.1403,
+         0.7645
+        ],
+        [
+         0.1408,
+         0.7212
+        ],
+        [
+         0.9233,
+         0.4596
+        ],
+        [
+         0.9233,
+         0.4596
+        ],
+        [
+         0.8337,
+         0.4631
+        ],
+        [
+         0.4091,
+         0.2132
+        ],
+        [
+         0.3985,
+         0.5357
+        ],
+        [
+         0.6502,
+         0.1321
+        ],
+        [
+         0.2488,
+         0.7485
+        ],
+        [
+         0.3821,
+         0.2174
+        ],
+        [
+         0.8628,
+         0.3589
+        ],
+        [
+         0.8628,
+         0.3589
+        ],
+        [
+         0.2291,
+         0.2172
+        ],
+        [
+         0.6859,
+         0.1955
+        ],
+        [
+         0.3627,
+         0.4742
+        ],
+        [
+         0.4886,
+         0.5454
+        ],
+        [
+         0.6673,
+         0.8177
+        ],
+        [
+         0.9132,
+         0.4438
+        ],
+        [
+         0.9132,
+         0.4438
+        ],
+        [
+         0.6608,
+         0.8009
+        ],
+        [
+         0.1204,
+         0.7731
+        ],
+        [
+         0.1573,
+         0.7157
+        ],
+        [
+         0.6767,
+         0.1785
+        ],
+        [
+         0.3957,
+         0.5606
+        ],
+        [
+         0.1527,
+         0.7675
+        ],
+        [
+         0.3275,
+         0.7383
+        ],
+        [
+         0.8846,
+         0.4467
+        ],
+        [
+         0.8164,
+         0.4027
+        ],
+        [
+         0.8028,
+         0.4321
+        ],
+        [
+         0.8043,
+         0.2375
+        ],
+        [
+         0.2917,
+         0.2427
+        ],
+        [
+         0.4301,
+         0.7643
+        ],
+        [
+         0.3999,
+         0.5376
+        ],
+        [
+         0.7135,
+         0.8014
+        ],
+        [
+         0.2688,
+         0.2366
+        ],
+        [
+         0.2688,
+         0.2366
+        ],
+        [
+         0.1346,
+         0.4864
+        ],
+        [
+         0.378,
+         0.2188
+        ],
+        [
+         0.378,
+         0.2188
+        ],
+        [
+         0.3588,
+         0.2385
+        ],
+        [
+         0.6861,
+         0.464
+        ],
+        [
+         0.1452,
+         0.4422
+        ],
+        [
+         0.1452,
+         0.4422
+        ],
+        [
+         0.7443,
+         0.2667
+        ],
+        [
+         0.5209,
+         0.5746
+        ],
+        [
+         0.5209,
+         0.5746
+        ],
+        [
+         0.9422,
+         0.4919
+        ],
+        [
+         0.9422,
+         0.4919
+        ],
+        [
+         0.4652,
+         0.7754
+        ],
+        [
+         0.8914,
+         0.4211
+        ],
+        [
+         0.4255,
+         0.2246
+        ],
+        [
+         0.6702,
+         0.1553
+        ],
+        [
+         0.0598,
+         0.2149
+        ],
+        [
+         0.2244,
+         0.2226
+        ],
+        [
+         0.4538,
+         0.4335
+        ],
+        [
+         0.3767,
+         0.5485
+        ],
+        [
+         0.2174,
+         0.2371
+        ],
+        [
+         0.5662,
+         0.4401
+        ],
+        [
+         0.3295,
+         0.7413
+        ],
+        [
+         0.5109,
+         0.2411
+        ],
+        [
+         0.4466,
+         0.5577
+        ],
+        [
+         0.4466,
+         0.5577
+        ],
+        [
+         0.3518,
+         0.4953
+        ],
+        [
+         0.8823,
+         0.4028
+        ],
+        [
+         0.2625,
+         0.8228
+        ],
+        [
+         0.9324,
+         0.462
+        ],
+        [
+         0.9324,
+         0.462
+        ],
+        [
+         0.2776,
+         0.823
+        ],
+        [
+         0.1681,
+         0.7663
+        ],
+        [
+         0.616,
+         0.8154
+        ],
+        [
+         0.529,
+         0.0869
+        ],
+        [
+         0.6787,
+         0.8166
+        ],
+        [
+         0.1171,
+         0.4679
+        ],
+        [
+         0.8938,
+         0.4508
+        ],
+        [
+         0.8975,
+         0.485
+        ],
+        [
+         0.461,
+         0.7745
+        ],
+        [
+         0.16,
+         0.4019
+        ],
+        [
+         0.2871,
+         0.2351
+        ],
+        [
+         0.1907,
+         0.7667
+        ],
+        [
+         0.5304,
+         0.0885
+        ],
+        [
+         0.4985,
+         0.2252
+        ],
+        [
+         0.5366,
+         0.5451
+        ],
+        [
+         0.4653,
+         0.0779
+        ],
+        [
+         0.607,
+         0.8024
+        ],
+        [
+         0.1489,
+         0.4965
+        ],
+        [
+         0.6869,
+         0.1993
+        ],
+        [
+         0.7952,
+         0.2681
+        ],
+        [
+         0.7952,
+         0.2681
+        ],
+        [
+         0.8441,
+         0.3924
+        ],
+        [
+         0.2193,
+         0.3017
+        ],
+        [
+         0.9247,
+         0.4839
+        ],
+        [
+         0.6452,
+         0.8113
+        ],
+        [
+         0.6261,
+         0.1176
+        ],
+        [
+         0.5369,
+         0.5529
+        ],
+        [
+         0.7576,
+         0.5676
+        ],
+        [
+         0.0388,
+         0.1755
+        ],
+        [
+         0.8778,
+         0.4561
+        ],
+        [
+         0.8211,
+         0.4601
+        ],
+        [
+         0.9029,
+         0.4221
+        ],
+        [
+         0.1094,
+         0.5221
+        ],
+        [
+         0.4651,
+         0.1223
+        ],
+        [
+         0.7344,
+         0.5948
+        ],
+        [
+         0.6226,
+         0.1104
+        ],
+        [
+         0.1733,
+         0.4902
+        ],
+        [
+         0.1912,
+         0.2019
+        ],
+        [
+         0.146,
+         0.7473
+        ],
+        [
+         0.146,
+         0.7473
+        ],
+        [
+         0.051,
+         0.2916
+        ],
+        [
+         0.051,
+         0.2916
+        ],
+        [
+         0.7355,
+         0.8049
+        ],
+        [
+         0.7355,
+         0.8049
+        ],
+        [
+         0.1507,
+         0.4937
+        ],
+        [
+         0.4809,
+         0.6102
+        ],
+        [
+         0.4809,
+         0.6102
+        ],
+        [
+         0.9257,
+         0.4581
+        ],
+        [
+         0.5932,
+         0.8123
+        ],
+        [
+         0.5838,
+         0.8165
+        ],
+        [
+         0.5446,
+         0.5527
+        ],
+        [
+         0.1645,
+         0.4063
+        ],
+        [
+         0.2665,
+         0.8218
+        ],
+        [
+         0.9438,
+         0.507
+        ],
+        [
+         0.1901,
+         0.3984
+        ],
+        [
+         0.4975,
+         0.7907
+        ],
+        [
+         0.6565,
+         0.4991
+        ],
+        [
+         0.613,
+         0.8227
+        ],
+        [
+         0.7859,
+         0.1872
+        ],
+        [
+         0.7859,
+         0.1872
+        ],
+        [
+         0.2172,
+         0.8628
+        ],
+        [
+         0.3952,
+         0.1136
+        ],
+        [
+         0.7926,
+         0.2157
+        ],
+        [
+         0.2195,
+         0.8402
+        ],
+        [
+         0.4325,
+         0.7625
+        ],
+        [
+         0.2821,
+         0.893
+        ],
+        [
+         0.3346,
+         0.7392
+        ],
+        [
+         0.5133,
+         0.2148
+        ],
+        [
+         0.4643,
+         0.0875
+        ],
+        [
+         0.5914,
+         0.8058
+        ],
+        [
+         0.15,
+         0.5571
+        ],
+        [
+         0.3519,
+         0.5546
+        ],
+        [
+         0.4076,
+         0.5566
+        ],
+        [
+         0.1482,
+         0.7848
+        ],
+        [
+         0.1482,
+         0.7848
+        ],
+        [
+         0.4046,
+         0.7586
+        ],
+        [
+         0.6063,
+         0.1036
+        ],
+        [
+         0.8251,
+         0.5204
+        ],
+        [
+         0.8579,
+         0.4764
+        ],
+        [
+         0.9077,
+         0.4083
+        ],
+        [
+         0.9077,
+         0.4083
+        ],
+        [
+         0.3824,
+         0.239
+        ],
+        [
+         0.2118,
+         0.7281
+        ],
+        [
+         0.2118,
+         0.7281
+        ],
+        [
+         0.5623,
+         0.8115
+        ],
+        [
+         0.5623,
+         0.8115
+        ],
+        [
+         0.5172,
+         0.5736
+        ],
+        [
+         0.1478,
+         0.7806
+        ],
+        [
+         0.9161,
+         0.4516
+        ],
+        [
+         0.47,
+         0.0875
+        ],
+        [
+         0.8156,
+         0.4077
+        ],
+        [
+         0.5307,
+         0.8013
+        ],
+        [
+         0.9319,
+         0.3868
+        ],
+        [
+         0.2667,
+         0.7451
+        ],
+        [
+         0.4934,
+         0.5806
+        ],
+        [
+         0.0937,
+         0.7295
+        ],
+        [
+         0.8229,
+         0.2532
+        ],
+        [
+         0.5075,
+         0.2334
+        ],
+        [
+         0.5335,
+         0.8008
+        ],
+        [
+         0.5172,
+         0.7929
+        ],
+        [
+         0.6938,
+         0.237
+        ],
+        [
+         0.6891,
+         0.7968
+        ],
+        [
+         0.5791,
+         0.8155
+        ],
+        [
+         0.5614,
+         0.8272
+        ],
+        [
+         0.5614,
+         0.8272
+        ],
+        [
+         0.2958,
+         0.8171
+        ],
+        [
+         0.1952,
+         0.4451
+        ],
+        [
+         0.3966,
+         0.2516
+        ],
+        [
+         0.3966,
+         0.2516
+        ],
+        [
+         0.5112,
+         0.0856
+        ],
+        [
+         0.3684,
+         0.7465
+        ],
+        [
+         0.2481,
+         0.8635
+        ],
+        [
+         0.4658,
+         0.0841
+        ],
+        [
+         0.6808,
+         0.8029
+        ],
+        [
+         0.088,
+         0.4287
+        ],
+        [
+         0.088,
+         0.4287
+        ],
+        [
+         0.9189,
+         0.501
+        ],
+        [
+         0.9362,
+         0.3894
+        ],
+        [
+         0.4658,
+         0.0839
+        ],
+        [
+         0.7134,
+         0.4814
+        ],
+        [
+         0.1565,
+         0.7593
+        ],
+        [
+         0.0995,
+         0.1934
+        ],
+        [
+         0.2755,
+         0.2296
+        ],
+        [
+         0.9718,
+         0.4883
+        ],
+        [
+         0.5047,
+         0.7924
+        ],
+        [
+         0.6767,
+         0.802
+        ],
+        [
+         0.6904,
+         0.1925
+        ],
+        [
+         0.9722,
+         0.5163
+        ],
+        [
+         0.1544,
+         0.429
+        ],
+        [
+         0.5242,
+         0.5517
+        ],
+        [
+         0.4046,
+         0.1391
+        ],
+        [
+         0.5687,
+         0.8012
+        ],
+        [
+         0.5484,
+         0.0918
+        ],
+        [
+         0.2942,
+         0.2467
+        ],
+        [
+         0.5608,
+         0.5333
+        ],
+        [
+         0.4111,
+         0.5532
+        ],
+        [
+         0.3444,
+         0.7434
+        ],
+        [
+         0.2087,
+         0.7163
+        ],
+        [
+         0.726,
+         0.4845
+        ],
+        [
+         0.726,
+         0.4845
+        ],
+        [
+         0.1513,
+         0.7741
+        ],
+        [
+         0.8592,
+         0.4002
+        ],
+        [
+         0.1387,
+         0.5216
+        ],
+        [
+         0.2553,
+         0.8522
+        ],
+        [
+         0.7795,
+         0.1007
+        ],
+        [
+         0.7024,
+         0.4783
+        ],
+        [
+         0.1792,
+         0.4965
+        ],
+        [
+         0.5074,
+         0.547
+        ],
+        [
+         0.1425,
+         0.7401
+        ],
+        [
+         0.4795,
+         0.5569
+        ],
+        [
+         0.0946,
+         0.7479
+        ],
+        [
+         0.6674,
+         0.8205
+        ],
+        [
+         0.6674,
+         0.8205
+        ],
+        [
+         0.5385,
+         0.8038
+        ],
+        [
+         0.3813,
+         0.7532
+        ],
+        [
+         0.1353,
+         0.5989
+        ],
+        [
+         0.3961,
+         0.5522
+        ],
+        [
+         0.283,
+         0.2356
+        ],
+        [
+         0.2023,
+         0.4012
+        ],
+        [
+         0.9587,
+         0.3152
+        ],
+        [
+         0.7837,
+         0.4307
+        ],
+        [
+         0.9457,
+         0.4486
+        ],
+        [
+         0.6959,
+         0.5483
+        ],
+        [
+         0.4535,
+         0.5731
+        ],
+        [
+         0.4535,
+         0.5731
+        ],
+        [
+         0.1244,
+         0.7597
+        ],
+        [
+         0.1244,
+         0.7597
+        ]
+       ],
+       "colour_grid": [
+        [
+         "#968137",
+         "#9e8538",
+         "#967e31",
+         "#80662c",
+         "#796128",
+         "#9a7e34",
+         "#988035",
+         "#917d2f"
+        ],
+        [
+         "#937c35",
+         "#ad8e3b",
+         "#987431",
+         "#cc8a2c",
+         "#5f3317",
+         "#5a4621",
+         "#a38c37",
+         "#ab8f2e"
+        ],
+        [
+         "#352f1b",
+         "#40371e",
+         "#3c2717",
+         "#915721",
+         "#532b15",
+         "#251811",
+         "#413c1b",
+         "#453b18"
+        ],
+        [
+         "#402f19",
+         "#4f3b1c",
+         "#3a2315",
+         "#ac7c2b",
+         "#b17122",
+         "#3d1f12",
+         "#443115",
+         "#553e13"
+        ],
+        [
+         "#613317",
+         "#3b2213",
+         "#382316",
+         "#745222",
+         "#53391b",
+         "#301d12",
+         "#1b0e0b",
+         "#30150c"
+        ],
+        [
+         "#2a1913",
+         "#311d14",
+         "#201510",
+         "#190d0a",
+         "#120909",
+         "#190b0b",
+         "#140809",
+         "#180c09"
+        ],
+        [
+         "#180f0f",
+         "#311d14",
+         "#a7631e",
+         "#94511a",
+         "#412010",
+         "#2f170f",
+         "#140809",
+         "#0f0505"
+        ],
+        [
+         "#150b0e",
+         "#1d1010",
+         "#2d1813",
+         "#1f100f",
+         "#180a0a",
+         "#12070a",
+         "#0e0507",
+         "#0f0505"
+        ]
+       ],
+       "area_names": [
+        "landscape",
+        "face",
+        "landscape",
+        "landscape",
+        "person",
+        "landscape",
+        "sleeve",
+        "hands",
+        "dark background"
+       ],
+       "area_things": [
+        0,
+        1,
+        0,
+        0,
+        2,
+        0,
+        3,
+        4,
+        5
+       ],
+       "lines": [
+        [
+         0.4799,
+         0.4845,
+         0.4799,
+         0.4845,
+         2
+        ],
+        [
+         0.508,
+         0.1099,
+         0.508,
+         0.1099,
+         1
+        ],
+        [
+         0.1794,
+         0.7555,
+         0.1794,
+         0.7555,
+         3
+        ],
+        [
+         0.2875,
+         0.8615,
+         0.2875,
+         0.8615,
+         3
+        ],
+        [
+         0.1932,
+         0.1624,
+         0.1932,
+         0.1624,
+         0
+        ],
+        [
+         0.5716,
+         0.8137,
+         0.5716,
+         0.8137,
+         4
+        ],
+        [
+         0.9503,
+         0.5011,
+         0.9503,
+         0.5011,
+         0
+        ],
+        [
+         0.2001,
+         0.7362,
+         0.2001,
+         0.7362,
+         3
+        ],
+        [
+         0.3021,
+         0.7386,
+         0.3021,
+         0.7386,
+         3
+        ],
+        [
+         0.2564,
+         0.8286,
+         0.2564,
+         0.8286,
+         3
+        ],
+        [
+         0.2663,
+         0.3773,
+         0.2663,
+         0.3773,
+         0
+        ],
+        [
+         0.2147,
+         0.7205,
+         0.2147,
+         0.7205,
+         3
+        ],
+        [
+         0.5815,
+         0.8133,
+         0.5815,
+         0.8133,
+         4
+        ],
+        [
+         0.256,
+         0.759,
+         0.256,
+         0.759,
+         3
+        ],
+        [
+         0.1686,
+         0.5204,
+         0.1686,
+         0.5204,
+         0
+        ],
+        [
+         0.2798,
+         0.8945,
+         0.2798,
+         0.8945,
+         3
+        ],
+        [
+         0.4004,
+         0.5607,
+         0.4004,
+         0.5607,
+         2
+        ],
+        [
+         0.3643,
+         0.4717,
+         0.3643,
+         0.4717,
+         2
+        ],
+        [
+         0.8628,
+         0.3589,
+         0.8628,
+         0.3589,
+         0
+        ],
+        [
+         0.3275,
+         0.7383,
+         0.3275,
+         0.7383,
+         3
+        ],
+        [
+         0.1452,
+         0.4422,
+         0.1452,
+         0.4422,
+         0
+        ],
+        [
+         0.2174,
+         0.2371,
+         0.2174,
+         0.2371,
+         0
+        ],
+        [
+         0.6787,
+         0.8166,
+         0.6787,
+         0.8166,
+         5
+        ],
+        [
+         0.7952,
+         0.2681,
+         0.7952,
+         0.2681,
+         0
+        ],
+        [
+         0.6226,
+         0.1104,
+         0.6226,
+         0.1104,
+         1
+        ],
+        [
+         0.5446,
+         0.5527,
+         0.5446,
+         0.5527,
+         2
+        ],
+        [
+         0.3346,
+         0.7392,
+         0.3346,
+         0.7392,
+         4
+        ],
+        [
+         0.3824,
+         0.239,
+         0.3824,
+         0.239,
+         1
+        ],
+        [
+         0.5075,
+         0.2334,
+         0.5075,
+         0.2334,
+         1
+        ],
+        [
+         0.4658,
+         0.0841,
+         0.4658,
+         0.0841,
+         1
+        ],
+        [
+         0.9722,
+         0.5163,
+         0.9722,
+         0.5163,
+         0
+        ],
+        [
+         0.2553,
+         0.8522,
+         0.2553,
+         0.8522,
+         3
+        ],
+        [
+         0.2023,
+         0.4012,
+         0.2023,
+         0.4012,
+         0
+        ],
+        [
+         0.4224,
+         0.2314,
+         0.4224,
+         0.2314,
+         1
+        ],
+        [
+         0.982,
+         0.4804,
+         0.982,
+         0.4804,
+         0
+        ],
+        [
+         0.1402,
+         0.0217,
+         0.1402,
+         0.0217,
+         0
+        ],
+        [
+         0.9676,
+         0.4921,
+         0.9676,
+         0.4921,
+         0
+        ],
+        [
+         0.5611,
+         0.4469,
+         0.5611,
+         0.4469,
+         2
+        ],
+        [
+         0.9516,
+         0.5822,
+         0.9516,
+         0.5822,
+         0
+        ],
+        [
+         0.2088,
+         0.2411,
+         0.2088,
+         0.2411,
+         0
+        ],
+        [
+         0.3436,
+         0.5497,
+         0.3436,
+         0.5497,
+         2
+        ],
+        [
+         0.0813,
+         0.1505,
+         0.0813,
+         0.1505,
+         0
+        ],
+        [
+         0.3014,
+         0.8121,
+         0.3014,
+         0.8121,
+         3
+        ],
+        [
+         0.9068,
+         0.3966,
+         0.9068,
+         0.3966,
+         0
+        ],
+        [
+         0.6173,
+         0.4372,
+         0.6173,
+         0.4372,
+         2
+        ],
+        [
+         0.5863,
+         0.805,
+         0.5863,
+         0.805,
+         4
+        ],
+        [
+         0.3778,
+         0.5765,
+         0.3778,
+         0.5765,
+         2
+        ],
+        [
+         0.1501,
+         0.6005,
+         0.1501,
+         0.6005,
+         0
+        ],
+        [
+         0.1969,
+         0.4176,
+         0.1969,
+         0.4176,
+         0
+        ],
+        [
+         0.5241,
+         0.5616,
+         0.5241,
+         0.5616,
+         2
+        ],
+        [
+         0.534,
+         0.5497,
+         0.534,
+         0.5497,
+         2
+        ],
+        [
+         0.1639,
+         0.5007,
+         0.1639,
+         0.5007,
+         0
+        ],
+        [
+         0.3609,
+         0.1362,
+         0.3609,
+         0.1362,
+         1
+        ],
+        [
+         0.6041,
+         0.4077,
+         0.6041,
+         0.4077,
+         2
+        ],
+        [
+         0.1484,
+         0.2341,
+         0.1484,
+         0.2341,
+         0
+        ],
+        [
+         0.5415,
+         0.4281,
+         0.5415,
+         0.4281,
+         2
+        ],
+        [
+         0.8339,
+         0.4717,
+         0.8339,
+         0.4717,
+         0
+        ],
+        [
+         0.5645,
+         0.8468,
+         0.5645,
+         0.8468,
+         4
+        ],
+        [
+         0.1476,
+         0.709,
+         0.1476,
+         0.709,
+         3
+        ],
+        [
+         0.6689,
+         0.4814,
+         0.6689,
+         0.4814,
+         0
+        ],
+        [
+         0.2387,
+         0.8648,
+         0.2387,
+         0.8648,
+         3
+        ],
+        [
+         0.7005,
+         0.1997,
+         0.7005,
+         0.1997,
+         0
+        ],
+        [
+         0.1039,
+         0.5961,
+         0.1039,
+         0.5961,
+         0
+        ],
+        [
+         0.359,
+         0.145,
+         0.359,
+         0.145,
+         1
+        ],
+        [
+         0.8006,
+         0.4434,
+         0.8006,
+         0.4434,
+         0
+        ],
+        [
+         0.8529,
+         0.3964,
+         0.8529,
+         0.3964,
+         0
+        ],
+        [
+         0.517,
+         0.5154,
+         0.517,
+         0.5154,
+         2
+        ],
+        [
+         0.0237,
+         0.1049,
+         0.0237,
+         0.1049,
+         0
+        ],
+        [
+         0.1479,
+         0.4283,
+         0.1479,
+         0.4283,
+         0
+        ],
+        [
+         0.6383,
+         0.8078,
+         0.6383,
+         0.8078,
+         4
+        ],
+        [
+         0.8233,
+         0.3975,
+         0.8233,
+         0.3975,
+         0
+        ],
+        [
+         0.0496,
+         0.4482,
+         0.0496,
+         0.4482,
+         0
+        ],
+        [
+         0.1812,
+         0.5072,
+         0.1812,
+         0.5072,
+         0
+        ],
+        [
+         0.4102,
+         0.4686,
+         0.4102,
+         0.4686,
+         2
+        ],
+        [
+         0.7742,
+         0.0863,
+         0.7742,
+         0.0863,
+         0
+        ],
+        [
+         0.9545,
+         0.2646,
+         0.9545,
+         0.2646,
+         0
+        ],
+        [
+         0.719,
+         0.8091,
+         0.719,
+         0.8091,
+         5
+        ],
+        [
+         0.0706,
+         0.3349,
+         0.0706,
+         0.3349,
+         0
+        ],
+        [
+         0.1717,
+         0.4415,
+         0.1717,
+         0.4415,
+         0
+        ],
+        [
+         0.6893,
+         0.2373,
+         0.6893,
+         0.2373,
+         0
+        ],
+        [
+         0.1524,
+         0.1378,
+         0.1524,
+         0.1378,
+         0
+        ],
+        [
+         0.2901,
+         0.3036,
+         0.2901,
+         0.3036,
+         0
+        ],
+        [
+         0.5036,
+         0.8424,
+         0.5036,
+         0.8424,
+         4
+        ],
+        [
+         0.386,
+         0.1403,
+         0.386,
+         0.1403,
+         1
+        ],
+        [
+         0.932,
+         0.495,
+         0.932,
+         0.495,
+         0
+        ],
+        [
+         0.0689,
+         0.1933,
+         0.0689,
+         0.1933,
+         0
+        ],
+        [
+         0.054,
+         0.4988,
+         0.054,
+         0.4988,
+         0
+        ],
+        [
+         0.5482,
+         0.4376,
+         0.5482,
+         0.4376,
+         2
+        ],
+        [
+         0.9543,
+         0.3182,
+         0.9543,
+         0.3182,
+         0
+        ],
+        [
+         0.4396,
+         0.1956,
+         0.4396,
+         0.1956,
+         1
+        ]
+       ],
+       "footprint": [
+        [
+         0.0,
+         0.0
+        ],
+        [
+         1.0,
+         0.0
+        ],
+        [
+         1.0,
+         1.0
+        ],
+        [
+         0.0,
+         1.0
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "registry_size": 5,
+   "upload_features": {
+    "size": [
+     960,
+     1452
+    ],
+    "points": {
+     "count": 1368,
+     "drawn": [
+      [
+       0.4799,
+       0.4845,
+       0.0499
+      ],
+      [
+       0.4511,
+       0.1684,
+       0.0255
+      ],
+      [
+       0.4394,
+       0.3379,
+       0.0088
+      ],
+      [
+       0.3628,
+       0.7999,
+       0.0482
+      ],
+      [
+       0.2069,
+       0.7565,
+       0.001
+      ],
+      [
+       0.3554,
+       0.1653,
+       0.0087
+      ],
+      [
+       0.3554,
+       0.1653,
+       0.0087
+      ],
+      [
+       0.4512,
+       0.2891,
+       0.0075
+      ],
+      [
+       0.4027,
+       0.2263,
+       0.0036
+      ],
+      [
+       0.2113,
+       0.753,
+       0.0009
+      ],
+      [
+       0.2113,
+       0.753,
+       0.0009
+      ],
+      [
+       0.5046,
+       0.2257,
+       0.0036
+      ],
+      [
+       0.5827,
+       0.1395,
+       0.0304
+      ],
+      [
+       0.3989,
+       0.2638,
+       0.017
+      ],
+      [
+       0.4893,
+       0.8031,
+       0.0088
+      ],
+      [
+       0.508,
+       0.1099,
+       0.021
+      ],
+      [
+       0.508,
+       0.1099,
+       0.021
+      ],
+      [
+       0.4738,
+       0.8201,
+       0.0054
+      ],
+      [
+       0.4738,
+       0.8201,
+       0.0054
+      ],
+      [
+       0.5137,
+       0.2604,
+       0.0173
+      ],
+      [
+       0.3439,
+       0.2129,
+       0.017
+      ],
+      [
+       0.467,
+       0.2191,
+       0.0076
+      ],
+      [
+       0.4039,
+       0.1202,
+       0.0115
+      ],
+      [
+       0.4062,
+       0.1191,
+       0.0119
+      ],
+      [
+       0.4062,
+       0.1191,
+       0.0119
+      ],
+      [
+       0.2259,
+       0.7533,
+       0.0011
+      ],
+      [
+       0.5233,
+       0.223,
+       0.0095
+      ],
+      [
+       0.5233,
+       0.223,
+       0.0095
+      ],
+      [
+       0.2676,
+       0.2116,
+       0.0197
+      ],
+      [
+       0.1794,
+       0.7555,
+       0.001
+      ],
+      [
+       0.1794,
+       0.7555,
+       0.001
+      ],
+      [
+       0.4672,
+       0.2619,
+       0.0424
+      ],
+      [
+       0.4662,
+       0.24,
+       0.0467
+      ],
+      [
+       0.4187,
+       0.2844,
+       0.0016
+      ],
+      [
+       0.4187,
+       0.2844,
+       0.0016
+      ],
+      [
+       0.6629,
+       0.3005,
+       0.0635
+      ],
+      [
+       0.5879,
+       0.8025,
+       0.0009
+      ],
+      [
+       0.1487,
+       0.7471,
+       0.001
+      ],
+      [
+       0.4117,
+       0.3069,
+       0.0024
+      ],
+      [
+       0.4117,
+       0.3069,
+       0.0024
+      ],
+      [
+       0.4208,
+       0.3074,
+       0.002
+      ],
+      [
+       0.4208,
+       0.3074,
+       0.002
+      ],
+      [
+       0.1891,
+       0.7491,
+       0.001
+      ],
+      [
+       0.1891,
+       0.7491,
+       0.001
+      ],
+      [
+       0.3885,
+       0.2319,
+       0.0031
+      ],
+      [
+       0.5712,
+       0.8047,
+       0.0019
+      ],
+      [
+       0.2875,
+       0.8615,
+       0.0226
+      ],
+      [
+       0.2875,
+       0.8615,
+       0.0226
+      ],
+      [
+       0.4884,
+       0.2306,
+       0.0037
+      ],
+      [
+       0.3875,
+       0.2195,
+       0.0015
+      ],
+      [
+       0.2283,
+       0.7387,
+       0.0012
+      ],
+      [
+       0.1581,
+       0.5547,
+       0.0009
+      ],
+      [
+       0.1642,
+       0.5549,
+       0.0012
+      ],
+      [
+       0.4615,
+       0.8317,
+       0.0058
+      ],
+      [
+       0.8406,
+       0.412,
+       0.0073
+      ],
+      [
+       0.4207,
+       0.2966,
+       0.0048
+      ],
+      [
+       0.6839,
+       0.7988,
+       0.0014
+      ],
+      [
+       0.1628,
+       0.7402,
+       0.002
+      ],
+      [
+       0.2345,
+       0.8343,
+       0.0009
+      ],
+      [
+       0.1564,
+       0.7433,
+       0.0013
+      ],
+      [
+       0.1564,
+       0.7433,
+       0.0013
+      ],
+      [
+       0.1932,
+       0.1624,
+       0.0538
+      ],
+      [
+       0.1618,
+       0.7397,
+       0.0032
+      ],
+      [
+       0.1618,
+       0.7397,
+       0.0032
+      ],
+      [
+       0.2292,
+       0.7449,
+       0.0018
+      ],
+      [
+       0.9761,
+       0.5059,
+       0.0057
+      ],
+      [
+       0.9761,
+       0.5059,
+       0.0057
+      ],
+      [
+       0.8845,
+       0.4603,
+       0.0013
+      ],
+      [
+       0.2332,
+       0.7368,
+       0.001
+      ],
+      [
+       0.4378,
+       0.2311,
+       0.0048
+      ],
+      [
+       0.3789,
+       0.2015,
+       0.008
+      ],
+      [
+       0.7008,
+       0.1547,
+       0.0176
+      ],
+      [
+       0.291,
+       0.7423,
+       0.001
+      ],
+      [
+       0.4411,
+       0.3224,
+       0.0033
+      ],
+      [
+       0.8262,
+       0.4363,
+       0.0097
+      ],
+      [
+       0.8262,
+       0.4363,
+       0.0097
+      ],
+      [
+       0.5716,
+       0.8137,
+       0.0013
+      ],
+      [
+       0.5716,
+       0.8137,
+       0.0013
+      ],
+      [
+       0.541,
+       0.8068,
+       0.0011
+      ],
+      [
+       0.555,
+       0.8092,
+       0.0017
+      ],
+      [
+       0.9391,
+       0.5004,
+       0.001
+      ],
+      [
+       0.3089,
+       0.2818,
+       0.0298
+      ],
+      [
+       0.3089,
+       0.2818,
+       0.0298
+      ],
+      [
+       0.2645,
+       0.7506,
+       0.0009
+      ],
+      [
+       0.4059,
+       0.2192,
+       0.0015
+      ],
+      [
+       0.582,
+       0.8097,
+       0.0068
+      ],
+      [
+       0.1989,
+       0.7465,
+       0.0011
+      ],
+      [
+       0.2679,
+       0.7477,
+       0.001
+      ],
+      [
+       0.698,
+       0.492,
+       0.0109
+      ],
+      [
+       0.2116,
+       0.7411,
+       0.0012
+      ],
+      [
+       0.1307,
+       0.7637,
+       0.0015
+      ],
+      [
+       0.4155,
+       0.7675,
+       0.0063
+      ],
+      [
+       0.9503,
+       0.5011,
+       0.003
+      ],
+      [
+       0.6724,
+       0.7975,
+       0.0016
+      ],
+      [
+       0.4653,
+       0.3853,
+       0.0074
+      ],
+      [
+       0.2524,
+       0.7446,
+       0.0025
+      ],
+      [
+       0.2524,
+       0.7446,
+       0.0025
+      ],
+      [
+       0.8857,
+       0.2329,
+       0.0275
+      ],
+      [
+       0.4322,
+       0.2771,
+       0.0046
+      ],
+      [
+       0.0893,
+       0.6147,
+       0.0202
+      ],
+      [
+       0.0893,
+       0.6147,
+       0.0202
+      ],
+      [
+       0.1911,
+       0.7697,
+       0.0009
+      ],
+      [
+       0.2431,
+       0.7698,
+       0.0014
+      ],
+      [
+       0.2289,
+       0.2277,
+       0.0018
+      ],
+      [
+       0.5952,
+       0.8035,
+       0.0013
+      ],
+      [
+       0.374,
+       0.2241,
+       0.0042
+      ],
+      [
+       0.2311,
+       0.8402,
+       0.0042
+      ],
+      [
+       0.2001,
+       0.7362,
+       0.0009
+      ],
+      [
+       0.2001,
+       0.7362,
+       0.0009
+      ],
+      [
+       0.2429,
+       0.7429,
+       0.0012
+      ],
+      [
+       0.2279,
+       0.2348,
+       0.0019
+      ],
+      [
+       0.158,
+       0.5574,
+       0.0047
+      ],
+      [
+       0.4828,
+       0.3067,
+       0.0024
+      ],
+      [
+       0.274,
+       0.741,
+       0.0009
+      ],
+      [
+       0.2795,
+       0.7427,
+       0.0011
+      ],
+      [
+       0.5987,
+       0.812,
+       0.0009
+      ],
+      [
+       0.1324,
+       0.7133,
+       0.0011
+      ],
+      [
+       0.2455,
+       0.7623,
+       0.0015
+      ],
+      [
+       0.278,
+       0.7461,
+       0.001
+      ],
+      [
+       0.3987,
+       0.2309,
+       0.001
+      ],
+      [
+       0.5116,
+       0.3649,
+       0.0169
+      ],
+      [
+       0.5991,
+       0.8041,
+       0.0018
+      ],
+      [
+       0.3021,
+       0.7386,
+       0.0011
+      ],
+      [
+       0.158,
+       0.7713,
+       0.0019
+      ],
+      [
+       0.2056,
+       0.5046,
+       0.0066
+      ],
+      [
+       0.945,
+       0.4648,
+       0.0017
+      ],
+      [
+       0.9534,
+       0.5037,
+       0.0009
+      ],
+      [
+       0.5,
+       0.2294,
+       0.0012
+      ],
+      [
+       0.2815,
+       0.8112,
+       0.0072
+      ],
+      [
+       0.3123,
+       0.7408,
+       0.0013
+      ],
+      [
+       0.4422,
+       0.5268,
+       0.0086
+      ],
+      [
+       0.3636,
+       0.2315,
+       0.0026
+      ],
+      [
+       0.2084,
+       0.7514,
+       0.001
+      ],
+      [
+       0.8131,
+       0.444,
+       0.0009
+      ],
+      [
+       0.1461,
+       0.751,
+       0.0011
+      ],
+      [
+       0.3175,
+       0.1669,
+       0.0093
+      ],
+      [
+       0.4154,
+       0.3147,
+       0.0033
+      ],
+      [
+       0.6215,
+       0.8106,
+       0.0023
+      ],
+      [
+       0.2564,
+       0.8286,
+       0.0023
+      ],
+      [
+       0.2911,
+       0.8319,
+       0.0082
+      ],
+      [
+       0.6821,
+       0.4994,
+       0.003
+      ],
+      [
+       0.5704,
+       0.81,
+       0.0014
+      ],
+      [
+       0.5704,
+       0.81,
+       0.0014
+      ],
+      [
+       0.2423,
+       0.2322,
+       0.0069
+      ],
+      [
+       0.4872,
+       0.2858,
+       0.006
+      ],
+      [
+       0.1318,
+       0.7217,
+       0.001
+      ],
+      [
+       0.5783,
+       0.8092,
+       0.001
+      ],
+      [
+       0.1073,
+       0.7512,
+       0.001
+      ],
+      [
+       0.6102,
+       0.8066,
+       0.0019
+      ],
+      [
+       0.4619,
+       0.7648,
+       0.0104
+      ],
+      [
+       0.2062,
+       0.7519,
+       0.0015
+      ],
+      [
+       0.6754,
+       0.1737,
+       0.0011
+      ],
+      [
+       0.2663,
+       0.3773,
+       0.0197
+      ],
+      [
+       0.2663,
+       0.3773,
+       0.0197
+      ],
+      [
+       0.3881,
+       0.2162,
+       0.001
+      ],
+      [
+       0.673,
+       0.4867,
+       0.0011
+      ],
+      [
+       0.4764,
+       0.7834,
+       0.0019
+      ],
+      [
+       0.1198,
+       0.4809,
+       0.001
+      ],
+      [
+       0.1738,
+       0.7448,
+       0.0038
+      ],
+      [
+       0.3057,
+       0.7408,
+       0.0011
+      ],
+      [
+       0.6993,
+       0.4956,
+       0.0039
+      ],
+      [
+       0.2253,
+       0.2413,
+       0.0011
+      ],
+      [
+       0.17,
+       0.7354,
+       0.0012
+      ],
+      [
+       0.17,
+       0.7354,
+       0.0012
+      ],
+      [
+       0.3969,
+       0.3437,
+       0.0095
+      ],
+      [
+       0.1926,
+       0.7584,
+       0.0032
+      ],
+      [
+       0.5307,
+       0.8738,
+       0.0061
+      ],
+      [
+       0.5307,
+       0.8738,
+       0.0061
+      ],
+      [
+       0.2147,
+       0.7205,
+       0.0029
+      ],
+      [
+       0.2147,
+       0.7205,
+       0.0029
+      ],
+      [
+       0.2695,
+       0.75,
+       0.0009
+      ],
+      [
+       0.8956,
+       0.4606,
+       0.0038
+      ],
+      [
+       0.8956,
+       0.4606,
+       0.0038
+      ],
+      [
+       0.4036,
+       0.5623,
+       0.0009
+      ],
+      [
+       0.6705,
+       0.8095,
+       0.0012
+      ],
+      [
+       0.6705,
+       0.8095,
+       0.0012
+      ],
+      [
+       0.4858,
+       0.7863,
+       0.0021
+      ],
+      [
+       0.689,
+       0.212,
+       0.0013
+      ],
+      [
+       0.9024,
+       0.4522,
+       0.001
+      ],
+      [
+       0.2449,
+       0.7365,
+       0.0009
+      ],
+      [
+       0.1464,
+       0.7878,
+       0.0009
+      ],
+      [
+       0.6781,
+       0.1706,
+       0.001
+      ],
+      [
+       0.1467,
+       0.7679,
+       0.0013
+      ],
+      [
+       0.2707,
+       0.8239,
+       0.0013
+      ],
+      [
+       0.5815,
+       0.8133,
+       0.0009
+      ],
+      [
+       0.5815,
+       0.8133,
+       0.0009
+      ],
+      [
+       0.1453,
+       0.5545,
+       0.0009
+      ],
+      [
+       0.4974,
+       0.2323,
+       0.0014
+      ],
+      [
+       0.0612,
+       0.0306,
+       0.001
+      ],
+      [
+       0.0612,
+       0.0306,
+       0.001
+      ],
+      [
+       0.2297,
+       0.7351,
+       0.001
+      ],
+      [
+       0.168,
+       0.4022,
+       0.0012
+      ],
+      [
+       0.168,
+       0.4022,
+       0.0012
+      ],
+      [
+       0.147,
+       0.7411,
+       0.0011
+      ],
+      [
+       0.5834,
+       0.5805,
+       0.0321
+      ],
+      [
+       0.4192,
+       0.2897,
+       0.0015
+      ],
+      [
+       0.1097,
+       0.474,
+       0.0016
+      ],
+      [
+       0.2393,
+       0.2469,
+       0.001
+      ],
+      [
+       0.743,
+       0.5709,
+       0.0019
+      ],
+      [
+       0.256,
+       0.759,
+       0.0017
+      ],
+      [
+       0.2555,
+       0.7594,
+       0.0018
+      ],
+      [
+       0.4378,
+       0.2037,
+       0.0102
+      ],
+      [
+       0.4378,
+       0.2037,
+       0.0102
+      ],
+      [
+       0.647,
+       0.8157,
+       0.0013
+      ],
+      [
+       0.5291,
+       0.8128,
+       0.0013
+      ],
+      [
+       0.5291,
+       0.8128,
+       0.0013
+      ],
+      [
+       0.3634,
+       0.5275,
+       0.0035
+      ],
+      [
+       0.67,
+       0.1629,
+       0.0011
+      ],
+      [
+       0.185,
+       0.7116,
+       0.0019
+      ],
+      [
+       0.2423,
+       0.7775,
+       0.0015
+      ],
+      [
+       0.4108,
+       0.5664,
+       0.0009
+      ],
+      [
+       0.8428,
+       0.4701,
+       0.0014
+      ],
+      [
+       0.2493,
+       0.7735,
+       0.0016
+      ],
+      [
+       0.5907,
+       0.5476,
+       0.0015
+      ],
+      [
+       0.1686,
+       0.5204,
+       0.0034
+      ],
+      [
+       0.1686,
+       0.5204,
+       0.0034
+      ],
+      [
+       0.869,
+       0.4742,
+       0.0012
+      ],
+      [
+       0.537,
+       0.8087,
+       0.0032
+      ],
+      [
+       0.3642,
+       0.4694,
+       0.0009
+      ],
+      [
+       0.1232,
+       0.475,
+       0.0049
+      ],
+      [
+       0.4279,
+       0.5394,
+       0.0029
+      ],
+      [
+       0.9631,
+       0.5088,
+       0.0009
+      ],
+      [
+       0.3801,
+       0.2218,
+       0.0013
+      ],
+      [
+       0.3801,
+       0.2218,
+       0.0013
+      ],
+      [
+       0.5187,
+       0.2393,
+       0.0023
+      ],
+      [
+       0.8679,
+       0.4732,
+       0.0021
+      ],
+      [
+       0.4163,
+       0.3031,
+       0.0013
+      ],
+      [
+       0.4927,
+       0.0864,
+       0.0011
+      ],
+      [
+       0.2753,
+       0.2329,
+       0.001
+      ],
+      [
+       0.2318,
+       0.2439,
+       0.0018
+      ],
+      [
+       0.2798,
+       0.8945,
+       0.0087
+      ],
+      [
+       0.5146,
+       0.802,
+       0.003
+      ],
+      [
+       0.4846,
+       0.0862,
+       0.0014
+      ],
+      [
+       0.2742,
+       0.2375,
+       0.0021
+      ],
+      [
+       0.9716,
+       0.4486,
+       0.0013
+      ],
+      [
+       0.2454,
+       0.8303,
+       0.001
+      ],
+      [
+       0.6192,
+       0.1126,
+       0.0009
+      ],
+      [
+       0.365,
+       0.4758,
+       0.0011
+      ],
+      [
+       0.1113,
+       0.4769,
+       0.001
+      ],
+      [
+       0.3647,
+       0.5584,
+       0.0009
+      ],
+      [
+       0.1476,
+       0.718,
+       0.0019
+      ],
+      [
+       0.4351,
+       0.094,
+       0.001
+      ],
+      [
+       0.562,
+       0.8088,
+       0.001
+      ],
+      [
+       0.873,
+       0.4774,
+       0.0015
+      ],
+      [
+       0.1854,
+       0.5106,
+       0.0014
+      ],
+      [
+       0.4004,
+       0.5607,
+       0.0009
+      ],
+      [
+       0.4004,
+       0.5607,
+       0.0009
+      ],
+      [
+       0.1876,
+       0.736,
+       0.001
+      ],
+      [
+       0.1641,
+       0.3993,
+       0.0013
+      ],
+      [
+       0.6783,
+       0.8123,
+       0.0015
+      ],
+      [
+       0.6783,
+       0.8123,
+       0.0015
+      ],
+      [
+       0.4509,
+       0.0927,
+       0.0033
+      ],
+      [
+       0.7445,
+       0.4894,
+       0.0025
+      ],
+      [
+       0.6408,
+       0.1198,
+       0.0038
+      ],
+      [
+       0.9527,
+       0.4864,
+       0.001
+      ],
+      [
+       0.9527,
+       0.4864,
+       0.001
+      ],
+      [
+       0.5065,
+       0.8588,
+       0.006
+      ],
+      [
+       0.5065,
+       0.8588,
+       0.006
+      ],
+      [
+       0.5877,
+       0.8156,
+       0.0027
+      ],
+      [
+       0.4902,
+       0.2153,
+       0.0009
+      ],
+      [
+       0.5364,
+       0.7886,
+       0.0127
+      ],
+      [
+       0.3643,
+       0.4717,
+       0.0009
+      ],
+      [
+       0.5968,
+       0.4416,
+       0.0012
+      ],
+      [
+       0.1545,
+       0.4529,
+       0.0017
+      ],
+      [
+       0.7719,
+       0.3884,
+       0.0049
+      ],
+      [
+       0.1211,
+       0.7733,
+       0.0009
+      ],
+      [
+       0.1403,
+       0.7645,
+       0.0024
+      ],
+      [
+       0.1408,
+       0.7212,
+       0.0009
+      ],
+      [
+       0.9233,
+       0.4596,
+       0.001
+      ],
+      [
+       0.9233,
+       0.4596,
+       0.001
+      ],
+      [
+       0.8337,
+       0.4631,
+       0.0019
+      ],
+      [
+       0.4091,
+       0.2132,
+       0.0033
+      ],
+      [
+       0.3985,
+       0.5357,
+       0.0053
+      ],
+      [
+       0.6502,
+       0.1321,
+       0.0014
+      ],
+      [
+       0.2488,
+       0.7485,
+       0.0011
+      ],
+      [
+       0.3821,
+       0.2174,
+       0.0009
+      ],
+      [
+       0.8628,
+       0.3589,
+       0.001
+      ],
+      [
+       0.8628,
+       0.3589,
+       0.001
+      ],
+      [
+       0.2291,
+       0.2172,
+       0.001
+      ],
+      [
+       0.6859,
+       0.1955,
+       0.0009
+      ],
+      [
+       0.3627,
+       0.4742,
+       0.0027
+      ],
+      [
+       0.4886,
+       0.5454,
+       0.0026
+      ],
+      [
+       0.6673,
+       0.8177,
+       0.001
+      ],
+      [
+       0.9132,
+       0.4438,
+       0.0009
+      ],
+      [
+       0.9132,
+       0.4438,
+       0.0009
+      ],
+      [
+       0.6608,
+       0.8009,
+       0.0058
+      ],
+      [
+       0.1204,
+       0.7731,
+       0.0013
+      ],
+      [
+       0.1573,
+       0.7157,
+       0.0016
+      ],
+      [
+       0.6767,
+       0.1785,
+       0.0015
+      ],
+      [
+       0.3957,
+       0.5606,
+       0.0011
+      ],
+      [
+       0.1527,
+       0.7675,
+       0.0014
+      ],
+      [
+       0.3275,
+       0.7383,
+       0.0013
+      ],
+      [
+       0.8846,
+       0.4467,
+       0.001
+      ],
+      [
+       0.8164,
+       0.4027,
+       0.0022
+      ],
+      [
+       0.8028,
+       0.4321,
+       0.0016
+      ],
+      [
+       0.8043,
+       0.2375,
+       0.0141
+      ],
+      [
+       0.2917,
+       0.2427,
+       0.001
+      ],
+      [
+       0.4301,
+       0.7643,
+       0.0009
+      ],
+      [
+       0.3999,
+       0.5376,
+       0.0072
+      ],
+      [
+       0.7135,
+       0.8014,
+       0.0012
+      ]
+     ]
+    },
+    "areas": [
+     {
+      "position": "top left",
+      "points": 160,
+      "name": "landscape",
+      "confidence": 0.433,
+      "runner_up": "person"
+     },
+     {
+      "position": "top centre",
+      "points": 145,
+      "name": "face",
+      "confidence": 0.638,
+      "runner_up": "person"
+     },
+     {
+      "position": "top right",
+      "points": 106,
+      "name": "landscape",
+      "confidence": 0.804,
+      "runner_up": null
+     },
+     {
+      "position": "middle left",
+      "points": 225,
+      "name": "landscape",
+      "confidence": 0.417,
+      "runner_up": null
+     },
+     {
+      "position": "centre",
+      "points": 167,
+      "name": "person",
+      "confidence": 0.201,
+      "runner_up": "face"
+     },
+     {
+      "position": "middle right",
+      "points": 245,
+      "name": "landscape",
+      "confidence": 0.149,
+      "runner_up": null
+     },
+     {
+      "position": "bottom left",
+      "points": 172,
+      "name": "sleeve",
+      "confidence": 0.295,
+      "runner_up": "hand"
+     },
+     {
+      "position": "bottom centre",
+      "points": 118,
+      "name": "hands",
+      "confidence": 0.352,
+      "runner_up": "hand"
+     },
+     {
+      "position": "bottom right",
+      "points": 30,
+      "name": "dark background",
+      "confidence": 0.866,
+      "runner_up": null
+     }
+    ],
+    "things": [
+     {
+      "name": "landscape",
+      "named": true,
+      "areas": [
+       0,
+       2,
+       3,
+       5
+      ],
+      "positions": [
+       "top left",
+       "top right",
+       "middle left",
+       "middle right"
+      ],
+      "points": 736,
+      "confidence": 0.451
+     },
+     {
+      "name": "sleeve",
+      "named": true,
+      "areas": [
+       6
+      ],
+      "positions": [
+       "bottom left"
+      ],
+      "points": 172,
+      "confidence": 0.295
+     },
+     {
+      "name": "person",
+      "named": true,
+      "areas": [
+       4
+      ],
+      "positions": [
+       "centre"
+      ],
+      "points": 167,
+      "confidence": 0.201
+     },
+     {
+      "name": "face",
+      "named": true,
+      "areas": [
+       1
+      ],
+      "positions": [
+       "top centre"
+      ],
+      "points": 145,
+      "confidence": 0.638
+     },
+     {
+      "name": "hands",
+      "named": true,
+      "areas": [
+       7
+      ],
+      "positions": [
+       "bottom centre"
+      ],
+      "points": 118,
+      "confidence": 0.352
+     },
+     {
+      "name": "dark background",
+      "named": true,
+      "areas": [
+       8
+      ],
+      "positions": [
+       "bottom right"
+      ],
+      "points": 30,
+      "confidence": 0.866
+     }
+    ],
+    "palette": [
+     {
+      "hex": "#190b0b",
+      "share": 0.438
+     },
+     {
+      "hex": "#3f2915",
+      "share": 0.175
+     },
+     {
+      "hex": "#96772d",
+      "share": 0.162
+     },
+     {
+      "hex": "#cfa03b",
+      "share": 0.114
+     },
+     {
+      "hex": "#6d471b",
+      "share": 0.112
+     }
+    ],
+    "medium": {
+     "name": "oil painting",
+     "confidence": 0.976
+    },
+    "namer": "OpenCLIP ViT-B/32, DataComp-XL weights (MIT licence)",
+    "preview_jpeg_base64": {
+     "bytes": 38454,
+     "sha256": "1a2165f479cc69867a75596e65cbda95553dbcccebc5249f8820e90935bf552f"
+    }
+   }
+  },
+  "mona_copy": {
+   "matches": [
+    {
+     "similarity": 0.7592,
+     "entry_id": 1,
+     "sha256_merkle_root": "6cdf101762e6c1ad5168ee64707e926a7d16796f5abc2131dbc70ff292b874b6",
+     "chunk_count": 1,
+     "file_size_bytes": 435991,
+     "title": "Mona Lisa",
+     "source": "Wikimedia Commons (public domain)",
+     "timestamp_utc": "2026-09-24T07:09:41.883545+00:00",
+     "signer_public_key": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAh9KB7mAR2CfhFI3wDeaRuSY0H491Vxax4u9y1u93d+Q=\n-----END PUBLIC KEY-----\n",
+     "signature": "3b25c10b544e5df806df516c69ad061a3327940c2f0f938ac2aba8d660217ec81b6e3c31cbc846dbfd5ad8221e6016e9a72679bf1c979af413b45875f972b205",
+     "explanation": {
+      "available": true,
+      "similarity": 0.7592,
+      "shared_points": 367,
+      "candidate_pairs": 377,
+      "strength": "strong",
+      "namer": "OpenCLIP ViT-B/32, DataComp-XL weights (MIT licence)",
+      "confirmed": true,
+      "geometry": {
+       "rotation_deg": 0.0,
+       "mirrored": true,
+       "size_ratio": 1.0,
+       "original_area_shown": 0.455,
+       "shown_position": "centre",
+       "added_area": 0.0,
+       "footprint": [
+        [
+         0.1998,
+         0.0998
+        ],
+        [
+         0.8499,
+         0.0998
+        ],
+        [
+         0.8499,
+         0.7996
+        ],
+        [
+         0.1998,
+         0.7996
+        ]
+       ]
+      },
+      "colour": {
+       "change": "kept",
+       "brightness": "same",
+       "chroma_ratio": 0.99,
+       "hue_shift_deg": 0.6,
+       "lightness_shift": -0.3,
+       "colour_shift": 0.7,
+       "cells_compared": 25
+      },
+      "common": [
+       {
+        "name": "landscape",
+        "named": true,
+        "positions": [
+         "top left",
+         "top right",
+         "middle left",
+         "middle right"
+        ],
+        "confidence": 0.451,
+        "shared_points": 164,
+        "share": 0.3154,
+        "in_upload": true,
+        "index": 0
+       },
+       {
+        "name": "person",
+        "named": true,
+        "positions": [
+         "centre"
+        ],
+        "confidence": 0.201,
+        "shared_points": 84,
+        "share": 0.2046,
+        "in_upload": true,
+        "index": 2
+       },
+       {
+        "name": "face",
+        "named": true,
+        "positions": [
+         "top centre"
+        ],
+        "confidence": 0.638,
+        "shared_points": 76,
+        "share": 0.0835,
+        "in_upload": true,
+        "index": 1
+       },
+       {
+        "name": "sleeve",
+        "named": true,
+        "positions": [
+         "bottom left"
+        ],
+        "confidence": 0.295,
+        "shared_points": 31,
+        "share": 0.0664,
+        "in_upload": true,
+        "index": 3
+       },
+       {
+        "name": "hands",
+        "named": true,
+        "positions": [
+         "bottom centre"
+        ],
+        "confidence": 0.352,
+        "shared_points": 12,
+        "share": 0.0587,
+        "in_upload": true,
+        "index": 4
+       },
+       {
+        "name": "dark background",
+        "named": true,
+        "positions": [
+         "bottom right"
+        ],
+        "confidence": 0.866,
+        "shared_points": 0,
+        "share": 0.0306,
+        "in_upload": true,
+        "index": 5
+       }
+      ],
+      "only_in_original": [],
+      "not_from_original_share": 0.0,
+      "shares_total": 0.7592,
+      "figure": {
+       "original_aspect": 0.6611,
+       "original_points": [
+        [
+         0.4799,
+         0.4845
+        ],
+        [
+         0.4511,
+         0.1684
+        ],
+        [
+         0.4394,
+         0.3379
+        ],
+        [
+         0.3628,
+         0.7999
+        ],
+        [
+         0.2069,
+         0.7565
+        ],
+        [
+         0.3554,
+         0.1653
+        ],
+        [
+         0.3554,
+         0.1653
+        ],
+        [
+         0.4512,
+         0.2891
+        ],
+        [
+         0.4027,
+         0.2263
+        ],
+        [
+         0.2113,
+         0.753
+        ],
+        [
+         0.2113,
+         0.753
+        ],
+        [
+         0.5046,
+         0.2257
+        ],
+        [
+         0.5827,
+         0.1395
+        ],
+        [
+         0.3989,
+         0.2638
+        ],
+        [
+         0.4893,
+         0.8031
+        ],
+        [
+         0.508,
+         0.1099
+        ],
+        [
+         0.508,
+         0.1099
+        ],
+        [
+         0.4738,
+         0.8201
+        ],
+        [
+         0.4738,
+         0.8201
+        ],
+        [
+         0.5137,
+         0.2604
+        ],
+        [
+         0.3439,
+         0.2129
+        ],
+        [
+         0.467,
+         0.2191
+        ],
+        [
+         0.4039,
+         0.1202
+        ],
+        [
+         0.4062,
+         0.1191
+        ],
+        [
+         0.4062,
+         0.1191
+        ],
+        [
+         0.2259,
+         0.7533
+        ],
+        [
+         0.5233,
+         0.223
+        ],
+        [
+         0.5233,
+         0.223
+        ],
+        [
+         0.2676,
+         0.2116
+        ],
+        [
+         0.1794,
+         0.7555
+        ],
+        [
+         0.1794,
+         0.7555
+        ],
+        [
+         0.4672,
+         0.2619
+        ],
+        [
+         0.4662,
+         0.24
+        ],
+        [
+         0.4187,
+         0.2844
+        ],
+        [
+         0.4187,
+         0.2844
+        ],
+        [
+         0.6629,
+         0.3005
+        ],
+        [
+         0.5879,
+         0.8025
+        ],
+        [
+         0.1487,
+         0.7471
+        ],
+        [
+         0.4117,
+         0.3069
+        ],
+        [
+         0.4117,
+         0.3069
+        ],
+        [
+         0.4208,
+         0.3074
+        ],
+        [
+         0.4208,
+         0.3074
+        ],
+        [
+         0.1891,
+         0.7491
+        ],
+        [
+         0.1891,
+         0.7491
+        ],
+        [
+         0.3885,
+         0.2319
+        ],
+        [
+         0.5712,
+         0.8047
+        ],
+        [
+         0.2875,
+         0.8615
+        ],
+        [
+         0.2875,
+         0.8615
+        ],
+        [
+         0.4884,
+         0.2306
+        ],
+        [
+         0.3875,
+         0.2195
+        ],
+        [
+         0.2283,
+         0.7387
+        ],
+        [
+         0.1581,
+         0.5547
+        ],
+        [
+         0.1642,
+         0.5549
+        ],
+        [
+         0.4615,
+         0.8317
+        ],
+        [
+         0.8406,
+         0.412
+        ],
+        [
+         0.4207,
+         0.2966
+        ],
+        [
+         0.6839,
+         0.7988
+        ],
+        [
+         0.1628,
+         0.7402
+        ],
+        [
+         0.2345,
+         0.8343
+        ],
+        [
+         0.1564,
+         0.7433
+        ],
+        [
+         0.1564,
+         0.7433
+        ],
+        [
+         0.1932,
+         0.1624
+        ],
+        [
+         0.1618,
+         0.7397
+        ],
+        [
+         0.1618,
+         0.7397
+        ],
+        [
+         0.2292,
+         0.7449
+        ],
+        [
+         0.9761,
+         0.5059
+        ],
+        [
+         0.9761,
+         0.5059
+        ],
+        [
+         0.8845,
+         0.4603
+        ],
+        [
+         0.2332,
+         0.7368
+        ],
+        [
+         0.4378,
+         0.2311
+        ],
+        [
+         0.3789,
+         0.2015
+        ],
+        [
+         0.7008,
+         0.1547
+        ],
+        [
+         0.291,
+         0.7423
+        ],
+        [
+         0.4411,
+         0.3224
+        ],
+        [
+         0.8262,
+         0.4363
+        ],
+        [
+         0.8262,
+         0.4363
+        ],
+        [
+         0.5716,
+         0.8137
+        ],
+        [
+         0.5716,
+         0.8137
+        ],
+        [
+         0.541,
+         0.8068
+        ],
+        [
+         0.555,
+         0.8092
+        ],
+        [
+         0.9391,
+         0.5004
+        ],
+        [
+         0.3089,
+         0.2818
+        ],
+        [
+         0.3089,
+         0.2818
+        ],
+        [
+         0.2645,
+         0.7506
+        ],
+        [
+         0.4059,
+         0.2192
+        ],
+        [
+         0.582,
+         0.8097
+        ],
+        [
+         0.1989,
+         0.7465
+        ],
+        [
+         0.2679,
+         0.7477
+        ],
+        [
+         0.698,
+         0.492
+        ],
+        [
+         0.2116,
+         0.7411
+        ],
+        [
+         0.1307,
+         0.7637
+        ],
+        [
+         0.4155,
+         0.7675
+        ],
+        [
+         0.9503,
+         0.5011
+        ],
+        [
+         0.6724,
+         0.7975
+        ],
+        [
+         0.4653,
+         0.3853
+        ],
+        [
+         0.2524,
+         0.7446
+        ],
+        [
+         0.2524,
+         0.7446
+        ],
+        [
+         0.8857,
+         0.2329
+        ],
+        [
+         0.4322,
+         0.2771
+        ],
+        [
+         0.0893,
+         0.6147
+        ],
+        [
+         0.0893,
+         0.6147
+        ],
+        [
+         0.1911,
+         0.7697
+        ],
+        [
+         0.2431,
+         0.7698
+        ],
+        [
+         0.2289,
+         0.2277
+        ],
+        [
+         0.5952,
+         0.8035
+        ],
+        [
+         0.374,
+         0.2241
+        ],
+        [
+         0.2311,
+         0.8402
+        ],
+        [
+         0.2001,
+         0.7362
+        ],
+        [
+         0.2001,
+         0.7362
+        ],
+        [
+         0.2429,
+         0.7429
+        ],
+        [
+         0.2279,
+         0.2348
+        ],
+        [
+         0.158,
+         0.5574
+        ],
+        [
+         0.4828,
+         0.3067
+        ],
+        [
+         0.274,
+         0.741
+        ],
+        [
+         0.2795,
+         0.7427
+        ],
+        [
+         0.5987,
+         0.812
+        ],
+        [
+         0.1324,
+         0.7133
+        ],
+        [
+         0.2455,
+         0.7623
+        ],
+        [
+         0.278,
+         0.7461
+        ],
+        [
+         0.3987,
+         0.2309
+        ],
+        [
+         0.5116,
+         0.3649
+        ],
+        [
+         0.5991,
+         0.8041
+        ],
+        [
+         0.3021,
+         0.7386
+        ],
+        [
+         0.158,
+         0.7713
+        ],
+        [
+         0.2056,
+         0.5046
+        ],
+        [
+         0.945,
+         0.4648
+        ],
+        [
+         0.9534,
+         0.5037
+        ],
+        [
+         0.5,
+         0.2294
+        ],
+        [
+         0.2815,
+         0.8112
+        ],
+        [
+         0.3123,
+         0.7408
+        ],
+        [
+         0.4422,
+         0.5268
+        ],
+        [
+         0.3636,
+         0.2315
+        ],
+        [
+         0.2084,
+         0.7514
+        ],
+        [
+         0.8131,
+         0.444
+        ],
+        [
+         0.1461,
+         0.751
+        ],
+        [
+         0.3175,
+         0.1669
+        ],
+        [
+         0.4154,
+         0.3147
+        ],
+        [
+         0.6215,
+         0.8106
+        ],
+        [
+         0.2564,
+         0.8286
+        ],
+        [
+         0.2911,
+         0.8319
+        ],
+        [
+         0.6821,
+         0.4994
+        ],
+        [
+         0.5704,
+         0.81
+        ],
+        [
+         0.5704,
+         0.81
+        ],
+        [
+         0.2423,
+         0.2322
+        ],
+        [
+         0.4872,
+         0.2858
+        ],
+        [
+         0.1318,
+         0.7217
+        ],
+        [
+         0.5783,
+         0.8092
+        ],
+        [
+         0.1073,
+         0.7512
+        ],
+        [
+         0.6102,
+         0.8066
+        ],
+        [
+         0.4619,
+         0.7648
+        ],
+        [
+         0.2062,
+         0.7519
+        ],
+        [
+         0.6754,
+         0.1737
+        ],
+        [
+         0.2663,
+         0.3773
+        ],
+        [
+         0.2663,
+         0.3773
+        ],
+        [
+         0.3881,
+         0.2162
+        ],
+        [
+         0.673,
+         0.4867
+        ],
+        [
+         0.4764,
+         0.7834
+        ],
+        [
+         0.1198,
+         0.4809
+        ],
+        [
+         0.1738,
+         0.7448
+        ],
+        [
+         0.3057,
+         0.7408
+        ],
+        [
+         0.6993,
+         0.4956
+        ],
+        [
+         0.2253,
+         0.2413
+        ],
+        [
+         0.17,
+         0.7354
+        ],
+        [
+         0.17,
+         0.7354
+        ],
+        [
+         0.3969,
+         0.3437
+        ],
+        [
+         0.1926,
+         0.7584
+        ],
+        [
+         0.5307,
+         0.8738
+        ],
+        [
+         0.5307,
+         0.8738
+        ],
+        [
+         0.2147,
+         0.7205
+        ],
+        [
+         0.2147,
+         0.7205
+        ],
+        [
+         0.2695,
+         0.75
+        ],
+        [
+         0.8956,
+         0.4606
+        ],
+        [
+         0.8956,
+         0.4606
+        ],
+        [
+         0.4036,
+         0.5623
+        ],
+        [
+         0.6705,
+         0.8095
+        ],
+        [
+         0.6705,
+         0.8095
+        ],
+        [
+         0.4858,
+         0.7863
+        ],
+        [
+         0.689,
+         0.212
+        ],
+        [
+         0.9024,
+         0.4522
+        ],
+        [
+         0.2449,
+         0.7365
+        ],
+        [
+         0.1464,
+         0.7878
+        ],
+        [
+         0.6781,
+         0.1706
+        ],
+        [
+         0.1467,
+         0.7679
+        ],
+        [
+         0.2707,
+         0.8239
+        ],
+        [
+         0.5815,
+         0.8133
+        ],
+        [
+         0.5815,
+         0.8133
+        ],
+        [
+         0.1453,
+         0.5545
+        ],
+        [
+         0.4974,
+         0.2323
+        ],
+        [
+         0.0612,
+         0.0306
+        ],
+        [
+         0.0612,
+         0.0306
+        ],
+        [
+         0.2297,
+         0.7351
+        ],
+        [
+         0.168,
+         0.4022
+        ],
+        [
+         0.168,
+         0.4022
+        ],
+        [
+         0.147,
+         0.7411
+        ],
+        [
+         0.5834,
+         0.5805
+        ],
+        [
+         0.4192,
+         0.2897
+        ],
+        [
+         0.1097,
+         0.474
+        ],
+        [
+         0.2393,
+         0.2469
+        ],
+        [
+         0.743,
+         0.5709
+        ],
+        [
+         0.256,
+         0.759
+        ],
+        [
+         0.2555,
+         0.7594
+        ],
+        [
+         0.4378,
+         0.2037
+        ],
+        [
+         0.4378,
+         0.2037
+        ],
+        [
+         0.647,
+         0.8157
+        ],
+        [
+         0.5291,
+         0.8128
+        ],
+        [
+         0.5291,
+         0.8128
+        ],
+        [
+         0.3634,
+         0.5275
+        ],
+        [
+         0.67,
+         0.1629
+        ],
+        [
+         0.185,
+         0.7116
+        ],
+        [
+         0.2423,
+         0.7775
+        ],
+        [
+         0.4108,
+         0.5664
+        ],
+        [
+         0.8428,
+         0.4701
+        ],
+        [
+         0.2493,
+         0.7735
+        ],
+        [
+         0.5907,
+         0.5476
+        ],
+        [
+         0.1686,
+         0.5204
+        ],
+        [
+         0.1686,
+         0.5204
+        ],
+        [
+         0.869,
+         0.4742
+        ],
+        [
+         0.537,
+         0.8087
+        ],
+        [
+         0.3642,
+         0.4694
+        ],
+        [
+         0.1232,
+         0.475
+        ],
+        [
+         0.4279,
+         0.5394
+        ],
+        [
+         0.9631,
+         0.5088
+        ],
+        [
+         0.3801,
+         0.2218
+        ],
+        [
+         0.3801,
+         0.2218
+        ],
+        [
+         0.5187,
+         0.2393
+        ],
+        [
+         0.8679,
+         0.4732
+        ],
+        [
+         0.4163,
+         0.3031
+        ],
+        [
+         0.4927,
+         0.0864
+        ],
+        [
+         0.2753,
+         0.2329
+        ],
+        [
+         0.2318,
+         0.2439
+        ],
+        [
+         0.2798,
+         0.8945
+        ],
+        [
+         0.5146,
+         0.802
+        ],
+        [
+         0.4846,
+         0.0862
+        ],
+        [
+         0.2742,
+         0.2375
+        ],
+        [
+         0.9716,
+         0.4486
+        ],
+        [
+         0.2454,
+         0.8303
+        ],
+        [
+         0.6192,
+         0.1126
+        ],
+        [
+         0.365,
+         0.4758
+        ],
+        [
+         0.1113,
+         0.4769
+        ],
+        [
+         0.3647,
+         0.5584
+        ],
+        [
+         0.1476,
+         0.718
+        ],
+        [
+         0.4351,
+         0.094
+        ],
+        [
+         0.562,
+         0.8088
+        ],
+        [
+         0.873,
+         0.4774
+        ],
+        [
+         0.1854,
+         0.5106
+        ],
+        [
+         0.4004,
+         0.5607
+        ],
+        [
+         0.4004,
+         0.5607
+        ],
+        [
+         0.1876,
+         0.736
+        ],
+        [
+         0.1641,
+         0.3993
+        ],
+        [
+         0.6783,
+         0.8123
+        ],
+        [
+         0.6783,
+         0.8123
+        ],
+        [
+         0.4509,
+         0.0927
+        ],
+        [
+         0.7445,
+         0.4894
+        ],
+        [
+         0.6408,
+         0.1198
+        ],
+        [
+         0.9527,
+         0.4864
+        ],
+        [
+         0.9527,
+         0.4864
+        ],
+        [
+         0.5065,
+         0.8588
+        ],
+        [
+         0.5065,
+         0.8588
+        ],
+        [
+         0.5877,
+         0.8156
+        ],
+        [
+         0.4902,
+         0.2153
+        ],
+        [
+         0.5364,
+         0.7886
+        ],
+        [
+         0.3643,
+         0.4717
+        ],
+        [
+         0.5968,
+         0.4416
+        ],
+        [
+         0.1545,
+         0.4529
+        ],
+        [
+         0.7719,
+         0.3884
+        ],
+        [
+         0.1211,
+         0.7733
+        ],
+        [
+         0.1403,
+         0.7645
+        ],
+        [
+         0.1408,
+         0.7212
+        ],
+        [
+         0.9233,
+         0.4596
+        ],
+        [
+         0.9233,
+         0.4596
+        ],
+        [
+         0.8337,
+         0.4631
+        ],
+        [
+         0.4091,
+         0.2132
+        ],
+        [
+         0.3985,
+         0.5357
+        ],
+        [
+         0.6502,
+         0.1321
+        ],
+        [
+         0.2488,
+         0.7485
+        ],
+        [
+         0.3821,
+         0.2174
+        ],
+        [
+         0.8628,
+         0.3589
+        ],
+        [
+         0.8628,
+         0.3589
+        ],
+        [
+         0.2291,
+         0.2172
+        ],
+        [
+         0.6859,
+         0.1955
+        ],
+        [
+         0.3627,
+         0.4742
+        ],
+        [
+         0.4886,
+         0.5454
+        ],
+        [
+         0.6673,
+         0.8177
+        ],
+        [
+         0.9132,
+         0.4438
+        ],
+        [
+         0.9132,
+         0.4438
+        ],
+        [
+         0.6608,
+         0.8009
+        ],
+        [
+         0.1204,
+         0.7731
+        ],
+        [
+         0.1573,
+         0.7157
+        ],
+        [
+         0.6767,
+         0.1785
+        ],
+        [
+         0.3957,
+         0.5606
+        ],
+        [
+         0.1527,
+         0.7675
+        ],
+        [
+         0.3275,
+         0.7383
+        ],
+        [
+         0.8846,
+         0.4467
+        ],
+        [
+         0.8164,
+         0.4027
+        ],
+        [
+         0.8028,
+         0.4321
+        ],
+        [
+         0.8043,
+         0.2375
+        ],
+        [
+         0.2917,
+         0.2427
+        ],
+        [
+         0.4301,
+         0.7643
+        ],
+        [
+         0.3999,
+         0.5376
+        ],
+        [
+         0.7135,
+         0.8014
+        ],
+        [
+         0.2688,
+         0.2366
+        ],
+        [
+         0.2688,
+         0.2366
+        ],
+        [
+         0.1346,
+         0.4864
+        ],
+        [
+         0.378,
+         0.2188
+        ],
+        [
+         0.378,
+         0.2188
+        ],
+        [
+         0.3588,
+         0.2385
+        ],
+        [
+         0.6861,
+         0.464
+        ],
+        [
+         0.1452,
+         0.4422
+        ],
+        [
+         0.1452,
+         0.4422
+        ],
+        [
+         0.7443,
+         0.2667
+        ],
+        [
+         0.5209,
+         0.5746
+        ],
+        [
+         0.5209,
+         0.5746
+        ],
+        [
+         0.9422,
+         0.4919
+        ],
+        [
+         0.9422,
+         0.4919
+        ],
+        [
+         0.4652,
+         0.7754
+        ],
+        [
+         0.8914,
+         0.4211
+        ],
+        [
+         0.4255,
+         0.2246
+        ],
+        [
+         0.6702,
+         0.1553
+        ],
+        [
+         0.0598,
+         0.2149
+        ],
+        [
+         0.2244,
+         0.2226
+        ],
+        [
+         0.4538,
+         0.4335
+        ],
+        [
+         0.3767,
+         0.5485
+        ],
+        [
+         0.2174,
+         0.2371
+        ],
+        [
+         0.5662,
+         0.4401
+        ],
+        [
+         0.3295,
+         0.7413
+        ],
+        [
+         0.5109,
+         0.2411
+        ],
+        [
+         0.4466,
+         0.5577
+        ],
+        [
+         0.4466,
+         0.5577
+        ],
+        [
+         0.3518,
+         0.4953
+        ],
+        [
+         0.8823,
+         0.4028
+        ],
+        [
+         0.2625,
+         0.8228
+        ],
+        [
+         0.9324,
+         0.462
+        ],
+        [
+         0.9324,
+         0.462
+        ],
+        [
+         0.2776,
+         0.823
+        ],
+        [
+         0.1681,
+         0.7663
+        ],
+        [
+         0.616,
+         0.8154
+        ],
+        [
+         0.529,
+         0.0869
+        ],
+        [
+         0.6787,
+         0.8166
+        ],
+        [
+         0.1171,
+         0.4679
+        ],
+        [
+         0.8938,
+         0.4508
+        ],
+        [
+         0.8975,
+         0.485
+        ],
+        [
+         0.461,
+         0.7745
+        ],
+        [
+         0.16,
+         0.4019
+        ],
+        [
+         0.2871,
+         0.2351
+        ],
+        [
+         0.1907,
+         0.7667
+        ],
+        [
+         0.5304,
+         0.0885
+        ],
+        [
+         0.4985,
+         0.2252
+        ],
+        [
+         0.5366,
+         0.5451
+        ],
+        [
+         0.4653,
+         0.0779
+        ],
+        [
+         0.607,
+         0.8024
+        ],
+        [
+         0.1489,
+         0.4965
+        ],
+        [
+         0.6869,
+         0.1993
+        ],
+        [
+         0.7952,
+         0.2681
+        ],
+        [
+         0.7952,
+         0.2681
+        ],
+        [
+         0.8441,
+         0.3924
+        ],
+        [
+         0.2193,
+         0.3017
+        ],
+        [
+         0.9247,
+         0.4839
+        ],
+        [
+         0.6452,
+         0.8113
+        ],
+        [
+         0.6261,
+         0.1176
+        ],
+        [
+         0.5369,
+         0.5529
+        ],
+        [
+         0.7576,
+         0.5676
+        ],
+        [
+         0.0388,
+         0.1755
+        ],
+        [
+         0.8778,
+         0.4561
+        ],
+        [
+         0.8211,
+         0.4601
+        ],
+        [
+         0.9029,
+         0.4221
+        ],
+        [
+         0.1094,
+         0.5221
+        ],
+        [
+         0.4651,
+         0.1223
+        ],
+        [
+         0.7344,
+         0.5948
+        ],
+        [
+         0.6226,
+         0.1104
+        ],
+        [
+         0.1733,
+         0.4902
+        ],
+        [
+         0.1912,
+         0.2019
+        ],
+        [
+         0.146,
+         0.7473
+        ],
+        [
+         0.146,
+         0.7473
+        ],
+        [
+         0.051,
+         0.2916
+        ],
+        [
+         0.051,
+         0.2916
+        ],
+        [
+         0.7355,
+         0.8049
+        ],
+        [
+         0.7355,
+         0.8049
+        ],
+        [
+         0.1507,
+         0.4937
+        ],
+        [
+         0.4809,
+         0.6102
+        ],
+        [
+         0.4809,
+         0.6102
+        ],
+        [
+         0.9257,
+         0.4581
+        ],
+        [
+         0.5932,
+         0.8123
+        ],
+        [
+         0.5838,
+         0.8165
+        ],
+        [
+         0.5446,
+         0.5527
+        ],
+        [
+         0.1645,
+         0.4063
+        ],
+        [
+         0.2665,
+         0.8218
+        ],
+        [
+         0.9438,
+         0.507
+        ],
+        [
+         0.1901,
+         0.3984
+        ],
+        [
+         0.4975,
+         0.7907
+        ],
+        [
+         0.6565,
+         0.4991
+        ],
+        [
+         0.613,
+         0.8227
+        ],
+        [
+         0.7859,
+         0.1872
+        ],
+        [
+         0.7859,
+         0.1872
+        ],
+        [
+         0.2172,
+         0.8628
+        ],
+        [
+         0.3952,
+         0.1136
+        ],
+        [
+         0.7926,
+         0.2157
+        ],
+        [
+         0.2195,
+         0.8402
+        ],
+        [
+         0.4325,
+         0.7625
+        ],
+        [
+         0.2821,
+         0.893
+        ],
+        [
+         0.3346,
+         0.7392
+        ],
+        [
+         0.5133,
+         0.2148
+        ],
+        [
+         0.4643,
+         0.0875
+        ],
+        [
+         0.5914,
+         0.8058
+        ],
+        [
+         0.15,
+         0.5571
+        ],
+        [
+         0.3519,
+         0.5546
+        ],
+        [
+         0.4076,
+         0.5566
+        ],
+        [
+         0.1482,
+         0.7848
+        ],
+        [
+         0.1482,
+         0.7848
+        ],
+        [
+         0.4046,
+         0.7586
+        ],
+        [
+         0.6063,
+         0.1036
+        ],
+        [
+         0.8251,
+         0.5204
+        ],
+        [
+         0.8579,
+         0.4764
+        ],
+        [
+         0.9077,
+         0.4083
+        ],
+        [
+         0.9077,
+         0.4083
+        ],
+        [
+         0.3824,
+         0.239
+        ],
+        [
+         0.2118,
+         0.7281
+        ],
+        [
+         0.2118,
+         0.7281
+        ],
+        [
+         0.5623,
+         0.8115
+        ],
+        [
+         0.5623,
+         0.8115
+        ],
+        [
+         0.5172,
+         0.5736
+        ],
+        [
+         0.1478,
+         0.7806
+        ],
+        [
+         0.9161,
+         0.4516
+        ],
+        [
+         0.47,
+         0.0875
+        ],
+        [
+         0.8156,
+         0.4077
+        ],
+        [
+         0.5307,
+         0.8013
+        ],
+        [
+         0.9319,
+         0.3868
+        ],
+        [
+         0.2667,
+         0.7451
+        ],
+        [
+         0.4934,
+         0.5806
+        ],
+        [
+         0.0937,
+         0.7295
+        ],
+        [
+         0.8229,
+         0.2532
+        ],
+        [
+         0.5075,
+         0.2334
+        ],
+        [
+         0.5335,
+         0.8008
+        ],
+        [
+         0.5172,
+         0.7929
+        ],
+        [
+         0.6938,
+         0.237
+        ],
+        [
+         0.6891,
+         0.7968
+        ],
+        [
+         0.5791,
+         0.8155
+        ],
+        [
+         0.5614,
+         0.8272
+        ],
+        [
+         0.5614,
+         0.8272
+        ],
+        [
+         0.2958,
+         0.8171
+        ],
+        [
+         0.1952,
+         0.4451
+        ],
+        [
+         0.3966,
+         0.2516
+        ],
+        [
+         0.3966,
+         0.2516
+        ],
+        [
+         0.5112,
+         0.0856
+        ],
+        [
+         0.3684,
+         0.7465
+        ],
+        [
+         0.2481,
+         0.8635
+        ],
+        [
+         0.4658,
+         0.0841
+        ],
+        [
+         0.6808,
+         0.8029
+        ],
+        [
+         0.088,
+         0.4287
+        ],
+        [
+         0.088,
+         0.4287
+        ],
+        [
+         0.9189,
+         0.501
+        ],
+        [
+         0.9362,
+         0.3894
+        ],
+        [
+         0.4658,
+         0.0839
+        ],
+        [
+         0.7134,
+         0.4814
+        ],
+        [
+         0.1565,
+         0.7593
+        ],
+        [
+         0.0995,
+         0.1934
+        ],
+        [
+         0.2755,
+         0.2296
+        ],
+        [
+         0.9718,
+         0.4883
+        ],
+        [
+         0.5047,
+         0.7924
+        ],
+        [
+         0.6767,
+         0.802
+        ],
+        [
+         0.6904,
+         0.1925
+        ],
+        [
+         0.9722,
+         0.5163
+        ],
+        [
+         0.1544,
+         0.429
+        ],
+        [
+         0.5242,
+         0.5517
+        ],
+        [
+         0.4046,
+         0.1391
+        ],
+        [
+         0.5687,
+         0.8012
+        ],
+        [
+         0.5484,
+         0.0918
+        ],
+        [
+         0.2942,
+         0.2467
+        ],
+        [
+         0.5608,
+         0.5333
+        ],
+        [
+         0.4111,
+         0.5532
+        ],
+        [
+         0.3444,
+         0.7434
+        ],
+        [
+         0.2087,
+         0.7163
+        ],
+        [
+         0.726,
+         0.4845
+        ],
+        [
+         0.726,
+         0.4845
+        ],
+        [
+         0.1513,
+         0.7741
+        ],
+        [
+         0.8592,
+         0.4002
+        ],
+        [
+         0.1387,
+         0.5216
+        ],
+        [
+         0.2553,
+         0.8522
+        ],
+        [
+         0.7795,
+         0.1007
+        ],
+        [
+         0.7024,
+         0.4783
+        ],
+        [
+         0.1792,
+         0.4965
+        ],
+        [
+         0.5074,
+         0.547
+        ],
+        [
+         0.1425,
+         0.7401
+        ],
+        [
+         0.4795,
+         0.5569
+        ],
+        [
+         0.0946,
+         0.7479
+        ],
+        [
+         0.6674,
+         0.8205
+        ],
+        [
+         0.6674,
+         0.8205
+        ],
+        [
+         0.5385,
+         0.8038
+        ],
+        [
+         0.3813,
+         0.7532
+        ],
+        [
+         0.1353,
+         0.5989
+        ],
+        [
+         0.3961,
+         0.5522
+        ],
+        [
+         0.283,
+         0.2356
+        ],
+        [
+         0.2023,
+         0.4012
+        ],
+        [
+         0.9587,
+         0.3152
+        ],
+        [
+         0.7837,
+         0.4307
+        ],
+        [
+         0.9457,
+         0.4486
+        ],
+        [
+         0.6959,
+         0.5483
+        ],
+        [
+         0.4535,
+         0.5731
+        ],
+        [
+         0.4535,
+         0.5731
+        ],
+        [
+         0.1244,
+         0.7597
+        ],
+        [
+         0.1244,
+         0.7597
+        ]
+       ],
+       "colour_grid": [
+        [
+         "#968137",
+         "#9e8538",
+         "#967e31",
+         "#80662c",
+         "#796128",
+         "#9a7e34",
+         "#988035",
+         "#917d2f"
+        ],
+        [
+         "#937c35",
+         "#ad8e3b",
+         "#987431",
+         "#cc8a2c",
+         "#5f3317",
+         "#5a4621",
+         "#a38c37",
+         "#ab8f2e"
+        ],
+        [
+         "#352f1b",
+         "#40371e",
+         "#3c2717",
+         "#915721",
+         "#532b15",
+         "#251811",
+         "#413c1b",
+         "#453b18"
+        ],
+        [
+         "#402f19",
+         "#4f3b1c",
+         "#3a2315",
+         "#ac7c2b",
+         "#b17122",
+         "#3d1f12",
+         "#443115",
+         "#553e13"
+        ],
+        [
+         "#613317",
+         "#3b2213",
+         "#382316",
+         "#745222",
+         "#53391b",
+         "#301d12",
+         "#1b0e0b",
+         "#30150c"
+        ],
+        [
+         "#2a1913",
+         "#311d14",
+         "#201510",
+         "#190d0a",
+         "#120909",
+         "#190b0b",
+         "#140809",
+         "#180c09"
+        ],
+        [
+         "#180f0f",
+         "#311d14",
+         "#a7631e",
+         "#94511a",
+         "#412010",
+         "#2f170f",
+         "#140809",
+         "#0f0505"
+        ],
+        [
+         "#150b0e",
+         "#1d1010",
+         "#2d1813",
+         "#1f100f",
+         "#180a0a",
+         "#12070a",
+         "#0e0507",
+         "#0f0505"
+        ]
+       ],
+       "area_names": [
+        "landscape",
+        "face",
+        "landscape",
+        "landscape",
+        "person",
+        "landscape",
+        "sleeve",
+        "hands",
+        "dark background"
+       ],
+       "area_things": [
+        0,
+        1,
+        0,
+        0,
+        2,
+        0,
+        3,
+        4,
+        5
+       ],
+       "lines": [
+        [
+         0.6111,
+         0.0974,
+         0.4511,
+         0.1684,
+         1
+        ],
+        [
+         0.6132,
+         0.2706,
+         0.4512,
+         0.2891,
+         1
+        ],
+        [
+         0.517,
+         0.2297,
+         0.5137,
+         0.2604,
+         1
+        ],
+        [
+         0.6743,
+         0.2961,
+         0.4117,
+         0.3069,
+         1
+        ],
+        [
+         0.7113,
+         0.1712,
+         0.3875,
+         0.2195,
+         1
+        ],
+        [
+         0.6592,
+         0.2817,
+         0.4207,
+         0.2966,
+         1
+        ],
+        [
+         0.7241,
+         0.1448,
+         0.3789,
+         0.2015,
+         1
+        ],
+        [
+         0.2284,
+         0.0785,
+         0.7008,
+         0.1547,
+         0
+        ],
+        [
+         0.8775,
+         0.9188,
+         0.2795,
+         0.7427,
+         3
+        ],
+        [
+         0.9194,
+         0.9217,
+         0.2524,
+         0.7446,
+         3
+        ],
+        [
+         0.7323,
+         0.1778,
+         0.374,
+         0.2241,
+         1
+        ],
+        [
+         0.9571,
+         0.1928,
+         0.2279,
+         0.2348,
+         0
+        ],
+        [
+         0.2582,
+         0.5709,
+         0.6821,
+         0.4994,
+         0
+        ],
+        [
+         0.6687,
+         0.3075,
+         0.4154,
+         0.3147,
+         1
+        ],
+        [
+         0.6753,
+         0.6671,
+         0.4108,
+         0.5664,
+         2
+        ],
+        [
+         0.747,
+         0.5283,
+         0.3642,
+         0.4694,
+         2
+        ],
+        [
+         0.9773,
+         0.887,
+         0.2147,
+         0.7205,
+         3
+        ],
+        [
+         0.0115,
+         0.5293,
+         0.8428,
+         0.4701,
+         0
+        ],
+        [
+         0.9549,
+         0.1675,
+         0.2291,
+         0.2172,
+         0
+        ],
+        [
+         0.3987,
+         0.64,
+         0.5907,
+         0.5476,
+         2
+        ],
+        [
+         0.7459,
+         0.5373,
+         0.365,
+         0.4758,
+         2
+        ],
+        [
+         0.7196,
+         0.1682,
+         0.3821,
+         0.2174,
+         1
+        ],
+        [
+         0.6985,
+         0.6582,
+         0.3957,
+         0.5606,
+         2
+        ],
+        [
+         0.9246,
+         0.927,
+         0.2488,
+         0.7485,
+         3
+        ],
+        [
+         0.1621,
+         0.5568,
+         0.7445,
+         0.4894,
+         0
+        ],
+        [
+         0.945,
+         0.9061,
+         0.2297,
+         0.7351,
+         3
+        ],
+        [
+         0.0249,
+         0.5192,
+         0.8337,
+         0.4631,
+         0
+        ],
+        [
+         0.6947,
+         0.6231,
+         0.3985,
+         0.5357,
+         2
+        ],
+        [
+         0.0516,
+         0.4329,
+         0.8164,
+         0.4027,
+         0
+        ],
+        [
+         0.7494,
+         0.535,
+         0.3627,
+         0.4742,
+         2
+        ],
+        [
+         0.2512,
+         0.5199,
+         0.6861,
+         0.464,
+         0
+        ],
+        [
+         0.5119,
+         0.6772,
+         0.5172,
+         0.5736,
+         2
+        ],
+        [
+         0.0837,
+         0.2406,
+         0.7952,
+         0.2681,
+         0
+        ],
+        [
+         0.1422,
+         0.6685,
+         0.7576,
+         0.5676,
+         0
+        ],
+        [
+         0.2402,
+         0.196,
+         0.6938,
+         0.237,
+         0
+        ],
+        [
+         0.721,
+         0.9338,
+         0.3813,
+         0.7532,
+         4
+        ],
+        [
+         0.6852,
+         0.0565,
+         0.4046,
+         0.1391,
+         1
+        ],
+        [
+         0.5866,
+         0.7392,
+         0.4682,
+         0.6174,
+         2
+        ],
+        [
+         0.2097,
+         0.5453,
+         0.7134,
+         0.4814,
+         0
+        ],
+        [
+         0.5253,
+         0.1646,
+         0.5133,
+         0.2148,
+         1
+        ],
+        [
+         0.8039,
+         0.1417,
+         0.3274,
+         0.1989,
+         0
+        ],
+        [
+         0.5718,
+         0.2533,
+         0.4785,
+         0.2772,
+         1
+        ],
+        [
+         0.7174,
+         0.6776,
+         0.3836,
+         0.5739,
+         2
+        ],
+        [
+         0.8429,
+         0.3371,
+         0.3022,
+         0.3356,
+         0
+        ],
+        [
+         0.2293,
+         0.1163,
+         0.701,
+         0.1812,
+         0
+        ],
+        [
+         0.7835,
+         0.5998,
+         0.3405,
+         0.5194,
+         2
+        ],
+        [
+         0.1123,
+         0.554,
+         0.7769,
+         0.4874,
+         0
+        ],
+        [
+         0.0756,
+         0.1803,
+         0.8005,
+         0.2259,
+         0
+        ],
+        [
+         0.9061,
+         0.9565,
+         0.2606,
+         0.7694,
+         3
+        ],
+        [
+         0.9638,
+         0.3722,
+         0.2233,
+         0.3601,
+         0
+        ],
+        [
+         0.9812,
+         0.3957,
+         0.2124,
+         0.3766,
+         0
+        ],
+        [
+         0.5533,
+         0.6907,
+         0.4903,
+         0.5831,
+         2
+        ],
+        [
+         0.0947,
+         0.1154,
+         0.7883,
+         0.1806,
+         0
+        ],
+        [
+         0.2522,
+         0.6588,
+         0.6857,
+         0.561,
+         0
+        ],
+        [
+         0.8119,
+         0.1456,
+         0.3223,
+         0.2017,
+         0
+        ],
+        [
+         0.9526,
+         0.4717,
+         0.2307,
+         0.4299,
+         0
+        ],
+        [
+         0.3735,
+         0.5244,
+         0.607,
+         0.467,
+         2
+        ],
+        [
+         0.3937,
+         0.633,
+         0.5939,
+         0.5428,
+         2
+        ],
+        [
+         0.8014,
+         0.5912,
+         0.329,
+         0.5134,
+         0
+        ],
+        [
+         0.5673,
+         0.7248,
+         0.4811,
+         0.6068,
+         2
+        ],
+        [
+         0.3882,
+         0.5678,
+         0.5976,
+         0.497,
+         2
+        ],
+        [
+         0.4549,
+         0.629,
+         0.5545,
+         0.5399,
+         2
+        ],
+        [
+         0.109,
+         0.5493,
+         0.779,
+         0.4841,
+         0
+        ],
+        [
+         0.91,
+         0.1155,
+         0.2589,
+         0.1806,
+         0
+        ],
+        [
+         0.7232,
+         0.5275,
+         0.3798,
+         0.4688,
+         2
+        ],
+        [
+         0.9399,
+         0.9529,
+         0.2388,
+         0.7667,
+         3
+        ],
+        [
+         0.5126,
+         0.594,
+         0.517,
+         0.5154,
+         2
+        ],
+        [
+         0.6062,
+         0.6037,
+         0.4557,
+         0.5222,
+         2
+        ],
+        [
+         0.79,
+         0.3044,
+         0.3366,
+         0.3125,
+         1
+        ],
+        [
+         0.9718,
+         0.8781,
+         0.2183,
+         0.7142,
+         3
+        ],
+        [
+         0.2089,
+         0.2334,
+         0.7156,
+         0.2631,
+         0
+        ],
+        [
+         0.0483,
+         0.519,
+         0.8186,
+         0.463,
+         0
+        ],
+        [
+         0.2456,
+         0.2021,
+         0.6903,
+         0.2415,
+         0
+        ],
+        [
+         0.7483,
+         0.0757,
+         0.3635,
+         0.1528,
+         1
+        ],
+        [
+         0.3511,
+         0.5925,
+         0.6219,
+         0.5144,
+         2
+        ],
+        [
+         0.0143,
+         0.2756,
+         0.8405,
+         0.2926,
+         0
+        ],
+        [
+         0.957,
+         0.1493,
+         0.2275,
+         0.204,
+         0
+        ],
+        [
+         0.2059,
+         0.5396,
+         0.7162,
+         0.4773,
+         0
+        ],
+        [
+         0.9494,
+         0.4801,
+         0.2328,
+         0.4359,
+         0
+        ],
+        [
+         0.6442,
+         0.6835,
+         0.4311,
+         0.5781,
+         2
+        ],
+        [
+         0.8014,
+         0.2592,
+         0.329,
+         0.2813,
+         0
+        ],
+        [
+         0.8482,
+         0.31,
+         0.2985,
+         0.3167,
+         0
+        ],
+        [
+         0.0856,
+         0.668,
+         0.7942,
+         0.5671,
+         0
+        ],
+        [
+         0.8609,
+         0.2913,
+         0.2901,
+         0.3036,
+         0
+        ],
+        [
+         0.4712,
+         0.616,
+         0.5437,
+         0.5309,
+         2
+        ],
+        [
+         0.388,
+         0.4945,
+         0.5978,
+         0.4456,
+         2
+        ],
+        [
+         0.2601,
+         0.4381,
+         0.6808,
+         0.4062,
+         0
+        ],
+        [
+         0.714,
+         0.058,
+         0.386,
+         0.1403,
+         1
+        ],
+        [
+         0.1039,
+         0.4006,
+         0.7823,
+         0.3801,
+         0
+        ],
+        [
+         0.8332,
+         0.3861,
+         0.3084,
+         0.3701,
+         0
+        ]
+       ],
+       "footprint": [
+        [
+         0.1998,
+         0.0998
+        ],
+        [
+         0.8499,
+         0.0998
+        ],
+        [
+         0.8499,
+         0.7996
+        ],
+        [
+         0.1998,
+         0.7996
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "registry_size": 5,
+   "upload_features": {
+    "size": [
+     624,
+     1016
+    ],
+    "points": {
+     "count": 1557,
+     "drawn": [
+      [
+       0.6103,
+       0.0974,
+       0.0372
+      ],
+      [
+       0.9761,
+       0.9486,
+       0.001
+      ],
+      [
+       0.9809,
+       0.9328,
+       0.0009
+      ],
+      [
+       0.9809,
+       0.9328,
+       0.0009
+      ],
+      [
+       0.8501,
+       0.9418,
+       0.0215
+      ],
+      [
+       0.631,
+       0.3401,
+       0.0127
+      ],
+      [
+       0.9742,
+       0.9292,
+       0.0011
+      ],
+      [
+       0.9742,
+       0.9292,
+       0.0011
+      ],
+      [
+       0.9895,
+       0.9726,
+       0.001
+      ],
+      [
+       0.7597,
+       0.0936,
+       0.0123
+      ],
+      [
+       0.7597,
+       0.0936,
+       0.0123
+      ],
+      [
+       0.6124,
+       0.2706,
+       0.0108
+      ],
+      [
+       0.6875,
+       0.1807,
+       0.0052
+      ],
+      [
+       0.5308,
+       0.1799,
+       0.0051
+      ],
+      [
+       0.9831,
+       0.9586,
+       0.0009
+      ],
+      [
+       0.693,
+       0.2344,
+       0.0244
+      ],
+      [
+       0.6792,
+       0.1782,
+       0.0107
+      ],
+      [
+       0.9613,
+       0.935,
+       0.0009
+      ],
+      [
+       0.6822,
+       0.6639,
+       0.0009
+      ],
+      [
+       0.5162,
+       0.2297,
+       0.0251
+      ],
+      [
+       0.7777,
+       0.1606,
+       0.0239
+      ],
+      [
+       0.9858,
+       0.964,
+       0.0011
+      ],
+      [
+       0.5884,
+       0.1703,
+       0.0107
+      ],
+      [
+       0.7433,
+       0.542,
+       0.001
+      ],
+      [
+       0.9882,
+       0.9137,
+       0.001
+      ],
+      [
+       0.7058,
+       0.0385,
+       0.0124
+      ],
+      [
+       0.7058,
+       0.0385,
+       0.0124
+      ],
+      [
+       0.5023,
+       0.1763,
+       0.0135
+      ],
+      [
+       0.7071,
+       0.4087,
+       0.0436
+      ],
+      [
+       0.546,
+       0.1795,
+       0.0009
+      ],
+      [
+       0.6217,
+       0.6427,
+       0.001
+      ],
+      [
+       0.6217,
+       0.6427,
+       0.001
+      ],
+      [
+       0.6036,
+       0.6636,
+       0.001
+      ],
+      [
+       0.8895,
+       0.1612,
+       0.0262
+      ],
+      [
+       0.7551,
+       0.5496,
+       0.0009
+      ],
+      [
+       0.9557,
+       0.9126,
+       0.0012
+      ],
+      [
+       0.812,
+       0.6171,
+       0.001
+      ],
+      [
+       0.812,
+       0.6171,
+       0.001
+      ],
+      [
+       0.9406,
+       0.4771,
+       0.0009
+      ],
+      [
+       0.6734,
+       0.2961,
+       0.0035
+      ],
+      [
+       0.6734,
+       0.2961,
+       0.0035
+      ],
+      [
+       0.6722,
+       0.6626,
+       0.001
+      ],
+      [
+       0.9436,
+       0.9244,
+       0.0027
+      ],
+      [
+       0.9436,
+       0.9244,
+       0.0027
+      ],
+      [
+       0.005,
+       0.3764,
+       0.001
+      ],
+      [
+       0.7105,
+       0.1712,
+       0.0022
+      ],
+      [
+       0.5549,
+       0.1869,
+       0.0053
+      ],
+      [
+       0.7089,
+       0.1888,
+       0.0045
+      ],
+      [
+       0.6638,
+       0.3013,
+       0.0012
+      ],
+      [
+       0.8592,
+       0.9181,
+       0.0013
+      ],
+      [
+       0.9809,
+       0.9495,
+       0.0009
+      ],
+      [
+       0.0746,
+       0.1468,
+       0.0012
+      ],
+      [
+       0.9122,
+       0.3909,
+       0.0009
+      ],
+      [
+       0.6945,
+       0.1909,
+       0.0011
+      ],
+      [
+       0.7763,
+       0.6141,
+       0.001
+      ],
+      [
+       0.0593,
+       0.5202,
+       0.001
+      ],
+      [
+       0.6585,
+       0.2817,
+       0.0066
+      ],
+      [
+       0.1588,
+       0.2442,
+       0.0009
+      ],
+      [
+       0.7722,
+       0.6495,
+       0.0012
+      ],
+      [
+       0.7722,
+       0.6495,
+       0.0012
+      ],
+      [
+       0.7786,
+       0.5451,
+       0.0009
+      ],
+      [
+       0.5892,
+       0.9706,
+       0.0014
+      ],
+      [
+       0.9541,
+       0.922,
+       0.0025
+      ],
+      [
+       0.8997,
+       0.93,
+       0.0012
+      ],
+      [
+       0.7684,
+       0.5568,
+       0.0011
+      ],
+      [
+       0.9682,
+       0.9192,
+       0.0011
+      ],
+      [
+       0.6853,
+       0.6705,
+       0.001
+      ],
+      [
+       0.8947,
+       0.9261,
+       0.0013
+      ],
+      [
+       0.7233,
+       0.1448,
+       0.0117
+      ],
+      [
+       0.8462,
+       0.6292,
+       0.0009
+      ],
+      [
+       0.8462,
+       0.6292,
+       0.0009
+      ],
+      [
+       0.6021,
+       0.6525,
+       0.001
+      ],
+      [
+       0.8635,
+       0.9159,
+       0.001
+      ],
+      [
+       0.8887,
+       0.1896,
+       0.001
+      ],
+      [
+       0.9255,
+       0.9138,
+       0.0013
+      ],
+      [
+       0.628,
+       0.3182,
+       0.0047
+      ],
+      [
+       0.6823,
+       0.1706,
+       0.0021
+      ],
+      [
+       0.2278,
+       0.0785,
+       0.0253
+      ],
+      [
+       0.8282,
+       0.2597,
+       0.0419
+      ],
+      [
+       0.8282,
+       0.2597,
+       0.0419
+      ],
+      [
+       0.2225,
+       0.1109,
+       0.0009
+      ],
+      [
+       0.2225,
+       0.1109,
+       0.0009
+      ],
+      [
+       0.9811,
+       0.928,
+       0.0016
+      ],
+      [
+       0.9108,
+       0.9428,
+       0.001
+      ],
+      [
+       0.6929,
+       0.1877,
+       0.0012
+      ],
+      [
+       0.933,
+       0.9191,
+       0.0017
+      ],
+      [
+       0.4072,
+       0.4971,
+       0.0009
+      ],
+      [
+       0.4072,
+       0.4971,
+       0.0009
+      ],
+      [
+       0.6882,
+       0.1901,
+       0.001
+      ],
+      [
+       0.7829,
+       0.5523,
+       0.0009
+      ],
+      [
+       0.9327,
+       0.9573,
+       0.0018
+      ],
+      [
+       0.9816,
+       0.9166,
+       0.0017
+      ],
+      [
+       0.8767,
+       0.9188,
+       0.0015
+      ],
+      [
+       0.9885,
+       0.4268,
+       0.0009
+      ],
+      [
+       0.6498,
+       0.2985,
+       0.0014
+      ],
+      [
+       0.2806,
+       0.0815,
+       0.001
+      ],
+      [
+       0.6675,
+       0.9539,
+       0.0087
+      ],
+      [
+       0.9254,
+       0.9376,
+       0.001
+      ],
+      [
+       0.6885,
+       0.6684,
+       0.001
+      ],
+      [
+       0.593,
+       0.407,
+       0.0099
+      ],
+      [
+       0.056,
+       0.4919,
+       0.0012
+      ],
+      [
+       0.056,
+       0.4919,
+       0.0012
+      ],
+      [
+       0.9747,
+       0.3879,
+       0.001
+      ],
+      [
+       0.9543,
+       0.1831,
+       0.0025
+      ],
+      [
+       0.6347,
+       0.6414,
+       0.0009
+      ],
+      [
+       0.6347,
+       0.6414,
+       0.0009
+      ],
+      [
+       0.2699,
+       0.0988,
+       0.001
+      ],
+      [
+       0.9864,
+       0.9314,
+       0.0015
+      ],
+      [
+       0.6216,
+       0.3072,
+       0.0032
+      ],
+      [
+       0.9186,
+       0.9217,
+       0.0036
+      ],
+      [
+       0.9186,
+       0.9217,
+       0.0036
+      ],
+      [
+       0.6397,
+       0.6767,
+       0.001
+      ],
+      [
+       0.2212,
+       0.564,
+       0.0012
+      ],
+      [
+       0.2212,
+       0.564,
+       0.0012
+      ],
+      [
+       0.9904,
+       0.9204,
+       0.0021
+      ],
+      [
+       0.6421,
+       0.254,
+       0.0065
+      ],
+      [
+       0.9223,
+       0.4178,
+       0.0009
+      ],
+      [
+       0.9223,
+       0.4178,
+       0.0009
+      ],
+      [
+       0.8788,
+       0.9237,
+       0.0015
+      ],
+      [
+       0.7315,
+       0.1778,
+       0.0061
+      ],
+      [
+       0.3932,
+       0.5888,
+       0.0009
+      ],
+      [
+       0.9291,
+       0.9467,
+       0.0021
+      ],
+      [
+       0.9841,
+       0.9535,
+       0.001
+      ],
+      [
+       0.5377,
+       0.1853,
+       0.0016
+      ],
+      [
+       0.9563,
+       0.1928,
+       0.0027
+      ],
+      [
+       0.5634,
+       0.2957,
+       0.0032
+      ],
+      [
+       0.5634,
+       0.2957,
+       0.0032
+      ],
+      [
+       0.8415,
+       0.9125,
+       0.0018
+      ],
+      [
+       0.6706,
+       0.6507,
+       0.0012
+      ],
+      [
+       0.6706,
+       0.6507,
+       0.0012
+      ],
+      [
+       0.7879,
+       0.6382,
+       0.0009
+      ],
+      [
+       0.1122,
+       0.7031,
+       0.001
+      ],
+      [
+       0.1122,
+       0.7031,
+       0.001
+      ],
+      [
+       0.7635,
+       0.5547,
+       0.001
+      ],
+      [
+       0.7635,
+       0.5547,
+       0.001
+      ],
+      [
+       0.8283,
+       0.9123,
+       0.0013
+      ],
+      [
+       0.8671,
+       0.9203,
+       0.0016
+      ],
+      [
+       0.6987,
+       0.062,
+       0.0011
+      ],
+      [
+       0.6987,
+       0.062,
+       0.0011
+      ],
+      [
+       0.5174,
+       0.3785,
+       0.0246
+      ],
+      [
+       0.9521,
+       0.18,
+       0.001
+      ],
+      [
+       0.7105,
+       0.6615,
+       0.001
+      ],
+      [
+       0.6904,
+       0.6776,
+       0.0009
+      ],
+      [
+       0.6903,
+       0.1996,
+       0.0034
+      ],
+      [
+       0.6857,
+       0.661,
+       0.0013
+      ],
+      [
+       0.8365,
+       0.916,
+       0.0015
+      ],
+      [
+       0.7472,
+       0.1884,
+       0.0038
+      ],
+      [
+       0.2572,
+       0.5709,
+       0.0042
+      ],
+      [
+       0.9018,
+       0.4331,
+       0.0012
+      ],
+      [
+       0.8557,
+       0.9132,
+       0.0025
+      ],
+      [
+       0.7094,
+       0.1663,
+       0.0016
+      ],
+      [
+       0.7574,
+       0.6127,
+       0.0009
+      ],
+      [
+       0.9386,
+       0.2105,
+       0.0013
+      ],
+      [
+       0.6391,
+       0.3063,
+       0.0033
+      ],
+      [
+       0.6679,
+       0.3075,
+       0.0049
+      ],
+      [
+       0.7432,
+       0.6507,
+       0.0009
+      ],
+      [
+       0.7432,
+       0.6507,
+       0.0009
+      ],
+      [
+       0.709,
+       0.6429,
+       0.0009
+      ],
+      [
+       0.8173,
+       0.0965,
+       0.013
+      ],
+      [
+       0.7818,
+       0.5933,
+       0.0009
+      ],
+      [
+       0.6836,
+       0.6585,
+       0.0009
+      ],
+      [
+       0.9405,
+       0.4166,
+       0.001
+      ],
+      [
+       0.9405,
+       0.4166,
+       0.001
+      ],
+      [
+       0.5488,
+       0.6384,
+       0.0011
+      ],
+      [
+       0.6633,
+       0.6403,
+       0.0009
+      ],
+      [
+       0.9338,
+       0.189,
+       0.0099
+      ],
+      [
+       0.9338,
+       0.189,
+       0.0099
+      ],
+      [
+       0.2676,
+       0.1056,
+       0.0016
+      ],
+      [
+       0.9943,
+       0.9383,
+       0.001
+      ],
+      [
+       0.5571,
+       0.266,
+       0.0084
+      ],
+      [
+       0.6745,
+       0.6671,
+       0.0011
+      ],
+      [
+       0.9913,
+       0.9648,
+       0.0013
+      ],
+      [
+       0.9191,
+       0.4382,
+       0.0012
+      ],
+      [
+       0.2713,
+       0.5528,
+       0.0016
+      ],
+      [
+       0.9876,
+       0.3757,
+       0.0009
+      ],
+      [
+       0.5736,
+       0.977,
+       0.0027
+      ],
+      [
+       0.7462,
+       0.5283,
+       0.0012
+      ],
+      [
+       0.9878,
+       0.1563,
+       0.001
+      ],
+      [
+       0.7658,
+       0.664,
+       0.0013
+      ],
+      [
+       0.247,
+       0.1607,
+       0.0017
+      ],
+      [
+       0.8196,
+       0.9122,
+       0.0016
+      ],
+      [
+       0.9085,
+       0.4331,
+       0.0012
+      ],
+      [
+       0.1934,
+       0.5454,
+       0.001
+      ],
+      [
+       0.893,
+       0.1436,
+       0.001
+      ],
+      [
+       0.9778,
+       0.3726,
+       0.0012
+      ],
+      [
+       0.9533,
+       0.908,
+       0.0015
+      ],
+      [
+       0.6216,
+       0.2993,
+       0.0033
+      ],
+      [
+       0.5559,
+       0.1689,
+       0.0012
+      ],
+      [
+       0.8846,
+       0.9215,
+       0.0016
+      ],
+      [
+       0.9765,
+       0.887,
+       0.0042
+      ],
+      [
+       0.9765,
+       0.887,
+       0.0042
+      ],
+      [
+       0.7446,
+       0.5205,
+       0.0011
+      ],
+      [
+       0.1864,
+       0.5603,
+       0.0011
+      ],
+      [
+       0.895,
+       0.3979,
+       0.0277
+      ],
+      [
+       0.6955,
+       0.3475,
+       0.0131
+      ],
+      [
+       0.9893,
+       0.9069,
+       0.001
+      ],
+      [
+       0.9893,
+       0.9069,
+       0.001
+      ],
+      [
+       0.7306,
+       0.6219,
+       0.001
+      ],
+      [
+       0.7306,
+       0.6219,
+       0.001
+      ],
+      [
+       0.7306,
+       0.6219,
+       0.001
+      ],
+      [
+       0.4155,
+       0.4728,
+       0.0009
+      ],
+      [
+       0.5412,
+       0.1895,
+       0.0018
+      ],
+      [
+       0.0409,
+       0.1442,
+       0.0009
+      ],
+      [
+       0.0409,
+       0.1442,
+       0.0009
+      ],
+      [
+       0.1923,
+       0.5601,
+       0.001
+      ],
+      [
+       0.1923,
+       0.5601,
+       0.001
+      ],
+      [
+       0.7591,
+       0.4698,
+       0.001
+      ],
+      [
+       0.2484,
+       0.1491,
+       0.0011
+      ],
+      [
+       0.8731,
+       0.4105,
+       0.0009
+      ],
+      [
+       0.8731,
+       0.4105,
+       0.0009
+      ],
+      [
+       0.8731,
+       0.4105,
+       0.0009
+      ],
+      [
+       0.259,
+       0.1147,
+       0.0009
+      ],
+      [
+       0.5592,
+       0.9811,
+       0.0031
+      ],
+      [
+       0.7813,
+       0.0929,
+       0.001
+      ],
+      [
+       0.4769,
+       0.1345,
+       0.016
+      ],
+      [
+       0.8752,
+       0.4216,
+       0.0012
+      ],
+      [
+       0.5797,
+       0.6683,
+       0.0009
+      ],
+      [
+       0.5797,
+       0.6683,
+       0.0009
+      ],
+      [
+       0.6355,
+       0.3007,
+       0.0012
+      ],
+      [
+       0.885,
+       0.456,
+       0.001
+      ],
+      [
+       0.0106,
+       0.5293,
+       0.0019
+      ],
+      [
+       0.9476,
+       0.1807,
+       0.0012
+      ],
+      [
+       0.1636,
+       0.6732,
+       0.0026
+      ],
+      [
+       0.934,
+       0.9686,
+       0.0019
+      ],
+      [
+       0.8959,
+       0.9223,
+       0.0009
+      ],
+      [
+       0.5767,
+       0.6142,
+       0.0011
+      ],
+      [
+       0.8944,
+       0.4378,
+       0.0011
+      ],
+      [
+       0.1672,
+       0.5395,
+       0.0009
+      ],
+      [
+       0.6614,
+       0.2714,
+       0.0022
+      ],
+      [
+       0.1899,
+       0.5606,
+       0.0016
+      ],
+      [
+       0.0566,
+       0.1676,
+       0.0009
+      ],
+      [
+       0.1331,
+       0.4424,
+       0.001
+      ],
+      [
+       0.6999,
+       0.1654,
+       0.0013
+      ],
+      [
+       0.7656,
+       0.654,
+       0.0009
+      ],
+      [
+       0.188,
+       0.6426,
+       0.0009
+      ],
+      [
+       0.5154,
+       0.6839,
+       0.001
+      ],
+      [
+       0.5154,
+       0.6839,
+       0.001
+      ],
+      [
+       0.9615,
+       0.9317,
+       0.0009
+      ],
+      [
+       0.9811,
+       0.3456,
+       0.0009
+      ],
+      [
+       0.9811,
+       0.3456,
+       0.0009
+      ],
+      [
+       0.9232,
+       0.9628,
+       0.0023
+      ],
+      [
+       0.9272,
+       0.9056,
+       0.0009
+      ],
+      [
+       0.3007,
+       0.9953,
+       0.001
+      ],
+      [
+       0.1764,
+       0.296,
+       0.0015
+      ],
+      [
+       0.1764,
+       0.296,
+       0.0015
+      ],
+      [
+       0.1764,
+       0.296,
+       0.0015
+      ],
+      [
+       0.0167,
+       0.5257,
+       0.0011
+      ],
+      [
+       0.9541,
+       0.1675,
+       0.0014
+      ],
+      [
+       0.2592,
+       0.1122,
+       0.0011
+      ],
+      [
+       0.7934,
+       0.6399,
+       0.0012
+      ],
+      [
+       0.6607,
+       0.9469,
+       0.0022
+      ],
+      [
+       0.2639,
+       0.1114,
+       0.001
+      ],
+      [
+       0.7474,
+       0.6113,
+       0.0048
+      ],
+      [
+       0.4083,
+       0.6864,
+       0.0461
+      ],
+      [
+       0.9366,
+       0.3013,
+       0.0012
+      ],
+      [
+       0.8854,
+       0.4171,
+       0.001
+      ],
+      [
+       0.8854,
+       0.4171,
+       0.001
+      ],
+      [
+       0.6664,
+       0.2906,
+       0.0018
+      ],
+      [
+       0.6324,
+       0.1505,
+       0.0138
+      ],
+      [
+       0.6324,
+       0.1505,
+       0.0138
+      ],
+      [
+       0.3977,
+       0.6399,
+       0.0021
+      ],
+      [
+       0.5418,
+       0.682,
+       0.001
+      ],
+      [
+       0.5418,
+       0.682,
+       0.001
+      ],
+      [
+       0.5453,
+       0.6482,
+       0.001
+      ],
+      [
+       0.5453,
+       0.6482,
+       0.001
+      ],
+      [
+       0.9502,
+       0.1345,
+       0.0009
+      ],
+      [
+       0.9502,
+       0.1345,
+       0.0009
+      ],
+      [
+       0.9866,
+       0.4239,
+       0.0009
+      ],
+      [
+       0.9616,
+       0.9107,
+       0.0017
+      ],
+      [
+       0.961,
+       0.4229,
+       0.0009
+      ],
+      [
+       0.966,
+       0.9453,
+       0.0017
+      ],
+      [
+       0.646,
+       0.6547,
+       0.001
+      ],
+      [
+       0.646,
+       0.6547,
+       0.001
+      ],
+      [
+       0.88,
+       0.0479,
+       0.001
+      ],
+      [
+       0.88,
+       0.0479,
+       0.001
+      ],
+      [
+       0.7451,
+       0.5373,
+       0.0016
+      ],
+      [
+       0.9764,
+       0.9563,
+       0.0012
+      ],
+      [
+       0.3893,
+       0.4739,
+       0.0009
+      ],
+      [
+       0.9503,
+       0.2059,
+       0.0026
+      ],
+      [
+       0.6655,
+       0.0821,
+       0.001
+      ],
+      [
+       0.6655,
+       0.0821,
+       0.001
+      ],
+      [
+       0.3549,
+       0.018,
+       0.0012
+      ],
+      [
+       0.3437,
+       0.0246,
+       0.001
+      ],
+      [
+       0.5435,
+       0.6601,
+       0.001
+      ],
+      [
+       0.8064,
+       0.1081,
+       0.0009
+      ],
+      [
+       0.4562,
+       0.6386,
+       0.0009
+      ],
+      [
+       0.1465,
+       0.1255,
+       0.001
+      ],
+      [
+       0.209,
+       0.2469,
+       0.001
+      ],
+      [
+       0.6481,
+       0.6283,
+       0.0042
+      ],
+      [
+       0.8643,
+       0.5588,
+       0.0279
+      ],
+      [
+       0.0046,
+       0.5177,
+       0.0009
+      ],
+      [
+       0.0046,
+       0.5177,
+       0.0009
+      ],
+      [
+       0.0182,
+       0.3837,
+       0.001
+      ],
+      [
+       0.0182,
+       0.3837,
+       0.001
+      ],
+      [
+       0.6895,
+       0.556,
+       0.001
+      ],
+      [
+       0.6126,
+       0.4852,
+       0.0012
+      ],
+      [
+       0.6126,
+       0.4852,
+       0.0012
+      ],
+      [
+       0.5092,
+       0.1996,
+       0.0033
+      ],
+      [
+       0.703,
+       0.5672,
+       0.001
+      ],
+      [
+       0.5957,
+       0.1795,
+       0.0012
+      ]
+     ]
+    },
+    "areas": [
+     {
+      "position": "top left",
+      "points": 167,
+      "name": "person",
+      "confidence": 0.285,
+      "runner_up": "landscape"
+     },
+     {
+      "position": "top centre",
+      "points": 149,
+      "name": "face",
+      "confidence": 0.648,
+      "runner_up": "person"
+     },
+     {
+      "position": "top right",
+      "points": 242,
+      "name": "face",
+      "confidence": 0.375,
+      "runner_up": "person"
+     },
+     {
+      "position": "middle left",
+      "points": 215,
+      "name": "person",
+      "confidence": 0.262,
+      "runner_up": "landscape"
+     },
+     {
+      "position": "centre",
+      "points": 219,
+      "name": "person",
+      "confidence": 0.287,
+      "runner_up": "face"
+     },
+     {
+      "position": "middle right",
+      "points": 296,
+      "name": "face",
+      "confidence": 0.351,
+      "runner_up": "hair"
+     },
+     {
+      "position": "bottom left",
+      "points": 53,
+      "name": "face",
+      "confidence": 0.234,
+      "runner_up": "dark background"
+     },
+     {
+      "position": "bottom centre",
+      "points": 78,
+      "name": "hair",
+      "confidence": 0.954,
+      "runner_up": null
+     },
+     {
+      "position": "bottom right",
+      "points": 138,
+      "name": "hair",
+      "confidence": 0.509,
+      "runner_up": null
+     }
+    ],
+    "things": [
+     {
+      "name": "face",
+      "named": true,
+      "areas": [
+       1,
+       2,
+       5,
+       6
+      ],
+      "positions": [
+       "top centre",
+       "top right",
+       "middle right",
+       "bottom left"
+      ],
+      "points": 740,
+      "confidence": 0.402
+     },
+     {
+      "name": "person",
+      "named": true,
+      "areas": [
+       0,
+       3,
+       4
+      ],
+      "positions": [
+       "top left",
+       "middle left",
+       "centre"
+      ],
+      "points": 601,
+      "confidence": 0.278
+     },
+     {
+      "name": "hair",
+      "named": true,
+      "areas": [
+       7,
+       8
+      ],
+      "positions": [
+       "bottom centre",
+       "bottom right"
+      ],
+      "points": 216,
+      "confidence": 0.732
+     }
+    ],
+    "palette": [
+     {
+      "hex": "#1a0d0a",
+      "share": 0.463
+     },
+     {
+      "hex": "#422b15",
+      "share": 0.198
+     },
+     {
+      "hex": "#bc872e",
+      "share": 0.128
+     },
+     {
+      "hex": "#7a501e",
+      "share": 0.109
+     },
+     {
+      "hex": "#e4b03d",
+      "share": 0.102
+     }
+    ],
+    "medium": {
+     "name": "oil painting",
+     "confidence": 0.899
+    },
+    "namer": "OpenCLIP ViT-B/32, DataComp-XL weights (MIT licence)",
+    "preview_jpeg_base64": {
+     "bytes": 42483,
+     "sha256": "9bf3f60b61f8bd70e3471c584b400dc4c578e31acfa88b9f624723ead39f7bdd"
+    }
+   }
+  },
+  "real3": {
+   "matches": [],
+   "registry_size": 5,
+   "upload_features": {
+    "size": [
+     2000,
+     1500
+    ],
+    "points": {
+     "count": 525,
+     "drawn": [
+      [
+       0.2759,
+       0.5,
+       0.0017
+      ],
+      [
+       0.2759,
+       0.5,
+       0.0017
+      ],
+      [
+       0.2759,
+       0.5,
+       0.0017
+      ],
+      [
+       0.2759,
+       0.5,
+       0.0017
+      ],
+      [
+       0.7151,
+       0.4718,
+       0.0017
+      ],
+      [
+       0.7151,
+       0.4718,
+       0.0017
+      ],
+      [
+       0.7151,
+       0.4718,
+       0.0017
+      ],
+      [
+       0.7151,
+       0.4718,
+       0.0017
+      ],
+      [
+       0.1548,
+       0.4987,
+       0.0017
+      ],
+      [
+       0.1548,
+       0.4987,
+       0.0017
+      ],
+      [
+       0.6977,
+       0.8437,
+       0.0032
+      ],
+      [
+       0.9224,
+       0.6376,
+       0.0085
+      ],
+      [
+       0.9224,
+       0.6376,
+       0.0085
+      ],
+      [
+       0.9358,
+       0.5786,
+       0.0083
+      ],
+      [
+       0.2144,
+       0.3917,
+       0.0479
+      ],
+      [
+       0.2144,
+       0.3917,
+       0.0479
+      ],
+      [
+       0.6956,
+       0.471,
+       0.003
+      ],
+      [
+       0.2939,
+       0.5036,
+       0.003
+      ],
+      [
+       0.7835,
+       0.3631,
+       0.0533
+      ],
+      [
+       0.7835,
+       0.3631,
+       0.0533
+      ],
+      [
+       0.7835,
+       0.3631,
+       0.0533
+      ],
+      [
+       0.2197,
+       0.5111,
+       0.0848
+      ],
+      [
+       0.2197,
+       0.5111,
+       0.0848
+      ],
+      [
+       0.8599,
+       0.4897,
+       0.0028
+      ],
+      [
+       0.8599,
+       0.4897,
+       0.0028
+      ],
+      [
+       0.8599,
+       0.4897,
+       0.0028
+      ],
+      [
+       0.7109,
+       0.4711,
+       0.0092
+      ],
+      [
+       0.7109,
+       0.4711,
+       0.0092
+      ],
+      [
+       0.8451,
+       0.4866,
+       0.0094
+      ],
+      [
+       0.8451,
+       0.4866,
+       0.0094
+      ],
+      [
+       0.9417,
+       0.8787,
+       0.0078
+      ],
+      [
+       0.2799,
+       0.5028,
+       0.0098
+      ],
+      [
+       0.2606,
+       0.5045,
+       0.003
+      ],
+      [
+       0.0735,
+       0.6915,
+       0.0044
+      ],
+      [
+       0.595,
+       0.7368,
+       0.0063
+      ],
+      [
+       0.595,
+       0.7368,
+       0.0063
+      ],
+      [
+       0.7092,
+       0.0512,
+       0.0072
+      ],
+      [
+       0.7092,
+       0.0512,
+       0.0072
+      ],
+      [
+       0.3985,
+       0.5432,
+       0.0054
+      ],
+      [
+       0.2684,
+       0.4974,
+       0.0033
+      ],
+      [
+       0.0723,
+       0.5434,
+       0.0065
+      ],
+      [
+       0.6229,
+       0.5978,
+       0.0068
+      ],
+      [
+       0.7145,
+       0.8354,
+       0.0016
+      ],
+      [
+       0.1705,
+       0.5031,
+       0.0029
+      ],
+      [
+       0.9472,
+       0.5443,
+       0.0043
+      ],
+      [
+       0.2708,
+       0.5079,
+       0.0034
+      ],
+      [
+       0.1628,
+       0.4956,
+       0.0032
+      ],
+      [
+       0.7129,
+       0.8557,
+       0.0019
+      ],
+      [
+       0.4032,
+       0.609,
+       0.0097
+      ],
+      [
+       0.0988,
+       0.6372,
+       0.0039
+      ],
+      [
+       0.0988,
+       0.6372,
+       0.0039
+      ],
+      [
+       0.7206,
+       0.479,
+       0.0034
+      ],
+      [
+       0.7206,
+       0.479,
+       0.0034
+      ],
+      [
+       0.6236,
+       0.6196,
+       0.0058
+      ],
+      [
+       0.3562,
+       0.6307,
+       0.0057
+      ],
+      [
+       0.1738,
+       0.5022,
+       0.0013
+      ],
+      [
+       0.73,
+       0.4782,
+       0.0025
+      ],
+      [
+       0.2855,
+       0.4933,
+       0.0046
+      ],
+      [
+       0.8335,
+       0.4914,
+       0.0036
+      ],
+      [
+       0.9088,
+       0.6612,
+       0.0078
+      ],
+      [
+       0.129,
+       0.5831,
+       0.029
+      ],
+      [
+       0.2823,
+       0.5103,
+       0.0048
+      ],
+      [
+       0.6327,
+       0.6144,
+       0.0033
+      ],
+      [
+       0.8243,
+       0.4893,
+       0.0026
+      ],
+      [
+       0.5651,
+       0.965,
+       0.0032
+      ],
+      [
+       0.5651,
+       0.965,
+       0.0032
+      ],
+      [
+       0.0839,
+       0.5883,
+       0.0077
+      ],
+      [
+       0.6807,
+       0.4704,
+       0.0049
+      ],
+      [
+       0.3943,
+       0.6348,
+       0.0049
+      ],
+      [
+       0.1608,
+       0.5053,
+       0.003
+      ],
+      [
+       0.8737,
+       0.4914,
+       0.0053
+      ],
+      [
+       0.3449,
+       0.6347,
+       0.003
+      ],
+      [
+       0.791,
+       0.5626,
+       0.0032
+      ],
+      [
+       0.791,
+       0.5626,
+       0.0032
+      ],
+      [
+       0.5248,
+       0.6239,
+       0.0066
+      ],
+      [
+       0.5248,
+       0.6239,
+       0.0066
+      ],
+      [
+       0.307,
+       0.5059,
+       0.0051
+      ],
+      [
+       0.546,
+       0.9765,
+       0.0019
+      ],
+      [
+       0.546,
+       0.9765,
+       0.0019
+      ],
+      [
+       0.546,
+       0.9765,
+       0.0019
+      ],
+      [
+       0.546,
+       0.9765,
+       0.0019
+      ],
+      [
+       0.75,
+       0.5561,
+       0.0028
+      ],
+      [
+       0.3967,
+       0.5828,
+       0.0026
+      ],
+      [
+       0.4865,
+       0.4876,
+       0.0904
+      ],
+      [
+       0.2887,
+       0.5735,
+       0.0227
+      ],
+      [
+       0.8692,
+       0.7032,
+       0.0033
+      ],
+      [
+       0.7343,
+       0.9232,
+       0.0027
+      ],
+      [
+       0.1096,
+       0.6818,
+       0.0046
+      ],
+      [
+       0.8582,
+       0.5646,
+       0.0242
+      ],
+      [
+       0.2124,
+       0.7011,
+       0.0192
+      ],
+      [
+       0.3802,
+       0.6329,
+       0.0034
+      ],
+      [
+       0.1207,
+       0.507,
+       0.0058
+      ],
+      [
+       0.0959,
+       0.7023,
+       0.0041
+      ],
+      [
+       0.6787,
+       0.6941,
+       0.0134
+      ],
+      [
+       0.3608,
+       0.5506,
+       0.0091
+      ],
+      [
+       0.3608,
+       0.5506,
+       0.0091
+      ],
+      [
+       0.5405,
+       0.9683,
+       0.0033
+      ],
+      [
+       0.8365,
+       0.7382,
+       0.0205
+      ],
+      [
+       0.9008,
+       0.6853,
+       0.0058
+      ],
+      [
+       0.0752,
+       0.5829,
+       0.0031
+      ],
+      [
+       0.9007,
+       0.6839,
+       0.0055
+      ],
+      [
+       0.3986,
+       0.5686,
+       0.0039
+      ],
+      [
+       0.5394,
+       0.9813,
+       0.0029
+      ],
+      [
+       0.6907,
+       0.8415,
+       0.0027
+      ],
+      [
+       0.6892,
+       0.542,
+       0.0219
+      ],
+      [
+       0.089,
+       0.6091,
+       0.0054
+      ],
+      [
+       0.9037,
+       0.7673,
+       0.0256
+      ],
+      [
+       0.5602,
+       0.9723,
+       0.0017
+      ],
+      [
+       0.2309,
+       0.641,
+       0.0025
+      ],
+      [
+       0.2309,
+       0.641,
+       0.0025
+      ],
+      [
+       0.1527,
+       0.494,
+       0.001
+      ],
+      [
+       0.684,
+       0.4367,
+       0.0093
+      ],
+      [
+       0.1045,
+       0.6474,
+       0.0024
+      ],
+      [
+       0.8426,
+       0.4782,
+       0.0021
+      ],
+      [
+       0.3379,
+       0.6915,
+       0.0013
+      ],
+      [
+       0.3839,
+       0.4961,
+       0.0174
+      ],
+      [
+       0.617,
+       0.6468,
+       0.0034
+      ],
+      [
+       0.7276,
+       0.9405,
+       0.002
+      ],
+      [
+       0.7276,
+       0.9405,
+       0.002
+      ],
+      [
+       0.2169,
+       0.6446,
+       0.0031
+      ],
+      [
+       0.3658,
+       0.6483,
+       0.0017
+      ],
+      [
+       0.3454,
+       0.5996,
+       0.0073
+      ],
+      [
+       0.2194,
+       0.8477,
+       0.0104
+      ],
+      [
+       0.2194,
+       0.8477,
+       0.0104
+      ],
+      [
+       0.3852,
+       0.526,
+       0.0027
+      ],
+      [
+       0.3561,
+       0.6459,
+       0.0016
+      ],
+      [
+       0.9254,
+       0.5495,
+       0.0068
+      ],
+      [
+       0.9254,
+       0.5495,
+       0.0068
+      ],
+      [
+       0.7684,
+       0.6904,
+       0.0193
+      ],
+      [
+       0.7276,
+       0.1737,
+       0.0516
+      ],
+      [
+       0.2016,
+       0.6439,
+       0.003
+      ],
+      [
+       0.2759,
+       0.5137,
+       0.0009
+      ],
+      [
+       0.3384,
+       0.6485,
+       0.0089
+      ],
+      [
+       0.2975,
+       0.5139,
+       0.0028
+      ],
+      [
+       0.7757,
+       0.6356,
+       0.0041
+      ],
+      [
+       0.7581,
+       0.6374,
+       0.0056
+      ],
+      [
+       0.512,
+       0.7187,
+       0.0393
+      ],
+      [
+       0.9521,
+       0.628,
+       0.0085
+      ],
+      [
+       0.772,
+       0.5384,
+       0.0075
+      ],
+      [
+       0.1539,
+       0.4763,
+       0.0058
+      ],
+      [
+       0.3253,
+       0.689,
+       0.0164
+      ],
+      [
+       0.1218,
+       0.4774,
+       0.0073
+      ],
+      [
+       0.1334,
+       0.4913,
+       0.0025
+      ],
+      [
+       0.1902,
+       0.6401,
+       0.0022
+      ],
+      [
+       0.1902,
+       0.6401,
+       0.0022
+      ],
+      [
+       0.2261,
+       0.5828,
+       0.0021
+      ],
+      [
+       0.3878,
+       0.6077,
+       0.0024
+      ],
+      [
+       0.3805,
+       0.6144,
+       0.0041
+      ],
+      [
+       0.2092,
+       0.2525,
+       0.0298
+      ],
+      [
+       0.2979,
+       0.4964,
+       0.0019
+      ],
+      [
+       0.7969,
+       0.8669,
+       0.0226
+      ],
+      [
+       0.1642,
+       0.7302,
+       0.0092
+      ],
+      [
+       0.6051,
+       0.547,
+       0.0026
+      ],
+      [
+       0.6937,
+       0.4799,
+       0.002
+      ],
+      [
+       0.245,
+       0.6381,
+       0.0021
+      ],
+      [
+       0.245,
+       0.6381,
+       0.0021
+      ],
+      [
+       0.245,
+       0.6381,
+       0.0021
+      ],
+      [
+       0.4118,
+       0.5519,
+       0.0052
+      ],
+      [
+       0.867,
+       0.7151,
+       0.0025
+      ],
+      [
+       0.0795,
+       0.5718,
+       0.0024
+      ],
+      [
+       0.9604,
+       0.5871,
+       0.0096
+      ],
+      [
+       0.3618,
+       0.3683,
+       0.0262
+      ],
+      [
+       0.7521,
+       0.899,
+       0.0082
+      ],
+      [
+       0.6295,
+       0.5085,
+       0.0048
+      ],
+      [
+       0.7142,
+       0.8925,
+       0.0136
+      ],
+      [
+       0.756,
+       0.647,
+       0.0017
+      ],
+      [
+       0.9556,
+       0.5539,
+       0.0038
+      ],
+      [
+       0.5592,
+       0.1715,
+       0.0025
+      ],
+      [
+       0.3771,
+       0.5342,
+       0.0032
+      ],
+      [
+       0.6473,
+       0.1703,
+       0.0021
+      ],
+      [
+       0.614,
+       0.6321,
+       0.003
+      ],
+      [
+       0.243,
+       0.5046,
+       0.0026
+      ],
+      [
+       0.243,
+       0.5046,
+       0.0026
+      ],
+      [
+       0.8413,
+       0.6649,
+       0.015
+      ],
+      [
+       0.7684,
+       0.5899,
+       0.0103
+      ],
+      [
+       0.7684,
+       0.5899,
+       0.0103
+      ],
+      [
+       0.7684,
+       0.5899,
+       0.0103
+      ],
+      [
+       0.1363,
+       0.4514,
+       0.0066
+      ],
+      [
+       0.1363,
+       0.4514,
+       0.0066
+      ],
+      [
+       0.733,
+       0.9362,
+       0.0016
+      ],
+      [
+       0.1458,
+       0.6547,
+       0.0121
+      ],
+      [
+       0.3499,
+       0.6396,
+       0.0014
+      ],
+      [
+       0.9633,
+       0.7771,
+       0.0036
+      ],
+      [
+       0.3195,
+       0.4584,
+       0.0051
+      ],
+      [
+       0.18,
+       0.6372,
+       0.002
+      ],
+      [
+       0.18,
+       0.6372,
+       0.002
+      ],
+      [
+       0.18,
+       0.6372,
+       0.002
+      ],
+      [
+       0.1681,
+       0.633,
+       0.0056
+      ],
+      [
+       0.7362,
+       0.8767,
+       0.0353
+      ],
+      [
+       0.7118,
+       0.0699,
+       0.001
+      ],
+      [
+       0.9288,
+       0.8594,
+       0.0061
+      ],
+      [
+       0.335,
+       0.7023,
+       0.0037
+      ],
+      [
+       0.7309,
+       0.6216,
+       0.0126
+      ],
+      [
+       0.7309,
+       0.6216,
+       0.0126
+      ],
+      [
+       0.7309,
+       0.6216,
+       0.0126
+      ],
+      [
+       0.6664,
+       0.4142,
+       0.0062
+      ],
+      [
+       0.7189,
+       0.8423,
+       0.0025
+      ],
+      [
+       0.5403,
+       0.9458,
+       0.0076
+      ],
+      [
+       0.1712,
+       0.6335,
+       0.0087
+      ],
+      [
+       0.5184,
+       0.928,
+       0.0061
+      ],
+      [
+       0.3891,
+       0.5565,
+       0.0027
+      ],
+      [
+       0.3891,
+       0.5565,
+       0.0027
+      ],
+      [
+       0.5393,
+       0.9486,
+       0.007
+      ],
+      [
+       0.7193,
+       0.6182,
+       0.006
+      ],
+      [
+       0.7193,
+       0.6182,
+       0.006
+      ],
+      [
+       0.102,
+       0.3503,
+       0.0172
+      ],
+      [
+       0.6275,
+       0.4586,
+       0.0059
+      ],
+      [
+       0.8163,
+       0.4932,
+       0.0019
+      ],
+      [
+       0.9657,
+       0.8442,
+       0.0075
+      ],
+      [
+       0.0868,
+       0.6904,
+       0.0039
+      ],
+      [
+       0.6153,
+       0.4931,
+       0.0018
+      ],
+      [
+       0.6153,
+       0.4931,
+       0.0018
+      ],
+      [
+       0.3626,
+       0.5967,
+       0.002
+      ],
+      [
+       0.3626,
+       0.5967,
+       0.002
+      ],
+      [
+       0.3626,
+       0.5967,
+       0.002
+      ],
+      [
+       0.7183,
+       0.4984,
+       0.0064
+      ],
+      [
+       0.4525,
+       0.6648,
+       0.0038
+      ],
+      [
+       0.4525,
+       0.6648,
+       0.0038
+      ],
+      [
+       0.076,
+       0.5598,
+       0.002
+      ],
+      [
+       0.0615,
+       0.6971,
+       0.0042
+      ],
+      [
+       0.635,
+       0.6917,
+       0.0156
+      ],
+      [
+       0.9409,
+       0.8018,
+       0.0054
+      ],
+      [
+       0.5154,
+       0.9009,
+       0.0046
+      ],
+      [
+       0.5456,
+       0.9546,
+       0.003
+      ],
+      [
+       0.8771,
+       0.7036,
+       0.0021
+      ],
+      [
+       0.1313,
+       0.5138,
+       0.0035
+      ],
+      [
+       0.5853,
+       0.7333,
+       0.0031
+      ],
+      [
+       0.2472,
+       0.6365,
+       0.0121
+      ],
+      [
+       0.2472,
+       0.6365,
+       0.0121
+      ],
+      [
+       0.1275,
+       0.6884,
+       0.0075
+      ],
+      [
+       0.8734,
+       0.4261,
+       0.0079
+      ],
+      [
+       0.2922,
+       0.4564,
+       0.0029
+      ],
+      [
+       0.8314,
+       0.871,
+       0.0031
+      ],
+      [
+       0.3711,
+       0.5619,
+       0.0021
+      ],
+      [
+       0.2498,
+       0.5072,
+       0.0025
+      ],
+      [
+       0.7636,
+       0.8954,
+       0.0053
+      ],
+      [
+       0.5218,
+       0.6409,
+       0.0031
+      ],
+      [
+       0.6328,
+       0.6307,
+       0.0039
+      ],
+      [
+       0.3387,
+       0.6827,
+       0.0013
+      ],
+      [
+       0.6422,
+       0.5672,
+       0.0091
+      ],
+      [
+       0.6609,
+       0.6691,
+       0.0021
+      ],
+      [
+       0.6859,
+       0.7481,
+       0.0059
+      ],
+      [
+       0.6412,
+       0.4014,
+       0.0353
+      ],
+      [
+       0.6358,
+       0.1184,
+       0.0025
+      ],
+      [
+       0.613,
+       0.5298,
+       0.0019
+      ],
+      [
+       0.7037,
+       0.8339,
+       0.0017
+      ],
+      [
+       0.7043,
+       0.8429,
+       0.0021
+      ],
+      [
+       0.7133,
+       0.8464,
+       0.0013
+      ],
+      [
+       0.8618,
+       0.7176,
+       0.0014
+      ],
+      [
+       0.6171,
+       0.5018,
+       0.0041
+      ],
+      [
+       0.6171,
+       0.5018,
+       0.0041
+      ],
+      [
+       0.9016,
+       0.4452,
+       0.0071
+      ],
+      [
+       0.7039,
+       0.834,
+       0.0018
+      ],
+      [
+       0.5871,
+       0.6283,
+       0.0034
+      ],
+      [
+       0.5504,
+       0.6031,
+       0.0029
+      ],
+      [
+       0.3187,
+       0.7576,
+       0.0069
+      ],
+      [
+       0.3187,
+       0.7576,
+       0.0069
+      ],
+      [
+       0.3218,
+       0.2296,
+       0.0012
+      ],
+      [
+       0.4765,
+       0.1512,
+       0.0023
+      ],
+      [
+       0.4765,
+       0.1512,
+       0.0023
+      ],
+      [
+       0.0799,
+       0.5551,
+       0.0017
+      ],
+      [
+       0.1845,
+       0.6417,
+       0.0015
+      ],
+      [
+       0.7968,
+       0.5196,
+       0.0107
+      ],
+      [
+       0.1581,
+       0.3158,
+       0.0035
+      ],
+      [
+       0.7383,
+       0.9287,
+       0.0019
+      ],
+      [
+       0.2857,
+       0.4514,
+       0.0059
+      ],
+      [
+       0.2857,
+       0.4514,
+       0.0059
+      ],
+      [
+       0.7148,
+       0.9186,
+       0.0016
+      ],
+      [
+       0.8193,
+       0.4891,
+       0.0013
+      ],
+      [
+       0.6479,
+       0.3328,
+       0.0164
+      ],
+      [
+       0.7018,
+       0.8582,
+       0.0019
+      ],
+      [
+       0.6999,
+       0.8669,
+       0.0056
+      ],
+      [
+       0.6999,
+       0.8669,
+       0.0056
+      ],
+      [
+       0.3784,
+       0.5208,
+       0.0031
+      ],
+      [
+       0.0543,
+       0.7651,
+       0.0212
+      ],
+      [
+       0.4113,
+       0.6758,
+       0.0071
+      ],
+      [
+       0.1018,
+       0.5923,
+       0.0057
+      ],
+      [
+       0.2624,
+       0.4471,
+       0.0084
+      ],
+      [
+       0.2079,
+       0.5666,
+       0.0061
+      ],
+      [
+       0.838,
+       0.5032,
+       0.0024
+      ],
+      [
+       0.7127,
+       0.9363,
+       0.0059
+      ],
+      [
+       0.745,
+       0.6499,
+       0.005
+      ],
+      [
+       0.2122,
+       0.4942,
+       0.0091
+      ],
+      [
+       0.2747,
+       0.5237,
+       0.0038
+      ],
+      [
+       0.633,
+       0.0872,
+       0.001
+      ],
+      [
+       0.633,
+       0.0872,
+       0.001
+      ],
+      [
+       0.5056,
+       0.0271,
+       0.0025
+      ],
+      [
+       0.5056,
+       0.0271,
+       0.0025
+      ],
+      [
+       0.8753,
+       0.2311,
+       0.033
+      ],
+      [
+       0.5023,
+       0.5347,
+       0.0012
+      ],
+      [
+       0.5023,
+       0.5347,
+       0.0012
+      ],
+      [
+       0.9745,
+       0.7938,
+       0.0079
+      ],
+      [
+       0.8625,
+       0.1145,
+       0.006
+      ],
+      [
+       0.2061,
+       0.8966,
+       0.0014
+      ],
+      [
+       0.5377,
+       0.6038,
+       0.0015
+      ],
+      [
+       0.5377,
+       0.6039,
+       0.0015
+      ],
+      [
+       0.4702,
+       0.1578,
+       0.0016
+      ],
+      [
+       0.21,
+       0.6104,
+       0.0083
+      ],
+      [
+       0.21,
+       0.6104,
+       0.0083
+      ],
+      [
+       0.7447,
+       0.5451,
+       0.0037
+      ]
+     ]
+    },
+    "areas": [
+     {
+      "position": "top left",
+      "points": 20,
+      "name": "hair",
+      "confidence": 0.547,
+      "runner_up": null
+     },
+     {
+      "position": "top centre",
+      "points": 49,
+      "name": "books",
+      "confidence": 0.301,
+      "runner_up": null
+     },
+     {
+      "position": "top right",
+      "points": 25,
+      "name": "person",
+      "confidence": 0.325,
+      "runner_up": "neck"
+     },
+     {
+      "position": "middle left",
+      "points": 108,
+      "name": "face",
+      "confidence": 0.747,
+      "runner_up": null
+     },
+     {
+      "position": "centre",
+      "points": 102,
+      "name": "eyes",
+      "confidence": 0.904,
+      "runner_up": null
+     },
+     {
+      "position": "middle right",
+      "points": 80,
+      "name": "face",
+      "confidence": 0.76,
+      "runner_up": null
+     },
+     {
+      "position": "bottom left",
+      "points": 26,
+      "name": "neck",
+      "confidence": 0.588,
+      "runner_up": "mouth"
+     },
+     {
+      "position": "bottom centre",
+      "points": 53,
+      "name": "eyes",
+      "confidence": 0.314,
+      "runner_up": null
+     },
+     {
+      "position": "bottom right",
+      "points": 62,
+      "name": "neck",
+      "confidence": 0.597,
+      "runner_up": "nose"
+     }
+    ],
+    "things": [
+     {
+      "name": "face",
+      "named": true,
+      "areas": [
+       3,
+       5
+      ],
+      "positions": [
+       "middle left",
+       "middle right"
+      ],
+      "points": 188,
+      "confidence": 0.754
+     },
+     {
+      "name": "eyes",
+      "named": true,
+      "areas": [
+       4,
+       7
+      ],
+      "positions": [
+       "centre",
+       "bottom centre"
+      ],
+      "points": 155,
+      "confidence": 0.609
+     },
+     {
+      "name": "neck",
+      "named": true,
+      "areas": [
+       6,
+       8
+      ],
+      "positions": [
+       "bottom left",
+       "bottom right"
+      ],
+      "points": 88,
+      "confidence": 0.593
+     },
+     {
+      "name": "books",
+      "named": true,
+      "areas": [
+       1
+      ],
+      "positions": [
+       "top centre"
+      ],
+      "points": 49,
+      "confidence": 0.301
+     },
+     {
+      "name": "person",
+      "named": true,
+      "areas": [
+       2
+      ],
+      "positions": [
+       "top right"
+      ],
+      "points": 25,
+      "confidence": 0.325
+     },
+     {
+      "name": "hair",
+      "named": true,
+      "areas": [
+       0
+      ],
+      "positions": [
+       "top left"
+      ],
+      "points": 20,
+      "confidence": 0.547
+     }
+    ],
+    "palette": [
+     {
+      "hex": "#1d1b13",
+      "share": 0.29
+     },
+     {
+      "hex": "#77963c",
+      "share": 0.213
+     },
+     {
+      "hex": "#3c3725",
+      "share": 0.208
+     },
+     {
+      "hex": "#b89771",
+      "share": 0.147
+     },
+     {
+      "hex": "#79673b",
+      "share": 0.142
+     }
+    ],
+    "medium": {
+     "name": "photograph",
+     "confidence": 0.912
+    },
+    "namer": "OpenCLIP ViT-B/32, DataComp-XL weights (MIT licence)",
+    "preview_jpeg_base64": {
+     "bytes": 32752,
+     "sha256": "d961ff750914816d0e37f637aad9406beaba215caf885e342501f463416f11b2"
+    }
+   }
+  }
+ },
+ "bias_map": {
+  "generated": true,
+  "generated_at_utc": "2026-09-17T09:36:02.578021+00:00",
+  "total_images": 8,
+  "overall_accuracy": 0.5,
+  "min_trustworthy_group_size": 20,
+  "scope_warning": "The numbers below are not yet meaningful -- please don't read anything into them. This run used only 8 images (the project's original test set), far below the 20+ needed per group before an accuracy number means anything, and generator is 'unknown' for every one of them because nobody recorded which AI tool made them. What this run DOES prove: the pipeline -- score every image, slice by category, render as a dashboard -- works correctly end to end. Turning it into a real bias map needs a properly sized, generator-labeled dataset (300-500 images; see the Phase 2 build plan) in place of this placeholder one.",
+  "by_generator": {
+   "unknown": {
+    "accuracy": 0.5,
+    "sample_count": 8,
+    "trustworthy": false
+   }
+  },
+  "by_subject": {
+   "face": {
+    "accuracy": 0.4286,
+    "sample_count": 7,
+    "trustworthy": false
+   },
+   "group": {
+    "accuracy": 1.0,
+    "sample_count": 1,
+    "trustworthy": false
+   }
+  },
+  "by_style": {
+   "studio": {
+    "accuracy": 1.0,
+    "sample_count": 1,
+    "trustworthy": false
+   },
+   "casual": {
+    "accuracy": 0.5,
+    "sample_count": 4,
+    "trustworthy": false
+   },
+   "stock": {
+    "accuracy": 0.3333,
+    "sample_count": 3,
+    "trustworthy": false
+   }
+  },
+  "by_combination": {
+   "unknown / face / studio": {
+    "accuracy": 1.0,
+    "sample_count": 1,
+    "trustworthy": false
+   },
+   "unknown / face / casual": {
+    "accuracy": 0.3333,
+    "sample_count": 3,
+    "trustworthy": false
+   },
+   "unknown / group / casual": {
+    "accuracy": 1.0,
+    "sample_count": 1,
+    "trustworthy": false
+   },
+   "unknown / face / stock": {
+    "accuracy": 0.3333,
+    "sample_count": 3,
+    "trustworthy": false
+   }
+  },
+  "rows": [
+   {
+    "filename": "real1.png",
+    "true_label": "real",
+    "generator": "unknown",
+    "subject": "face",
+    "style": "studio",
+    "probability_fake": 0.0065,
+    "predicted_label": "real",
+    "correct": true
+   },
+   {
+    "filename": "real2.jpg",
+    "true_label": "real",
+    "generator": "unknown",
+    "subject": "face",
+    "style": "casual",
+    "probability_fake": 0.5337,
+    "predicted_label": "fake",
+    "correct": false
+   },
+   {
+    "filename": "real3.jpg",
+    "true_label": "real",
+    "generator": "unknown",
+    "subject": "group",
+    "style": "casual",
+    "probability_fake": 0.0083,
+    "predicted_label": "real",
+    "correct": true
+   },
+   {
+    "filename": "real4.jpg",
+    "true_label": "real",
+    "generator": "unknown",
+    "subject": "face",
+    "style": "casual",
+    "probability_fake": 0.0002,
+    "predicted_label": "real",
+    "correct": true
+   },
+   {
+    "filename": "ai1.png",
+    "true_label": "fake",
+    "generator": "unknown",
+    "subject": "face",
+    "style": "stock",
+    "probability_fake": 0.045,
+    "predicted_label": "real",
+    "correct": false
+   },
+   {
+    "filename": "ai2.png",
+    "true_label": "fake",
+    "generator": "unknown",
+    "subject": "face",
+    "style": "stock",
+    "probability_fake": 0.0439,
+    "predicted_label": "real",
+    "correct": false
+   },
+   {
+    "filename": "ai3.png",
+    "true_label": "fake",
+    "generator": "unknown",
+    "subject": "face",
+    "style": "casual",
+    "probability_fake": 0.0,
+    "predicted_label": "real",
+    "correct": false
+   },
+   {
+    "filename": "ai4.png",
+    "true_label": "fake",
+    "generator": "unknown",
+    "subject": "face",
+    "style": "stock",
+    "probability_fake": 0.5674,
+    "predicted_label": "fake",
+    "correct": true
+   }
+  ]
+ }
+}

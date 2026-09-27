@@ -1,0 +1,13 @@
+{
+ "detector_temperature": 10.6412,
+ "attribution_unknown_threshold": 1.0,
+ "attribution_score": "top softmax probability; a tool is named only when it is above the threshold",
+ "attribution_policy": "naming switched off: on the calibration set its top probability separates known from unknown tools no better than chance (AUROC 0.301)",
+ "fitted_on": "evaluation/calibration_set_manifest.csv (never the exam set)",
+ "fitted_by": "evaluation/run_exam.py 2026-09-27_baseline --fit",
+ "fitted_at_utc": "2026-09-27T08:05:26.010607+00:00",
+ "exam_effect": {
+  "ece_before": 0.2272,
+  "ece_after": 0.0898
+ }
+}

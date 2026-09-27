@@ -1,147 +1,1424 @@
 {
-  "generated_at_utc": "2026-09-17T09:36:02.578021+00:00",
-  "total_images": 8,
-  "overall_accuracy": 0.5,
-  "min_trustworthy_group_size": 20,
-  "scope_warning": "The numbers below are not yet meaningful -- please don't read anything into them. This run used only 8 images (the project's original test set), far below the 20+ needed per group before an accuracy number means anything, and generator is 'unknown' for every one of them because nobody recorded which AI tool made them. What this run DOES prove: the pipeline -- score every image, slice by category, render as a dashboard -- works correctly end to end. Turning it into a real bias map needs a properly sized, generator-labeled dataset (300-500 images; see the Phase 2 build plan) in place of this placeholder one.",
-  "by_generator": {
+ "generated_at_utc": "2026-09-27T08:05:26.010607+00:00",
+ "total_images": 621,
+ "overall_accuracy": 0.6039,
+ "min_trustworthy_group_size": 20,
+ "scope_note": "Scored on the exam set: 621 labelled images (370 AI-generated, 251 real) from OpenFake's held-out test split, its Reddit set, CNNDetection, GenImage, Wikimedia Commons and this project's earlier test images, every label taken from its source. A cell's percentage is how often the page's verdict was right; 'inconclusive' counts as not right. Details: evaluation/BASELINE.md.",
+ "headline": {
+  "caught": 0.5784,
+  "false_alarm": 0.1394,
+  "missed": 0.273,
+  "inconclusive": 0.1771,
+  "auc": 0.7621
+ },
+ "sections": [
+  {
+   "title": "By generator, and by kind of real photo",
+   "note": "AI groups: share called AI-generated. Real groups: share called authentic.",
+   "groups": {
+    "AI-subreddit posts (tool not recorded)": {
+     "accuracy": 0.6769,
+     "sample_count": 65,
+     "trustworthy": true,
+     "wrong": 0.1538,
+     "inconclusive": 0.1692,
+     "n_ai": 65,
+     "n_real": 0
+    },
+    "adm": {
+     "accuracy": 0.3333,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.6667,
+     "inconclusive": 0.0,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "aurora-20-1-25": {
+     "accuracy": 0.5,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.3333,
+     "inconclusive": 0.1667,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "biggan": {
+     "accuracy": 0.25,
+     "sample_count": 8,
+     "trustworthy": false,
+     "wrong": 0.375,
+     "inconclusive": 0.375,
+     "n_ai": 8,
+     "n_real": 0
+    },
+    "biggan (GenImage)": {
+     "accuracy": 0.25,
+     "sample_count": 4,
+     "trustworthy": false,
+     "wrong": 0.5,
+     "inconclusive": 0.25,
+     "n_ai": 4,
+     "n_real": 0
+    },
+    "cyclegan": {
+     "accuracy": 0.25,
+     "sample_count": 8,
+     "trustworthy": false,
+     "wrong": 0.75,
+     "inconclusive": 0.0,
+     "n_ai": 8,
+     "n_real": 0
+    },
+    "dalle-3": {
+     "accuracy": 1.0,
+     "sample_count": 34,
+     "trustworthy": true,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 34,
+     "n_real": 0
+    },
+    "ernie-image": {
+     "accuracy": 0.6667,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.3333,
+     "inconclusive": 0.0,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "ernie-image-turbo": {
+     "accuracy": 1.0,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "flux.2-klein-9b": {
+     "accuracy": 0.1,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.8,
+     "inconclusive": 0.1,
+     "n_ai": 10,
+     "n_real": 0
+    },
+    "frames-23-1-25": {
+     "accuracy": 0.6667,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.3333,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "gaugan": {
+     "accuracy": 0.0,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 1.0,
+     "inconclusive": 0.0,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "glide": {
+     "accuracy": 0.125,
+     "sample_count": 8,
+     "trustworthy": false,
+     "wrong": 0.875,
+     "inconclusive": 0.0,
+     "n_ai": 8,
+     "n_real": 0
+    },
+    "gpt-image-1.5": {
+     "accuracy": 0.8,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.2,
+     "inconclusive": 0.0,
+     "n_ai": 10,
+     "n_real": 0
+    },
+    "gpt-image-2": {
+     "accuracy": 0.6,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.2,
+     "inconclusive": 0.2,
+     "n_ai": 10,
+     "n_real": 0
+    },
+    "halfmoon-4-4-25": {
+     "accuracy": 0.6667,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.1667,
+     "inconclusive": 0.1667,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "ideogram-2.0": {
+     "accuracy": 0.5,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.3333,
+     "inconclusive": 0.1667,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "illustrious": {
+     "accuracy": 1.0,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 10,
+     "n_real": 0
+    },
+    "lumina-17-2-25": {
+     "accuracy": 0.8333,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.1667,
+     "inconclusive": 0.0,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "midjourney-5": {
+     "accuracy": 0.3571,
+     "sample_count": 14,
+     "trustworthy": false,
+     "wrong": 0.2857,
+     "inconclusive": 0.3571,
+     "n_ai": 14,
+     "n_real": 0
+    },
+    "midjourney-5 (GenImage)": {
+     "accuracy": 1.0,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "midjourney-7": {
+     "accuracy": 0.6,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.2,
+     "inconclusive": 0.2,
+     "n_ai": 10,
+     "n_real": 0
+    },
+    "nano-banana-pro": {
+     "accuracy": 0.6,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.1,
+     "inconclusive": 0.3,
+     "n_ai": 10,
+     "n_real": 0
+    },
+    "progan": {
+     "accuracy": 0.25,
+     "sample_count": 8,
+     "trustworthy": false,
+     "wrong": 0.5,
+     "inconclusive": 0.25,
+     "n_ai": 8,
+     "n_real": 0
+    },
+    "project's original AI images [used during development]": {
+     "accuracy": 0.0,
+     "sample_count": 4,
+     "trustworthy": false,
+     "wrong": 0.75,
+     "inconclusive": 0.25,
+     "n_ai": 4,
+     "n_real": 0
+    },
+    "real: CNNDetection real set (LSUN, ImageNet, faces)": {
+     "accuracy": 0.625,
+     "sample_count": 24,
+     "trustworthy": true,
+     "wrong": 0.0417,
+     "inconclusive": 0.3333,
+     "n_ai": 0,
+     "n_real": 24
+    },
+    "real: DOCCI photos": {
+     "accuracy": 0.6571,
+     "sample_count": 70,
+     "trustworthy": true,
+     "wrong": 0.2,
+     "inconclusive": 0.1429,
+     "n_ai": 0,
+     "n_real": 70
+    },
+    "real: FFHQ faces [in the detector's training data]": {
+     "accuracy": 0.5,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.1667,
+     "inconclusive": 0.3333,
+     "n_ai": 0,
+     "n_real": 6
+    },
+    "real: GenImage real set (ImageNet)": {
+     "accuracy": 0.8125,
+     "sample_count": 16,
+     "trustworthy": false,
+     "wrong": 0.0625,
+     "inconclusive": 0.125,
+     "n_ai": 0,
+     "n_real": 16
+    },
+    "real: ImageNet photos": {
+     "accuracy": 0.5429,
+     "sample_count": 70,
+     "trustworthy": true,
+     "wrong": 0.1571,
+     "inconclusive": 0.3,
+     "n_ai": 0,
+     "n_real": 70
+    },
+    "real: Reddit photography posts": {
+     "accuracy": 0.6615,
+     "sample_count": 65,
+     "trustworthy": true,
+     "wrong": 0.1231,
+     "inconclusive": 0.2154,
+     "n_ai": 0,
+     "n_real": 65
+    },
+    "real: Wikimedia Commons (India)": {
+     "accuracy": 1.0,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 0,
+     "n_real": 6
+    },
+    "real: project's original test photos [used during development]": {
+     "accuracy": 0.75,
+     "sample_count": 4,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.25,
+     "n_ai": 0,
+     "n_real": 4
+    },
+    "recraft-v2": {
+     "accuracy": 0.5,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.3333,
+     "inconclusive": 0.1667,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "recraft-v3": {
+     "accuracy": 0.5,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.3333,
+     "inconclusive": 0.1667,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "sd-1.4 (GenImage)": {
+     "accuracy": 0.1667,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.1667,
+     "inconclusive": 0.6667,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "sd-1.5 (GenImage)": {
+     "accuracy": 0.3333,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.3333,
+     "inconclusive": 0.3333,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "seedream-v5.0": {
+     "accuracy": 0.7,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.3,
+     "n_ai": 10,
+     "n_real": 0
+    },
+    "sora-2": {
+     "accuracy": 0.8,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.2,
+     "n_ai": 10,
+     "n_real": 0
+    },
+    "stable-diffusion (version not stated)": {
+     "accuracy": 1.0,
+     "sample_count": 1,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 1,
+     "n_real": 0
+    },
+    "stable-diffusion-3.5": {
+     "accuracy": 1.0,
+     "sample_count": 1,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 1,
+     "n_real": 0
+    },
+    "stargan": {
+     "accuracy": 0.1667,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.8333,
+     "inconclusive": 0.0,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "stylegan (version not stated)": {
+     "accuracy": 1.0,
+     "sample_count": 2,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 2,
+     "n_real": 0
+    },
+    "stylegan faces (whichfaceisreal) [in the detector's training data]": {
+     "accuracy": 1.0,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "stylegan2": {
+     "accuracy": 0.125,
+     "sample_count": 8,
+     "trustworthy": false,
+     "wrong": 0.875,
+     "inconclusive": 0.0,
+     "n_ai": 8,
+     "n_real": 0
+    },
     "unknown": {
-      "accuracy": 0.5,
-      "sample_count": 8,
-      "trustworthy": false
+     "accuracy": 1.0,
+     "sample_count": 1,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 1,
+     "n_real": 0
+    },
+    "veo-3": {
+     "accuracy": 0.5,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.4,
+     "inconclusive": 0.1,
+     "n_ai": 10,
+     "n_real": 0
+    },
+    "vqdm": {
+     "accuracy": 0.3333,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.3333,
+     "inconclusive": 0.3333,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "wan-video-2.5": {
+     "accuracy": 1.0,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "wukong": {
+     "accuracy": 0.5,
+     "sample_count": 6,
+     "trustworthy": false,
+     "wrong": 0.1667,
+     "inconclusive": 0.3333,
+     "n_ai": 6,
+     "n_real": 0
+    },
+    "z-image-turbo": {
+     "accuracy": 0.2,
+     "sample_count": 10,
+     "trustworthy": false,
+     "wrong": 0.6,
+     "inconclusive": 0.2,
+     "n_ai": 10,
+     "n_real": 0
     }
+   }
   },
-  "by_subject": {
-    "face": {
-      "accuracy": 0.4286,
-      "sample_count": 7,
-      "trustworthy": false
+  {
+   "title": "By where the images came from",
+   "note": "",
+   "groups": {
+    "CNNDetection: older GANs (2017-2020)": {
+     "accuracy": 0.3382,
+     "sample_count": 68,
+     "trustworthy": true,
+     "wrong": 0.4706,
+     "inconclusive": 0.1912,
+     "n_ai": 44,
+     "n_real": 24
     },
-    "group": {
-      "accuracy": 1.0,
-      "sample_count": 1,
-      "trustworthy": false
+    "GenImage: older diffusion models and GANs": {
+     "accuracy": 0.4844,
+     "sample_count": 64,
+     "trustworthy": true,
+     "wrong": 0.3125,
+     "inconclusive": 0.2031,
+     "n_ai": 48,
+     "n_real": 16
+    },
+    "OpenFake Reddit set: pictures as they circulate online": {
+     "accuracy": 0.6692,
+     "sample_count": 130,
+     "trustworthy": true,
+     "wrong": 0.1385,
+     "inconclusive": 0.1923,
+     "n_ai": 65,
+     "n_real": 65
+    },
+    "OpenFake test split: generators no training set contains": {
+     "accuracy": 0.6133,
+     "sample_count": 300,
+     "trustworthy": true,
+     "wrong": 0.2067,
+     "inconclusive": 0.18,
+     "n_ai": 160,
+     "n_real": 140
+    },
+    "Our 44 outside images (DALL-E 3, MidJourney v5)": {
+     "accuracy": 0.7955,
+     "sample_count": 44,
+     "trustworthy": true,
+     "wrong": 0.0909,
+     "inconclusive": 0.1136,
+     "n_ai": 44,
+     "n_real": 0
+    },
+    "Wikimedia Commons pictures": {
+     "accuracy": 1.0,
+     "sample_count": 15,
+     "trustworthy": false,
+     "wrong": 0.0,
+     "inconclusive": 0.0,
+     "n_ai": 9,
+     "n_real": 6
     }
+   }
   },
-  "by_style": {
-    "studio": {
-      "accuracy": 1.0,
-      "sample_count": 1,
-      "trustworthy": false
+  {
+   "title": "By kind of generator",
+   "note": "",
+   "groups": {
+    "closed commercial": {
+     "accuracy": 0.7131,
+     "sample_count": 122,
+     "trustworthy": true,
+     "wrong": 0.1393,
+     "inconclusive": 0.1475,
+     "n_ai": 122,
+     "n_real": 0
     },
-    "casual": {
-      "accuracy": 0.5,
-      "sample_count": 4,
-      "trustworthy": false
+    "older research model": {
+     "accuracy": 0.25,
+     "sample_count": 88,
+     "trustworthy": true,
+     "wrong": 0.5682,
+     "inconclusive": 0.1818,
+     "n_ai": 88,
+     "n_real": 0
     },
-    "stock": {
-      "accuracy": 0.3333,
-      "sample_count": 3,
-      "trustworthy": false
+    "open weights": {
+     "accuracy": 0.4688,
+     "sample_count": 32,
+     "trustworthy": true,
+     "wrong": 0.4375,
+     "inconclusive": 0.0938,
+     "n_ai": 32,
+     "n_real": 0
+    },
+    "other / unknown": {
+     "accuracy": 0.6961,
+     "sample_count": 102,
+     "trustworthy": true,
+     "wrong": 0.1569,
+     "inconclusive": 0.1471,
+     "n_ai": 102,
+     "n_real": 0
+    },
+    "real photo": {
+     "accuracy": 0.6414,
+     "sample_count": 251,
+     "trustworthy": true,
+     "wrong": 0.1394,
+     "inconclusive": 0.2191,
+     "n_ai": 0,
+     "n_real": 251
+    },
+    "video-model frame": {
+     "accuracy": 0.7308,
+     "sample_count": 26,
+     "trustworthy": true,
+     "wrong": 0.1538,
+     "inconclusive": 0.1154,
+     "n_ai": 26,
+     "n_real": 0
     }
+   }
   },
-  "by_combination": {
-    "unknown / face / studio": {
-      "accuracy": 1.0,
-      "sample_count": 1,
-      "trustworthy": false
+  {
+   "title": "By subject",
+   "note": "Subjects are machine-labelled by CLIP, so approximate.",
+   "groups": {
+    "animal": {
+     "accuracy": 0.5267,
+     "sample_count": 131,
+     "trustworthy": true,
+     "wrong": 0.2366,
+     "inconclusive": 0.2366,
+     "n_ai": 38,
+     "n_real": 93
     },
-    "unknown / face / casual": {
-      "accuracy": 0.3333,
-      "sample_count": 3,
-      "trustworthy": false
+    "art or illustration": {
+     "accuracy": 0.8015,
+     "sample_count": 136,
+     "trustworthy": true,
+     "wrong": 0.0882,
+     "inconclusive": 0.1103,
+     "n_ai": 123,
+     "n_real": 13
     },
-    "unknown / group / casual": {
-      "accuracy": 1.0,
-      "sample_count": 1,
-      "trustworthy": false
+    "food": {
+     "accuracy": 0.8,
+     "sample_count": 15,
+     "trustworthy": false,
+     "wrong": 0.0667,
+     "inconclusive": 0.1333,
+     "n_ai": 12,
+     "n_real": 3
     },
-    "unknown / face / stock": {
-      "accuracy": 0.3333,
-      "sample_count": 3,
-      "trustworthy": false
+    "indoor scene": {
+     "accuracy": 0.7826,
+     "sample_count": 23,
+     "trustworthy": true,
+     "wrong": 0.2174,
+     "inconclusive": 0.0,
+     "n_ai": 18,
+     "n_real": 5
+    },
+    "nature or landscape": {
+     "accuracy": 0.7576,
+     "sample_count": 33,
+     "trustworthy": true,
+     "wrong": 0.1818,
+     "inconclusive": 0.0606,
+     "n_ai": 14,
+     "n_real": 19
+    },
+    "object": {
+     "accuracy": 0.5211,
+     "sample_count": 142,
+     "trustworthy": true,
+     "wrong": 0.2324,
+     "inconclusive": 0.2465,
+     "n_ai": 75,
+     "n_real": 67
+    },
+    "people": {
+     "accuracy": 0.4615,
+     "sample_count": 26,
+     "trustworthy": true,
+     "wrong": 0.4615,
+     "inconclusive": 0.0769,
+     "n_ai": 18,
+     "n_real": 8
+    },
+    "portrait": {
+     "accuracy": 0.3158,
+     "sample_count": 38,
+     "trustworthy": true,
+     "wrong": 0.3947,
+     "inconclusive": 0.2895,
+     "n_ai": 29,
+     "n_real": 9
+    },
+    "street or buildings": {
+     "accuracy": 0.5909,
+     "sample_count": 22,
+     "trustworthy": true,
+     "wrong": 0.3182,
+     "inconclusive": 0.0909,
+     "n_ai": 8,
+     "n_real": 14
+    },
+    "text or graphic": {
+     "accuracy": 0.5833,
+     "sample_count": 24,
+     "trustworthy": true,
+     "wrong": 0.2083,
+     "inconclusive": 0.2083,
+     "n_ai": 22,
+     "n_real": 2
+    },
+    "vehicle": {
+     "accuracy": 0.5484,
+     "sample_count": 31,
+     "trustworthy": true,
+     "wrong": 0.2903,
+     "inconclusive": 0.1613,
+     "n_ai": 13,
+     "n_real": 18
     }
+   }
   },
-  "rows": [
-    {
-      "filename": "real1.png",
-      "true_label": "real",
-      "generator": "unknown",
-      "subject": "face",
-      "style": "studio",
-      "probability_fake": 0.0065,
-      "predicted_label": "real",
-      "correct": true
+  {
+   "title": "By image size (longest side)",
+   "note": "",
+   "groups": {
+    "1024-2047 px": {
+     "accuracy": 0.6906,
+     "sample_count": 223,
+     "trustworthy": true,
+     "wrong": 0.1883,
+     "inconclusive": 0.1211,
+     "n_ai": 211,
+     "n_real": 12
     },
-    {
-      "filename": "real2.jpg",
-      "true_label": "real",
-      "generator": "unknown",
-      "subject": "face",
-      "style": "casual",
-      "probability_fake": 0.5337,
-      "predicted_label": "fake",
-      "correct": false
+    "2048 px and over": {
+     "accuracy": 0.6982,
+     "sample_count": 169,
+     "trustworthy": true,
+     "wrong": 0.1361,
+     "inconclusive": 0.1657,
+     "n_ai": 38,
+     "n_real": 131
     },
-    {
-      "filename": "real3.jpg",
-      "true_label": "real",
-      "generator": "unknown",
-      "subject": "group",
-      "style": "casual",
-      "probability_fake": 0.0083,
-      "predicted_label": "real",
-      "correct": true
+    "512-1023 px": {
+     "accuracy": 0.4655,
+     "sample_count": 58,
+     "trustworthy": true,
+     "wrong": 0.2241,
+     "inconclusive": 0.3103,
+     "n_ai": 46,
+     "n_real": 12
     },
-    {
-      "filename": "real4.jpg",
-      "true_label": "real",
-      "generator": "unknown",
-      "subject": "face",
-      "style": "casual",
-      "probability_fake": 0.0002,
-      "predicted_label": "real",
-      "correct": true
-    },
-    {
-      "filename": "ai1.png",
-      "true_label": "fake",
-      "generator": "unknown",
-      "subject": "face",
-      "style": "stock",
-      "probability_fake": 0.045,
-      "predicted_label": "real",
-      "correct": false
-    },
-    {
-      "filename": "ai2.png",
-      "true_label": "fake",
-      "generator": "unknown",
-      "subject": "face",
-      "style": "stock",
-      "probability_fake": 0.0439,
-      "predicted_label": "real",
-      "correct": false
-    },
-    {
-      "filename": "ai3.png",
-      "true_label": "fake",
-      "generator": "unknown",
-      "subject": "face",
-      "style": "casual",
-      "probability_fake": 0.0,
-      "predicted_label": "real",
-      "correct": false
-    },
-    {
-      "filename": "ai4.png",
-      "true_label": "fake",
-      "generator": "unknown",
-      "subject": "face",
-      "style": "stock",
-      "probability_fake": 0.5674,
-      "predicted_label": "fake",
-      "correct": true
+    "under 512 px": {
+     "accuracy": 0.4444,
+     "sample_count": 171,
+     "trustworthy": true,
+     "wrong": 0.3392,
+     "inconclusive": 0.2164,
+     "n_ai": 75,
+     "n_real": 96
     }
-  ]
+   }
+  },
+  {
+   "title": "By file format",
+   "note": "",
+   "groups": {
+    "JPEG": {
+     "accuracy": 0.6429,
+     "sample_count": 392,
+     "trustworthy": true,
+     "wrong": 0.176,
+     "inconclusive": 0.1811,
+     "n_ai": 165,
+     "n_real": 227
+    },
+    "PNG": {
+     "accuracy": 0.4754,
+     "sample_count": 183,
+     "trustworthy": true,
+     "wrong": 0.3443,
+     "inconclusive": 0.1803,
+     "n_ai": 159,
+     "n_real": 24
+    },
+    "WEBP": {
+     "accuracy": 0.7826,
+     "sample_count": 46,
+     "trustworthy": true,
+     "wrong": 0.087,
+     "inconclusive": 0.1304,
+     "n_ai": 46,
+     "n_real": 0
+    }
+   }
+  },
+  {
+   "title": "Same images, re-saved like a messaging app",
+   "note": "80 pairs: long side up to 1600 px, JPEG quality 75.",
+   "groups": {
+    "originals": {
+     "accuracy": 0.575,
+     "sample_count": 80,
+     "trustworthy": true,
+     "wrong": 0.2625,
+     "inconclusive": 0.1625,
+     "n_ai": 40,
+     "n_real": 40
+    },
+    "social-media copies": {
+     "accuracy": 0.575,
+     "sample_count": 80,
+     "trustworthy": true,
+     "wrong": 0.25,
+     "inconclusive": 0.175,
+     "n_ai": 40,
+     "n_real": 40
+    }
+   }
+  }
+ ],
+ "by_generator": {
+  "AI-subreddit posts (tool not recorded)": {
+   "accuracy": 0.6769,
+   "sample_count": 65,
+   "trustworthy": true,
+   "wrong": 0.1538,
+   "inconclusive": 0.1692,
+   "n_ai": 65,
+   "n_real": 0
+  },
+  "adm": {
+   "accuracy": 0.3333,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.6667,
+   "inconclusive": 0.0,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "aurora-20-1-25": {
+   "accuracy": 0.5,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.3333,
+   "inconclusive": 0.1667,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "biggan": {
+   "accuracy": 0.25,
+   "sample_count": 8,
+   "trustworthy": false,
+   "wrong": 0.375,
+   "inconclusive": 0.375,
+   "n_ai": 8,
+   "n_real": 0
+  },
+  "biggan (GenImage)": {
+   "accuracy": 0.25,
+   "sample_count": 4,
+   "trustworthy": false,
+   "wrong": 0.5,
+   "inconclusive": 0.25,
+   "n_ai": 4,
+   "n_real": 0
+  },
+  "cyclegan": {
+   "accuracy": 0.25,
+   "sample_count": 8,
+   "trustworthy": false,
+   "wrong": 0.75,
+   "inconclusive": 0.0,
+   "n_ai": 8,
+   "n_real": 0
+  },
+  "dalle-3": {
+   "accuracy": 1.0,
+   "sample_count": 34,
+   "trustworthy": true,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 34,
+   "n_real": 0
+  },
+  "ernie-image": {
+   "accuracy": 0.6667,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.3333,
+   "inconclusive": 0.0,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "ernie-image-turbo": {
+   "accuracy": 1.0,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "flux.2-klein-9b": {
+   "accuracy": 0.1,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.8,
+   "inconclusive": 0.1,
+   "n_ai": 10,
+   "n_real": 0
+  },
+  "frames-23-1-25": {
+   "accuracy": 0.6667,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.3333,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "gaugan": {
+   "accuracy": 0.0,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 1.0,
+   "inconclusive": 0.0,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "glide": {
+   "accuracy": 0.125,
+   "sample_count": 8,
+   "trustworthy": false,
+   "wrong": 0.875,
+   "inconclusive": 0.0,
+   "n_ai": 8,
+   "n_real": 0
+  },
+  "gpt-image-1.5": {
+   "accuracy": 0.8,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.2,
+   "inconclusive": 0.0,
+   "n_ai": 10,
+   "n_real": 0
+  },
+  "gpt-image-2": {
+   "accuracy": 0.6,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.2,
+   "inconclusive": 0.2,
+   "n_ai": 10,
+   "n_real": 0
+  },
+  "halfmoon-4-4-25": {
+   "accuracy": 0.6667,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.1667,
+   "inconclusive": 0.1667,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "ideogram-2.0": {
+   "accuracy": 0.5,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.3333,
+   "inconclusive": 0.1667,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "illustrious": {
+   "accuracy": 1.0,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 10,
+   "n_real": 0
+  },
+  "lumina-17-2-25": {
+   "accuracy": 0.8333,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.1667,
+   "inconclusive": 0.0,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "midjourney-5": {
+   "accuracy": 0.3571,
+   "sample_count": 14,
+   "trustworthy": false,
+   "wrong": 0.2857,
+   "inconclusive": 0.3571,
+   "n_ai": 14,
+   "n_real": 0
+  },
+  "midjourney-5 (GenImage)": {
+   "accuracy": 1.0,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "midjourney-7": {
+   "accuracy": 0.6,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.2,
+   "inconclusive": 0.2,
+   "n_ai": 10,
+   "n_real": 0
+  },
+  "nano-banana-pro": {
+   "accuracy": 0.6,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.1,
+   "inconclusive": 0.3,
+   "n_ai": 10,
+   "n_real": 0
+  },
+  "progan": {
+   "accuracy": 0.25,
+   "sample_count": 8,
+   "trustworthy": false,
+   "wrong": 0.5,
+   "inconclusive": 0.25,
+   "n_ai": 8,
+   "n_real": 0
+  },
+  "project's original AI images [used during development]": {
+   "accuracy": 0.0,
+   "sample_count": 4,
+   "trustworthy": false,
+   "wrong": 0.75,
+   "inconclusive": 0.25,
+   "n_ai": 4,
+   "n_real": 0
+  },
+  "real: CNNDetection real set (LSUN, ImageNet, faces)": {
+   "accuracy": 0.625,
+   "sample_count": 24,
+   "trustworthy": true,
+   "wrong": 0.0417,
+   "inconclusive": 0.3333,
+   "n_ai": 0,
+   "n_real": 24
+  },
+  "real: DOCCI photos": {
+   "accuracy": 0.6571,
+   "sample_count": 70,
+   "trustworthy": true,
+   "wrong": 0.2,
+   "inconclusive": 0.1429,
+   "n_ai": 0,
+   "n_real": 70
+  },
+  "real: FFHQ faces [in the detector's training data]": {
+   "accuracy": 0.5,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.1667,
+   "inconclusive": 0.3333,
+   "n_ai": 0,
+   "n_real": 6
+  },
+  "real: GenImage real set (ImageNet)": {
+   "accuracy": 0.8125,
+   "sample_count": 16,
+   "trustworthy": false,
+   "wrong": 0.0625,
+   "inconclusive": 0.125,
+   "n_ai": 0,
+   "n_real": 16
+  },
+  "real: ImageNet photos": {
+   "accuracy": 0.5429,
+   "sample_count": 70,
+   "trustworthy": true,
+   "wrong": 0.1571,
+   "inconclusive": 0.3,
+   "n_ai": 0,
+   "n_real": 70
+  },
+  "real: Reddit photography posts": {
+   "accuracy": 0.6615,
+   "sample_count": 65,
+   "trustworthy": true,
+   "wrong": 0.1231,
+   "inconclusive": 0.2154,
+   "n_ai": 0,
+   "n_real": 65
+  },
+  "real: Wikimedia Commons (India)": {
+   "accuracy": 1.0,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 0,
+   "n_real": 6
+  },
+  "real: project's original test photos [used during development]": {
+   "accuracy": 0.75,
+   "sample_count": 4,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.25,
+   "n_ai": 0,
+   "n_real": 4
+  },
+  "recraft-v2": {
+   "accuracy": 0.5,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.3333,
+   "inconclusive": 0.1667,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "recraft-v3": {
+   "accuracy": 0.5,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.3333,
+   "inconclusive": 0.1667,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "sd-1.4 (GenImage)": {
+   "accuracy": 0.1667,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.1667,
+   "inconclusive": 0.6667,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "sd-1.5 (GenImage)": {
+   "accuracy": 0.3333,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.3333,
+   "inconclusive": 0.3333,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "seedream-v5.0": {
+   "accuracy": 0.7,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.3,
+   "n_ai": 10,
+   "n_real": 0
+  },
+  "sora-2": {
+   "accuracy": 0.8,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.2,
+   "n_ai": 10,
+   "n_real": 0
+  },
+  "stable-diffusion (version not stated)": {
+   "accuracy": 1.0,
+   "sample_count": 1,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 1,
+   "n_real": 0
+  },
+  "stable-diffusion-3.5": {
+   "accuracy": 1.0,
+   "sample_count": 1,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 1,
+   "n_real": 0
+  },
+  "stargan": {
+   "accuracy": 0.1667,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.8333,
+   "inconclusive": 0.0,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "stylegan (version not stated)": {
+   "accuracy": 1.0,
+   "sample_count": 2,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 2,
+   "n_real": 0
+  },
+  "stylegan faces (whichfaceisreal) [in the detector's training data]": {
+   "accuracy": 1.0,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "stylegan2": {
+   "accuracy": 0.125,
+   "sample_count": 8,
+   "trustworthy": false,
+   "wrong": 0.875,
+   "inconclusive": 0.0,
+   "n_ai": 8,
+   "n_real": 0
+  },
+  "unknown": {
+   "accuracy": 1.0,
+   "sample_count": 1,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 1,
+   "n_real": 0
+  },
+  "veo-3": {
+   "accuracy": 0.5,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.4,
+   "inconclusive": 0.1,
+   "n_ai": 10,
+   "n_real": 0
+  },
+  "vqdm": {
+   "accuracy": 0.3333,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.3333,
+   "inconclusive": 0.3333,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "wan-video-2.5": {
+   "accuracy": 1.0,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.0,
+   "inconclusive": 0.0,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "wukong": {
+   "accuracy": 0.5,
+   "sample_count": 6,
+   "trustworthy": false,
+   "wrong": 0.1667,
+   "inconclusive": 0.3333,
+   "n_ai": 6,
+   "n_real": 0
+  },
+  "z-image-turbo": {
+   "accuracy": 0.2,
+   "sample_count": 10,
+   "trustworthy": false,
+   "wrong": 0.6,
+   "inconclusive": 0.2,
+   "n_ai": 10,
+   "n_real": 0
+  }
+ },
+ "by_subject": {
+  "animal": {
+   "accuracy": 0.5267,
+   "sample_count": 131,
+   "trustworthy": true,
+   "wrong": 0.2366,
+   "inconclusive": 0.2366,
+   "n_ai": 38,
+   "n_real": 93
+  },
+  "art or illustration": {
+   "accuracy": 0.8015,
+   "sample_count": 136,
+   "trustworthy": true,
+   "wrong": 0.0882,
+   "inconclusive": 0.1103,
+   "n_ai": 123,
+   "n_real": 13
+  },
+  "food": {
+   "accuracy": 0.8,
+   "sample_count": 15,
+   "trustworthy": false,
+   "wrong": 0.0667,
+   "inconclusive": 0.1333,
+   "n_ai": 12,
+   "n_real": 3
+  },
+  "indoor scene": {
+   "accuracy": 0.7826,
+   "sample_count": 23,
+   "trustworthy": true,
+   "wrong": 0.2174,
+   "inconclusive": 0.0,
+   "n_ai": 18,
+   "n_real": 5
+  },
+  "nature or landscape": {
+   "accuracy": 0.7576,
+   "sample_count": 33,
+   "trustworthy": true,
+   "wrong": 0.1818,
+   "inconclusive": 0.0606,
+   "n_ai": 14,
+   "n_real": 19
+  },
+  "object": {
+   "accuracy": 0.5211,
+   "sample_count": 142,
+   "trustworthy": true,
+   "wrong": 0.2324,
+   "inconclusive": 0.2465,
+   "n_ai": 75,
+   "n_real": 67
+  },
+  "people": {
+   "accuracy": 0.4615,
+   "sample_count": 26,
+   "trustworthy": true,
+   "wrong": 0.4615,
+   "inconclusive": 0.0769,
+   "n_ai": 18,
+   "n_real": 8
+  },
+  "portrait": {
+   "accuracy": 0.3158,
+   "sample_count": 38,
+   "trustworthy": true,
+   "wrong": 0.3947,
+   "inconclusive": 0.2895,
+   "n_ai": 29,
+   "n_real": 9
+  },
+  "street or buildings": {
+   "accuracy": 0.5909,
+   "sample_count": 22,
+   "trustworthy": true,
+   "wrong": 0.3182,
+   "inconclusive": 0.0909,
+   "n_ai": 8,
+   "n_real": 14
+  },
+  "text or graphic": {
+   "accuracy": 0.5833,
+   "sample_count": 24,
+   "trustworthy": true,
+   "wrong": 0.2083,
+   "inconclusive": 0.2083,
+   "n_ai": 22,
+   "n_real": 2
+  },
+  "vehicle": {
+   "accuracy": 0.5484,
+   "sample_count": 31,
+   "trustworthy": true,
+   "wrong": 0.2903,
+   "inconclusive": 0.1613,
+   "n_ai": 13,
+   "n_real": 18
+  }
+ },
+ "by_style": {
+  "closed commercial": {
+   "accuracy": 0.7131,
+   "sample_count": 122,
+   "trustworthy": true,
+   "wrong": 0.1393,
+   "inconclusive": 0.1475,
+   "n_ai": 122,
+   "n_real": 0
+  },
+  "older research model": {
+   "accuracy": 0.25,
+   "sample_count": 88,
+   "trustworthy": true,
+   "wrong": 0.5682,
+   "inconclusive": 0.1818,
+   "n_ai": 88,
+   "n_real": 0
+  },
+  "open weights": {
+   "accuracy": 0.4688,
+   "sample_count": 32,
+   "trustworthy": true,
+   "wrong": 0.4375,
+   "inconclusive": 0.0938,
+   "n_ai": 32,
+   "n_real": 0
+  },
+  "other / unknown": {
+   "accuracy": 0.6961,
+   "sample_count": 102,
+   "trustworthy": true,
+   "wrong": 0.1569,
+   "inconclusive": 0.1471,
+   "n_ai": 102,
+   "n_real": 0
+  },
+  "real photo": {
+   "accuracy": 0.6414,
+   "sample_count": 251,
+   "trustworthy": true,
+   "wrong": 0.1394,
+   "inconclusive": 0.2191,
+   "n_ai": 0,
+   "n_real": 251
+  },
+  "video-model frame": {
+   "accuracy": 0.7308,
+   "sample_count": 26,
+   "trustworthy": true,
+   "wrong": 0.1538,
+   "inconclusive": 0.1154,
+   "n_ai": 26,
+   "n_real": 0
+  }
+ },
+ "by_combination": {}
 }

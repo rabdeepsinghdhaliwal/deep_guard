@@ -51,8 +51,8 @@ What this file does, in order:
      instead of one aggregate number that can hide a subgroup the model
      does badly on (exactly how this project's own hidden 91.5%/8.5%
      split was found). This endpoint only READS bias_map/results.json —
-     see bias_map/build_bias_map.py, a standalone script run by hand,
-     for how that file gets produced.
+     see evaluation/run_exam.py --write-bias-map, a standalone script run
+     by hand on the exam set, for how that file gets produced.
  10. Exposes GET /registry, POST /api/registry/register, and POST
      /api/registry/check (Phase 2, Idea 4 — see content_registry.py):
      the first real piece of Stage 3 (the ledger), upgraded from
@@ -101,6 +101,7 @@ from torchvision import transforms
 import base64
 
 import attribution
+import calibration
 import concept_labels
 import content_registry
 import fingerprint
@@ -134,6 +135,7 @@ DEMO_ARTWORKS_DIR = PROJECT_ROOT / "demo_artworks"
 ATTRIBUTION_MODEL_PATH = PROJECT_ROOT / "models" / "deepguard_attribution.pth"
 CONCEPT_LABELER_ENCODER_PATH = PROJECT_ROOT / "models" / "concept_labeler_image_encoder.torchscript.pt"
 CONCEPT_LABELER_VOCAB_PATH = PROJECT_ROOT / "models" / "concept_labeler_vocabulary.npz"
+CALIBRATION_PATH = PROJECT_ROOT / "models" / "detector_calibration.json"
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
 VIDEO_EXTENSIONS = {".mp4", ".mov", ".mkv", ".webm", ".avi"}
@@ -166,6 +168,7 @@ STATE = {
     "content_registry": None,
     "attribution": None,
     "concept_labeler": None,
+    "calibration": None,
 }
 
 
@@ -401,6 +404,25 @@ def load_attribution_model() -> None:
         logger.exception("Failed to load attribution model — generator_attribution will be unavailable")
 
 
+def load_calibration_file() -> None:
+    """
+    Loads models/detector_calibration.json (written by
+    evaluation/run_exam.py --fit from the calibration set) if present.
+    Additive, like the other optional files: without it /api/analyze adds
+    no calibrated_probability_fake field and the source panel never says
+    "unknown" -- exactly the behaviour before Step 0.
+    """
+    try:
+        STATE["calibration"] = calibration.load_calibration(CALIBRATION_PATH)
+        if STATE["calibration"] is None:
+            logger.info(f"No calibration file at {CALIBRATION_PATH} -- raw percentages only.")
+        else:
+            logger.info(f"Calibration loaded: detector temperature {STATE['calibration']['detector_temperature']}, "
+                        f"source-panel unknown threshold {STATE['calibration'].get('attribution_unknown_threshold')}")
+    except Exception:  # noqa: BLE001 -- additive; a bad file must not stop the server
+        logger.exception("Failed to load the calibration file -- raw percentages only")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     load_model()
@@ -408,6 +430,7 @@ async def lifespan(app: FastAPI):
     load_concept_labeler()   # before the registry, so seeded artworks get named areas
     load_content_registry()
     load_attribution_model()
+    load_calibration_file()
     yield
 
 
@@ -467,7 +490,7 @@ async def bias_map():
     """
     Reads bias_map/results.json and returns it as-is — nothing is
     computed on the request path. That file is written by hand-running
-    bias_map/build_bias_map.py, not by this endpoint, so this stays
+    evaluation/run_exam.py --write-bias-map, not by this endpoint, so this stays
     fast and safe to call regardless of how large the labeled test set
     ever grows. Returns a clear "not generated yet" response rather
     than a 404 or a crash if the script has never been run.
@@ -475,7 +498,7 @@ async def bias_map():
     if not BIAS_MAP_RESULTS_PATH.exists():
         return {
             "generated": False,
-            "message": "No bias map has been generated yet. Run bias_map/build_bias_map.py first.",
+            "message": "No bias map has been generated yet. Run evaluation/run_exam.py <label> --write-bias-map first.",
         }
     return {"generated": True, **json.loads(BIAS_MAP_RESULTS_PATH.read_text(encoding="utf-8"))}
 
@@ -728,13 +751,18 @@ def sample_frames_from_video(
         Path(tmp_path).unlink(missing_ok=True)
 
 
-def score_frames(frames: list[Image.Image]) -> list[float]:
+def score_frames(frames: list[Image.Image], with_logits: bool = False):
     """
     Runs the model over a list of frames in batches and returns P(fake)
     for each. Batching matters: on CPU, 32 separate forward passes cost
     noticeably more than a handful of batched ones.
+
+    with_logits=True also returns the raw logits (what calibration
+    rescales), as (probabilities, logits); the probabilities are computed
+    exactly as before either way.
     """
     probabilities: list[float] = []
+    raw_logits: list[float] = []
     preprocess = STATE["preprocess"]
     device = STATE["device"]
     model = STATE["model"]
@@ -748,8 +776,11 @@ def score_frames(frames: list[Image.Image]) -> list[float]:
             if isinstance(probs, float):  # a batch of exactly 1 squeezes to a scalar
                 probs = [probs]
             probabilities.extend(probs)
+            if with_logits:
+                raw = logits.squeeze(-1).cpu().tolist()
+                raw_logits.extend([raw] if isinstance(raw, float) else raw)
 
-    return probabilities
+    return (probabilities, raw_logits) if with_logits else probabilities
 
 
 def aggregate_video_scores(probabilities: list[float]) -> dict:
@@ -901,7 +932,9 @@ def build_generator_attribution(image: Image.Image) -> Optional[dict]:
     if STATE["attribution"] is None:
         return None
     try:
-        return attribution.predict_generator(STATE["attribution"], image, STATE["device"])
+        threshold = (STATE["calibration"] or {}).get("attribution_unknown_threshold")
+        return attribution.predict_generator(STATE["attribution"], image, STATE["device"],
+                                             unknown_threshold=threshold)
     except Exception:  # noqa: BLE001 — additive only
         logger.exception("Generator attribution failed")
         return None
@@ -1099,7 +1132,8 @@ async def analyze(file: UploadFile = File(...)):
             raise HTTPException(status_code=422, detail=f"Couldn't read that image: {exc}") from exc
 
         try:
-            probability_fake = score_frames([image])[0]
+            probabilities, logits = score_frames([image], with_logits=True)
+            probability_fake, logit = probabilities[0], logits[0]
         except Exception as exc:  # noqa: BLE001
             logger.exception("Inference failed")
             raise HTTPException(status_code=500, detail="Inference failed on the server.") from exc
@@ -1115,7 +1149,7 @@ async def analyze(file: UploadFile = File(...)):
         verdict = "manipulated" if probability_fake >= 0.5 else "authentic"
         generator_attribution = build_generator_attribution(image) if verdict == "manipulated" else None
 
-        return {
+        response = {
             "input_type": "image",
             "filename": file.filename,
             "probability_fake": round(probability_fake, 4),
@@ -1126,6 +1160,15 @@ async def analyze(file: UploadFile = File(...)):
             "explainability": explainability,
             "generator_attribution": generator_attribution,
         }
+        # Step 0: the same reading after temperature scaling, when a fitted
+        # calibration file exists. Reported alongside, not used for the
+        # verdict yet -- the verdict wording moves to calibrated numbers with
+        # the trust report (Step 1), once the thresholds are re-derived on it.
+        if STATE["calibration"] is not None:
+            response["calibrated_probability_fake"] = round(
+                calibration.apply_temperature(logit, STATE["calibration"]["detector_temperature"]), 4)
+            response["calibration_temperature"] = STATE["calibration"]["detector_temperature"]
+        return response
 
     # ---------------------------------------------------------------- video
     if extension in VIDEO_EXTENSIONS:

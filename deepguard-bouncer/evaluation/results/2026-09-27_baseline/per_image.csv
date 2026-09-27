@@ -1,0 +1,1050 @@
+id,purpose,label,source,generator,generator_group,attribution_class,subject,content,width,height,format,variant_of,p_ai_page,verdict,logit,attr_top,attr_top_p,wobble,seconds
+cnndetection-biggan-ai-00,detector,ai,cnndetection,biggan,older research model,big_gan,vehicle,image,256,256,PNG,,0.0016,real,-6.4165,latent_diffusion,0.4455,0.0006,0.647
+cnndetection-biggan-ai-01,detector,ai,cnndetection,biggan,older research model,big_gan,object,image,256,256,PNG,,0.6845,inconclusive,0.7745,pro_gan,0.5499,0.1149,0.392
+cnndetection-biggan-ai-02,detector,ai,cnndetection,biggan,older research model,big_gan,food,image,256,256,PNG,,0.8685,ai,1.8881,stable_diffusion,0.3207,0.0401,0.557
+cnndetection-biggan-ai-03,detector,ai,cnndetection,biggan,older research model,big_gan,object,image,256,256,PNG,,0.2621,inconclusive,-1.0349,pro_gan,0.3562,0.0669,0.375
+cnndetection-biggan-ai-04,detector,ai,cnndetection,biggan,older research model,big_gan,indoor scene,image,256,256,PNG,,0.0749,real,-2.5144,ddpm,0.6391,0.0402,0.566
+cnndetection-biggan-ai-05,detector,ai,cnndetection,biggan,older research model,big_gan,food,image,256,256,PNG,,0.9552,ai,3.0595,glide,0.2867,0.0175,0.451
+cnndetection-biggan-ai-06,detector,ai,cnndetection,biggan,older research model,big_gan,animal,image,256,256,PNG,,0.2345,inconclusive,-1.1833,stable_diffusion,0.3627,0.0673,0.523
+cnndetection-biggan-ai-07,detector,ai,cnndetection,biggan,older research model,big_gan,animal,image,256,256,PNG,,0.0098,real,-4.6146,stable_diffusion,0.7981,0.0079,0.381
+cnndetection-biggan-real-00,detector,real,cnndetection,,real photo,,animal,image,256,256,PNG,,0.0001,real,-8.8922,big_gan,0.768,0.0002,0.683
+cnndetection-biggan-real-01,detector,real,cnndetection,,real photo,,vehicle,image,256,256,PNG,,0.0324,real,-3.3977,latent_diffusion,0.3431,0.0143,0.418
+cnndetection-biggan-real-02,detector,real,cnndetection,,real photo,,animal,image,256,256,PNG,,0.0,real,-11.896,glide,0.6921,0.0,0.628
+cnndetection-biggan-real-03,detector,real,cnndetection,,real photo,,vehicle,image,256,256,PNG,,0.7693,inconclusive,1.2044,stable_diffusion,0.4961,0.1403,0.415
+cnndetection-biggan-real-04,detector,real,cnndetection,,real photo,,object,image,256,256,PNG,,0.0,real,-11.7948,stable_diffusion,0.8072,0.0,0.647
+cnndetection-biggan-real-05,detector,real,cnndetection,,real photo,,people,image,256,256,PNG,,0.0,real,-12.9956,stable_diffusion,0.6896,0.0,0.381
+cnndetection-cyclegan-ai-00,detector,ai,cnndetection,cyclegan,older research model,cycle_gan,animal,image,256,256,PNG,,0.0,real,-12.228,cycle_gan,0.9819,0.0,0.607
+cnndetection-cyclegan-ai-01,detector,ai,cnndetection,cyclegan,older research model,cycle_gan,object,image,256,256,PNG,,0.0152,real,-4.1721,ddpm,0.5665,0.0106,0.418
+cnndetection-cyclegan-ai-02,detector,ai,cnndetection,cyclegan,older research model,cycle_gan,nature or landscape,image,256,256,PNG,,0.0001,real,-8.9851,stable_diffusion,0.3515,0.0001,0.587
+cnndetection-cyclegan-ai-03,detector,ai,cnndetection,cyclegan,older research model,cycle_gan,animal,image,256,256,PNG,,0.0,real,-10.4087,stable_diffusion,0.3676,0.0,0.388
+cnndetection-cyclegan-ai-04,detector,ai,cnndetection,cyclegan,older research model,cycle_gan,object,image,256,256,PNG,,1.0,ai,10.2502,stable_diffusion,0.4329,0.0001,0.429
+cnndetection-cyclegan-ai-05,detector,ai,cnndetection,cyclegan,older research model,cycle_gan,object,image,256,256,PNG,,0.8632,ai,1.8423,stable_diffusion,0.2879,0.0417,0.407
+cnndetection-cyclegan-ai-06,detector,ai,cnndetection,cyclegan,older research model,cycle_gan,nature or landscape,image,256,256,PNG,,0.0,real,-12.1748,cycle_gan,0.3781,0.0,0.38
+cnndetection-cyclegan-ai-07,detector,ai,cnndetection,cyclegan,older research model,cycle_gan,nature or landscape,image,256,256,PNG,,0.0009,real,-7.0096,pro_gan,0.718,0.0014,0.483
+cnndetection-cyclegan-real-00,detector,real,cnndetection,,real photo,,object,image,256,256,PNG,,0.7846,inconclusive,1.2926,stable_diffusion,0.6865,0.0891,0.389
+cnndetection-cyclegan-real-01,detector,real,cnndetection,,real photo,,nature or landscape,image,256,256,PNG,,0.0016,real,-6.4567,cycle_gan,0.3332,0.0032,0.473
+cnndetection-cyclegan-real-02,detector,real,cnndetection,,real photo,,animal,image,256,256,PNG,,0.6266,inconclusive,0.5176,cycle_gan,0.9737,0.132,0.362
+cnndetection-cyclegan-real-03,detector,real,cnndetection,,real photo,,nature or landscape,image,256,256,PNG,,0.0002,real,-8.3361,latent_diffusion,0.5895,0.0002,0.384
+cnndetection-cyclegan-real-04,detector,real,cnndetection,,real photo,,object,image,256,256,PNG,,0.4575,inconclusive,-0.1703,big_gan,0.435,0.1337,0.386
+cnndetection-cyclegan-real-05,detector,real,cnndetection,,real photo,,animal,image,256,256,PNG,,0.2296,inconclusive,-1.2106,cycle_gan,0.9871,0.0767,0.472
+cnndetection-gaugan-ai-00,detector,ai,cnndetection,gaugan,older research model,,people,image,256,256,PNG,,0.0001,real,-9.6144,ddpm,0.2938,0.0,0.438
+cnndetection-gaugan-ai-01,detector,ai,cnndetection,gaugan,older research model,,indoor scene,image,256,256,PNG,,0.051,real,-2.924,stable_diffusion,0.691,0.0463,0.432
+cnndetection-gaugan-ai-02,detector,ai,cnndetection,gaugan,older research model,,animal,image,256,256,PNG,,0.0057,real,-5.1693,stable_diffusion,0.3976,0.0035,0.38
+cnndetection-gaugan-ai-03,detector,ai,cnndetection,gaugan,older research model,,people,image,256,256,PNG,,0.0,real,-13.184,stable_diffusion,0.7715,0.0,0.417
+cnndetection-gaugan-ai-04,detector,ai,cnndetection,gaugan,older research model,,people,image,256,256,PNG,,0.0732,real,-2.5388,stable_diffusion,0.9071,0.0206,0.553
+cnndetection-gaugan-ai-05,detector,ai,cnndetection,gaugan,older research model,,art or illustration,image,256,256,PNG,,0.0006,real,-7.355,stable_diffusion,0.7087,0.0004,0.389
+cnndetection-progan-ai-00,detector,ai,cnndetection,progan,older research model,pro_gan,vehicle,image,256,256,PNG,,0.3586,inconclusive,-0.5816,stable_diffusion,0.462,0.1529,0.574
+cnndetection-progan-ai-01,detector,ai,cnndetection,progan,older research model,pro_gan,vehicle,image,256,256,PNG,,0.0003,real,-8.2424,pro_gan,0.7935,0.0002,0.394
+cnndetection-progan-ai-02,detector,ai,cnndetection,progan,older research model,pro_gan,vehicle,image,256,256,PNG,,0.0011,real,-6.8264,stable_diffusion,0.442,0.0007,0.562
+cnndetection-progan-ai-03,detector,ai,cnndetection,progan,older research model,pro_gan,vehicle,image,256,256,PNG,,0.0,real,-11.492,pro_gan,0.7844,0.0,0.381
+cnndetection-progan-ai-04,detector,ai,cnndetection,progan,older research model,pro_gan,object,image,256,256,PNG,,0.0118,real,-4.4242,stable_diffusion,0.63,0.005,0.613
+cnndetection-progan-ai-05,detector,ai,cnndetection,progan,older research model,pro_gan,text or graphic,image,256,256,PNG,,0.5323,inconclusive,0.1294,stable_diffusion,0.4929,0.1848,0.442
+cnndetection-progan-ai-06,detector,ai,cnndetection,progan,older research model,pro_gan,object,image,256,256,PNG,,0.9981,ai,6.2717,glide,0.3233,0.0008,0.635
+cnndetection-progan-ai-07,detector,ai,cnndetection,progan,older research model,pro_gan,object,image,256,256,PNG,,0.9982,ai,6.3451,stable_diffusion,0.3802,0.0011,0.421
+cnndetection-progan-real-00,detector,real,cnndetection,,real photo,,indoor scene,image,256,256,PNG,,0.0018,real,-6.2917,stable_diffusion,0.3567,0.001,0.604
+cnndetection-progan-real-01,detector,real,cnndetection,,real photo,,animal,image,256,256,PNG,,0.0001,real,-9.5364,pro_gan,0.4894,0.0001,0.401
+cnndetection-progan-real-02,detector,real,cnndetection,,real photo,,indoor scene,image,256,256,PNG,,0.0068,real,-4.9806,latent_diffusion,0.5519,0.0068,0.589
+cnndetection-progan-real-03,detector,real,cnndetection,,real photo,,indoor scene,image,256,256,PNG,,0.1733,real,-1.5628,big_gan,0.3136,0.0417,0.431
+cnndetection-progan-real-04,detector,real,cnndetection,,real photo,,vehicle,image,256,256,PNG,,0.055,real,-2.843,latent_diffusion,0.6327,0.0209,0.664
+cnndetection-progan-real-05,detector,real,cnndetection,,real photo,,object,image,256,256,PNG,,0.7917,inconclusive,1.3351,latent_diffusion,0.5885,0.0783,0.5
+cnndetection-stargan-ai-00,detector,ai,cnndetection,stargan,older research model,,portrait,image,256,256,PNG,,0.0003,real,-8.0131,stylegan2,0.994,0.0001,0.549
+cnndetection-stargan-ai-01,detector,ai,cnndetection,stargan,older research model,,portrait,image,256,256,PNG,,0.0025,real,-5.9822,stylegan2,0.9672,0.0008,0.419
+cnndetection-stargan-ai-02,detector,ai,cnndetection,stargan,older research model,,portrait,image,256,256,PNG,,0.0259,real,-3.6265,stylegan2,0.8501,0.0111,0.606
+cnndetection-stargan-ai-03,detector,ai,cnndetection,stargan,older research model,,art or illustration,image,256,256,PNG,,0.8257,ai,1.5552,stylegan2,0.9129,0.0349,0.467
+cnndetection-stargan-ai-04,detector,ai,cnndetection,stargan,older research model,,portrait,image,256,256,PNG,,0.0006,real,-7.4093,stylegan2,0.8979,0.0003,0.592
+cnndetection-stargan-ai-05,detector,ai,cnndetection,stargan,older research model,,portrait,image,256,256,PNG,,0.0257,real,-3.6357,stylegan2,0.9823,0.0106,0.371
+cnndetection-stylegan2-ai-00,detector,ai,cnndetection,stylegan2,older research model,stylegan2,animal,image,256,256,PNG,,0.0185,real,-3.9719,cycle_gan,0.8496,0.0095,0.637
+cnndetection-stylegan2-ai-01,detector,ai,cnndetection,stylegan2,older research model,stylegan2,vehicle,image,512,384,PNG,,0.0,real,-11.223,pro_gan,0.7619,0.0,0.407
+cnndetection-stylegan2-ai-02,detector,ai,cnndetection,stylegan2,older research model,stylegan2,street or buildings,image,256,256,PNG,,0.004,real,-5.5159,glide,0.6657,0.0042,0.414
+cnndetection-stylegan2-ai-03,detector,ai,cnndetection,stylegan2,older research model,stylegan2,street or buildings,image,256,256,PNG,,0.0,real,-10.1493,ddpm,0.8218,0.0001,0.42
+cnndetection-stylegan2-ai-04,detector,ai,cnndetection,stylegan2,older research model,stylegan2,animal,image,256,256,PNG,,0.9999,ai,9.6266,stylegan2,0.9721,0.0001,0.744
+cnndetection-stylegan2-ai-05,detector,ai,cnndetection,stylegan2,older research model,stylegan2,street or buildings,image,256,256,PNG,,0.0,real,-12.859,ddpm,0.7068,0.0,0.412
+cnndetection-stylegan2-ai-06,detector,ai,cnndetection,stylegan2,older research model,stylegan2,street or buildings,image,256,256,PNG,,0.0495,real,-2.9554,ddpm,0.6557,0.0416,0.615
+cnndetection-stylegan2-ai-07,detector,ai,cnndetection,stylegan2,older research model,stylegan2,vehicle,image,512,384,PNG,,0.0025,real,-5.9873,pro_gan,0.9415,0.0011,0.437
+cnndetection-stylegan2-real-00,detector,real,cnndetection,,real photo,,vehicle,image,512,384,PNG,,0.0067,real,-4.9997,pro_gan,0.7202,0.0082,0.596
+cnndetection-stylegan2-real-01,detector,real,cnndetection,,real photo,,street or buildings,image,256,256,PNG,,0.9969,ai,5.7631,stable_diffusion,0.6151,0.0016,0.415
+cnndetection-stylegan2-real-02,detector,real,cnndetection,,real photo,,street or buildings,image,256,256,PNG,,0.7361,inconclusive,1.0257,ddpm,0.5888,0.1256,0.654
+cnndetection-stylegan2-real-03,detector,real,cnndetection,,real photo,,animal,image,256,256,PNG,,0.0,real,-11.5117,latent_diffusion,0.7434,0.0,0.421
+cnndetection-stylegan2-real-04,detector,real,cnndetection,,real photo,,street or buildings,image,256,256,PNG,,0.7578,inconclusive,1.1404,latent_diffusion,0.3597,0.1207,0.578
+cnndetection-stylegan2-real-05,detector,real,cnndetection,,real photo,,animal,image,256,256,PNG,,0.0186,real,-3.9663,cycle_gan,0.8881,0.0082,0.381
+cnndetection-whichfaceisreal-ai-00,detector,ai,cnndetection,whichfaceisreal,older research model,,portrait,image,1024,1024,JPEG,,0.9997,ai,8.1787,stylegan2,0.9376,0.0001,0.676
+cnndetection-whichfaceisreal-ai-01,detector,ai,cnndetection,whichfaceisreal,older research model,,portrait,image,1024,1024,JPEG,,1.0,ai,14.558,stylegan2,0.969,0.0,0.451
+cnndetection-whichfaceisreal-ai-02,detector,ai,cnndetection,whichfaceisreal,older research model,,portrait,image,1024,1024,JPEG,,0.9991,ai,6.96,stylegan2,0.9681,0.0006,0.62
+cnndetection-whichfaceisreal-ai-03,detector,ai,cnndetection,whichfaceisreal,older research model,,portrait,image,1024,1024,JPEG,,0.9998,ai,8.475,stylegan2,0.9924,0.0001,0.471
+cnndetection-whichfaceisreal-ai-04,detector,ai,cnndetection,whichfaceisreal,older research model,,portrait,image,1024,1024,JPEG,,1.0,ai,16.8097,stylegan2,0.9866,0.0,0.634
+cnndetection-whichfaceisreal-ai-05,detector,ai,cnndetection,whichfaceisreal,older research model,,portrait,image,1024,1024,JPEG,,1.0,ai,10.0305,stylegan2,0.9596,0.0,0.56
+cnndetection-whichfaceisreal-real-00,detector,real,cnndetection,,real photo,,portrait,image,1024,1024,JPEG,,0.2865,inconclusive,-0.9122,stylegan2,0.9632,0.0629,0.415
+cnndetection-whichfaceisreal-real-01,detector,real,cnndetection,,real photo,,portrait,image,1024,1024,JPEG,,0.0031,real,-5.7656,stable_diffusion,0.5828,0.001,0.68
+cnndetection-whichfaceisreal-real-02,detector,real,cnndetection,,real photo,,portrait,image,1024,1024,JPEG,,0.0158,real,-4.1316,stylegan2,0.9903,0.005,0.497
+cnndetection-whichfaceisreal-real-03,detector,real,cnndetection,,real photo,,portrait,image,1024,1024,JPEG,,0.2591,inconclusive,-1.0507,stylegan2,0.9865,0.0739,0.597
+cnndetection-whichfaceisreal-real-04,detector,real,cnndetection,,real photo,,portrait,image,1024,1024,JPEG,,0.0309,real,-3.4453,stylegan2,0.996,0.0101,0.444
+cnndetection-whichfaceisreal-real-05,detector,real,cnndetection,,real photo,,portrait,image,1024,1024,JPEG,,0.8953,ai,2.1461,stylegan2,0.9963,0.0374,0.685
+outside-dalle3_000,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,text or graphic,image,1024,1024,WEBP,,1.0,ai,15.5145,stable_diffusion,0.4561,0.0,0.51
+outside-dalle3_001,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,1024,WEBP,,0.9999,ai,9.6644,stable_diffusion,0.5288,0.0,0.51
+outside-dalle3_002,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,object,image,1024,1024,WEBP,,1.0,ai,13.1534,glide,0.7818,0.0,0.686
+outside-dalle3_003,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,indoor scene,image,1024,1024,WEBP,,0.9908,ai,4.6848,stable_diffusion,0.7786,0.0044,0.466
+outside-dalle3_004,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,1024,WEBP,,1.0,ai,13.5283,glide,0.5722,0.0,0.69
+outside-dalle3_005,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,indoor scene,image,1024,585,WEBP,,0.9987,ai,6.6468,stable_diffusion,0.9858,0.0009,0.802
+outside-dalle3_006,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,nature or landscape,image,1024,585,WEBP,,1.0,ai,10.4026,stable_diffusion,0.912,0.0,0.526
+outside-dalle3_007,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,585,WEBP,,1.0,ai,12.5389,stable_diffusion,0.943,0.0,0.606
+outside-dalle3_008,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,indoor scene,image,990,792,WEBP,,0.9909,ai,4.6867,stable_diffusion,0.9812,0.0033,0.484
+outside-dalle3_009,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,585,WEBP,,1.0,ai,12.7195,stable_diffusion,0.5529,0.0,0.592
+outside-dalle3_010,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,nature or landscape,image,1024,576,WEBP,,1.0,ai,15.0566,stable_diffusion,0.8583,0.0,0.453
+outside-dalle3_011,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,1024,WEBP,,0.9983,ai,6.3521,glide,0.7032,0.0013,0.559
+outside-dalle3_012,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1012,1019,WEBP,,1.0,ai,16.1529,cycle_gan,0.4288,0.0,0.503
+outside-dalle3_013,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,text or graphic,image,1024,576,WEBP,,1.0,ai,9.9745,glide,0.7382,0.0001,0.477
+outside-dalle3_014,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,1024,WEBP,,1.0,ai,12.6987,stable_diffusion,0.8447,0.0,0.665
+outside-dalle3_015,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,text or graphic,image,1024,1792,WEBP,,1.0,ai,18.3309,stable_diffusion,0.8568,0.0,0.514
+outside-dalle3_016,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,object,image,1024,585,WEBP,,1.0,ai,12.5719,stable_diffusion,0.8892,0.0,0.684
+outside-dalle3_017,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,1367,WEBP,,1.0,ai,12.3535,stable_diffusion,0.797,0.0,0.704
+outside-dalle3_018,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,nature or landscape,image,1024,585,WEBP,,1.0,ai,13.394,stable_diffusion,0.8488,0.0,0.467
+outside-dalle3_019,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,text or graphic,image,1024,585,WEBP,,1.0,ai,18.1974,latent_diffusion,0.4861,0.0,0.651
+outside-dalle3_020,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,585,WEBP,,1.0,ai,13.7886,glide,0.5414,0.0,0.462
+outside-dalle3_021,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,585,WEBP,,1.0,ai,11.2994,stable_diffusion,0.8611,0.0,0.671
+outside-dalle3_022,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,585,WEBP,,0.9999,ai,9.7919,glide,0.9341,0.0001,0.442
+outside-dalle3_023,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,object,image,1024,585,WEBP,,1.0,ai,13.6878,stable_diffusion,0.5971,0.0,0.719
+outside-dalle3_024,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,art or illustration,image,1024,1024,WEBP,,1.0,ai,11.2793,stable_diffusion,0.8024,0.0,0.684
+outside-dalle3_025,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,indoor scene,image,1024,696,WEBP,,0.999,ai,6.9203,stable_diffusion,0.9897,0.0007,0.586
+outside-dalle3_026,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,object,image,1024,1024,WEBP,,1.0,ai,10.5112,stable_diffusion,0.8403,0.0,0.73
+outside-dalle3_027,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,nature or landscape,image,1024,1024,WEBP,,1.0,ai,12.3127,stable_diffusion,0.597,0.0,0.519
+outside-dalle3_028,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,indoor scene,image,1024,585,WEBP,,1.0,ai,9.9376,stable_diffusion,0.7195,0.0001,0.481
+outside-dalle3_029,detector,ai,deepguard-generalization-test,dalle-3,closed commercial,,indoor scene,image,1024,585,WEBP,,0.9442,ai,2.8292,stable_diffusion,0.933,0.0202,0.716
+outside-midjourney-v5_002,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,art or illustration,image,384,509,WEBP,,0.9955,ai,5.3886,glide,0.8627,0.0048,0.465
+outside-midjourney-v5_003,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,portrait,image,384,509,WEBP,,0.6428,inconclusive,0.5876,stylegan2,0.5189,0.1413,0.619
+outside-midjourney-v5_005,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,art or illustration,image,384,509,WEBP,,0.3677,inconclusive,-0.542,glide,0.9142,0.1168,0.443
+outside-midjourney-v5_007,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,object,image,384,576,WEBP,,0.776,inconclusive,1.2425,stable_diffusion,0.3304,0.0728,0.589
+outside-midjourney-v5_010,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,portrait,image,384,576,WEBP,,0.0397,real,-3.1853,stable_diffusion,0.8129,0.0249,0.415
+outside-midjourney-v5_012,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,art or illustration,image,384,576,WEBP,,0.8642,ai,1.8508,stable_diffusion,0.5289,0.0951,0.694
+outside-midjourney-v5_015,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,indoor scene,image,384,480,WEBP,,0.8055,ai,1.4213,stable_diffusion,0.9146,0.1163,0.487
+outside-midjourney-v5_019,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,people,image,384,480,WEBP,,0.0015,real,-6.485,latent_diffusion,0.5845,0.0028,0.629
+outside-midjourney-v5_020,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,object,image,384,384,WEBP,,0.928,ai,2.5569,pro_gan,0.9005,0.0382,0.474
+outside-midjourney-v5_021,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,portrait,image,384,384,WEBP,,0.0001,real,-8.8831,stylegan2,0.9323,0.0001,0.567
+outside-midjourney-v5_022,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,portrait,image,384,685,WEBP,,0.3608,inconclusive,-0.5719,stable_diffusion,0.4389,0.1043,0.441
+outside-midjourney-v5_023,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,art or illustration,image,384,384,WEBP,,0.4167,inconclusive,-0.3362,glide,0.4031,0.1094,0.547
+outside-midjourney-v5_029,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,people,image,384,685,WEBP,,0.9949,ai,5.2679,stable_diffusion,0.95,0.0031,0.403
+outside-midjourney-v5_034,detector,ai,deepguard-generalization-test,midjourney-5,closed commercial,,object,image,384,384,WEBP,,0.0058,real,-5.1387,glide,0.8086,0.0084,0.519
+project-ai1,detector,ai,deepguard-original-test-images,unknown,other / unknown,,people,image,346,267,PNG,,0.045,real,-3.0557,stable_diffusion,0.5018,0.0459,0.369
+project-ai2,detector,ai,deepguard-original-test-images,unknown,other / unknown,,text or graphic,image,326,273,PNG,,0.0439,real,-3.0802,stable_diffusion,0.8531,0.0311,0.569
+project-ai3,detector,ai,deepguard-original-test-images,unknown,other / unknown,,portrait,image,304,327,PNG,,0.0,real,-12.7927,stylegan2,0.6362,0.0,0.385
+project-ai4,detector,ai,deepguard-original-test-images,unknown,other / unknown,,portrait,image,297,308,PNG,,0.5674,inconclusive,0.2713,stable_diffusion,0.7789,0.0826,0.649
+project-real1,detector,real,deepguard-original-test-images,,real photo,,portrait,image,257,337,PNG,,0.0065,real,-5.0345,stylegan2,0.8112,0.0024,0.456
+project-real2,detector,real,deepguard-original-test-images,,real photo,,portrait,image,356,381,JPEG,,0.5337,inconclusive,0.1351,stable_diffusion,0.5073,0.1148,0.547
+project-real3,detector,real,deepguard-original-test-images,,real photo,,art or illustration,image,2000,1500,JPEG,,0.0083,real,-4.7868,stylegan2,0.5495,0.0048,0.45
+project-real4,detector,real,deepguard-original-test-images,,real photo,,portrait,image,1500,2000,JPEG,,0.0002,real,-8.4531,stylegan2,0.3742,0.0001,0.615
+genimage-adm_imagenet-ai-00,detector,ai,genimage,adm_imagenet,older research model,,people,image,256,256,PNG,,0.0,real,-10.3018,stable_diffusion,0.9537,0.0001,0.403
+genimage-adm_imagenet-ai-01,detector,ai,genimage,adm_imagenet,older research model,,animal,image,256,256,PNG,,0.002,real,-6.2065,pro_gan,0.4904,0.0018,0.546
+genimage-adm_imagenet-ai-02,detector,ai,genimage,adm_imagenet,older research model,,object,image,256,256,PNG,,0.9764,ai,3.7207,stable_diffusion,0.7061,0.0211,0.476
+genimage-adm_imagenet-ai-03,detector,ai,genimage,adm_imagenet,older research model,,object,image,256,256,PNG,,0.1489,real,-1.7432,glide,0.2313,0.1144,0.609
+genimage-adm_imagenet-ai-04,detector,ai,genimage,adm_imagenet,older research model,,animal,image,256,256,PNG,,0.8055,ai,1.4207,cycle_gan,0.7566,0.0531,0.47
+genimage-adm_imagenet-ai-05,detector,ai,genimage,adm_imagenet,older research model,,object,image,256,256,PNG,,0.002,real,-6.2094,big_gan,0.3374,0.0021,0.679
+genimage-biggan_imagenet-ai-00,detector,ai,genimage,biggan_imagenet,older research model,big_gan,animal,image,128,128,PNG,,0.0,real,-13.875,big_gan,0.6484,0.0,0.618
+genimage-biggan_imagenet-ai-01,detector,ai,genimage,biggan_imagenet,older research model,big_gan,object,image,128,128,PNG,,0.0001,real,-8.8479,big_gan,0.4043,0.0002,0.841
+genimage-biggan_imagenet-ai-02,detector,ai,genimage,biggan_imagenet,older research model,big_gan,object,image,128,128,PNG,,0.8691,ai,1.893,glide,0.8294,0.0406,0.798
+genimage-biggan_imagenet-ai-03,detector,ai,genimage,biggan_imagenet,older research model,big_gan,animal,image,128,128,PNG,,0.7811,inconclusive,1.272,big_gan,0.7168,0.0627,0.494
+genimage-glide_imagenet-ai-00,detector,ai,genimage,glide_imagenet,older research model,glide,object,image,256,256,PNG,,0.0109,real,-4.5092,glide,0.9638,0.0035,0.68
+genimage-glide_imagenet-ai-01,detector,ai,genimage,glide_imagenet,older research model,glide,animal,image,256,256,PNG,,0.9489,ai,2.9225,glide,0.4856,0.0296,0.659
+genimage-glide_imagenet-ai-02,detector,ai,genimage,glide_imagenet,older research model,glide,object,image,256,256,PNG,,0.0003,real,-8.2764,glide,0.9658,0.0001,0.655
+genimage-glide_imagenet-ai-03,detector,ai,genimage,glide_imagenet,older research model,glide,indoor scene,image,256,256,PNG,,0.0125,real,-4.3673,glide,0.7803,0.009,0.475
+genimage-glide_imagenet-ai-04,detector,ai,genimage,glide_imagenet,older research model,glide,animal,image,256,256,PNG,,0.0,real,-12.8094,stylegan2,0.5642,0.0,0.599
+genimage-glide_imagenet-ai-05,detector,ai,genimage,glide_imagenet,older research model,glide,object,image,256,256,PNG,,0.0009,real,-7.0384,glide,0.9873,0.0009,0.604
+genimage-glide_imagenet-ai-06,detector,ai,genimage,glide_imagenet,older research model,glide,object,image,256,256,PNG,,0.0129,real,-4.3413,glide,0.4699,0.011,0.78
+genimage-glide_imagenet-ai-07,detector,ai,genimage,glide_imagenet,older research model,glide,object,image,256,256,PNG,,0.0913,real,-2.2979,stable_diffusion,0.4646,0.0511,0.877
+genimage-glide_imagenet-real-00,detector,real,genimage,,real photo,,animal,image,500,342,JPEG,,0.0012,real,-6.7017,stable_diffusion,0.3526,0.0012,0.893
+genimage-glide_imagenet-real-01,detector,real,genimage,,real photo,,people,image,500,375,JPEG,,0.0,real,-22.5115,stable_diffusion,0.6718,0.0,0.611
+genimage-glide_imagenet-real-02,detector,real,genimage,,real photo,,object,image,500,375,JPEG,,0.0,real,-11.6267,stylegan2,0.2903,0.0,0.51
+genimage-glide_imagenet-real-03,detector,real,genimage,,real photo,,animal,image,375,500,JPEG,,0.0,real,-10.57,stable_diffusion,0.9289,0.0,0.863
+genimage-glide_imagenet-real-04,detector,real,genimage,,real photo,,object,image,460,690,JPEG,,0.5204,inconclusive,0.0817,stable_diffusion,0.5059,0.1435,0.769
+genimage-glide_imagenet-real-05,detector,real,genimage,,real photo,,animal,image,500,375,JPEG,,0.0002,real,-8.7517,latent_diffusion,0.3823,0.0001,0.635
+genimage-glide_imagenet-real-06,detector,real,genimage,,real photo,,object,image,461,500,JPEG,,0.994,ai,5.1122,big_gan,0.4888,0.0046,0.85
+genimage-glide_imagenet-real-07,detector,real,genimage,,real photo,,animal,image,500,400,JPEG,,0.0643,real,-2.678,pro_gan,0.5519,0.0305,0.856
+genimage-midjourney_imagenet-ai-00,detector,ai,genimage,midjourney_imagenet,closed commercial,,object,image,1024,1024,PNG,,0.9565,ai,3.09,stable_diffusion,0.3641,0.0124,1.026
+genimage-midjourney_imagenet-ai-01,detector,ai,genimage,midjourney_imagenet,closed commercial,,object,image,1024,1024,PNG,,0.9462,ai,2.8666,latent_diffusion,0.5043,0.0137,0.953
+genimage-midjourney_imagenet-ai-02,detector,ai,genimage,midjourney_imagenet,closed commercial,,vehicle,image,1024,1024,PNG,,0.8668,ai,1.8732,pro_gan,0.5176,0.0696,0.737
+genimage-midjourney_imagenet-ai-03,detector,ai,genimage,midjourney_imagenet,closed commercial,,object,image,1024,1024,PNG,,0.988,ai,4.411,big_gan,0.6341,0.0106,0.775
+genimage-midjourney_imagenet-ai-04,detector,ai,genimage,midjourney_imagenet,closed commercial,,object,image,1024,1024,PNG,,0.9956,ai,5.4186,latent_diffusion,0.453,0.0056,0.7
+genimage-midjourney_imagenet-ai-05,detector,ai,genimage,midjourney_imagenet,closed commercial,,object,image,1024,1024,PNG,,0.9998,ai,8.7198,stable_diffusion,0.5607,0.0004,1.095
+genimage-sdv4_imagenet-ai-00,detector,ai,genimage,sdv4_imagenet,older research model,stable_diffusion,animal,image,512,512,PNG,,0.4146,inconclusive,-0.3449,stable_diffusion,0.4094,0.107,0.958
+genimage-sdv4_imagenet-ai-01,detector,ai,genimage,sdv4_imagenet,older research model,stable_diffusion,object,image,512,512,PNG,,0.3414,inconclusive,-0.6569,glide,0.854,0.1407,0.827
+genimage-sdv4_imagenet-ai-02,detector,ai,genimage,sdv4_imagenet,older research model,stable_diffusion,food,image,512,512,PNG,,0.9997,ai,7.9875,stable_diffusion,0.8646,0.0003,0.869
+genimage-sdv4_imagenet-ai-03,detector,ai,genimage,sdv4_imagenet,older research model,stable_diffusion,indoor scene,image,512,512,PNG,,0.0044,real,-5.4122,stable_diffusion,0.8356,0.003,0.622
+genimage-sdv4_imagenet-ai-04,detector,ai,genimage,sdv4_imagenet,older research model,stable_diffusion,object,image,512,512,PNG,,0.7955,inconclusive,1.3587,glide,0.5325,0.0614,0.671
+genimage-sdv4_imagenet-ai-05,detector,ai,genimage,sdv4_imagenet,older research model,stable_diffusion,object,image,512,512,PNG,,0.6678,inconclusive,0.698,big_gan,0.4146,0.0867,0.883
+genimage-sdv5_imagenet-ai-00,detector,ai,genimage,sdv5_imagenet,older research model,stable_diffusion,people,image,512,512,PNG,,0.0143,real,-4.2315,latent_diffusion,0.5726,0.0208,0.821
+genimage-sdv5_imagenet-ai-01,detector,ai,genimage,sdv5_imagenet,older research model,stable_diffusion,object,image,512,512,PNG,,0.9999,ai,9.5066,stable_diffusion,0.4694,0.0,0.941
+genimage-sdv5_imagenet-ai-02,detector,ai,genimage,sdv5_imagenet,older research model,stable_diffusion,object,image,512,512,PNG,,0.5684,inconclusive,0.2755,stable_diffusion,0.3413,0.0731,0.646
+genimage-sdv5_imagenet-ai-03,detector,ai,genimage,sdv5_imagenet,older research model,stable_diffusion,animal,image,512,512,PNG,,0.0064,real,-5.0444,stable_diffusion,0.662,0.0045,0.844
+genimage-sdv5_imagenet-ai-04,detector,ai,genimage,sdv5_imagenet,older research model,stable_diffusion,animal,image,512,512,PNG,,0.5476,inconclusive,0.1909,stable_diffusion,0.4346,0.119,0.844
+genimage-sdv5_imagenet-ai-05,detector,ai,genimage,sdv5_imagenet,older research model,stable_diffusion,object,image,512,512,PNG,,0.93,ai,2.5871,stable_diffusion,0.8971,0.0349,0.871
+genimage-sdv5_imagenet-real-00,detector,real,genimage,,real photo,,animal,image,500,334,JPEG,,0.0171,real,-4.0502,big_gan,0.6568,0.0259,0.609
+genimage-sdv5_imagenet-real-01,detector,real,genimage,,real photo,,art or illustration,image,500,415,JPEG,,0.0026,real,-5.963,stable_diffusion,0.594,0.0014,0.811
+genimage-sdv5_imagenet-real-02,detector,real,genimage,,real photo,,animal,image,500,333,JPEG,,0.0,real,-12.7994,stable_diffusion,0.266,0.0,0.74
+genimage-sdv5_imagenet-real-03,detector,real,genimage,,real photo,,animal,image,500,375,JPEG,,0.0008,real,-7.0716,glide,0.2124,0.0006,0.59
+genimage-sdv5_imagenet-real-04,detector,real,genimage,,real photo,,people,image,431,500,JPEG,,0.0006,real,-7.3785,stable_diffusion,0.9627,0.0005,0.613
+genimage-sdv5_imagenet-real-05,detector,real,genimage,,real photo,,people,image,375,500,JPEG,,0.0044,real,-5.4237,stable_diffusion,0.8972,0.0019,0.76
+genimage-sdv5_imagenet-real-06,detector,real,genimage,,real photo,,animal,image,500,336,JPEG,,0.01,real,-4.5923,pro_gan,0.6489,0.0126,0.727
+genimage-sdv5_imagenet-real-07,detector,real,genimage,,real photo,,animal,image,500,450,JPEG,,0.413,inconclusive,-0.3516,big_gan,0.4467,0.0861,0.57
+genimage-vqdm_imagenet-ai-00,detector,ai,genimage,vqdm_imagenet,older research model,,animal,image,256,256,PNG,,0.9605,ai,3.1899,latent_diffusion,0.4759,0.0342,0.815
+genimage-vqdm_imagenet-ai-01,detector,ai,genimage,vqdm_imagenet,older research model,,art or illustration,image,256,256,PNG,,0.7442,inconclusive,1.0678,stable_diffusion,0.3557,0.0882,0.814
+genimage-vqdm_imagenet-ai-02,detector,ai,genimage,vqdm_imagenet,older research model,,vehicle,image,256,256,PNG,,0.8971,ai,2.1649,pro_gan,0.7567,0.071,0.635
+genimage-vqdm_imagenet-ai-03,detector,ai,genimage,vqdm_imagenet,older research model,,object,image,256,256,PNG,,0.4517,inconclusive,-0.1938,stable_diffusion,0.523,0.1216,0.793
+genimage-vqdm_imagenet-ai-04,detector,ai,genimage,vqdm_imagenet,older research model,,animal,image,256,256,PNG,,0.0007,real,-7.3073,glide,0.4024,0.0005,0.775
+genimage-vqdm_imagenet-ai-05,detector,ai,genimage,vqdm_imagenet,older research model,,object,image,256,256,PNG,,0.0174,real,-4.0333,stable_diffusion,0.5272,0.0118,0.543
+genimage-wukong_imagenet-ai-00,detector,ai,genimage,wukong_imagenet,older research model,,animal,image,512,512,PNG,,0.5336,inconclusive,0.1346,stable_diffusion,0.2977,0.0935,0.901
+genimage-wukong_imagenet-ai-01,detector,ai,genimage,wukong_imagenet,older research model,,animal,image,512,512,PNG,,0.7777,inconclusive,1.2521,stable_diffusion,0.307,0.0616,0.932
+genimage-wukong_imagenet-ai-02,detector,ai,genimage,wukong_imagenet,older research model,,animal,image,512,512,PNG,,0.0247,real,-3.6772,stable_diffusion,0.4612,0.0142,0.773
+genimage-wukong_imagenet-ai-03,detector,ai,genimage,wukong_imagenet,older research model,,object,image,512,512,PNG,,0.9957,ai,5.4497,stable_diffusion,0.351,0.0022,0.898
+genimage-wukong_imagenet-ai-04,detector,ai,genimage,wukong_imagenet,older research model,,object,image,512,512,PNG,,0.9965,ai,5.6591,stable_diffusion,0.8276,0.0036,0.646
+genimage-wukong_imagenet-ai-05,detector,ai,genimage,wukong_imagenet,older research model,,food,image,512,512,PNG,,1.0,ai,11.6429,stable_diffusion,0.9565,0.0,0.811
+openfake_core-00000-00-002,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.0015,real,-6.4714,pro_gan,0.6743,0.0013,0.797
+openfake_core-00000-00-004,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.9998,ai,8.4509,latent_diffusion,0.2486,0.0002,0.976
+openfake_core-00000-00-007,detector,ai,openfake-core-test,sora-2,video-model frame,,art or illustration,video frame,720,1280,JPEG,,1.0,ai,14.3112,stable_diffusion,0.8024,0.0,0.679
+openfake_core-00000-00-020,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,2560,1440,JPEG,,0.9652,ai,3.3223,stable_diffusion,0.9001,0.0183,0.755
+openfake_core-00000-00-021,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.1093,real,-2.0981,latent_diffusion,0.7101,0.0753,0.666
+openfake_core-00000-00-023,detector,real,openfake-core-test,,real photo,,object,image,1535,2048,JPEG,,0.0003,real,-8.1849,latent_diffusion,0.5176,0.0002,0.925
+openfake_core-00000-00-031,detector,real,openfake-core-test,,real photo,,object,image,417,600,JPEG,,0.3981,inconclusive,-0.4136,big_gan,0.4807,0.1347,0.789
+openfake_core-00000-00-032,detector,ai,openfake-core-test,z-image-turbo,open weights,,art or illustration,image,1088,1920,PNG,,1.0,ai,10.3429,stable_diffusion,0.4645,0.0,0.983
+openfake_core-00000-00-036,detector,ai,openfake-core-test,illustrious,open weights,,art or illustration,image,1024,1024,JPEG,,0.961,ai,3.2034,stable_diffusion,0.4766,0.0258,0.644
+openfake_core-00000-00-041,detector,ai,openfake-core-test,midjourney-7,closed commercial,,animal,image,1024,1024,PNG,,0.1388,real,-1.8252,stable_diffusion,0.4678,0.0526,0.601
+openfake_core-00000-00-043,detector,real,openfake-core-test,,real photo,,animal,image,461,500,JPEG,,0.7133,inconclusive,0.9113,stable_diffusion,0.6693,0.0693,0.87
+openfake_core-00000-00-046,detector,real,openfake-core-test,,real photo,,animal,image,375,500,JPEG,,0.0003,real,-8.1705,pro_gan,0.6611,0.0003,0.866
+openfake_core-00000-00-053,detector,ai,openfake-core-test,midjourney-7,closed commercial,,people,image,784,1504,PNG,,0.0033,real,-5.7027,stable_diffusion,0.9812,0.0012,0.651
+openfake_core-00000-00-057,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.517,inconclusive,0.0678,stable_diffusion,0.3708,0.1848,0.727
+openfake_core-00000-00-062,detector,ai,openfake-core-test,wan-video-2.5,video-model frame,,art or illustration,video frame,522,764,JPEG,,0.9994,ai,7.3917,stable_diffusion,0.7808,0.0008,0.798
+openfake_core-00000-00-067,detector,ai,openfake-core-test,midjourney-7,closed commercial,,indoor scene,image,1904,640,PNG,,0.9956,ai,5.4323,stable_diffusion,0.4356,0.0044,0.927
+openfake_core-00000-00-075,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,people,image,1024,1024,JPEG,,0.0001,real,-9.4647,stable_diffusion,0.8976,0.0,0.825
+openfake_core-00000-00-078,detector,ai,openfake-core-test,ernie-image-turbo,other / unknown,,art or illustration,image,1024,1536,JPEG,,1.0,ai,11.5079,stable_diffusion,0.9763,0.0,1.022
+openfake_core-00000-00-090,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,art or illustration,image,1024,1024,JPEG,,0.001,real,-6.9127,stable_diffusion,0.6452,0.0007,0.466
+openfake_core-00000-00-095,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,art or illustration,image,1696,2528,PNG,,0.9992,ai,7.181,stable_diffusion,0.953,0.0003,0.712
+openfake_core-00000-00-100,detector,real,openfake-core-test,,real photo,,street or buildings,image,2048,1536,JPEG,,0.1025,real,-2.1699,latent_diffusion,0.6521,0.0652,0.671
+openfake_core-00000-00-105,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.9908,ai,4.6819,glide,0.5218,0.0055,0.535
+openfake_core-00000-00-106,detector,real,openfake-core-test,,real photo,,animal,image,1024,697,JPEG,,0.0004,real,-7.7336,glide,0.7075,0.0003,0.547
+openfake_core-00000-00-107,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.0267,real,-3.595,latent_diffusion,0.7352,0.0152,0.486
+openfake_core-00000-00-108,detector,ai,openfake-core-test,z-image-turbo,open weights,,art or illustration,image,1024,1024,JPEG,,0.0001,real,-9.3823,stable_diffusion,0.9509,0.0002,0.652
+openfake_core-00000-00-117,detector,real,openfake-core-test,,real photo,,animal,image,500,344,JPEG,,0.6408,inconclusive,0.5786,pro_gan,0.4732,0.0728,0.465
+openfake_core-00000-00-119,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,1024,1024,JPEG,,1.0,ai,18.5808,stable_diffusion,0.6492,0.0,0.592
+openfake_core-00000-00-120,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,people,image,1024,1024,JPEG,,0.0,real,-16.6172,stable_diffusion,0.7757,0.0,0.456
+openfake_core-00000-00-128,detector,ai,openfake-core-test,ernie-image,other / unknown,,art or illustration,image,1088,1920,PNG,,1.0,ai,12.9117,stable_diffusion,0.9252,0.0,0.496
+openfake_core-00000-00-138,detector,ai,openfake-core-test,midjourney-7,closed commercial,,nature or landscape,image,1456,816,PNG,,0.5977,inconclusive,0.3958,stable_diffusion,0.7161,0.2224,0.679
+openfake_core-00000-00-142,detector,real,openfake-core-test,,real photo,,animal,image,600,321,JPEG,,0.2251,inconclusive,-1.2362,stable_diffusion,0.4904,0.0453,0.42
+openfake_core-00000-09-005,detector,real,openfake-core-test,,real photo,,object,image,2180,1636,JPEG,,0.002,real,-6.231,stable_diffusion,0.7252,0.0015,0.816
+openfake_core-00000-09-010,detector,ai,openfake-core-test,veo-3,video-model frame,,object,video frame,1280,720,JPEG,,0.0042,real,-5.461,glide,0.3391,0.0027,0.434
+openfake_core-00000-09-013,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,animal,image,1728,2304,JPEG,,1.0,ai,16.4014,stable_diffusion,0.7017,0.0,0.506
+openfake_core-00000-09-014,detector,ai,openfake-core-test,illustrious,open weights,,art or illustration,image,1664,2432,JPEG,,1.0,ai,13.4872,stable_diffusion,0.3689,0.0,0.737
+openfake_core-00000-09-021,detector,real,openfake-core-test,,real photo,,object,image,500,333,JPEG,,0.0051,real,-5.2765,glide,0.9432,0.0042,0.393
+openfake_core-00000-09-022,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,portrait,image,1536,1024,PNG,,0.9421,ai,2.7897,latent_diffusion,0.2896,0.0348,0.687
+openfake_core-00000-09-023,detector,ai,openfake-core-test,ideogram-2.0,closed commercial,,portrait,image,1280,800,PNG,,0.0002,real,-8.67,stable_diffusion,0.932,0.0006,0.485
+openfake_core-00000-09-032,detector,real,openfake-core-test,,real photo,,animal,image,500,332,JPEG,,0.9707,ai,3.4999,glide,0.3199,0.0303,0.453
+openfake_core-00000-09-033,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,1280,704,JPEG,,0.375,inconclusive,-0.5107,stable_diffusion,0.9626,0.1629,0.585
+openfake_core-00000-09-034,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,5504,3072,PNG,,1.0,ai,10.7753,stable_diffusion,0.6664,0.0,1.314
+openfake_core-00000-09-039,detector,real,openfake-core-test,,real photo,,animal,image,335,500,JPEG,,0.0331,real,-3.3755,pro_gan,0.3067,0.0186,0.588
+openfake_core-00000-09-045,detector,ai,openfake-core-test,lumina-17-2-25,other / unknown,,object,image,1024,1024,PNG,,0.0019,real,-6.2384,glide,0.3438,0.002,0.45
+openfake_core-00000-09-050,detector,real,openfake-core-test,,real photo,,vehicle,image,2048,1535,JPEG,,0.9106,ai,2.3211,pro_gan,0.9286,0.043,0.776
+openfake_core-00000-09-056,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,text or graphic,image,1024,1024,JPEG,,0.1123,real,-2.0673,stable_diffusion,0.5987,0.0506,0.432
+openfake_core-00000-09-064,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1536,JPEG,,0.9999,ai,8.9386,stable_diffusion,0.544,0.0001,0.653
+openfake_core-00000-09-080,detector,real,openfake-core-test,,real photo,,animal,image,374,500,JPEG,,0.0,real,-10.1932,glide,0.3132,0.0001,0.43
+openfake_core-00000-09-081,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,animal,image,1024,1024,JPEG,,0.0,real,-9.9911,stable_diffusion,0.7728,0.0001,0.437
+openfake_core-00000-09-083,detector,real,openfake-core-test,,real photo,,animal,image,360,500,JPEG,,0.3985,inconclusive,-0.4115,pro_gan,0.5715,0.1435,0.416
+openfake_core-00000-09-089,detector,real,openfake-core-test,,real photo,,object,image,1536,2048,JPEG,,0.0105,real,-4.5463,stable_diffusion,0.7996,0.0035,0.473
+openfake_core-00000-09-097,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,2048,3072,JPEG,,1.0,ai,13.2893,stable_diffusion,0.5404,0.0,0.847
+openfake_core-00000-09-103,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.0002,real,-8.4456,stable_diffusion,0.2135,0.0001,0.63
+openfake_core-00000-09-106,detector,ai,openfake-core-test,ernie-image-turbo,other / unknown,,art or illustration,image,848,1264,JPEG,,1.0,ai,13.0143,stable_diffusion,0.7827,0.0,0.556
+openfake_core-00000-09-110,detector,ai,openfake-core-test,ideogram-2.0,closed commercial,,vehicle,image,1280,800,PNG,,0.0112,real,-4.4835,stable_diffusion,0.6522,0.0066,0.627
+openfake_core-00000-09-128,detector,real,openfake-core-test,,real photo,,object,image,1536,2048,JPEG,,0.0208,real,-3.851,stable_diffusion,0.8474,0.0139,0.467
+openfake_core-00000-09-129,detector,real,openfake-core-test,,real photo,,animal,image,504,490,JPEG,,0.0001,real,-9.0162,stylegan2,0.3432,0.0001,0.574
+openfake_core-00000-09-138,detector,ai,openfake-core-test,midjourney-7,closed commercial,,indoor scene,image,1456,816,PNG,,0.8169,ai,1.4954,stable_diffusion,0.7106,0.0872,0.557
+openfake_core-00000-09-143,detector,real,openfake-core-test,,real photo,,street or buildings,image,3024,4032,JPEG,,0.0002,real,-8.5359,stable_diffusion,0.5744,0.0001,0.64
+openfake_core-00000-09-145,detector,real,openfake-core-test,,real photo,,object,image,2048,1535,JPEG,,0.0101,real,-4.5803,stable_diffusion,0.6474,0.0093,0.702
+openfake_core-00000-12-000,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,text or graphic,video frame,464,688,JPEG,,0.5942,inconclusive,0.3815,pro_gan,0.6336,0.1331,0.734
+openfake_core-00000-12-001,detector,real,openfake-core-test,,real photo,,street or buildings,image,1536,2048,JPEG,,0.0011,real,-6.8002,latent_diffusion,0.5542,0.0011,0.559
+openfake_core-00000-12-007,detector,real,openfake-core-test,,real photo,,vehicle,image,2048,1535,JPEG,,0.9967,ai,5.718,pro_gan,0.4385,0.0022,0.732
+openfake_core-00000-12-011,detector,ai,openfake-core-test,ernie-image-turbo,other / unknown,,art or illustration,image,1264,848,JPEG,,1.0,ai,22.2757,stable_diffusion,0.9145,0.0,0.447
+openfake_core-00000-12-017,detector,ai,openfake-core-test,aurora-20-1-25,other / unknown,,portrait,image,1024,768,PNG,,0.0072,real,-4.9302,stable_diffusion,0.7088,0.0051,0.624
+openfake_core-00000-12-020,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,art or illustration,image,1536,2752,PNG,,0.9944,ai,5.1829,stable_diffusion,0.891,0.0043,0.819
+openfake_core-00000-12-026,detector,ai,openfake-core-test,aurora-20-1-25,other / unknown,,object,image,1024,768,PNG,,0.2635,inconclusive,-1.028,stable_diffusion,0.368,0.1435,0.428
+openfake_core-00000-12-028,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.9106,ai,2.3204,glide,0.3558,0.0282,0.747
+openfake_core-00000-12-029,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,people,image,1024,1024,JPEG,,0.0,real,-10.1481,stable_diffusion,0.9777,0.0001,0.456
+openfake_core-00000-12-037,detector,real,openfake-core-test,,real photo,,object,image,1535,2048,JPEG,,0.0005,real,-7.6894,stable_diffusion,0.6301,0.0003,0.456
+openfake_core-00000-12-042,detector,ai,openfake-core-test,sora-2,video-model frame,,text or graphic,image,2560,3840,JPEG,,0.9999,ai,8.9244,stable_diffusion,0.6192,0.0001,0.921
+openfake_core-00000-12-043,detector,real,openfake-core-test,,real photo,,animal,image,500,349,JPEG,,0.5628,inconclusive,0.2524,pro_gan,0.6533,0.0793,0.478
+openfake_core-00000-12-044,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.0,real,-13.6669,cycle_gan,0.6154,0.0,0.445
+openfake_core-00000-12-049,detector,ai,openfake-core-test,recraft-v3,closed commercial,,people,image,600,338,JPEG,,0.9999,ai,9.8964,stable_diffusion,0.7857,0.0,0.646
+openfake_core-00000-12-053,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.9209,ai,2.4548,pro_gan,0.4762,0.061,0.49
+openfake_core-00000-12-060,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.9995,ai,7.6909,stable_diffusion,0.3915,0.0007,0.631
+openfake_core-00000-12-061,detector,ai,openfake-core-test,ernie-image-turbo,other / unknown,,art or illustration,image,1056,1824,PNG,,1.0,ai,13.3441,stable_diffusion,0.7216,0.0,0.495
+openfake_core-00000-12-069,detector,real,openfake-core-test,,real photo,,animal,image,480,325,JPEG,,0.0021,real,-6.1825,pro_gan,0.3761,0.0009,0.57
+openfake_core-00000-12-073,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,464,688,JPEG,,0.9002,ai,2.1998,pro_gan,0.5416,0.0663,0.412
+openfake_core-00000-12-075,detector,real,openfake-core-test,,real photo,,art or illustration,image,1536,2048,JPEG,,0.4751,inconclusive,-0.0998,latent_diffusion,0.4875,0.1846,0.596
+openfake_core-00000-12-079,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.7946,inconclusive,1.3527,latent_diffusion,0.2276,0.1478,0.422
+openfake_core-00000-12-083,detector,ai,openfake-core-test,illustrious,open weights,,art or illustration,image,1536,1536,PNG,,0.9999,ai,9.0588,glide,0.7208,0.0001,0.522
+openfake_core-00000-12-087,detector,ai,openfake-core-test,halfmoon-4-4-25,other / unknown,,street or buildings,image,1248,832,PNG,,0.9173,ai,2.4068,glide,0.4653,0.0383,0.644
+openfake_core-00000-12-090,detector,ai,openfake-core-test,lumina-17-2-25,other / unknown,,indoor scene,image,1024,1024,PNG,,0.9998,ai,8.5996,stable_diffusion,0.9565,0.0001,0.462
+openfake_core-00000-12-097,detector,real,openfake-core-test,,real photo,,animal,image,500,346,JPEG,,0.8271,ai,1.565,latent_diffusion,0.5811,0.0495,0.589
+openfake_core-00000-12-106,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.0013,real,-6.6414,glide,0.7701,0.0019,0.468
+openfake_core-00000-12-120,detector,real,openfake-core-test,,real photo,,animal,image,2048,1535,JPEG,,0.9829,ai,4.0543,stable_diffusion,0.9061,0.0171,0.597
+openfake_core-00000-12-121,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.0001,real,-8.9038,stable_diffusion,0.6014,0.0001,0.455
+openfake_core-00000-12-122,detector,real,openfake-core-test,,real photo,,object,image,399,500,JPEG,,0.0412,real,-3.147,stable_diffusion,0.5322,0.0122,0.519
+openfake_core-00000-12-124,detector,ai,openfake-core-test,illustrious,open weights,,art or illustration,video frame,1080,1920,JPEG,,1.0,ai,14.9126,stable_diffusion,0.7205,0.0,0.486
+openfake_core-00000-12-126,detector,ai,openfake-core-test,lumina-17-2-25,other / unknown,,vehicle,image,1024,1024,PNG,,0.9599,ai,3.1747,pro_gan,0.4343,0.0125,0.478
+openfake_core-00000-12-129,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,object,image,1024,1024,JPEG,,0.0116,real,-4.4414,latent_diffusion,0.3734,0.0076,0.464
+openfake_core-00000-22-003,detector,ai,openfake-core-test,ideogram-2.0,closed commercial,,object,image,1280,800,PNG,,0.9981,ai,6.2643,stable_diffusion,0.4403,0.0011,0.45
+openfake_core-00000-22-004,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,2488,3328,JPEG,,1.0,ai,10.7184,stable_diffusion,0.6297,0.0,0.705
+openfake_core-00000-22-010,detector,real,openfake-core-test,,real photo,,animal,image,500,333,JPEG,,0.0006,real,-7.4649,latent_diffusion,0.6986,0.0008,0.379
+openfake_core-00000-22-012,detector,ai,openfake-core-test,sora-2,video-model frame,,art or illustration,video frame,1280,704,JPEG,,0.9984,ai,6.4168,latent_diffusion,0.2816,0.001,0.552
+openfake_core-00000-22-015,detector,ai,openfake-core-test,frames-23-1-25,other / unknown,,portrait,image,1920,1088,PNG,,0.4188,inconclusive,-0.3277,stable_diffusion,0.3496,0.1166,0.429
+openfake_core-00000-22-017,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.0771,real,-2.4819,glide,0.3219,0.0651,0.624
+openfake_core-00000-22-018,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.005,real,-5.2911,glide,0.2949,0.0023,0.377
+openfake_core-00000-22-035,detector,ai,openfake-core-test,wan-video-2.5,video-model frame,,art or illustration,video frame,632,632,JPEG,,0.9961,ai,5.5543,stable_diffusion,0.6765,0.0017,0.562
+openfake_core-00000-22-036,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,2048,2048,JPEG,,1.0,ai,14.3081,stable_diffusion,0.9864,0.0,0.516
+openfake_core-00000-22-037,detector,ai,openfake-core-test,recraft-v3,closed commercial,,object,image,600,600,JPEG,,0.9753,ai,3.676,stable_diffusion,0.5769,0.0172,0.6
+openfake_core-00000-22-058,detector,ai,openfake-core-test,ernie-image,other / unknown,,art or illustration,image,1024,1536,PNG,,0.9996,ai,7.9387,stable_diffusion,0.3954,0.0004,0.464
+openfake_core-00000-22-059,detector,real,openfake-core-test,,real photo,,art or illustration,image,1536,2048,JPEG,,0.0,real,-15.5328,stable_diffusion,0.6585,0.0,0.422
+openfake_core-00000-22-067,detector,ai,openfake-core-test,wan-video-2.5,video-model frame,,people,video frame,764,522,JPEG,,0.9452,ai,2.8482,stable_diffusion,0.5266,0.0321,0.426
+openfake_core-00000-22-068,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.0212,real,-3.8309,stable_diffusion,0.6003,0.0187,0.636
+openfake_core-00000-22-073,detector,ai,openfake-core-test,ernie-image-turbo,other / unknown,,art or illustration,image,1024,1536,JPEG,,1.0,ai,15.0591,stable_diffusion,0.978,0.0,0.743
+openfake_core-00000-22-077,detector,ai,openfake-core-test,ernie-image,other / unknown,,object,image,1024,1024,PNG,,0.0005,real,-7.605,stylegan2,0.5635,0.0003,0.482
+openfake_core-00000-22-078,detector,real,openfake-core-test,,real photo,,art or illustration,image,1535,2048,JPEG,,0.9777,ai,3.7799,stable_diffusion,0.9236,0.0153,0.709
+openfake_core-00000-22-081,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.0027,real,-5.922,glide,0.6616,0.005,0.587
+openfake_core-00000-22-086,detector,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,720,1280,JPEG,,0.9997,ai,8.0938,stable_diffusion,0.6413,0.0005,0.47
+openfake_core-00000-22-088,detector,ai,openfake-core-test,frames-23-1-25,other / unknown,,food,image,1920,1088,PNG,,0.9859,ai,4.2492,stable_diffusion,0.416,0.0086,0.822
+openfake_core-00000-22-090,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,object,image,1024,1024,JPEG,,0.9439,ai,2.8232,stable_diffusion,0.4977,0.0273,0.446
+openfake_core-00000-22-100,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,1024,1536,JPEG,,0.9476,ai,2.8951,stable_diffusion,0.8495,0.0225,0.63
+openfake_core-00000-22-103,detector,real,openfake-core-test,,real photo,,nature or landscape,image,2048,1536,JPEG,,0.0089,real,-4.7184,glide,0.5373,0.0062,0.629
+openfake_core-00000-22-105,detector,real,openfake-core-test,,real photo,,animal,image,3024,4032,JPEG,,0.0067,real,-4.9981,stylegan2,0.8209,0.0041,0.618
+openfake_core-00000-22-117,detector,real,openfake-core-test,,real photo,,nature or landscape,image,2048,1536,JPEG,,0.0002,real,-8.3016,pro_gan,0.4188,0.0003,0.658
+openfake_core-00000-22-118,detector,real,openfake-core-test,,real photo,,indoor scene,image,2048,1536,JPEG,,0.0392,real,-3.1984,pro_gan,0.4318,0.0311,0.82
+openfake_core-00000-22-119,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.946,ai,2.8625,stylegan2,0.2891,0.0611,0.462
+openfake_core-00000-22-121,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,object,video frame,1076,1928,JPEG,,0.5147,inconclusive,0.0588,stable_diffusion,0.9958,0.1202,0.75
+openfake_core-00000-22-127,detector,real,openfake-core-test,,real photo,,animal,image,549,366,JPEG,,0.0003,real,-8.2565,pro_gan,0.4842,0.0002,0.444
+openfake_core-00000-22-128,detector,real,openfake-core-test,,real photo,,animal,image,640,480,JPEG,,0.0393,real,-3.197,glide,0.3551,0.022,0.591
+openfake_core-00000-22-130,detector,ai,openfake-core-test,frames-23-1-25,other / unknown,,art or illustration,image,1920,1088,PNG,,0.9997,ai,8.1392,stable_diffusion,0.5144,0.0002,0.963
+openfake_core-00000-22-133,detector,real,openfake-core-test,,real photo,,animal,image,500,357,JPEG,,0.9996,ai,7.851,stable_diffusion,0.406,0.0002,0.878
+openfake_core-00000-22-135,detector,ai,openfake-core-test,recraft-v3,closed commercial,,street or buildings,image,600,300,JPEG,,0.0037,real,-5.6043,stable_diffusion,0.8664,0.0041,0.632
+openfake_core-00000-22-138,detector,ai,openfake-core-test,illustrious,open weights,,art or illustration,image,1536,1536,PNG,,0.9995,ai,7.5549,stable_diffusion,0.8295,0.0006,0.539
+openfake_core-00000-22-141,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1536,JPEG,,0.4297,inconclusive,-0.2832,glide,0.3709,0.0818,0.606
+openfake_core-00000-22-145,detector,real,openfake-core-test,,real photo,,animal,image,500,457,JPEG,,0.2245,inconclusive,-1.2395,pro_gan,0.603,0.0732,0.411
+openfake_core-00000-28-008,detector,real,openfake-core-test,,real photo,,object,image,500,333,JPEG,,0.7461,inconclusive,1.0779,big_gan,0.3209,0.0749,0.65
+openfake_core-00000-28-016,detector,ai,openfake-core-test,midjourney-7,closed commercial,,animal,image,1024,1024,PNG,,0.6725,inconclusive,0.7197,cycle_gan,0.6831,0.099,0.467
+openfake_core-00000-28-020,detector,real,openfake-core-test,,real photo,,animal,image,320,240,JPEG,,0.0154,real,-4.1546,stable_diffusion,0.4342,0.0084,0.762
+openfake_core-00000-28-023,detector,ai,openfake-core-test,frames-23-1-25,other / unknown,,object,image,1920,1088,PNG,,0.9335,ai,2.6418,stable_diffusion,0.9152,0.0331,0.935
+openfake_core-00000-28-024,detector,real,openfake-core-test,,real photo,,animal,image,254,155,JPEG,,0.1288,real,-1.9113,big_gan,0.3679,0.0481,0.78
+openfake_core-00000-28-033,detector,real,openfake-core-test,,real photo,,animal,image,500,334,JPEG,,0.6852,inconclusive,0.7779,pro_gan,0.4249,0.1083,0.664
+openfake_core-00000-28-038,detector,ai,openfake-core-test,aurora-20-1-25,other / unknown,,art or illustration,image,1024,768,PNG,,0.9999,ai,8.8665,stable_diffusion,0.9009,0.0001,0.699
+openfake_core-00000-28-044,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,text or graphic,image,1232,1536,WEBP,,0.3233,inconclusive,-0.7385,glide,0.5607,0.0823,0.833
+openfake_core-00000-28-050,detector,ai,openfake-core-test,aurora-20-1-25,other / unknown,,portrait,image,1024,768,PNG,,0.0455,real,-3.0426,stable_diffusion,0.9571,0.0225,0.815
+openfake_core-00000-28-055,detector,ai,openfake-core-test,z-image-turbo,open weights,,portrait,image,1024,1024,JPEG,,0.5954,inconclusive,0.3863,stable_diffusion,0.5407,0.111,0.848
+openfake_core-00000-28-065,detector,real,openfake-core-test,,real photo,,vehicle,image,2048,1536,JPEG,,0.0501,real,-2.9431,stable_diffusion,0.3599,0.0374,0.889
+openfake_core-00000-28-069,detector,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,1080,1920,JPEG,,0.9999,ai,9.6637,stable_diffusion,0.3637,0.0,0.714
+openfake_core-00000-28-070,detector,real,openfake-core-test,,real photo,,object,image,1535,2048,JPEG,,0.5313,inconclusive,0.1253,glide,0.4262,0.1346,0.715
+openfake_core-00000-28-073,detector,ai,openfake-core-test,recraft-v2,closed commercial,,nature or landscape,image,1024,1024,PNG,,0.7613,inconclusive,1.1598,latent_diffusion,0.5085,0.172,0.848
+openfake_core-00000-28-074,detector,ai,openfake-core-test,aurora-20-1-25,other / unknown,,street or buildings,image,1024,768,PNG,,0.8597,ai,1.8129,stable_diffusion,0.5658,0.1006,0.943
+openfake_core-00000-28-079,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.988,ai,4.4143,latent_diffusion,0.2383,0.007,0.934
+openfake_core-00000-28-082,detector,real,openfake-core-test,,real photo,,object,image,600,800,JPEG,,0.0088,real,-4.7298,glide,0.6575,0.004,0.606
+openfake_core-00000-28-100,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,text or graphic,image,1024,1536,JPEG,,0.9998,ai,8.5851,glide,0.5078,0.0003,0.685
+openfake_core-00000-28-102,detector,ai,openfake-core-test,ideogram-2.0,closed commercial,,vehicle,image,1280,800,PNG,,0.9981,ai,6.2599,stable_diffusion,0.5506,0.0014,0.88
+openfake_core-00000-28-106,detector,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,1080,1920,JPEG,,1.0,ai,15.6716,glide,0.6271,0.0,0.876
+openfake_core-00000-28-111,detector,ai,openfake-core-test,frames-23-1-25,other / unknown,,vehicle,image,1920,1088,PNG,,0.5866,inconclusive,0.3501,stable_diffusion,0.8664,0.1365,0.929
+openfake_core-00000-28-115,detector,ai,openfake-core-test,sora-2,video-model frame,,animal,video frame,1280,704,JPEG,,0.9999,ai,8.844,stable_diffusion,0.7313,0.0001,0.93
+openfake_core-00000-28-123,detector,ai,openfake-core-test,illustrious,open weights,,art or illustration,image,1080,1576,JPEG,,1.0,ai,16.5064,glide,0.5991,0.0,0.703
+openfake_core-00000-28-126,detector,ai,openfake-core-test,illustrious,open weights,,art or illustration,image,832,1216,JPEG,,1.0,ai,10.1989,stable_diffusion,0.7437,0.0,0.639
+openfake_core-00000-28-131,detector,real,openfake-core-test,,real photo,,animal,image,332,500,JPEG,,0.7269,inconclusive,0.9792,pro_gan,0.5258,0.1367,0.801
+openfake_core-00000-28-137,detector,ai,openfake-core-test,illustrious,open weights,,art or illustration,image,832,1216,JPEG,,1.0,ai,11.5675,stable_diffusion,0.8906,0.0,0.874
+openfake_core-00000-28-141,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.0001,real,-9.7682,latent_diffusion,0.4629,0.0001,0.874
+openfake_core-00006-30-005,detector,ai,openfake-core-test,veo-3,video-model frame,,street or buildings,video frame,1080,1920,JPEG,,0.0953,real,-2.2505,stable_diffusion,0.7814,0.0437,0.672
+openfake_core-00006-30-018,detector,ai,openfake-core-test,sora-2,video-model frame,,indoor scene,video frame,1280,720,JPEG,,1.0,ai,11.2478,latent_diffusion,0.5042,0.0,0.718
+openfake_core-00006-30-037,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.0039,real,-5.5531,latent_diffusion,0.3132,0.0019,0.86
+openfake_core-00006-30-044,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.0002,real,-8.3228,stable_diffusion,0.9665,0.0002,0.899
+openfake_core-00006-30-051,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.0016,real,-6.4292,latent_diffusion,0.2742,0.0011,0.868
+openfake_core-00006-30-053,detector,ai,openfake-core-test,wan-video-2.5,video-model frame,,object,video frame,960,960,JPEG,,1.0,ai,12.0896,glide,0.9015,0.0,1.01
+openfake_core-00006-30-054,detector,ai,openfake-core-test,halfmoon-4-4-25,other / unknown,,art or illustration,image,1248,832,PNG,,1.0,ai,12.3295,glide,0.6485,0.0,0.726
+openfake_core-00006-30-055,detector,ai,openfake-core-test,sora-2,video-model frame,,animal,image,1024,1536,JPEG,,0.4408,inconclusive,-0.2377,stylegan2,0.8815,0.1236,0.48
+openfake_core-00006-30-057,detector,ai,openfake-core-test,lumina-17-2-25,other / unknown,,art or illustration,image,1024,1024,PNG,,0.9995,ai,7.6365,stable_diffusion,0.6701,0.0002,0.694
+openfake_core-00006-30-067,detector,ai,openfake-core-test,z-image-turbo,open weights,,nature or landscape,image,1088,1920,PNG,,0.9998,ai,8.6961,stable_diffusion,0.6364,0.0002,0.502
+openfake_core-00006-30-069,detector,real,openfake-core-test,,real photo,,animal,image,500,435,JPEG,,0.0019,real,-6.2829,cycle_gan,0.3397,0.002,0.545
+openfake_core-00006-30-075,detector,ai,openfake-core-test,recraft-v2,closed commercial,,art or illustration,image,1024,1024,PNG,,0.0039,real,-5.5399,latent_diffusion,0.4355,0.007,0.486
+openfake_core-00006-30-078,detector,real,openfake-core-test,,real photo,,animal,image,160,240,JPEG,,0.4591,inconclusive,-0.164,pro_gan,0.341,0.0707,0.379
+openfake_core-00006-30-082,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.8777,ai,1.9712,stable_diffusion,0.434,0.041,0.434
+openfake_core-00006-30-083,detector,ai,openfake-core-test,wan-video-2.5,video-model frame,,art or illustration,video frame,1920,1080,JPEG,,0.9999,ai,9.0884,glide,0.4876,0.0001,0.58
+openfake_core-00006-30-084,detector,ai,openfake-core-test,ernie-image,other / unknown,,animal,image,848,1264,JPEG,,0.0289,real,-3.5129,stable_diffusion,0.8583,0.0204,0.453
+openfake_core-00006-30-088,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.0003,real,-8.1207,glide,0.4329,0.0003,0.463
+openfake_core-00006-30-089,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,1024,1536,PNG,,1.0,ai,12.9443,stable_diffusion,0.4696,0.0,0.657
+openfake_core-00006-30-094,detector,ai,openfake-core-test,z-image-turbo,open weights,,portrait,image,1024,1024,JPEG,,0.0146,real,-4.2135,stable_diffusion,0.8717,0.0157,0.479
+openfake_core-00006-30-095,detector,real,openfake-core-test,,real photo,,animal,image,500,360,JPEG,,0.0446,real,-3.0637,pro_gan,0.4265,0.0191,0.66
+openfake_core-00006-30-106,detector,real,openfake-core-test,,real photo,,object,image,500,365,JPEG,,0.3105,inconclusive,-0.7976,stable_diffusion,0.7474,0.1127,0.488
+openfake_core-00006-30-109,detector,real,openfake-core-test,,real photo,,vehicle,image,1535,2048,JPEG,,0.011,real,-4.4968,stable_diffusion,0.8388,0.0062,0.626
+openfake_core-00006-30-111,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.003,real,-5.7914,stable_diffusion,0.7089,0.004,0.67
+openfake_core-00006-30-115,detector,ai,openfake-core-test,midjourney-7,closed commercial,,object,image,1024,1024,PNG,,0.9047,ai,2.2503,stable_diffusion,0.631,0.0507,0.816
+openfake_core-00006-30-116,detector,real,openfake-core-test,,real photo,,object,image,1536,2048,JPEG,,0.1639,real,-1.6297,stable_diffusion,0.5891,0.0683,0.714
+openfake_core-00006-30-123,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.005,real,-5.2982,stable_diffusion,0.6448,0.0049,0.654
+openfake_core-00006-30-128,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,1024,1536,JPEG,,0.0,real,-12.3164,latent_diffusion,0.3974,0.0,0.901
+openfake_core-00006-30-131,detector,ai,openfake-core-test,recraft-v2,closed commercial,,object,image,1024,1024,PNG,,0.9997,ai,8.0462,latent_diffusion,0.6259,0.0004,0.944
+openfake_core-00006-30-138,detector,real,openfake-core-test,,real photo,,animal,image,702,472,JPEG,,0.8543,ai,1.7683,latent_diffusion,0.3168,0.067,0.881
+openfake_core-00006-30-139,detector,ai,openfake-core-test,recraft-v2,closed commercial,,art or illustration,image,1024,1024,PNG,,0.8118,ai,1.4617,stable_diffusion,0.7947,0.0694,0.984
+openfake_core-00006-32-002,detector,real,openfake-core-test,,real photo,,nature or landscape,image,2048,1536,JPEG,,0.0019,real,-6.2871,pro_gan,0.3747,0.001,0.713
+openfake_core-00006-32-014,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1728,2304,JPEG,,0.324,inconclusive,-0.7355,stable_diffusion,0.3494,0.104,0.677
+openfake_core-00006-32-016,detector,ai,openfake-core-test,midjourney-7,closed commercial,,object,image,1344,896,PNG,,0.8818,ai,2.0092,stable_diffusion,0.6041,0.0601,0.846
+openfake_core-00006-32-018,detector,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,,0.0006,real,-7.364,latent_diffusion,0.3748,0.0007,0.714
+openfake_core-00006-32-019,detector,ai,openfake-core-test,ideogram-2.0,closed commercial,,object,image,1280,800,PNG,,0.3676,inconclusive,-0.5424,stable_diffusion,0.6184,0.1027,0.657
+openfake_core-00006-32-021,detector,real,openfake-core-test,,real photo,,vehicle,image,2048,1536,JPEG,,0.0178,real,-4.0102,stable_diffusion,0.4123,0.0133,0.684
+openfake_core-00006-32-024,detector,ai,openfake-core-test,halfmoon-4-4-25,other / unknown,,food,image,1248,832,PNG,,0.2139,inconclusive,-1.3013,stable_diffusion,0.6038,0.0616,0.881
+openfake_core-00006-32-026,detector,ai,openfake-core-test,z-image-turbo,open weights,,object,image,1024,1024,JPEG,,0.0014,real,-6.5619,stable_diffusion,0.9817,0.0004,0.846
+openfake_core-00006-32-027,detector,ai,openfake-core-test,frames-23-1-25,other / unknown,,indoor scene,image,1920,1088,PNG,,0.9998,ai,8.5092,stable_diffusion,0.7918,0.0002,0.959
+openfake_core-00006-32-038,detector,real,openfake-core-test,,real photo,,animal,image,800,520,JPEG,,0.9976,ai,6.0213,big_gan,0.3206,0.0016,0.881
+openfake_core-00006-32-040,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,object,image,2160,3240,JPEG,,0.0231,real,-3.7431,stable_diffusion,0.4275,0.0216,1.081
+openfake_core-00006-32-041,detector,real,openfake-core-test,,real photo,,street or buildings,image,1536,2048,JPEG,,0.0059,real,-5.1347,stable_diffusion,0.4504,0.0037,0.692
+openfake_core-00006-32-044,detector,real,openfake-core-test,,real photo,,animal,image,500,389,JPEG,,0.014,real,-4.2523,pro_gan,0.4207,0.0082,0.765
+openfake_core-00006-32-045,detector,ai,openfake-core-test,midjourney-7,closed commercial,,nature or landscape,image,816,1456,PNG,,0.9822,ai,4.0081,stable_diffusion,0.8031,0.0112,0.969
+openfake_core-00006-32-047,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.0038,real,-5.5689,stable_diffusion,0.2855,0.0074,0.897
+openfake_core-00006-32-050,detector,real,openfake-core-test,,real photo,,vehicle,image,2180,1634,JPEG,,0.3326,inconclusive,-0.6966,pro_gan,0.6218,0.1033,1.113
+openfake_core-00006-32-052,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.0447,real,-3.0616,latent_diffusion,0.5222,0.0456,0.895
+openfake_core-00006-32-061,detector,real,openfake-core-test,,real photo,,animal,image,575,449,JPEG,,0.2799,inconclusive,-0.9449,stable_diffusion,0.2975,0.0897,0.829
+openfake_core-00006-32-064,detector,ai,openfake-core-test,z-image-turbo,open weights,,text or graphic,image,1024,1024,JPEG,,0.3454,inconclusive,-0.6393,stable_diffusion,0.9215,0.1017,0.666
+openfake_core-00006-32-069,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,1536,1024,JPEG,,0.0,real,-10.4841,stable_diffusion,0.7785,0.0,0.682
+openfake_core-00006-32-072,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.4181,inconclusive,-0.3307,stable_diffusion,0.8623,0.1194,1.079
+openfake_core-00006-32-074,detector,ai,openfake-core-test,ernie-image,other / unknown,,nature or landscape,image,1024,1536,PNG,,1.0,ai,14.9578,latent_diffusion,0.3426,0.0,0.758
+openfake_core-00006-32-085,detector,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,720,1280,JPEG,,0.9951,ai,5.3036,pro_gan,0.2986,0.0019,0.456
+openfake_core-00006-32-090,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1728,2304,JPEG,,1.0,ai,13.06,pro_gan,0.8664,0.0,0.522
+openfake_core-00006-32-092,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.9819,ai,3.9932,latent_diffusion,0.5621,0.0215,0.688
+openfake_core-00006-32-098,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.0005,real,-7.6086,big_gan,0.2609,0.0003,0.469
+openfake_core-00006-32-099,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,object,image,1024,1024,JPEG,,0.0,real,-10.0303,stable_diffusion,0.6781,0.0,0.606
+openfake_core-00006-32-105,detector,ai,openfake-core-test,aurora-20-1-25,other / unknown,,animal,image,1024,768,PNG,,0.9678,ai,3.4033,stable_diffusion,0.6245,0.0301,0.444
+openfake_core-00006-32-108,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.6749,inconclusive,0.7304,glide,0.734,0.1335,0.621
+openfake_core-00006-32-129,detector,real,openfake-core-test,,real photo,,animal,image,500,333,JPEG,,0.0091,real,-4.6857,latent_diffusion,0.398,0.0092,0.398
+openfake_core-00006-32-133,detector,real,openfake-core-test,,real photo,,object,image,500,375,JPEG,,0.126,real,-1.9368,pro_gan,0.4578,0.0378,0.516
+openfake_core-00006-32-137,detector,ai,openfake-core-test,recraft-v2,closed commercial,,art or illustration,image,1024,1024,PNG,,1.0,ai,11.8614,stable_diffusion,0.4733,0.0,0.455
+openfake_core-00006-32-141,detector,ai,openfake-core-test,halfmoon-4-4-25,other / unknown,,object,image,1248,832,PNG,,0.9972,ai,5.8929,stable_diffusion,0.4843,0.0041,0.581
+openfake_core-00006-32-142,detector,real,openfake-core-test,,real photo,,object,image,1536,2048,JPEG,,0.7228,inconclusive,0.9582,stable_diffusion,0.6947,0.0864,0.659
+openfake_core-00006-32-143,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.9308,ai,2.5987,stable_diffusion,0.847,0.0493,0.773
+openfake_core-00006-32-144,detector,ai,openfake-core-test,veo-3,video-model frame,,portrait,video frame,1280,720,JPEG,,0.0077,real,-4.8627,stylegan2,0.6896,0.0125,0.659
+openfake_core-00006-32-147,detector,ai,openfake-core-test,veo-3,video-model frame,,nature or landscape,video frame,1080,1920,JPEG,,0.0141,real,-4.2474,stable_diffusion,0.4053,0.0232,0.88
+openfake_core-00006-34-004,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.226,inconclusive,-1.2311,stable_diffusion,0.3661,0.082,0.805
+openfake_core-00006-34-013,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,2560,1440,JPEG,,0.9641,ai,3.2912,stable_diffusion,0.8862,0.0325,0.946
+openfake_core-00006-34-023,detector,real,openfake-core-test,,real photo,,animal,image,4032,3024,JPEG,,0.7141,inconclusive,0.9152,stylegan2,0.745,0.0971,1.232
+openfake_core-00006-34-027,detector,real,openfake-core-test,,real photo,,animal,image,125,70,JPEG,,0.0184,real,-3.9773,big_gan,0.9627,0.0082,0.774
+openfake_core-00006-34-030,detector,ai,openfake-core-test,flux.2-klein-9b,open weights,,people,image,1024,1024,JPEG,,0.496,inconclusive,-0.0159,stable_diffusion,0.8921,0.1444,0.588
+openfake_core-00006-34-038,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1728,2304,JPEG,,0.6737,inconclusive,0.7251,stable_diffusion,0.7342,0.1153,0.877
+openfake_core-00006-34-043,detector,ai,openfake-core-test,recraft-v3,closed commercial,,portrait,image,600,900,JPEG,,0.6113,inconclusive,0.4526,stable_diffusion,0.8748,0.123,0.757
+openfake_core-00006-34-044,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,portrait,image,1024,1024,JPEG,,0.9775,ai,3.7727,stable_diffusion,0.8517,0.0106,0.474
+openfake_core-00006-34-049,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,1024,1536,PNG,,0.9928,ai,4.9223,stable_diffusion,0.4597,0.0098,0.483
+openfake_core-00006-34-062,detector,ai,openfake-core-test,recraft-v3,closed commercial,,food,image,600,900,JPEG,,0.948,ai,2.9035,stable_diffusion,0.6039,0.0453,0.648
+openfake_core-00006-34-070,detector,ai,openfake-core-test,z-image-turbo,open weights,,people,image,1024,1024,JPEG,,0.0011,real,-6.8269,stable_diffusion,0.9579,0.0009,0.413
+openfake_core-00006-34-074,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,2560,1440,JPEG,,0.7266,inconclusive,0.9775,stable_diffusion,0.861,0.1588,0.683
+openfake_core-00006-34-076,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1536,PNG,,0.0848,real,-2.3786,stable_diffusion,0.8632,0.0965,0.442
+openfake_core-00006-34-082,detector,real,openfake-core-test,,real photo,,animal,image,500,387,JPEG,,0.0805,real,-2.4353,pro_gan,0.3036,0.0362,0.578
+openfake_core-00006-34-085,detector,real,openfake-core-test,,real photo,,art or illustration,image,2048,1536,JPEG,,0.005,real,-5.2846,latent_diffusion,0.5829,0.0028,0.495
+openfake_core-00006-34-094,detector,ai,openfake-core-test,sora-2,video-model frame,,art or illustration,image,1024,1536,PNG,,0.7142,inconclusive,0.9158,stable_diffusion,0.7466,0.0914,0.758
+openfake_core-00006-34-098,detector,real,openfake-core-test,,real photo,,animal,image,500,333,JPEG,,0.4304,inconclusive,-0.2803,big_gan,0.4518,0.0583,0.826
+openfake_core-00006-34-099,detector,real,openfake-core-test,,real photo,,animal,image,500,355,JPEG,,0.5078,inconclusive,0.0311,stable_diffusion,0.6131,0.0582,0.837
+openfake_core-00006-34-106,detector,real,openfake-core-test,,real photo,,nature or landscape,image,2048,1536,JPEG,,0.0,real,-10.7194,stable_diffusion,0.5305,0.0,0.831
+openfake_core-00006-34-110,detector,ai,openfake-core-test,lumina-17-2-25,other / unknown,,object,image,1024,1024,PNG,,0.9988,ai,6.7204,stable_diffusion,0.5325,0.0014,0.691
+openfake_core-00006-34-111,detector,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,720,1280,JPEG,,1.0,ai,12.4507,stable_diffusion,0.7901,0.0,0.688
+openfake_core-00006-34-115,detector,ai,openfake-core-test,wan-video-2.5,video-model frame,,art or illustration,video frame,720,1280,JPEG,,0.9985,ai,6.5019,stable_diffusion,0.9298,0.0007,0.913
+openfake_core-00006-34-116,detector,real,openfake-core-test,,real photo,,animal,image,2048,1536,JPEG,,0.9999,ai,9.0838,pro_gan,0.592,0.0001,0.941
+openfake_core-00006-34-122,detector,ai,openfake-core-test,illustrious,open weights,,art or illustration,video frame,464,688,JPEG,,0.999,ai,6.9228,stylegan2,0.7825,0.0016,0.781
+openfake_core-00006-34-140,detector,real,openfake-core-test,,real photo,,art or illustration,image,2048,1536,JPEG,,0.2704,inconclusive,-0.9927,pro_gan,0.8037,0.0986,0.468
+openfake_core-00006-34-145,detector,real,openfake-core-test,,real photo,,animal,image,536,412,JPEG,,0.0693,real,-2.598,stable_diffusion,0.4414,0.0253,0.579
+openfake_core-00006-34-146,detector,real,openfake-core-test,,real photo,,animal,image,500,333,JPEG,,0.9986,ai,6.5416,pro_gan,0.5188,0.0008,0.442
+openfake_core-00006-39-001,detector,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,1024,1024,JPEG,,1.0,ai,11.1032,glide,0.7618,0.0,0.675
+openfake_core-00006-39-008,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,2560,1440,JPEG,,0.9542,ai,3.0357,stable_diffusion,0.8187,0.0164,0.478
+openfake_core-00006-39-023,detector,real,openfake-core-test,,real photo,,nature or landscape,image,2048,1536,JPEG,,0.0001,real,-8.8903,stable_diffusion,0.5572,0.0001,0.631
+openfake_core-00006-39-025,detector,real,openfake-core-test,,real photo,,animal,image,500,374,JPEG,,0.0011,real,-6.8447,latent_diffusion,0.3113,0.0013,0.389
+openfake_core-00006-39-027,detector,real,openfake-core-test,,real photo,,animal,image,500,339,JPEG,,0.0002,real,-8.6314,pro_gan,0.5879,0.0001,0.592
+openfake_core-00006-39-028,detector,ai,openfake-core-test,halfmoon-4-4-25,other / unknown,,indoor scene,image,1248,832,PNG,,0.0667,real,-2.6379,stable_diffusion,0.6089,0.035,0.408
+openfake_core-00006-39-038,detector,ai,openfake-core-test,lumina-17-2-25,other / unknown,,art or illustration,image,1024,1024,PNG,,0.9998,ai,8.5371,glide,0.9393,0.0003,0.737
+openfake_core-00006-39-040,detector,real,openfake-core-test,,real photo,,object,image,100,100,JPEG,,0.0051,real,-5.2792,big_gan,0.6542,0.0034,0.385
+openfake_core-00006-39-044,detector,real,openfake-core-test,,real photo,,object,image,2180,1634,JPEG,,0.9971,ai,5.8499,pro_gan,0.6639,0.0033,0.659
+openfake_core-00006-39-048,detector,real,openfake-core-test,,real photo,,vehicle,image,2048,1536,JPEG,,0.0891,real,-2.3242,pro_gan,0.5103,0.0324,0.689
+openfake_core-00006-39-049,detector,real,openfake-core-test,,real photo,,object,image,2048,1536,JPEG,,0.0082,real,-4.797,stable_diffusion,0.5079,0.009,0.539
+openfake_core-00006-39-063,detector,ai,openfake-core-test,seedream-v5.0,closed commercial,,people,image,2048,2048,JPEG,,0.9976,ai,6.0324,stable_diffusion,0.9655,0.0037,0.69
+openfake_core-00006-39-066,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,object,video frame,720,1280,JPEG,,0.9274,ai,2.5476,pro_gan,0.8902,0.037,0.537
+openfake_core-00006-39-076,detector,real,openfake-core-test,,real photo,,indoor scene,image,1536,2048,JPEG,,0.0131,real,-4.3242,stable_diffusion,0.639,0.0064,0.497
+openfake_core-00006-39-088,detector,real,openfake-core-test,,real photo,,animal,image,1040,585,JPEG,,0.0826,real,-2.4082,stylegan2,0.2785,0.0314,0.602
+openfake_core-00006-39-098,detector,ai,openfake-core-test,veo-3,video-model frame,,object,video frame,1280,720,JPEG,,0.2431,inconclusive,-1.1356,stable_diffusion,0.9287,0.1045,0.44
+openfake_core-00006-39-104,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,text or graphic,image,756,1344,JPEG,,0.9993,ai,7.2944,stable_diffusion,0.9141,0.0011,0.651
+openfake_core-00006-39-112,detector,ai,openfake-core-test,midjourney-7,closed commercial,,indoor scene,image,1024,1024,PNG,,0.9885,ai,4.4578,stable_diffusion,0.4936,0.0061,0.493
+openfake_core-00006-39-115,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,food,image,1024,1536,JPEG,,0.9962,ai,5.5779,stable_diffusion,0.6082,0.0026,0.617
+openfake_core-00006-39-118,detector,real,openfake-core-test,,real photo,,animal,image,500,333,JPEG,,0.9965,ai,5.6517,stable_diffusion,0.4895,0.0021,0.462
+openfake_core-00006-39-121,detector,ai,openfake-core-test,ernie-image,other / unknown,,art or illustration,image,848,1264,PNG,,1.0,ai,10.3821,stable_diffusion,0.4304,0.0,0.619
+openfake_core-00006-39-125,detector,real,openfake-core-test,,real photo,,animal,image,500,344,JPEG,,0.4594,inconclusive,-0.1629,glide,0.2753,0.1336,0.407
+openfake_core-00006-39-127,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1024,JPEG,,0.9996,ai,7.7734,stable_diffusion,0.8352,0.0002,0.479
+openfake_core-00006-39-128,detector,real,openfake-core-test,,real photo,,art or illustration,image,2048,1536,JPEG,,0.0027,real,-5.9221,latent_diffusion,0.4579,0.0023,0.69
+openfake_core-00006-39-147,detector,real,openfake-core-test,,real photo,,object,image,1536,2048,JPEG,,0.0006,real,-7.4583,glide,0.2357,0.0005,0.52
+openfake_core-00006-41-002,detector,real,openfake-core-test,,real photo,,animal,image,448,500,JPEG,,0.8094,ai,1.4464,latent_diffusion,0.4841,0.0414,0.672
+openfake_core-00006-41-005,detector,real,openfake-core-test,,real photo,,object,image,2048,1535,JPEG,,0.0107,real,-4.5296,stable_diffusion,0.7765,0.0079,0.504
+openfake_core-00006-41-006,detector,ai,openfake-core-test,illustrious,open weights,,animal,image,3840,2688,PNG,,1.0,ai,10.0241,cycle_gan,0.3522,0.0,1.142
+openfake_core-00006-41-008,detector,ai,openfake-core-test,sora-2,video-model frame,,art or illustration,image,1024,1536,JPEG,,1.0,ai,11.6168,stable_diffusion,0.857,0.0,0.58
+openfake_core-00006-41-011,detector,ai,openfake-core-test,z-image-turbo,open weights,,text or graphic,image,1024,1024,JPEG,,0.002,real,-6.1961,stable_diffusion,0.8064,0.002,0.629
+openfake_core-00006-41-020,detector,real,openfake-core-test,,real photo,,object,image,500,333,JPEG,,0.5534,inconclusive,0.2144,glide,0.4416,0.0929,0.493
+openfake_core-00006-41-022,detector,real,openfake-core-test,,real photo,,vehicle,image,2180,1634,JPEG,,0.0689,real,-2.604,latent_diffusion,0.5006,0.0735,0.443
+openfake_core-00006-41-029,detector,real,openfake-core-test,,real photo,,animal,image,400,300,JPEG,,0.0,real,-10.9036,glide,0.2562,0.0,0.639
+openfake_core-00006-41-031,detector,ai,openfake-core-test,recraft-v3,closed commercial,,nature or landscape,image,600,600,JPEG,,0.0482,real,-2.9825,stable_diffusion,0.8502,0.0318,0.405
+openfake_core-00006-41-040,detector,real,openfake-core-test,,real photo,,nature or landscape,image,2048,1536,JPEG,,0.9971,ai,5.8381,stable_diffusion,0.4529,0.0016,0.714
+openfake_core-00006-41-053,detector,real,openfake-core-test,,real photo,,object,image,500,333,JPEG,,0.0,real,-9.9747,pro_gan,0.578,0.0002,0.429
+openfake_core-00006-41-056,detector,real,openfake-core-test,,real photo,,object,image,816,612,JPEG,,0.2785,inconclusive,-0.9521,glide,0.7564,0.1322,0.655
+openfake_core-00006-41-057,detector,ai,openfake-core-test,sora-2,video-model frame,,text or graphic,image,1024,1536,JPEG,,0.9982,ai,6.3111,stable_diffusion,0.5953,0.0028,0.555
+openfake_core-00006-41-071,detector,ai,openfake-core-test,halfmoon-4-4-25,other / unknown,,food,image,1248,832,PNG,,0.8638,ai,1.8473,stable_diffusion,0.924,0.0854,0.503
+openfake_core-00006-41-075,detector,ai,openfake-core-test,nano-banana-pro,closed commercial,,text or graphic,video frame,1928,1076,JPEG,,0.0013,real,-6.6336,stable_diffusion,0.7649,0.0007,0.644
+openfake_core-00006-41-079,detector,real,openfake-core-test,,real photo,,object,image,500,375,JPEG,,0.0424,real,-3.1184,glide,0.3302,0.0221,0.5
+openfake_core-00006-41-088,detector,real,openfake-core-test,,real photo,,animal,image,500,334,JPEG,,0.2571,inconclusive,-1.0612,latent_diffusion,0.2783,0.1208,0.574
+openfake_core-00006-41-095,detector,real,openfake-core-test,,real photo,,animal,image,500,333,JPEG,,0.2181,inconclusive,-1.2769,pro_gan,0.6217,0.0911,0.423
+openfake_core-00006-41-098,detector,ai,openfake-core-test,ideogram-2.0,closed commercial,,object,image,1280,800,PNG,,1.0,ai,13.9343,stable_diffusion,0.9457,0.0,0.735
+openfake_core-00006-41-108,detector,ai,openfake-core-test,z-image-turbo,open weights,,object,image,1024,1024,JPEG,,0.1882,real,-1.4619,stable_diffusion,0.7096,0.0771,0.522
+openfake_core-00006-41-117,detector,real,openfake-core-test,,real photo,,animal,image,1600,1200,JPEG,,0.1359,real,-1.8494,big_gan,0.2959,0.0486,0.483
+openfake_core-00006-41-130,detector,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,video frame,1440,1440,JPEG,,0.9962,ai,5.5696,pro_gan,0.324,0.0035,0.703
+openfake_core-00006-41-133,detector,ai,openfake-core-test,sora-2,video-model frame,,animal,video frame,928,1376,JPEG,,1.0,ai,12.1966,pro_gan,0.7574,0.0,0.52
+openfake_core-00006-41-134,detector,real,openfake-core-test,,real photo,,object,image,500,340,JPEG,,0.1784,real,-1.527,stable_diffusion,0.3938,0.0621,0.591
+openfake_core-00006-41-135,detector,ai,openfake-core-test,recraft-v2,closed commercial,,object,image,1024,1024,PNG,,0.1119,real,-2.0713,stable_diffusion,0.5757,0.1322,0.523
+openfake_core-00006-41-140,detector,ai,openfake-core-test,ernie-image-turbo,other / unknown,,art or illustration,image,2730,4096,JPEG,,1.0,ai,15.0913,latent_diffusion,0.4902,0.0,0.851
+openfake_core-00006-41-143,detector,real,openfake-core-test,,real photo,,art or illustration,image,2048,1536,JPEG,,0.0001,real,-9.3291,stable_diffusion,0.467,0.0,0.492
+openfake_reddit-00000-00-003,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,2432,1664,JPEG,,0.9552,ai,3.0605,stable_diffusion,0.9809,0.0297,1.019
+openfake_reddit-00000-00-004,detector,ai,openfake-reddit-test,unknown,other / unknown,,portrait,image,768,1331,JPEG,,1.0,ai,10.6368,stable_diffusion,0.8764,0.0,0.891
+openfake_reddit-00000-00-010,detector,real,openfake-reddit-test,,real photo,,portrait,image,3346,4182,JPEG,,0.0003,real,-8.2684,stable_diffusion,0.8349,0.0002,1.203
+openfake_reddit-00000-00-011,detector,real,openfake-reddit-test,,real photo,,art or illustration,image,4000,6000,JPEG,,0.3069,inconclusive,-0.8146,stable_diffusion,0.9276,0.1129,1.516
+openfake_reddit-00000-00-012,detector,real,openfake-reddit-test,,real photo,,object,image,8160,6120,JPEG,,0.8557,ai,1.7801,stable_diffusion,0.8879,0.1122,2.238
+openfake_reddit-00000-00-016,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1792,2400,JPEG,,0.0014,real,-6.5649,stable_diffusion,0.8222,0.0014,0.888
+openfake_reddit-00000-00-017,detector,real,openfake-reddit-test,,real photo,,animal,image,1170,750,JPEG,,0.0,real,-11.3804,stable_diffusion,0.6688,0.0,0.922
+openfake_reddit-00000-00-019,detector,ai,openfake-reddit-test,unknown,other / unknown,,object,video frame,1080,1920,JPEG,,0.7506,inconclusive,1.102,stable_diffusion,0.4354,0.1281,0.947
+openfake_reddit-00000-00-031,detector,ai,openfake-reddit-test,unknown,other / unknown,,animal,video frame,1280,720,JPEG,,0.0411,real,-3.1488,stable_diffusion,0.8516,0.0257,0.626
+openfake_reddit-00000-00-036,detector,real,openfake-reddit-test,,real photo,,portrait,image,2048,1367,JPEG,,0.0112,real,-4.4814,stylegan2,0.8514,0.0093,0.645
+openfake_reddit-00000-00-042,detector,real,openfake-reddit-test,,real photo,,portrait,image,3927,5869,JPEG,,0.0017,real,-6.3836,stable_diffusion,0.7528,0.001,1.296
+openfake_reddit-00000-00-043,detector,real,openfake-reddit-test,,real photo,,nature or landscape,image,5040,2060,JPEG,,0.003,real,-5.8144,latent_diffusion,0.295,0.0021,1.003
+openfake_reddit-00000-00-044,detector,real,openfake-reddit-test,,real photo,,food,image,2798,3311,JPEG,,0.0,real,-10.1459,stable_diffusion,0.7559,0.0001,0.961
+openfake_reddit-00000-00-048,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,2464,1968,JPEG,,1.0,ai,10.2132,stable_diffusion,0.5678,0.0001,0.975
+openfake_reddit-00000-00-053,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,video frame,1920,1080,JPEG,,0.2581,inconclusive,-1.0557,glide,0.4639,0.1631,0.787
+openfake_reddit-00000-00-062,detector,ai,openfake-reddit-test,unknown,other / unknown,,text or graphic,image,3146,3210,JPEG,,1.0,ai,11.723,glide,0.9651,0.0,1.164
+openfake_reddit-00000-00-063,detector,real,openfake-reddit-test,,real photo,,nature or landscape,image,4032,3024,JPEG,,0.0003,real,-8.2198,latent_diffusion,0.2487,0.0008,1.101
+openfake_reddit-00000-00-065,detector,ai,openfake-reddit-test,unknown,other / unknown,,people,video frame,480,596,JPEG,,0.0348,real,-3.3228,stable_diffusion,0.9557,0.0218,0.894
+openfake_reddit-00000-00-073,detector,real,openfake-reddit-test,,real photo,,food,image,3489,2626,JPEG,,0.9977,ai,6.0625,stable_diffusion,0.665,0.001,1.181
+openfake_reddit-00000-00-076,detector,real,openfake-reddit-test,,real photo,,object,video frame,4238,3193,JPEG,,0.3944,inconclusive,-0.4288,stable_diffusion,0.4271,0.1393,1.205
+openfake_reddit-00000-00-078,detector,real,openfake-reddit-test,,real photo,,street or buildings,image,5989,3993,JPEG,,0.0,real,-10.4884,stable_diffusion,0.4837,0.0,1.604
+openfake_reddit-00000-00-079,detector,real,openfake-reddit-test,,real photo,,street or buildings,image,4284,5712,JPEG,,0.0,real,-14.809,stable_diffusion,0.6612,0.0,1.365
+openfake_reddit-00000-00-082,detector,ai,openfake-reddit-test,unknown,other / unknown,,object,image,1024,1024,JPEG,,0.9999,ai,9.0264,stable_diffusion,0.905,0.0001,0.908
+openfake_reddit-00000-00-088,detector,real,openfake-reddit-test,,real photo,,street or buildings,video frame,1625,2451,JPEG,,0.0015,real,-6.4764,glide,0.4298,0.0009,0.978
+openfake_reddit-00000-00-089,detector,real,openfake-reddit-test,,real photo,,vehicle,image,2880,2160,JPEG,,0.0885,real,-2.3325,stable_diffusion,0.7348,0.0697,0.925
+openfake_reddit-00000-00-090,detector,real,openfake-reddit-test,,real photo,,vehicle,video frame,3639,5459,JPEG,,0.0003,real,-8.1547,stable_diffusion,0.5749,0.0002,1.323
+openfake_reddit-00000-00-093,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1024,1536,JPEG,,1.0,ai,17.1042,stable_diffusion,0.622,0.0,0.909
+openfake_reddit-00000-00-095,detector,ai,openfake-reddit-test,unknown,other / unknown,,text or graphic,image,1080,1080,JPEG,,0.0791,real,-2.4552,stable_diffusion,0.7796,0.0645,0.868
+openfake_reddit-00000-00-099,detector,real,openfake-reddit-test,,real photo,,object,image,5369,3579,JPEG,,0.9518,ai,2.9831,pro_gan,0.9276,0.0441,1.429
+openfake_reddit-00000-00-109,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,3000,3000,JPEG,,1.0,ai,12.5961,stable_diffusion,0.7001,0.0,1.144
+openfake_reddit-00000-00-121,detector,ai,openfake-reddit-test,unknown,other / unknown,,animal,video frame,714,1280,JPEG,,0.0139,real,-4.2618,stable_diffusion,0.4648,0.0148,0.633
+openfake_reddit-00000-00-124,detector,real,openfake-reddit-test,,real photo,,text or graphic,image,1179,1658,JPEG,,0.7597,inconclusive,1.1511,stable_diffusion,0.8652,0.0967,0.921
+openfake_reddit-00000-00-125,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1024,1024,JPEG,,0.8886,ai,2.077,stable_diffusion,0.6496,0.0864,0.908
+openfake_reddit-00000-00-126,detector,real,openfake-reddit-test,,real photo,,vehicle,image,2418,2418,JPEG,,0.5488,inconclusive,0.196,stable_diffusion,0.7093,0.1336,1.055
+openfake_reddit-00000-00-131,detector,ai,openfake-reddit-test,unknown,other / unknown,,portrait,image,1024,1024,JPEG,,0.9744,ai,3.64,stable_diffusion,0.4025,0.0263,0.936
+openfake_reddit-00000-00-132,detector,real,openfake-reddit-test,,real photo,,animal,image,1589,2048,JPEG,,0.0003,real,-8.2908,stable_diffusion,0.6391,0.0003,0.922
+openfake_reddit-00000-00-133,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1020,1020,JPEG,,1.0,ai,16.2174,pro_gan,0.4506,0.0,0.772
+openfake_reddit-00000-00-137,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1024,1536,JPEG,,0.6735,inconclusive,0.7238,stable_diffusion,0.5438,0.0953,0.695
+openfake_reddit-00000-00-138,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,848,1249,JPEG,,0.996,ai,5.5129,stable_diffusion,0.9468,0.0033,0.748
+openfake_reddit-00000-00-141,detector,real,openfake-reddit-test,,real photo,,art or illustration,image,4434,5542,JPEG,,0.0,real,-11.6713,stable_diffusion,0.929,0.0,1.487
+openfake_reddit-00000-00-144,detector,ai,openfake-reddit-test,unknown,other / unknown,,animal,video frame,720,1068,JPEG,,0.9265,ai,2.5336,stable_diffusion,0.5583,0.0713,0.88
+openfake_reddit-00000-00-148,detector,real,openfake-reddit-test,,real photo,,object,image,1080,1904,JPEG,,0.0046,real,-5.3857,stable_diffusion,0.763,0.0018,0.833
+openfake_reddit-00000-00-153,detector,real,openfake-reddit-test,,real photo,,object,image,4040,5776,JPEG,,0.0058,real,-5.147,stable_diffusion,0.9544,0.0036,1.302
+openfake_reddit-00000-12-000,detector,real,openfake-reddit-test,,real photo,,portrait,video frame,1528,2210,JPEG,,0.5352,inconclusive,0.1411,stable_diffusion,0.8037,0.1122,0.935
+openfake_reddit-00000-12-001,detector,real,openfake-reddit-test,,real photo,,animal,image,1080,2400,JPEG,,0.0058,real,-5.145,stylegan2,0.4002,0.0045,0.879
+openfake_reddit-00000-12-005,detector,real,openfake-reddit-test,,real photo,,nature or landscape,image,2048,1219,JPEG,,0.0272,real,-3.578,cycle_gan,0.353,0.0101,0.844
+openfake_reddit-00000-12-010,detector,ai,openfake-reddit-test,unknown,other / unknown,,portrait,image,2912,1632,JPEG,,0.9999,ai,9.4208,stable_diffusion,0.4473,0.0001,1.019
+openfake_reddit-00000-12-011,detector,ai,openfake-reddit-test,unknown,other / unknown,,object,video frame,606,480,JPEG,,0.4629,inconclusive,-0.1489,stylegan2,0.3789,0.107,0.63
+openfake_reddit-00000-12-012,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1344,768,JPEG,,0.9997,ai,8.2754,stable_diffusion,0.2993,0.0002,0.684
+openfake_reddit-00000-12-015,detector,real,openfake-reddit-test,,real photo,,object,video frame,3449,4312,JPEG,,0.0095,real,-4.6431,stable_diffusion,0.4809,0.0049,1.267
+openfake_reddit-00000-12-017,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,video frame,1280,720,JPEG,,0.001,real,-6.9015,stable_diffusion,0.8891,0.0007,0.659
+openfake_reddit-00000-12-024,detector,real,openfake-reddit-test,,real photo,,animal,video frame,1920,1080,JPEG,,0.0001,real,-9.7971,big_gan,0.2932,0.0,0.659
+openfake_reddit-00000-12-027,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,video frame,720,1280,JPEG,,0.5422,inconclusive,0.1694,stable_diffusion,0.5808,0.1332,0.947
+openfake_reddit-00000-12-028,detector,real,openfake-reddit-test,,real photo,,object,image,2393,3019,JPEG,,0.9292,ai,2.5738,glide,0.2776,0.0387,1.051
+openfake_reddit-00000-12-030,detector,real,openfake-reddit-test,,real photo,,art or illustration,image,2333,3500,JPEG,,0.0049,real,-5.3122,stable_diffusion,0.9312,0.0028,1.047
+openfake_reddit-00000-12-032,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1024,1536,JPEG,,0.956,ai,3.0774,stable_diffusion,0.2854,0.0303,0.905
+openfake_reddit-00000-12-035,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1024,1536,JPEG,,0.4507,inconclusive,-0.1979,latent_diffusion,0.7474,0.1518,0.897
+openfake_reddit-00000-12-039,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,2940,2940,JPEG,,0.9999,ai,9.2405,glide,0.7556,0.0001,1.186
+openfake_reddit-00000-12-045,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,928,1232,JPEG,,0.9472,ai,2.8863,glide,0.4456,0.0317,0.949
+openfake_reddit-00000-12-049,detector,real,openfake-reddit-test,,real photo,,object,video frame,6274,4892,JPEG,,0.414,inconclusive,-0.3475,pro_gan,0.79,0.1445,1.614
+openfake_reddit-00000-12-053,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1080,1920,JPEG,,0.9997,ai,8.0069,stylegan2,0.8372,0.0009,0.93
+openfake_reddit-00000-12-055,detector,real,openfake-reddit-test,,real photo,,object,video frame,2191,2738,JPEG,,0.9869,ai,4.3223,glide,0.9589,0.0105,1.005
+openfake_reddit-00000-12-060,detector,real,openfake-reddit-test,,real photo,,portrait,video frame,1206,1489,JPEG,,0.7452,inconclusive,1.073,stable_diffusion,0.7946,0.0855,0.878
+openfake_reddit-00000-12-062,detector,real,openfake-reddit-test,,real photo,,nature or landscape,image,1774,2500,JPEG,,0.0121,real,-4.3987,latent_diffusion,0.3858,0.0067,0.911
+openfake_reddit-00000-12-063,detector,ai,openfake-reddit-test,unknown,other / unknown,,portrait,image,896,1200,JPEG,,0.2226,inconclusive,-1.2508,stable_diffusion,0.7444,0.0686,0.748
+openfake_reddit-00000-12-064,detector,real,openfake-reddit-test,,real photo,,portrait,video frame,3429,3755,JPEG,,0.4113,inconclusive,-0.3585,stable_diffusion,0.8198,0.1166,0.993
+openfake_reddit-00000-12-068,detector,real,openfake-reddit-test,,real photo,,object,image,3984,2660,JPEG,,0.7392,inconclusive,1.0417,glide,0.9329,0.0934,1.227
+openfake_reddit-00000-12-069,detector,ai,openfake-reddit-test,unknown,other / unknown,,portrait,image,6644,4320,JPEG,,0.2082,inconclusive,-1.3359,glide,0.2494,0.0744,1.547
+openfake_reddit-00000-12-073,detector,real,openfake-reddit-test,,real photo,,nature or landscape,image,3781,2522,JPEG,,0.1522,real,-1.7171,stable_diffusion,0.6014,0.0889,1.112
+openfake_reddit-00000-12-082,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,2064,1408,JPEG,,0.9994,ai,7.4233,stable_diffusion,0.8781,0.0004,0.771
+openfake_reddit-00000-12-084,detector,real,openfake-reddit-test,,real photo,,people,image,3038,3798,JPEG,,0.0001,real,-8.9044,stable_diffusion,0.4535,0.0001,1.137
+openfake_reddit-00000-12-086,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,2816,1536,JPEG,,1.0,ai,19.7611,glide,0.8298,0.0,1.048
+openfake_reddit-00000-12-091,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,928,1232,JPEG,,1.0,ai,10.9783,glide,0.5675,0.0,0.706
+openfake_reddit-00000-12-093,detector,ai,openfake-reddit-test,unknown,other / unknown,,object,image,928,1152,JPEG,,0.9999,ai,9.1755,stable_diffusion,0.8573,0.0001,0.68
+openfake_reddit-00000-12-095,detector,real,openfake-reddit-test,,real photo,,people,video frame,3063,1809,JPEG,,0.0,real,-10.8264,latent_diffusion,0.5848,0.0,1.073
+openfake_reddit-00000-12-101,detector,real,openfake-reddit-test,,real photo,,nature or landscape,image,3367,5985,JPEG,,0.0467,real,-3.0163,latent_diffusion,0.3975,0.0395,1.374
+openfake_reddit-00000-12-114,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1536,1024,JPEG,,1.0,ai,10.0603,stable_diffusion,0.4732,0.0,0.995
+openfake_reddit-00000-12-119,detector,real,openfake-reddit-test,,real photo,,portrait,image,3108,3108,JPEG,,0.9988,ai,6.6974,stylegan2,0.5724,0.0008,1.159
+openfake_reddit-00000-12-122,detector,real,openfake-reddit-test,,real photo,,object,video frame,4608,3456,JPEG,,0.0012,real,-6.6938,glide,0.9571,0.0008,1.073
+openfake_reddit-00000-12-125,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1080,1920,JPEG,,1.0,ai,16.0177,stable_diffusion,0.6651,0.0,0.752
+openfake_reddit-00000-12-127,detector,real,openfake-reddit-test,,real photo,,street or buildings,image,2560,1707,JPEG,,0.0013,real,-6.6379,stable_diffusion,0.4726,0.0012,0.517
+openfake_reddit-00000-12-130,detector,real,openfake-reddit-test,,real photo,,object,image,1367,2088,JPEG,,0.0051,real,-5.2758,glide,0.5455,0.0032,0.527
+openfake_reddit-00000-12-134,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,864,1184,JPEG,,0.9997,ai,8.1796,stable_diffusion,0.6933,0.0004,0.673
+openfake_reddit-00000-12-138,detector,real,openfake-reddit-test,,real photo,,nature or landscape,image,2048,1367,JPEG,,0.0033,real,-5.7236,stable_diffusion,0.5987,0.0016,0.452
+openfake_reddit-00000-12-143,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,512,768,JPEG,,0.9994,ai,7.499,stable_diffusion,0.4516,0.0002,0.658
+openfake_reddit-00000-12-144,detector,ai,openfake-reddit-test,unknown,other / unknown,,object,image,1014,1017,JPEG,,1.0,ai,12.4782,stable_diffusion,0.3802,0.0,0.468
+openfake_reddit-00000-12-145,detector,ai,openfake-reddit-test,unknown,other / unknown,,animal,video frame,720,1280,JPEG,,0.0008,real,-7.1534,stable_diffusion,0.5543,0.0009,0.599
+openfake_reddit-00000-12-146,detector,real,openfake-reddit-test,,real photo,,portrait,video frame,5370,3580,JPEG,,0.3305,inconclusive,-0.7061,stable_diffusion,0.9485,0.0967,1.147
+openfake_reddit-00000-12-148,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,video frame,480,636,JPEG,,0.0089,real,-4.7121,stable_diffusion,0.7378,0.011,0.826
+openfake_reddit-00000-12-152,detector,real,openfake-reddit-test,,real photo,,object,image,3830,2553,JPEG,,0.0002,real,-8.6058,pro_gan,0.3252,0.0001,1.076
+openfake_reddit-00003-02-002,detector,ai,openfake-reddit-test,unknown,other / unknown,,object,image,2528,1684,JPEG,,0.6577,inconclusive,0.6529,glide,0.6017,0.1108,1.018
+openfake_reddit-00003-02-004,detector,ai,openfake-reddit-test,unknown,other / unknown,,object,image,2048,2048,JPEG,,0.4353,inconclusive,-0.2603,stable_diffusion,0.836,0.1231,0.899
+openfake_reddit-00003-02-005,detector,ai,openfake-reddit-test,unknown,other / unknown,,text or graphic,image,2464,1856,JPEG,,0.9995,ai,7.5224,stable_diffusion,0.4904,0.0005,0.927
+openfake_reddit-00003-02-006,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1536,1024,JPEG,,0.9985,ai,6.5237,stable_diffusion,0.3769,0.0007,0.668
+openfake_reddit-00003-02-019,detector,real,openfake-reddit-test,,real photo,,street or buildings,image,1298,1730,JPEG,,0.0002,real,-8.5585,stable_diffusion,0.4469,0.0001,0.606
+openfake_reddit-00003-02-025,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1024,1536,JPEG,,1.0,ai,20.1485,stable_diffusion,0.4602,0.0,0.941
+openfake_reddit-00003-02-032,detector,real,openfake-reddit-test,,real photo,,object,image,3931,2620,JPEG,,0.3086,inconclusive,-0.8068,glide,0.3433,0.0688,0.963
+openfake_reddit-00003-02-035,detector,real,openfake-reddit-test,,real photo,,nature or landscape,image,3648,2736,JPEG,,0.0,real,-10.9045,pro_gan,0.5453,0.0,0.986
+openfake_reddit-00003-02-036,detector,real,openfake-reddit-test,,real photo,,vehicle,image,4640,2961,JPEG,,0.0038,real,-5.5817,latent_diffusion,0.5937,0.0034,1.071
+openfake_reddit-00003-02-038,detector,ai,openfake-reddit-test,unknown,other / unknown,,object,video frame,1072,1920,JPEG,,1.0,ai,11.1795,stable_diffusion,0.823,0.0,0.864
+openfake_reddit-00003-02-050,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1122,1402,JPEG,,1.0,ai,15.1655,stylegan2,0.2702,0.0,0.845
+openfake_reddit-00003-02-051,detector,real,openfake-reddit-test,,real photo,,art or illustration,image,1440,1920,JPEG,,1.0,ai,9.9529,stable_diffusion,0.7831,0.0,0.853
+openfake_reddit-00003-02-054,detector,real,openfake-reddit-test,,real photo,,animal,video frame,1920,1080,JPEG,,0.0021,real,-6.1666,pro_gan,0.3737,0.0007,0.598
+openfake_reddit-00003-02-056,detector,real,openfake-reddit-test,,real photo,,object,image,6624,5504,JPEG,,0.0095,real,-4.6471,glide,0.3144,0.0053,1.517
+openfake_reddit-00003-02-057,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,video frame,1080,1920,JPEG,,0.9995,ai,7.6878,stable_diffusion,0.9813,0.0003,0.879
+openfake_reddit-00003-02-060,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1024,1536,JPEG,,1.0,ai,17.7191,stable_diffusion,0.4915,0.0,0.841
+openfake_reddit-00003-02-062,detector,ai,openfake-reddit-test,unknown,other / unknown,,portrait,video frame,1280,720,JPEG,,0.03,real,-3.4764,stylegan2,0.9434,0.016,0.792
+openfake_reddit-00003-02-065,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1152,928,JPEG,,0.9998,ai,8.5769,stable_diffusion,0.5194,0.0003,0.676
+openfake_reddit-00003-02-066,detector,ai,openfake-reddit-test,unknown,other / unknown,,text or graphic,image,1024,1024,JPEG,,1.0,ai,20.6635,stable_diffusion,0.4332,0.0,0.654
+openfake_reddit-00003-02-067,detector,real,openfake-reddit-test,,real photo,,object,image,1800,4000,JPEG,,0.2373,inconclusive,-1.1673,stable_diffusion,0.727,0.0914,0.957
+openfake_reddit-00003-02-068,detector,ai,openfake-reddit-test,unknown,other / unknown,,text or graphic,video frame,1920,1080,JPEG,,0.9991,ai,7.0616,glide,0.9215,0.0009,0.869
+openfake_reddit-00003-02-071,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,2016,3200,JPEG,,1.0,ai,19.1971,stable_diffusion,0.7445,0.0,1.039
+openfake_reddit-00003-02-079,detector,ai,openfake-reddit-test,unknown,other / unknown,,portrait,image,1200,992,JPEG,,0.9888,ai,4.4835,glide,0.6404,0.0106,0.871
+openfake_reddit-00003-02-082,detector,real,openfake-reddit-test,,real photo,,text or graphic,image,1320,2868,JPEG,,0.9984,ai,6.4611,glide,0.629,0.001,0.929
+openfake_reddit-00003-02-085,detector,real,openfake-reddit-test,,real photo,,object,image,1836,2294,JPEG,,0.0002,real,-8.78,stable_diffusion,0.7403,0.0001,0.905
+openfake_reddit-00003-02-086,detector,real,openfake-reddit-test,,real photo,,street or buildings,image,2816,2112,JPEG,,0.0001,real,-9.2916,latent_diffusion,0.387,0.0001,0.693
+openfake_reddit-00003-02-088,detector,real,openfake-reddit-test,,real photo,,object,image,3024,4032,JPEG,,0.003,real,-5.8218,glide,0.4945,0.0018,0.855
+openfake_reddit-00003-02-096,detector,real,openfake-reddit-test,,real photo,,nature or landscape,image,4032,3024,JPEG,,0.001,real,-6.9128,pro_gan,0.5212,0.002,1.102
+openfake_reddit-00003-02-097,detector,real,openfake-reddit-test,,real photo,,animal,image,5776,3621,JPEG,,0.0072,real,-4.9299,pro_gan,0.5772,0.012,1.199
+openfake_reddit-00003-02-098,detector,real,openfake-reddit-test,,real photo,,vehicle,image,4000,6016,JPEG,,0.0,real,-19.2428,stable_diffusion,0.684,0.0,1.388
+openfake_reddit-00003-02-100,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,832,1216,JPEG,,1.0,ai,13.8623,stable_diffusion,0.9111,0.0,0.638
+openfake_reddit-00003-02-112,detector,ai,openfake-reddit-test,unknown,other / unknown,,portrait,image,1024,1024,JPEG,,0.0221,real,-3.7916,stable_diffusion,0.8923,0.0148,0.777
+openfake_reddit-00003-02-121,detector,real,openfake-reddit-test,,real photo,,people,image,1333,2000,JPEG,,0.4903,inconclusive,-0.0388,stable_diffusion,0.9898,0.1606,0.929
+openfake_reddit-00003-02-127,detector,real,openfake-reddit-test,,real photo,,food,image,1440,2560,JPEG,,0.3063,inconclusive,-0.8175,stable_diffusion,0.9341,0.0844,0.871
+openfake_reddit-00003-02-130,detector,real,openfake-reddit-test,,real photo,,portrait,video frame,3500,2333,JPEG,,0.14,real,-1.8151,latent_diffusion,0.5088,0.0814,0.975
+openfake_reddit-00003-02-131,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1024,1536,JPEG,,1.0,ai,13.3951,stable_diffusion,0.5401,0.0,0.656
+openfake_reddit-00003-02-135,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,3000,1995,JPEG,,0.9988,ai,6.7448,latent_diffusion,0.291,0.0023,0.785
+openfake_reddit-00003-02-139,detector,ai,openfake-reddit-test,unknown,other / unknown,,text or graphic,image,1750,2432,JPEG,,0.9964,ai,5.6223,latent_diffusion,0.5329,0.0024,0.752
+openfake_reddit-00003-02-144,detector,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,554,1024,JPEG,,0.9942,ai,5.1474,stable_diffusion,0.9525,0.0034,0.814
+openfake_reddit-00003-02-152,detector,ai,openfake-reddit-test,unknown,other / unknown,,object,image,1856,2304,JPEG,,0.7276,inconclusive,0.9825,big_gan,0.391,0.0731,0.937
+commons-ai_dalle3_astronaut_mercury,detector,ai,wikimedia-commons,dalle-3,closed commercial,,art or illustration,image,1024,1024,JPEG,,1.0,ai,13.0721,stable_diffusion,0.4354,0.0,0.834
+commons-ai_dalle3_cat_wikipedia,detector,ai,wikimedia-commons,dalle-3,closed commercial,,text or graphic,image,1024,1024,PNG,,1.0,ai,14.6078,stable_diffusion,0.7176,0.0,0.682
+commons-ai_dalle3_hungry_man,detector,ai,wikimedia-commons,dalle-3,closed commercial,,food,image,1024,1024,JPEG,,0.9959,ai,5.4957,stable_diffusion,0.7626,0.0017,0.705
+commons-ai_dalle3_orange_cat,detector,ai,wikimedia-commons,dalle-3,closed commercial,,food,image,1024,1024,PNG,,1.0,ai,13.6037,stable_diffusion,0.9491,0.0,0.835
+commons-ai_photo_programming_class,detector,ai,wikimedia-commons,unknown,other / unknown,,people,image,1536,1024,JPEG,,0.9668,ai,3.3704,stable_diffusion,0.6158,0.0265,0.834
+commons-ai_sd35_cyberpunk_chef,detector,ai,wikimedia-commons,stable-diffusion-3.5,open weights,,food,image,1024,1024,WEBP,,0.9264,ai,2.533,stable_diffusion,0.537,0.0381,0.831
+commons-ai_sd_man_idea,detector,ai,wikimedia-commons,stable-diffusion (version not stated),open weights,,object,image,3072,3072,JPEG,,1.0,ai,12.9647,latent_diffusion,0.3169,0.0,1.082
+commons-ai_stylegan_man,detector,ai,wikimedia-commons,stylegan (version not stated),older research model,,portrait,image,1024,1024,JPEG,,1.0,ai,12.3551,stylegan2,0.8579,0.0,0.522
+commons-ai_stylegan_woman,detector,ai,wikimedia-commons,stylegan (version not stated),older research model,,portrait,image,1024,1024,JPEG,,1.0,ai,11.383,stylegan2,0.9779,0.0,0.543
+commons-real_apatani_lady,detector,real,wikimedia-commons,,real photo,,nature or landscape,image,2048,1350,JPEG,,0.0456,real,-3.0411,stable_diffusion,0.6706,0.106,0.667
+commons-real_delhi_children,detector,real,wikimedia-commons,,real photo,,people,image,3105,2064,JPEG,,0.0164,real,-4.0926,stable_diffusion,0.9169,0.0086,0.931
+commons-real_delhi_street,detector,real,wikimedia-commons,,real photo,,vehicle,image,3840,2560,JPEG,,0.0,real,-13.2304,latent_diffusion,0.4516,0.0,0.77
+commons-real_himachal_herder,detector,real,wikimedia-commons,,real photo,,nature or landscape,image,3840,2156,JPEG,,0.0006,real,-7.3724,latent_diffusion,0.6767,0.0004,0.596
+commons-real_kerala_street,detector,real,wikimedia-commons,,real photo,,street or buildings,image,3024,4032,JPEG,,0.0418,real,-3.1324,stable_diffusion,0.6914,0.0283,0.637
+commons-real_silk_dyer,detector,real,wikimedia-commons,,real photo,,art or illustration,image,2000,3000,JPEG,,0.0,real,-13.1406,stable_diffusion,0.7549,0.0,0.695
+c2pa-adobe-20220124-A,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.1753,real,-1.5486,glide,0.8496,,
+c2pa-adobe-20220124-C,layer0,,c2pa-public-testfiles,,,,,image,2048,1365,JPEG,,0.0117,real,-4.4336,glide,0.5906,,
+c2pa-adobe-20220124-CA,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.2228,inconclusive,-1.2492,glide,0.7934,,
+c2pa-adobe-20220124-CACA,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.3231,inconclusive,-0.7395,glide,0.907,,
+c2pa-adobe-20220124-CACAICAICICA,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.0868,real,-2.3536,glide,0.9029,,
+c2pa-adobe-20220124-CAI,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.0085,real,-4.761,glide,0.7052,,
+c2pa-adobe-20220124-CAIAIIICAICIICAIICICA,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.7734,inconclusive,1.2276,glide,0.8324,,
+c2pa-adobe-20220124-CAICA,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.3452,inconclusive,-0.64,glide,0.9054,,
+c2pa-adobe-20220124-CAICAI,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.0341,real,-3.3433,glide,0.5618,,
+c2pa-adobe-20220124-CI,layer0,,c2pa-public-testfiles,,,,,image,2048,1365,JPEG,,0.0234,real,-3.7333,stable_diffusion,0.4476,,
+c2pa-adobe-20220124-CICA,layer0,,c2pa-public-testfiles,,,,,image,2048,1365,JPEG,,0.094,real,-2.2654,glide,0.9794,,
+c2pa-adobe-20220124-CICACACA,layer0,,c2pa-public-testfiles,,,,,image,2048,1365,JPEG,,0.8006,ai,1.3901,glide,0.9901,,
+c2pa-adobe-20220124-CIE-sig-CA,layer0,,c2pa-public-testfiles,,,,,image,2048,1365,JPEG,,0.094,real,-2.2654,glide,0.9794,,
+c2pa-adobe-20220124-CII,layer0,,c2pa-public-testfiles,,,,,image,2048,1365,JPEG,,0.1155,real,-2.0359,stable_diffusion,0.5918,,
+c2pa-adobe-20220124-E-clm-CAICAI,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.0341,real,-3.3433,glide,0.5618,,
+c2pa-adobe-20220124-E-dat-CA,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.2228,inconclusive,-1.2492,glide,0.7934,,
+c2pa-adobe-20220124-E-sig-CA,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.2228,inconclusive,-1.2492,glide,0.7934,,
+c2pa-adobe-20220124-E-uri-CA,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.2228,inconclusive,-1.2492,glide,0.7934,,
+c2pa-adobe-20220124-E-uri-CIE-sig-CA,layer0,,c2pa-public-testfiles,,,,,image,2048,1365,JPEG,,0.094,real,-2.2654,glide,0.9794,,
+c2pa-adobe-20220124-I,layer0,,c2pa-public-testfiles,,,,,image,1024,759,JPEG,,0.9835,ai,4.0849,stable_diffusion,0.4371,,
+c2pa-adobe-20220124-XCA,layer0,,c2pa-public-testfiles,,,,,image,1024,683,JPEG,,0.1275,real,-1.9229,glide,0.4667,,
+c2pa-adobe-20220124-XCI,layer0,,c2pa-public-testfiles,,,,,image,2048,1365,JPEG,,0.6039,inconclusive,0.4216,stable_diffusion,0.4673,,
+c2pa-nikon-20221019-building,layer0,real,c2pa-public-testfiles,,,,,image,4128,2752,MPO,,0.9948,ai,5.2512,stable_diffusion,0.5505,,
+c2pa-truepic-20230212-camera,layer0,real,c2pa-public-testfiles,,,,,image,4032,3024,JPEG,,0.9943,ai,5.1642,stable_diffusion,0.493,,
+c2pa-truepic-20230212-landscape,layer0,real,c2pa-public-testfiles,,,,,image,4032,3024,JPEG,,0.0067,real,-4.9986,latent_diffusion,0.4978,,
+c2pa-truepic-20230212-library,layer0,real,c2pa-public-testfiles,,,,,image,4032,3024,JPEG,,0.4795,inconclusive,-0.0822,glide,0.4871,,
+wm-sdxl-dwtdct-openfake_core-00000-09-033,layer1,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,1280,704,PNG,openfake_core-00000-09-033,0.3154,inconclusive,-0.7749,stable_diffusion,0.9592,,
+wm-sdxl-dwtdct-openfake_core-00000-22-086,layer1,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,720,1280,PNG,openfake_core-00000-22-086,0.9997,ai,8.2262,stable_diffusion,0.6415,,
+wm-sdxl-dwtdct-openfake_core-00000-22-103,layer1,real,openfake-core-test,,real photo,,nature or landscape,image,1600,1200,PNG,openfake_core-00000-22-103,0.0097,real,-4.6307,glide,0.5667,,
+wm-sdxl-dwtdct-openfake_core-00006-30-053,layer1,ai,openfake-core-test,wan-video-2.5,video-model frame,,object,video frame,960,960,PNG,openfake_core-00006-30-053,1.0,ai,12.0544,glide,0.9161,,
+wm-sdxl-dwtdct-openfake_core-00006-32-044,layer1,real,openfake-core-test,,real photo,,animal,image,500,389,PNG,openfake_core-00006-32-044,0.0093,real,-4.6668,pro_gan,0.4371,,
+wm-sdxl-dwtdct-openfake_core-00006-32-047,layer1,real,openfake-core-test,,real photo,,animal,image,1600,1200,PNG,openfake_core-00006-32-047,0.0036,real,-5.6118,stable_diffusion,0.2746,,
+wm-sdxl-dwtdct-openfake_core-00006-32-061,layer1,real,openfake-core-test,,real photo,,animal,image,575,449,PNG,openfake_core-00006-32-061,0.3223,inconclusive,-0.7432,stable_diffusion,0.3101,,
+wm-sdxl-dwtdct-openfake_core-00006-32-064,layer1,ai,openfake-core-test,z-image-turbo,open weights,,text or graphic,image,1024,1024,PNG,openfake_core-00006-32-064,0.3508,inconclusive,-0.6154,stable_diffusion,0.9256,,
+wm-sdxl-dwtdct-openfake_core-00006-34-038,layer1,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1200,1600,PNG,openfake_core-00006-34-038,0.713,inconclusive,0.9099,stable_diffusion,0.7369,,
+wm-sdxl-dwtdct-openfake_core-00006-39-049,layer1,real,openfake-core-test,,real photo,,object,image,1600,1200,PNG,openfake_core-00006-39-049,0.0103,real,-4.5613,stable_diffusion,0.4985,,
+wm-sdxl-dwtdct-openfake_core-00006-39-127,layer1,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1024,PNG,openfake_core-00006-39-127,0.9997,ai,8.28,stable_diffusion,0.8282,,
+wm-sdxl-dwtdct-openfake_core-00006-41-002,layer1,real,openfake-core-test,,real photo,,animal,image,448,500,PNG,openfake_core-00006-41-002,0.8236,ai,1.5412,latent_diffusion,0.418,,
+wm-sdxl-dwtdct-social-openfake_core-00000-09-033,layer1,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,1280,704,JPEG,openfake_core-00000-09-033,0.2781,inconclusive,-0.9539,stable_diffusion,0.9556,,
+wm-sdxl-dwtdct-social-openfake_core-00000-22-086,layer1,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,720,1280,JPEG,openfake_core-00000-22-086,0.9995,ai,7.5444,stable_diffusion,0.6303,,
+wm-sdxl-dwtdct-social-openfake_core-00000-22-103,layer1,real,openfake-core-test,,real photo,,nature or landscape,image,1600,1200,JPEG,openfake_core-00000-22-103,0.0076,real,-4.8659,glide,0.6231,,
+wm-sdxl-dwtdct-social-openfake_core-00006-30-053,layer1,ai,openfake-core-test,wan-video-2.5,video-model frame,,object,video frame,960,960,JPEG,openfake_core-00006-30-053,1.0,ai,12.1799,glide,0.9194,,
+wm-sdxl-dwtdct-social-openfake_core-00006-32-044,layer1,real,openfake-core-test,,real photo,,animal,image,500,389,JPEG,openfake_core-00006-32-044,0.0185,real,-3.9719,pro_gan,0.4583,,
+wm-sdxl-dwtdct-social-openfake_core-00006-32-047,layer1,real,openfake-core-test,,real photo,,animal,image,1600,1200,JPEG,openfake_core-00006-32-047,0.0037,real,-5.595,stable_diffusion,0.2839,,
+wm-sdxl-dwtdct-social-openfake_core-00006-32-061,layer1,real,openfake-core-test,,real photo,,animal,image,575,449,JPEG,openfake_core-00006-32-061,0.3169,inconclusive,-0.7678,stable_diffusion,0.3103,,
+wm-sdxl-dwtdct-social-openfake_core-00006-32-064,layer1,ai,openfake-core-test,z-image-turbo,open weights,,text or graphic,image,1024,1024,JPEG,openfake_core-00006-32-064,0.3141,inconclusive,-0.7809,stable_diffusion,0.9176,,
+wm-sdxl-dwtdct-social-openfake_core-00006-34-038,layer1,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1200,1600,JPEG,openfake_core-00006-34-038,0.6261,inconclusive,0.5155,stable_diffusion,0.7135,,
+wm-sdxl-dwtdct-social-openfake_core-00006-39-049,layer1,real,openfake-core-test,,real photo,,object,image,1600,1200,JPEG,openfake_core-00006-39-049,0.0084,real,-4.7691,stable_diffusion,0.521,,
+wm-sdxl-dwtdct-social-openfake_core-00006-39-127,layer1,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1024,JPEG,openfake_core-00006-39-127,0.9997,ai,8.1827,stable_diffusion,0.8283,,
+wm-sdxl-dwtdct-social-openfake_core-00006-41-002,layer1,real,openfake-core-test,,real photo,,animal,image,448,500,JPEG,openfake_core-00006-41-002,0.6507,inconclusive,0.6221,pro_gan,0.475,,
+wm-trustmark-openfake_core-00000-09-033,layer1,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,1280,704,PNG,openfake_core-00000-09-033,0.1331,real,-1.8735,stable_diffusion,0.9322,,
+wm-trustmark-openfake_core-00000-22-086,layer1,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,720,1280,PNG,openfake_core-00000-22-086,0.9942,ai,5.1513,stable_diffusion,0.4447,,
+wm-trustmark-openfake_core-00000-22-103,layer1,real,openfake-core-test,,real photo,,nature or landscape,image,1600,1200,PNG,openfake_core-00000-22-103,0.0147,real,-4.2056,glide,0.4838,,
+wm-trustmark-openfake_core-00006-30-053,layer1,ai,openfake-core-test,wan-video-2.5,video-model frame,,object,video frame,960,960,PNG,openfake_core-00006-30-053,1.0,ai,12.9614,glide,0.9123,,
+wm-trustmark-openfake_core-00006-32-044,layer1,real,openfake-core-test,,real photo,,animal,image,500,389,PNG,openfake_core-00006-32-044,0.0152,real,-4.1691,pro_gan,0.4143,,
+wm-trustmark-openfake_core-00006-32-047,layer1,real,openfake-core-test,,real photo,,animal,image,1600,1200,PNG,openfake_core-00006-32-047,0.002,real,-6.199,stable_diffusion,0.288,,
+wm-trustmark-openfake_core-00006-32-061,layer1,real,openfake-core-test,,real photo,,animal,image,575,449,PNG,openfake_core-00006-32-061,0.2991,inconclusive,-0.8517,stable_diffusion,0.2538,,
+wm-trustmark-openfake_core-00006-32-064,layer1,ai,openfake-core-test,z-image-turbo,open weights,,text or graphic,image,1024,1024,PNG,openfake_core-00006-32-064,0.2978,inconclusive,-0.8579,stable_diffusion,0.9224,,
+wm-trustmark-openfake_core-00006-34-038,layer1,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1200,1600,PNG,openfake_core-00006-34-038,0.6343,inconclusive,0.5506,stable_diffusion,0.7295,,
+wm-trustmark-openfake_core-00006-39-049,layer1,real,openfake-core-test,,real photo,,object,image,1600,1200,PNG,openfake_core-00006-39-049,0.0048,real,-5.3402,stable_diffusion,0.4097,,
+wm-trustmark-openfake_core-00006-39-127,layer1,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1024,PNG,openfake_core-00006-39-127,0.9994,ai,7.4588,stable_diffusion,0.8025,,
+wm-trustmark-openfake_core-00006-41-002,layer1,real,openfake-core-test,,real photo,,animal,image,448,500,PNG,openfake_core-00006-41-002,0.6296,inconclusive,0.5304,latent_diffusion,0.4533,,
+wm-trustmark-social-openfake_core-00000-09-033,layer1,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,1280,704,JPEG,openfake_core-00000-09-033,0.1176,real,-2.0151,stable_diffusion,0.91,,
+wm-trustmark-social-openfake_core-00000-22-086,layer1,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,720,1280,JPEG,openfake_core-00000-22-086,0.9858,ai,4.239,stable_diffusion,0.441,,
+wm-trustmark-social-openfake_core-00000-22-103,layer1,real,openfake-core-test,,real photo,,nature or landscape,image,1600,1200,JPEG,openfake_core-00000-22-103,0.0127,real,-4.3507,glide,0.4774,,
+wm-trustmark-social-openfake_core-00006-30-053,layer1,ai,openfake-core-test,wan-video-2.5,video-model frame,,object,video frame,960,960,JPEG,openfake_core-00006-30-053,1.0,ai,12.8125,glide,0.9118,,
+wm-trustmark-social-openfake_core-00006-32-044,layer1,real,openfake-core-test,,real photo,,animal,image,500,389,JPEG,openfake_core-00006-32-044,0.0114,real,-4.4633,pro_gan,0.4294,,
+wm-trustmark-social-openfake_core-00006-32-047,layer1,real,openfake-core-test,,real photo,,animal,image,1600,1200,JPEG,openfake_core-00006-32-047,0.0022,real,-6.1116,stable_diffusion,0.2963,,
+wm-trustmark-social-openfake_core-00006-32-061,layer1,real,openfake-core-test,,real photo,,animal,image,575,449,JPEG,openfake_core-00006-32-061,0.3631,inconclusive,-0.5621,stable_diffusion,0.2699,,
+wm-trustmark-social-openfake_core-00006-32-064,layer1,ai,openfake-core-test,z-image-turbo,open weights,,text or graphic,image,1024,1024,JPEG,openfake_core-00006-32-064,0.259,inconclusive,-1.0513,stable_diffusion,0.903,,
+wm-trustmark-social-openfake_core-00006-34-038,layer1,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1200,1600,JPEG,openfake_core-00006-34-038,0.4835,inconclusive,-0.0659,stable_diffusion,0.6932,,
+wm-trustmark-social-openfake_core-00006-39-049,layer1,real,openfake-core-test,,real photo,,object,image,1600,1200,JPEG,openfake_core-00006-39-049,0.0037,real,-5.586,stable_diffusion,0.4027,,
+wm-trustmark-social-openfake_core-00006-39-127,layer1,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1024,JPEG,openfake_core-00006-39-127,0.9993,ai,7.2652,stable_diffusion,0.8107,,
+wm-trustmark-social-openfake_core-00006-41-002,layer1,real,openfake-core-test,,real photo,,animal,image,448,500,JPEG,openfake_core-00006-41-002,0.3748,inconclusive,-0.5117,pro_gan,0.4033,,
+wm-videoseal-openfake_core-00000-09-033,layer1,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,1280,704,PNG,openfake_core-00000-09-033,0.3838,inconclusive,-0.4735,stable_diffusion,0.9508,,
+wm-videoseal-openfake_core-00000-22-086,layer1,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,720,1280,PNG,openfake_core-00000-22-086,0.9971,ai,5.8454,stable_diffusion,0.6132,,
+wm-videoseal-openfake_core-00000-22-103,layer1,real,openfake-core-test,,real photo,,nature or landscape,image,1600,1200,PNG,openfake_core-00000-22-103,0.0047,real,-5.3453,glide,0.3969,,
+wm-videoseal-openfake_core-00006-30-053,layer1,ai,openfake-core-test,wan-video-2.5,video-model frame,,object,video frame,960,960,PNG,openfake_core-00006-30-053,1.0,ai,12.5701,glide,0.8815,,
+wm-videoseal-openfake_core-00006-32-044,layer1,real,openfake-core-test,,real photo,,animal,image,500,389,PNG,openfake_core-00006-32-044,0.0116,real,-4.4439,pro_gan,0.4411,,
+wm-videoseal-openfake_core-00006-32-047,layer1,real,openfake-core-test,,real photo,,animal,image,1600,1200,PNG,openfake_core-00006-32-047,0.002,real,-6.198,stable_diffusion,0.2841,,
+wm-videoseal-openfake_core-00006-32-061,layer1,real,openfake-core-test,,real photo,,animal,image,575,449,PNG,openfake_core-00006-32-061,0.276,inconclusive,-0.9644,stable_diffusion,0.2864,,
+wm-videoseal-openfake_core-00006-32-064,layer1,ai,openfake-core-test,z-image-turbo,open weights,,text or graphic,image,1024,1024,PNG,openfake_core-00006-32-064,0.2594,inconclusive,-1.0489,stable_diffusion,0.9146,,
+wm-videoseal-openfake_core-00006-34-038,layer1,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1200,1600,PNG,openfake_core-00006-34-038,0.4923,inconclusive,-0.0307,stable_diffusion,0.7236,,
+wm-videoseal-openfake_core-00006-39-049,layer1,real,openfake-core-test,,real photo,,object,image,1600,1200,PNG,openfake_core-00006-39-049,0.0053,real,-5.2434,stable_diffusion,0.4618,,
+wm-videoseal-openfake_core-00006-39-127,layer1,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1024,PNG,openfake_core-00006-39-127,0.9997,ai,8.1817,stable_diffusion,0.7974,,
+wm-videoseal-openfake_core-00006-41-002,layer1,real,openfake-core-test,,real photo,,animal,image,448,500,PNG,openfake_core-00006-41-002,0.6047,inconclusive,0.425,latent_diffusion,0.5097,,
+wm-videoseal-social-openfake_core-00000-09-033,layer1,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,1280,704,JPEG,openfake_core-00000-09-033,0.2374,inconclusive,-1.1668,stable_diffusion,0.9397,,
+wm-videoseal-social-openfake_core-00000-22-086,layer1,ai,openfake-core-test,veo-3,video-model frame,,art or illustration,video frame,720,1280,JPEG,openfake_core-00000-22-086,0.9958,ai,5.4792,stable_diffusion,0.5913,,
+wm-videoseal-social-openfake_core-00000-22-103,layer1,real,openfake-core-test,,real photo,,nature or landscape,image,1600,1200,JPEG,openfake_core-00000-22-103,0.0048,real,-5.3345,glide,0.4139,,
+wm-videoseal-social-openfake_core-00006-30-053,layer1,ai,openfake-core-test,wan-video-2.5,video-model frame,,object,video frame,960,960,JPEG,openfake_core-00006-30-053,1.0,ai,12.4611,glide,0.8969,,
+wm-videoseal-social-openfake_core-00006-32-044,layer1,real,openfake-core-test,,real photo,,animal,image,500,389,JPEG,openfake_core-00006-32-044,0.011,real,-4.4946,pro_gan,0.4282,,
+wm-videoseal-social-openfake_core-00006-32-047,layer1,real,openfake-core-test,,real photo,,animal,image,1600,1200,JPEG,openfake_core-00006-32-047,0.002,real,-6.2249,stable_diffusion,0.2871,,
+wm-videoseal-social-openfake_core-00006-32-061,layer1,real,openfake-core-test,,real photo,,animal,image,575,449,JPEG,openfake_core-00006-32-061,0.2982,inconclusive,-0.856,stable_diffusion,0.2909,,
+wm-videoseal-social-openfake_core-00006-32-064,layer1,ai,openfake-core-test,z-image-turbo,open weights,,text or graphic,image,1024,1024,JPEG,openfake_core-00006-32-064,0.2342,inconclusive,-1.1847,stable_diffusion,0.9096,,
+wm-videoseal-social-openfake_core-00006-34-038,layer1,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1200,1600,JPEG,openfake_core-00006-34-038,0.3962,inconclusive,-0.4213,stable_diffusion,0.7134,,
+wm-videoseal-social-openfake_core-00006-39-049,layer1,real,openfake-core-test,,real photo,,object,image,1600,1200,JPEG,openfake_core-00006-39-049,0.0076,real,-4.8719,stable_diffusion,0.4736,,
+wm-videoseal-social-openfake_core-00006-39-127,layer1,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1024,JPEG,openfake_core-00006-39-127,0.9996,ai,7.8529,stable_diffusion,0.8014,,
+wm-videoseal-social-openfake_core-00006-41-002,layer1,real,openfake-core-test,,real photo,,animal,image,448,500,JPEG,openfake_core-00006-41-002,0.386,inconclusive,-0.464,latent_diffusion,0.4013,,
+cnndetection-biggan-ai-03-social,robustness,ai,cnndetection,biggan,older research model,big_gan,object,image,256,256,JPEG,cnndetection-biggan-ai-03,0.4173,inconclusive,-0.3337,ddpm,0.672,,
+cnndetection-biggan-ai-04-social,robustness,ai,cnndetection,biggan,older research model,big_gan,indoor scene,image,256,256,JPEG,cnndetection-biggan-ai-04,0.0995,real,-2.2027,ddpm,0.9386,,
+cnndetection-biggan-real-00-social,robustness,real,cnndetection,,real photo,,animal,image,256,256,JPEG,cnndetection-biggan-real-00,0.0,real,-11.1092,big_gan,0.8403,,
+cnndetection-biggan-real-04-social,robustness,real,cnndetection,,real photo,,object,image,256,256,JPEG,cnndetection-biggan-real-04,0.0,real,-10.7138,stable_diffusion,0.6957,,
+cnndetection-cyclegan-ai-03-social,robustness,ai,cnndetection,cyclegan,older research model,cycle_gan,animal,image,256,256,JPEG,cnndetection-cyclegan-ai-03,0.0,real,-10.1492,cycle_gan,0.9219,,
+cnndetection-gaugan-ai-01-social,robustness,ai,cnndetection,gaugan,older research model,,indoor scene,image,256,256,JPEG,cnndetection-gaugan-ai-01,0.008,real,-4.8226,stable_diffusion,0.4657,,
+cnndetection-progan-ai-05-social,robustness,ai,cnndetection,progan,older research model,pro_gan,text or graphic,image,256,256,JPEG,cnndetection-progan-ai-05,0.8034,ai,1.4074,stable_diffusion,0.5903,,
+cnndetection-progan-ai-06-social,robustness,ai,cnndetection,progan,older research model,pro_gan,object,image,256,256,JPEG,cnndetection-progan-ai-06,0.9985,ai,6.487,glide,0.2634,,
+cnndetection-progan-ai-07-social,robustness,ai,cnndetection,progan,older research model,pro_gan,object,image,256,256,JPEG,cnndetection-progan-ai-07,0.9993,ai,7.2648,latent_diffusion,0.3231,,
+cnndetection-stylegan2-real-03-social,robustness,real,cnndetection,,real photo,,animal,image,256,256,JPEG,cnndetection-stylegan2-real-03,0.0,real,-10.3566,latent_diffusion,0.5258,,
+cnndetection-whichfaceisreal-ai-02-social,robustness,ai,cnndetection,whichfaceisreal,older research model,,portrait,image,1024,1024,JPEG,cnndetection-whichfaceisreal-ai-02,0.9996,ai,7.8022,stylegan2,0.9579,,
+cnndetection-whichfaceisreal-ai-03-social,robustness,ai,cnndetection,whichfaceisreal,older research model,,portrait,image,1024,1024,JPEG,cnndetection-whichfaceisreal-ai-03,0.9997,ai,8.132,stylegan2,0.9915,,
+outside-dalle3_016-social,robustness,ai,deepguard-generalization-test,dalle-3,closed commercial,,object,image,1024,585,JPEG,outside-dalle3_016,1.0,ai,12.8421,stable_diffusion,0.9059,,
+outside-midjourney-v5_012-social,robustness,ai,deepguard-generalization-test,midjourney-5,closed commercial,,art or illustration,image,384,576,JPEG,outside-midjourney-v5_012,0.7327,inconclusive,1.0083,stable_diffusion,0.3992,,
+outside-midjourney-v5_021-social,robustness,ai,deepguard-generalization-test,midjourney-5,closed commercial,,portrait,image,384,384,JPEG,outside-midjourney-v5_021,0.0,real,-10.5615,stylegan2,0.9424,,
+genimage-glide_imagenet-ai-07-social,robustness,ai,genimage,glide_imagenet,older research model,glide,object,image,256,256,JPEG,genimage-glide_imagenet-ai-07,0.129,real,-1.9095,big_gan,0.3466,,
+genimage-glide_imagenet-real-04-social,robustness,real,genimage,,real photo,,object,image,460,690,JPEG,genimage-glide_imagenet-real-04,0.4147,inconclusive,-0.3447,stable_diffusion,0.5203,,
+genimage-glide_imagenet-real-05-social,robustness,real,genimage,,real photo,,animal,image,500,375,JPEG,genimage-glide_imagenet-real-05,0.0002,real,-8.4713,latent_diffusion,0.2631,,
+genimage-glide_imagenet-real-06-social,robustness,real,genimage,,real photo,,object,image,461,500,JPEG,genimage-glide_imagenet-real-06,0.9888,ai,4.4836,big_gan,0.5394,,
+genimage-wukong_imagenet-ai-02-social,robustness,ai,genimage,wukong_imagenet,older research model,,animal,image,512,512,JPEG,genimage-wukong_imagenet-ai-02,0.0235,real,-3.7253,stable_diffusion,0.4675,,
+genimage-wukong_imagenet-ai-04-social,robustness,ai,genimage,wukong_imagenet,older research model,,object,image,512,512,JPEG,genimage-wukong_imagenet-ai-04,0.9948,ai,5.25,stable_diffusion,0.846,,
+openfake_core-00000-00-023-social,robustness,real,openfake-core-test,,real photo,,object,image,1199,1600,JPEG,openfake_core-00000-00-023,0.0002,real,-8.4958,latent_diffusion,0.4796,,
+openfake_core-00000-00-067-social,robustness,ai,openfake-core-test,midjourney-7,closed commercial,,indoor scene,image,1600,538,JPEG,openfake_core-00000-00-067,0.9935,ai,5.0303,stable_diffusion,0.4342,,
+openfake_core-00000-09-022-social,robustness,ai,openfake-core-test,gpt-image-1.5,closed commercial,,portrait,image,1536,1024,JPEG,openfake_core-00000-09-022,0.9485,ai,2.9132,pro_gan,0.2836,,
+openfake_core-00000-09-032-social,robustness,real,openfake-core-test,,real photo,,animal,image,500,332,JPEG,openfake_core-00000-09-032,0.9263,ai,2.5312,stable_diffusion,0.4012,,
+openfake_core-00000-09-056-social,robustness,ai,openfake-core-test,flux.2-klein-9b,open weights,,text or graphic,image,1024,1024,JPEG,openfake_core-00000-09-056,0.0926,real,-2.2821,stable_diffusion,0.5706,,
+openfake_core-00000-09-128-social,robustness,real,openfake-core-test,,real photo,,object,image,1200,1600,JPEG,openfake_core-00000-09-128,0.0273,real,-3.5732,stable_diffusion,0.8417,,
+openfake_core-00000-09-129-social,robustness,real,openfake-core-test,,real photo,,animal,image,504,490,JPEG,openfake_core-00000-09-129,0.0001,real,-8.9964,stylegan2,0.3285,,
+openfake_core-00000-12-043-social,robustness,real,openfake-core-test,,real photo,,animal,image,500,349,JPEG,openfake_core-00000-12-043,0.5339,inconclusive,0.1357,pro_gan,0.4064,,
+openfake_core-00000-22-004-social,robustness,ai,openfake-core-test,nano-banana-pro,closed commercial,,animal,video frame,1196,1600,JPEG,openfake_core-00000-22-004,1.0,ai,10.4609,stable_diffusion,0.6341,,
+openfake_core-00000-22-010-social,robustness,real,openfake-core-test,,real photo,,animal,image,500,333,JPEG,openfake_core-00000-22-010,0.0005,real,-7.6378,latent_diffusion,0.6302,,
+openfake_core-00000-22-012-social,robustness,ai,openfake-core-test,sora-2,video-model frame,,art or illustration,video frame,1280,704,JPEG,openfake_core-00000-22-012,0.9991,ai,6.9725,latent_diffusion,0.2893,,
+openfake_core-00000-22-017-social,robustness,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,openfake_core-00000-22-017,0.1441,real,-1.7814,pro_gan,0.5467,,
+openfake_core-00000-22-018-social,robustness,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,openfake_core-00000-22-018,0.0122,real,-4.3941,glide,0.2346,,
+openfake_core-00000-22-059-social,robustness,real,openfake-core-test,,real photo,,art or illustration,image,1200,1600,JPEG,openfake_core-00000-22-059,0.0,real,-15.5804,stable_diffusion,0.6436,,
+openfake_core-00000-22-118-social,robustness,real,openfake-core-test,,real photo,,indoor scene,image,1600,1200,JPEG,openfake_core-00000-22-118,0.0223,real,-3.7803,pro_gan,0.4285,,
+openfake_core-00000-22-133-social,robustness,real,openfake-core-test,,real photo,,animal,image,500,357,JPEG,openfake_core-00000-22-133,0.9984,ai,6.4508,stable_diffusion,0.405,,
+openfake_core-00000-22-135-social,robustness,ai,openfake-core-test,recraft-v3,closed commercial,,street or buildings,image,600,300,JPEG,openfake_core-00000-22-135,0.0003,real,-8.2772,stable_diffusion,0.8135,,
+openfake_core-00000-22-138-social,robustness,ai,openfake-core-test,illustrious,open weights,,art or illustration,image,1536,1536,JPEG,openfake_core-00000-22-138,0.9991,ai,7.0194,stable_diffusion,0.815,,
+openfake_core-00000-28-008-social,robustness,real,openfake-core-test,,real photo,,object,image,500,333,JPEG,openfake_core-00000-28-008,0.6671,inconclusive,0.6951,big_gan,0.4808,,
+openfake_core-00000-28-050-social,robustness,ai,openfake-core-test,aurora-20-1-25,other / unknown,,portrait,image,1024,768,JPEG,openfake_core-00000-28-050,0.0376,real,-3.2423,stable_diffusion,0.9587,,
+openfake_core-00000-28-065-social,robustness,real,openfake-core-test,,real photo,,vehicle,image,1600,1200,JPEG,openfake_core-00000-28-065,0.0446,real,-3.0638,stable_diffusion,0.3514,,
+openfake_core-00000-28-123-social,robustness,ai,openfake-core-test,illustrious,open weights,,art or illustration,image,1080,1576,JPEG,openfake_core-00000-28-123,1.0,ai,16.3767,glide,0.54,,
+openfake_core-00006-30-044-social,robustness,real,openfake-core-test,,real photo,,animal,image,1600,1200,JPEG,openfake_core-00006-30-044,0.0003,real,-8.2598,stable_diffusion,0.9692,,
+openfake_core-00006-30-057-social,robustness,ai,openfake-core-test,lumina-17-2-25,other / unknown,,art or illustration,image,1024,1024,JPEG,openfake_core-00006-30-057,0.9995,ai,7.5186,stable_diffusion,0.6853,,
+openfake_core-00006-30-082-social,robustness,real,openfake-core-test,,real photo,,animal,image,500,375,JPEG,openfake_core-00006-30-082,0.5834,inconclusive,0.3368,stable_diffusion,0.2101,,
+openfake_core-00006-30-083-social,robustness,ai,openfake-core-test,wan-video-2.5,video-model frame,,art or illustration,video frame,1600,900,JPEG,openfake_core-00006-30-083,0.9998,ai,8.6968,glide,0.5069,,
+openfake_core-00006-30-106-social,robustness,real,openfake-core-test,,real photo,,object,image,500,365,JPEG,openfake_core-00006-30-106,0.5978,inconclusive,0.3965,stable_diffusion,0.6304,,
+openfake_core-00006-30-116-social,robustness,real,openfake-core-test,,real photo,,object,image,1200,1600,JPEG,openfake_core-00006-30-116,0.1636,real,-1.6314,stable_diffusion,0.6151,,
+openfake_core-00006-30-128-social,robustness,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,1024,1536,JPEG,openfake_core-00006-30-128,0.0,real,-11.9866,latent_diffusion,0.4148,,
+openfake_core-00006-32-040-social,robustness,ai,openfake-core-test,gpt-image-2,closed commercial,,object,image,1067,1600,JPEG,openfake_core-00006-32-040,0.018,real,-3.997,stable_diffusion,0.4398,,
+openfake_core-00006-32-045-social,robustness,ai,openfake-core-test,midjourney-7,closed commercial,,nature or landscape,image,816,1456,JPEG,openfake_core-00006-32-045,0.9876,ai,4.3805,stable_diffusion,0.7956,,
+openfake_core-00006-32-050-social,robustness,real,openfake-core-test,,real photo,,vehicle,image,1600,1199,JPEG,openfake_core-00006-32-050,0.3135,inconclusive,-0.784,pro_gan,0.6172,,
+openfake_core-00006-32-069-social,robustness,ai,openfake-core-test,gpt-image-1.5,closed commercial,,art or illustration,image,1536,1024,JPEG,openfake_core-00006-32-069,0.0,real,-10.5924,stable_diffusion,0.7576,,
+openfake_core-00006-32-143-social,robustness,real,openfake-core-test,,real photo,,object,image,1600,1200,JPEG,openfake_core-00006-32-143,0.926,ai,2.5275,stable_diffusion,0.8543,,
+openfake_core-00006-34-023-social,robustness,real,openfake-core-test,,real photo,,animal,image,1600,1200,JPEG,openfake_core-00006-34-023,0.6607,inconclusive,0.6664,stylegan2,0.7381,,
+openfake_core-00006-34-038-social,robustness,ai,openfake-core-test,seedream-v5.0,closed commercial,,art or illustration,image,1200,1600,JPEG,openfake_core-00006-34-038,0.6124,inconclusive,0.4575,stable_diffusion,0.7141,,
+openfake_core-00006-34-076-social,robustness,ai,openfake-core-test,gpt-image-2,closed commercial,,art or illustration,image,1024,1536,JPEG,openfake_core-00006-34-076,0.0978,real,-2.2214,stable_diffusion,0.839,,
+openfake_core-00006-34-098-social,robustness,real,openfake-core-test,,real photo,,animal,image,500,333,JPEG,openfake_core-00006-34-098,0.3502,inconclusive,-0.6181,big_gan,0.4913,,
+openfake_core-00006-34-145-social,robustness,real,openfake-core-test,,real photo,,animal,image,536,412,JPEG,openfake_core-00006-34-145,0.0656,real,-2.6567,stable_diffusion,0.4521,,
+openfake_core-00006-41-056-social,robustness,real,openfake-core-test,,real photo,,object,image,816,612,JPEG,openfake_core-00006-41-056,0.4901,inconclusive,-0.0394,glide,0.8119,,
+openfake_core-00006-41-117-social,robustness,real,openfake-core-test,,real photo,,animal,image,1600,1200,JPEG,openfake_core-00006-41-117,0.1595,real,-1.6622,big_gan,0.4993,,
+openfake_core-00006-41-135-social,robustness,ai,openfake-core-test,recraft-v2,closed commercial,,object,image,1024,1024,JPEG,openfake_core-00006-41-135,0.0752,real,-2.5099,stable_diffusion,0.5846,,
+openfake_core-00006-41-140-social,robustness,ai,openfake-core-test,ernie-image-turbo,other / unknown,,art or illustration,image,1066,1600,JPEG,openfake_core-00006-41-140,1.0,ai,15.0064,latent_diffusion,0.4598,,
+openfake_reddit-00000-00-012-social,robustness,real,openfake-reddit-test,,real photo,,object,image,1600,1200,JPEG,openfake_reddit-00000-00-012,0.853,ai,1.7583,stable_diffusion,0.8814,,
+openfake_reddit-00000-00-063-social,robustness,real,openfake-reddit-test,,real photo,,nature or landscape,image,1600,1200,JPEG,openfake_reddit-00000-00-063,0.0002,real,-8.3439,latent_diffusion,0.248,,
+openfake_reddit-00000-00-073-social,robustness,real,openfake-reddit-test,,real photo,,food,image,1600,1204,JPEG,openfake_reddit-00000-00-073,0.9981,ai,6.2878,stable_diffusion,0.6433,,
+openfake_reddit-00000-00-088-social,robustness,real,openfake-reddit-test,,real photo,,street or buildings,video frame,1061,1600,JPEG,openfake_reddit-00000-00-088,0.0014,real,-6.5898,glide,0.45,,
+openfake_reddit-00000-00-089-social,robustness,real,openfake-reddit-test,,real photo,,vehicle,image,1600,1200,JPEG,openfake_reddit-00000-00-089,0.0759,real,-2.4987,stable_diffusion,0.7364,,
+openfake_reddit-00000-12-000-social,robustness,real,openfake-reddit-test,,real photo,,portrait,video frame,1106,1600,JPEG,openfake_reddit-00000-12-000,0.5986,inconclusive,0.3997,stable_diffusion,0.7997,,
+openfake_reddit-00000-12-035-social,robustness,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,1024,1536,JPEG,openfake_reddit-00000-12-035,0.4845,inconclusive,-0.0621,latent_diffusion,0.7511,,
+openfake_reddit-00000-12-122-social,robustness,real,openfake-reddit-test,,real photo,,object,video frame,1600,1200,JPEG,openfake_reddit-00000-12-122,0.0011,real,-6.8578,glide,0.9532,,
+openfake_reddit-00000-12-127-social,robustness,real,openfake-reddit-test,,real photo,,street or buildings,image,1600,1067,JPEG,openfake_reddit-00000-12-127,0.0014,real,-6.542,stable_diffusion,0.4443,,
+openfake_reddit-00000-12-143-social,robustness,ai,openfake-reddit-test,unknown,other / unknown,,art or illustration,image,512,768,JPEG,openfake_reddit-00000-12-143,0.9995,ai,7.5312,stable_diffusion,0.4446,,
+openfake_reddit-00003-02-038-social,robustness,ai,openfake-reddit-test,unknown,other / unknown,,object,video frame,893,1600,JPEG,openfake_reddit-00003-02-038,1.0,ai,11.2639,stable_diffusion,0.8433,,
+openfake_reddit-00003-02-054-social,robustness,real,openfake-reddit-test,,real photo,,animal,video frame,1600,900,JPEG,openfake_reddit-00003-02-054,0.0028,real,-5.8883,pro_gan,0.4172,,
+commons-ai_dalle3_astronaut_mercury-social,robustness,ai,wikimedia-commons,dalle-3,closed commercial,,art or illustration,image,1024,1024,JPEG,commons-ai_dalle3_astronaut_mercury,1.0,ai,12.6322,stable_diffusion,0.3827,,
+commons-ai_photo_programming_class-social,robustness,ai,wikimedia-commons,unknown,other / unknown,,people,image,1536,1024,JPEG,commons-ai_photo_programming_class,0.9595,ai,3.1644,stable_diffusion,0.5805,,
+commons-ai_stylegan_woman-social,robustness,ai,wikimedia-commons,stylegan (version not stated),older research model,,portrait,image,1024,1024,JPEG,commons-ai_stylegan_woman,1.0,ai,12.1367,stylegan2,0.9803,,
+commons-real_himachal_herder-social,robustness,real,wikimedia-commons,,real photo,,nature or landscape,image,1600,898,JPEG,commons-real_himachal_herder,0.0008,real,-7.0832,latent_diffusion,0.6914,,
+openfake_core-00000-00-004-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-00-004,0.9991,ai,7.0397,,,,
+openfake_core-00000-00-007-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00000-00-007,1.0,ai,12.3253,,,,
+openfake_core-00000-00-020-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00000-00-020,0.8703,ai,1.9034,,,,
+openfake_core-00000-00-021-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-00-021,0.0717,real,-2.5608,,,,
+openfake_core-00000-00-023-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-00-023,0.0,real,-10.1837,,,,
+openfake_core-00000-00-032-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00000-00-032,1.0,ai,10.1796,,,,
+openfake_core-00000-00-036-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00000-00-036,0.9789,ai,3.8394,,,,
+openfake_core-00000-00-041-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00000-00-041,0.3475,inconclusive,-0.6301,,,,
+openfake_core-00000-00-053-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00000-00-053,0.0018,real,-6.318,,,,
+openfake_core-00000-00-057-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-00-057,0.3809,inconclusive,-0.4858,,,,
+openfake_core-00000-00-062-256px,probe,ai,openfake-core-test,wan-video-2.5,,,,,,,,openfake_core-00000-00-062,0.9998,ai,8.6228,,,,
+openfake_core-00000-00-067-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00000-00-067,0.9991,ai,7.0659,,,,
+openfake_core-00000-00-075-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00000-00-075,0.0003,real,-8.0382,,,,
+openfake_core-00000-00-078-256px,probe,ai,openfake-core-test,ernie-image-turbo,,,,,,,,openfake_core-00000-00-078,0.9999,ai,9.5714,,,,
+openfake_core-00000-00-090-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00000-00-090,0.0027,real,-5.9217,,,,
+openfake_core-00000-00-095-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00000-00-095,0.9981,ai,6.2389,,,,
+openfake_core-00000-00-100-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-00-100,0.001,real,-6.8716,,,,
+openfake_core-00000-00-105-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-00-105,0.9258,ai,2.5241,,,,
+openfake_core-00000-00-107-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-00-107,0.027,real,-3.5836,,,,
+openfake_core-00000-00-108-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00000-00-108,0.0008,real,-7.1883,,,,
+openfake_core-00000-00-119-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00000-00-119,1.0,ai,18.2833,,,,
+openfake_core-00000-00-120-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00000-00-120,0.0,real,-15.6471,,,,
+openfake_core-00000-00-128-256px,probe,ai,openfake-core-test,ernie-image,,,,,,,,openfake_core-00000-00-128,0.9999,ai,9.6605,,,,
+openfake_core-00000-00-138-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00000-00-138,0.7423,inconclusive,1.0579,,,,
+openfake_core-00000-09-005-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-09-005,0.0027,real,-5.9009,,,,
+openfake_core-00000-09-010-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00000-09-010,0.0021,real,-6.151,,,,
+openfake_core-00000-09-013-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00000-09-013,1.0,ai,14.346,,,,
+openfake_core-00000-09-014-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00000-09-014,1.0,ai,11.775,,,,
+openfake_core-00000-09-022-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00000-09-022,0.9882,ai,4.4295,,,,
+openfake_core-00000-09-023-256px,probe,ai,openfake-core-test,ideogram-2.0,,,,,,,,openfake_core-00000-09-023,0.0001,real,-9.1201,,,,
+openfake_core-00000-09-033-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00000-09-033,0.5592,inconclusive,0.2378,,,,
+openfake_core-00000-09-034-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00000-09-034,1.0,ai,10.3077,,,,
+openfake_core-00000-09-045-256px,probe,ai,openfake-core-test,lumina-17-2-25,,,,,,,,openfake_core-00000-09-045,0.0032,real,-5.7463,,,,
+openfake_core-00000-09-050-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-09-050,0.6254,inconclusive,0.5127,,,,
+openfake_core-00000-09-056-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00000-09-056,0.4857,inconclusive,-0.0573,,,,
+openfake_core-00000-09-064-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00000-09-064,0.9997,ai,8.1627,,,,
+openfake_core-00000-09-081-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00000-09-081,0.0001,real,-9.7459,,,,
+openfake_core-00000-09-089-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-09-089,0.0019,real,-6.2674,,,,
+openfake_core-00000-09-097-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00000-09-097,1.0,ai,12.5411,,,,
+openfake_core-00000-09-103-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-09-103,0.0001,real,-9.7913,,,,
+openfake_core-00000-09-106-256px,probe,ai,openfake-core-test,ernie-image-turbo,,,,,,,,openfake_core-00000-09-106,1.0,ai,13.077,,,,
+openfake_core-00000-09-110-256px,probe,ai,openfake-core-test,ideogram-2.0,,,,,,,,openfake_core-00000-09-110,0.0104,real,-4.5513,,,,
+openfake_core-00000-09-128-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-09-128,0.0062,real,-5.0735,,,,
+openfake_core-00000-09-138-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00000-09-138,0.8601,ai,1.8157,,,,
+openfake_core-00000-09-143-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-09-143,0.0,real,-10.8991,,,,
+openfake_core-00000-09-145-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-09-145,0.0017,real,-6.349,,,,
+openfake_core-00000-12-000-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00000-12-000,0.4046,inconclusive,-0.3862,,,,
+openfake_core-00000-12-001-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-001,0.0012,real,-6.7113,,,,
+openfake_core-00000-12-007-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-007,0.9523,ai,2.9938,,,,
+openfake_core-00000-12-011-256px,probe,ai,openfake-core-test,ernie-image-turbo,,,,,,,,openfake_core-00000-12-011,1.0,ai,22.0323,,,,
+openfake_core-00000-12-017-256px,probe,ai,openfake-core-test,aurora-20-1-25,,,,,,,,openfake_core-00000-12-017,0.0153,real,-4.1655,,,,
+openfake_core-00000-12-020-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00000-12-020,0.9638,ai,3.2825,,,,
+openfake_core-00000-12-026-256px,probe,ai,openfake-core-test,aurora-20-1-25,,,,,,,,openfake_core-00000-12-026,0.1118,real,-2.0722,,,,
+openfake_core-00000-12-028-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-028,0.964,ai,3.2885,,,,
+openfake_core-00000-12-029-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00000-12-029,0.0002,real,-8.6503,,,,
+openfake_core-00000-12-037-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-037,0.0001,real,-9.0171,,,,
+openfake_core-00000-12-042-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00000-12-042,0.9999,ai,8.988,,,,
+openfake_core-00000-12-044-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-044,0.0,real,-12.7659,,,,
+openfake_core-00000-12-049-256px,probe,ai,openfake-core-test,recraft-v3,,,,,,,,openfake_core-00000-12-049,1.0,ai,11.2268,,,,
+openfake_core-00000-12-053-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-053,0.3922,inconclusive,-0.4383,,,,
+openfake_core-00000-12-060-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-060,0.9994,ai,7.4434,,,,
+openfake_core-00000-12-061-256px,probe,ai,openfake-core-test,ernie-image-turbo,,,,,,,,openfake_core-00000-12-061,1.0,ai,12.6854,,,,
+openfake_core-00000-12-073-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00000-12-073,0.7013,inconclusive,0.8536,,,,
+openfake_core-00000-12-075-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-075,0.4044,inconclusive,-0.387,,,,
+openfake_core-00000-12-083-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00000-12-083,0.9999,ai,9.1652,,,,
+openfake_core-00000-12-087-256px,probe,ai,openfake-core-test,halfmoon-4-4-25,,,,,,,,openfake_core-00000-12-087,0.9931,ai,4.9734,,,,
+openfake_core-00000-12-090-256px,probe,ai,openfake-core-test,lumina-17-2-25,,,,,,,,openfake_core-00000-12-090,1.0,ai,10.0995,,,,
+openfake_core-00000-12-106-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-106,0.0004,real,-7.8576,,,,
+openfake_core-00000-12-120-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-120,0.9494,ai,2.9317,,,,
+openfake_core-00000-12-121-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-12-121,0.0,real,-9.9381,,,,
+openfake_core-00000-12-124-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00000-12-124,1.0,ai,13.5883,,,,
+openfake_core-00000-12-126-256px,probe,ai,openfake-core-test,lumina-17-2-25,,,,,,,,openfake_core-00000-12-126,0.97,ai,3.4778,,,,
+openfake_core-00000-12-129-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00000-12-129,0.0122,real,-4.3936,,,,
+openfake_core-00000-22-003-256px,probe,ai,openfake-core-test,ideogram-2.0,,,,,,,,openfake_core-00000-22-003,0.9949,ai,5.2664,,,,
+openfake_core-00000-22-004-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00000-22-004,1.0,ai,10.0671,,,,
+openfake_core-00000-22-012-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00000-22-012,0.9924,ai,4.8749,,,,
+openfake_core-00000-22-015-256px,probe,ai,openfake-core-test,frames-23-1-25,,,,,,,,openfake_core-00000-22-015,0.6453,inconclusive,0.5984,,,,
+openfake_core-00000-22-035-256px,probe,ai,openfake-core-test,wan-video-2.5,,,,,,,,openfake_core-00000-22-035,0.9994,ai,7.492,,,,
+openfake_core-00000-22-036-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00000-22-036,1.0,ai,16.1917,,,,
+openfake_core-00000-22-037-256px,probe,ai,openfake-core-test,recraft-v3,,,,,,,,openfake_core-00000-22-037,0.9977,ai,6.0648,,,,
+openfake_core-00000-22-058-256px,probe,ai,openfake-core-test,ernie-image,,,,,,,,openfake_core-00000-22-058,0.9998,ai,8.6422,,,,
+openfake_core-00000-22-059-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-22-059,0.0,real,-14.7444,,,,
+openfake_core-00000-22-067-256px,probe,ai,openfake-core-test,wan-video-2.5,,,,,,,,openfake_core-00000-22-067,0.8729,ai,1.927,,,,
+openfake_core-00000-22-068-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-22-068,0.0101,real,-4.5812,,,,
+openfake_core-00000-22-073-256px,probe,ai,openfake-core-test,ernie-image-turbo,,,,,,,,openfake_core-00000-22-073,1.0,ai,13.8335,,,,
+openfake_core-00000-22-077-256px,probe,ai,openfake-core-test,ernie-image,,,,,,,,openfake_core-00000-22-077,0.0006,real,-7.427,,,,
+openfake_core-00000-22-078-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-22-078,0.8887,ai,2.078,,,,
+openfake_core-00000-22-086-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00000-22-086,0.9968,ai,5.7454,,,,
+openfake_core-00000-22-088-256px,probe,ai,openfake-core-test,frames-23-1-25,,,,,,,,openfake_core-00000-22-088,0.8374,ai,1.6389,,,,
+openfake_core-00000-22-090-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00000-22-090,0.9893,ai,4.5241,,,,
+openfake_core-00000-22-100-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00000-22-100,0.7998,inconclusive,1.385,,,,
+openfake_core-00000-22-103-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-22-103,0.0053,real,-5.2434,,,,
+openfake_core-00000-22-105-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-22-105,0.0166,real,-4.0823,,,,
+openfake_core-00000-22-117-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-22-117,0.0001,real,-9.2717,,,,
+openfake_core-00000-22-118-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-22-118,0.007,real,-4.9499,,,,
+openfake_core-00000-22-121-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00000-22-121,0.3019,inconclusive,-0.8383,,,,
+openfake_core-00000-22-130-256px,probe,ai,openfake-core-test,frames-23-1-25,,,,,,,,openfake_core-00000-22-130,0.9722,ai,3.5539,,,,
+openfake_core-00000-22-135-256px,probe,ai,openfake-core-test,recraft-v3,,,,,,,,openfake_core-00000-22-135,0.0012,real,-6.6852,,,,
+openfake_core-00000-22-138-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00000-22-138,1.0,ai,10.776,,,,
+openfake_core-00000-22-141-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00000-22-141,0.8826,ai,2.0175,,,,
+openfake_core-00000-28-016-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00000-28-016,0.7596,inconclusive,1.1503,,,,
+openfake_core-00000-28-023-256px,probe,ai,openfake-core-test,frames-23-1-25,,,,,,,,openfake_core-00000-28-023,0.7059,inconclusive,0.8756,,,,
+openfake_core-00000-28-038-256px,probe,ai,openfake-core-test,aurora-20-1-25,,,,,,,,openfake_core-00000-28-038,0.999,ai,6.9528,,,,
+openfake_core-00000-28-044-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00000-28-044,0.2839,inconclusive,-0.925,,,,
+openfake_core-00000-28-050-256px,probe,ai,openfake-core-test,aurora-20-1-25,,,,,,,,openfake_core-00000-28-050,0.0416,real,-3.1378,,,,
+openfake_core-00000-28-055-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00000-28-055,0.6266,inconclusive,0.5178,,,,
+openfake_core-00000-28-065-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-28-065,0.0904,real,-2.3085,,,,
+openfake_core-00000-28-069-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00000-28-069,0.9987,ai,6.6106,,,,
+openfake_core-00000-28-070-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-28-070,0.3824,inconclusive,-0.4795,,,,
+openfake_core-00000-28-073-256px,probe,ai,openfake-core-test,recraft-v2,,,,,,,,openfake_core-00000-28-073,0.9445,ai,2.8351,,,,
+openfake_core-00000-28-074-256px,probe,ai,openfake-core-test,aurora-20-1-25,,,,,,,,openfake_core-00000-28-074,0.1261,real,-1.9355,,,,
+openfake_core-00000-28-100-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00000-28-100,0.9998,ai,8.4394,,,,
+openfake_core-00000-28-102-256px,probe,ai,openfake-core-test,ideogram-2.0,,,,,,,,openfake_core-00000-28-102,0.9983,ai,6.3564,,,,
+openfake_core-00000-28-106-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00000-28-106,1.0,ai,13.1316,,,,
+openfake_core-00000-28-111-256px,probe,ai,openfake-core-test,frames-23-1-25,,,,,,,,openfake_core-00000-28-111,0.0296,real,-3.4899,,,,
+openfake_core-00000-28-115-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00000-28-115,1.0,ai,10.4168,,,,
+openfake_core-00000-28-123-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00000-28-123,1.0,ai,15.6185,,,,
+openfake_core-00000-28-126-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00000-28-126,1.0,ai,9.9632,,,,
+openfake_core-00000-28-137-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00000-28-137,1.0,ai,10.8237,,,,
+openfake_core-00000-28-141-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00000-28-141,0.0,real,-10.4727,,,,
+openfake_core-00006-30-005-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00006-30-005,0.0208,real,-3.8521,,,,
+openfake_core-00006-30-018-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00006-30-018,1.0,ai,11.9568,,,,
+openfake_core-00006-30-044-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-30-044,0.0001,real,-9.7081,,,,
+openfake_core-00006-30-053-256px,probe,ai,openfake-core-test,wan-video-2.5,,,,,,,,openfake_core-00006-30-053,1.0,ai,12.5307,,,,
+openfake_core-00006-30-054-256px,probe,ai,openfake-core-test,halfmoon-4-4-25,,,,,,,,openfake_core-00006-30-054,1.0,ai,10.9381,,,,
+openfake_core-00006-30-055-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00006-30-055,0.2665,inconclusive,-1.0122,,,,
+openfake_core-00006-30-057-256px,probe,ai,openfake-core-test,lumina-17-2-25,,,,,,,,openfake_core-00006-30-057,0.9998,ai,8.7418,,,,
+openfake_core-00006-30-067-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00006-30-067,0.9993,ai,7.3122,,,,
+openfake_core-00006-30-075-256px,probe,ai,openfake-core-test,recraft-v2,,,,,,,,openfake_core-00006-30-075,0.0026,real,-5.9589,,,,
+openfake_core-00006-30-083-256px,probe,ai,openfake-core-test,wan-video-2.5,,,,,,,,openfake_core-00006-30-083,0.9999,ai,9.2643,,,,
+openfake_core-00006-30-084-256px,probe,ai,openfake-core-test,ernie-image,,,,,,,,openfake_core-00006-30-084,0.0418,real,-3.1314,,,,
+openfake_core-00006-30-088-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-30-088,0.0004,real,-7.8069,,,,
+openfake_core-00006-30-089-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00006-30-089,1.0,ai,10.9682,,,,
+openfake_core-00006-30-094-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00006-30-094,0.0342,real,-3.3422,,,,
+openfake_core-00006-30-109-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-30-109,0.0075,real,-4.8857,,,,
+openfake_core-00006-30-111-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-30-111,0.0033,real,-5.6961,,,,
+openfake_core-00006-30-115-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00006-30-115,0.9412,ai,2.773,,,,
+openfake_core-00006-30-116-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-30-116,0.0458,real,-3.037,,,,
+openfake_core-00006-30-128-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00006-30-128,0.0,real,-11.8493,,,,
+openfake_core-00006-30-131-256px,probe,ai,openfake-core-test,recraft-v2,,,,,,,,openfake_core-00006-30-131,0.9996,ai,7.8365,,,,
+openfake_core-00006-30-139-256px,probe,ai,openfake-core-test,recraft-v2,,,,,,,,openfake_core-00006-30-139,0.8328,ai,1.6053,,,,
+openfake_core-00006-32-002-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-002,0.0001,real,-9.6574,,,,
+openfake_core-00006-32-014-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00006-32-014,0.5735,inconclusive,0.2961,,,,
+openfake_core-00006-32-016-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00006-32-016,0.7775,inconclusive,1.2511,,,,
+openfake_core-00006-32-019-256px,probe,ai,openfake-core-test,ideogram-2.0,,,,,,,,openfake_core-00006-32-019,0.0555,real,-2.8335,,,,
+openfake_core-00006-32-021-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-021,0.0073,real,-4.9117,,,,
+openfake_core-00006-32-024-256px,probe,ai,openfake-core-test,halfmoon-4-4-25,,,,,,,,openfake_core-00006-32-024,0.3221,inconclusive,-0.7443,,,,
+openfake_core-00006-32-026-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00006-32-026,0.0072,real,-4.931,,,,
+openfake_core-00006-32-027-256px,probe,ai,openfake-core-test,frames-23-1-25,,,,,,,,openfake_core-00006-32-027,0.9991,ai,7.0241,,,,
+openfake_core-00006-32-040-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00006-32-040,0.0002,real,-8.7141,,,,
+openfake_core-00006-32-041-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-041,0.0029,real,-5.8501,,,,
+openfake_core-00006-32-045-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00006-32-045,0.6931,inconclusive,0.8149,,,,
+openfake_core-00006-32-047-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-047,0.0012,real,-6.7154,,,,
+openfake_core-00006-32-050-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-050,0.0141,real,-4.249,,,,
+openfake_core-00006-32-052-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-052,0.0539,real,-2.8644,,,,
+openfake_core-00006-32-064-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00006-32-064,0.769,inconclusive,1.2027,,,,
+openfake_core-00006-32-069-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00006-32-069,0.0,real,-10.109,,,,
+openfake_core-00006-32-072-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-072,0.1409,real,-1.8082,,,,
+openfake_core-00006-32-074-256px,probe,ai,openfake-core-test,ernie-image,,,,,,,,openfake_core-00006-32-074,1.0,ai,11.6276,,,,
+openfake_core-00006-32-085-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00006-32-085,0.9916,ai,4.7666,,,,
+openfake_core-00006-32-090-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00006-32-090,1.0,ai,13.0937,,,,
+openfake_core-00006-32-092-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-092,0.7612,inconclusive,1.159,,,,
+openfake_core-00006-32-098-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-098,0.0004,real,-7.7545,,,,
+openfake_core-00006-32-099-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00006-32-099,0.0001,real,-9.3524,,,,
+openfake_core-00006-32-105-256px,probe,ai,openfake-core-test,aurora-20-1-25,,,,,,,,openfake_core-00006-32-105,0.9224,ai,2.4759,,,,
+openfake_core-00006-32-108-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-108,0.492,inconclusive,-0.032,,,,
+openfake_core-00006-32-137-256px,probe,ai,openfake-core-test,recraft-v2,,,,,,,,openfake_core-00006-32-137,1.0,ai,12.0237,,,,
+openfake_core-00006-32-141-256px,probe,ai,openfake-core-test,halfmoon-4-4-25,,,,,,,,openfake_core-00006-32-141,0.9926,ai,4.9047,,,,
+openfake_core-00006-32-142-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-142,0.3587,inconclusive,-0.5809,,,,
+openfake_core-00006-32-143-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-32-143,0.8737,ai,1.9341,,,,
+openfake_core-00006-32-144-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00006-32-144,0.0241,real,-3.7027,,,,
+openfake_core-00006-32-147-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00006-32-147,0.0104,real,-4.5574,,,,
+openfake_core-00006-34-004-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-34-004,0.1466,real,-1.7615,,,,
+openfake_core-00006-34-013-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00006-34-013,0.9334,ai,2.6393,,,,
+openfake_core-00006-34-023-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-34-023,0.469,inconclusive,-0.1242,,,,
+openfake_core-00006-34-030-256px,probe,ai,openfake-core-test,flux.2-klein-9b,,,,,,,,openfake_core-00006-34-030,0.6066,inconclusive,0.433,,,,
+openfake_core-00006-34-038-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00006-34-038,0.8913,ai,2.1037,,,,
+openfake_core-00006-34-043-256px,probe,ai,openfake-core-test,recraft-v3,,,,,,,,openfake_core-00006-34-043,0.6933,inconclusive,0.8154,,,,
+openfake_core-00006-34-044-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00006-34-044,0.9891,ai,4.5035,,,,
+openfake_core-00006-34-049-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00006-34-049,0.9845,ai,4.1544,,,,
+openfake_core-00006-34-062-256px,probe,ai,openfake-core-test,recraft-v3,,,,,,,,openfake_core-00006-34-062,0.9178,ai,2.4122,,,,
+openfake_core-00006-34-070-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00006-34-070,0.0032,real,-5.741,,,,
+openfake_core-00006-34-074-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00006-34-074,0.4342,inconclusive,-0.2649,,,,
+openfake_core-00006-34-076-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00006-34-076,0.0573,real,-2.8009,,,,
+openfake_core-00006-34-085-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-34-085,0.0027,real,-5.9229,,,,
+openfake_core-00006-34-094-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00006-34-094,0.8531,ai,1.7589,,,,
+openfake_core-00006-34-106-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-34-106,0.0,real,-12.5083,,,,
+openfake_core-00006-34-110-256px,probe,ai,openfake-core-test,lumina-17-2-25,,,,,,,,openfake_core-00006-34-110,0.9994,ai,7.3685,,,,
+openfake_core-00006-34-111-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00006-34-111,1.0,ai,10.7585,,,,
+openfake_core-00006-34-115-256px,probe,ai,openfake-core-test,wan-video-2.5,,,,,,,,openfake_core-00006-34-115,0.9922,ai,4.8519,,,,
+openfake_core-00006-34-116-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-34-116,0.9999,ai,8.9989,,,,
+openfake_core-00006-34-122-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00006-34-122,0.9984,ai,6.4206,,,,
+openfake_core-00006-34-140-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-34-140,0.0599,real,-2.7531,,,,
+openfake_core-00006-39-001-256px,probe,ai,openfake-core-test,gpt-image-1.5,,,,,,,,openfake_core-00006-39-001,1.0,ai,12.1187,,,,
+openfake_core-00006-39-008-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00006-39-008,0.6587,inconclusive,0.6577,,,,
+openfake_core-00006-39-023-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-39-023,0.0002,real,-8.7499,,,,
+openfake_core-00006-39-028-256px,probe,ai,openfake-core-test,halfmoon-4-4-25,,,,,,,,openfake_core-00006-39-028,0.0011,real,-6.8312,,,,
+openfake_core-00006-39-038-256px,probe,ai,openfake-core-test,lumina-17-2-25,,,,,,,,openfake_core-00006-39-038,1.0,ai,11.3561,,,,
+openfake_core-00006-39-044-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-39-044,0.9934,ai,5.0065,,,,
+openfake_core-00006-39-048-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-39-048,0.0016,real,-6.4506,,,,
+openfake_core-00006-39-049-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-39-049,0.0003,real,-8.034,,,,
+openfake_core-00006-39-063-256px,probe,ai,openfake-core-test,seedream-v5.0,,,,,,,,openfake_core-00006-39-063,0.9994,ai,7.4889,,,,
+openfake_core-00006-39-066-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00006-39-066,0.8294,ai,1.5812,,,,
+openfake_core-00006-39-076-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-39-076,0.003,real,-5.8174,,,,
+openfake_core-00006-39-088-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-39-088,0.0719,real,-2.5582,,,,
+openfake_core-00006-39-098-256px,probe,ai,openfake-core-test,veo-3,,,,,,,,openfake_core-00006-39-098,0.1832,real,-1.4948,,,,
+openfake_core-00006-39-104-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00006-39-104,0.9999,ai,9.683,,,,
+openfake_core-00006-39-112-256px,probe,ai,openfake-core-test,midjourney-7,,,,,,,,openfake_core-00006-39-112,0.991,ai,4.7042,,,,
+openfake_core-00006-39-115-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00006-39-115,0.9917,ai,4.7795,,,,
+openfake_core-00006-39-121-256px,probe,ai,openfake-core-test,ernie-image,,,,,,,,openfake_core-00006-39-121,1.0,ai,11.6896,,,,
+openfake_core-00006-39-127-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00006-39-127,0.9999,ai,8.8218,,,,
+openfake_core-00006-39-128-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-39-128,0.0065,real,-5.0365,,,,
+openfake_core-00006-39-147-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-39-147,0.0021,real,-6.1417,,,,
+openfake_core-00006-41-005-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-41-005,0.007,real,-4.9544,,,,
+openfake_core-00006-41-006-256px,probe,ai,openfake-core-test,illustrious,,,,,,,,openfake_core-00006-41-006,0.9999,ai,9.4063,,,,
+openfake_core-00006-41-008-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00006-41-008,1.0,ai,10.4725,,,,
+openfake_core-00006-41-011-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00006-41-011,0.012,real,-4.4067,,,,
+openfake_core-00006-41-022-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-41-022,0.0422,real,-3.1224,,,,
+openfake_core-00006-41-031-256px,probe,ai,openfake-core-test,recraft-v3,,,,,,,,openfake_core-00006-41-031,0.1047,real,-2.1466,,,,
+openfake_core-00006-41-040-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-41-040,0.9895,ai,4.5461,,,,
+openfake_core-00006-41-057-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00006-41-057,0.9999,ai,8.8402,,,,
+openfake_core-00006-41-071-256px,probe,ai,openfake-core-test,halfmoon-4-4-25,,,,,,,,openfake_core-00006-41-071,0.8243,ai,1.5456,,,,
+openfake_core-00006-41-075-256px,probe,ai,openfake-core-test,nano-banana-pro,,,,,,,,openfake_core-00006-41-075,0.0,real,-10.0202,,,,
+openfake_core-00006-41-098-256px,probe,ai,openfake-core-test,ideogram-2.0,,,,,,,,openfake_core-00006-41-098,1.0,ai,12.8101,,,,
+openfake_core-00006-41-108-256px,probe,ai,openfake-core-test,z-image-turbo,,,,,,,,openfake_core-00006-41-108,0.2698,inconclusive,-0.9958,,,,
+openfake_core-00006-41-130-256px,probe,ai,openfake-core-test,gpt-image-2,,,,,,,,openfake_core-00006-41-130,0.999,ai,6.8654,,,,
+openfake_core-00006-41-133-256px,probe,ai,openfake-core-test,sora-2,,,,,,,,openfake_core-00006-41-133,1.0,ai,12.1303,,,,
+openfake_core-00006-41-135-256px,probe,ai,openfake-core-test,recraft-v2,,,,,,,,openfake_core-00006-41-135,0.1787,real,-1.5249,,,,
+openfake_core-00006-41-140-256px,probe,ai,openfake-core-test,ernie-image-turbo,,,,,,,,openfake_core-00006-41-140,1.0,ai,16.6572,,,,
+openfake_core-00006-41-143-256px,probe,real,openfake-core-test,,,,,,,,,openfake_core-00006-41-143,0.0,real,-11.4288,,,,

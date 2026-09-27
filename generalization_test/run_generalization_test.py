@@ -2,7 +2,7 @@
 Deep-Guard -- Generator Attribution: cross-generator generalization test.
 
 Standalone script, run by hand, not part of the live app -- exact same
-pattern as bias_map/build_bias_map.py. Answers the question the Phase 2
+pattern as evaluation/run_exam.py. Answers the question the Phase 2
 plan called "the generalization test that matters most" and flagged as
 never having been done: what does the attribution model actually say
 when shown a real image from a generator it never trained on?

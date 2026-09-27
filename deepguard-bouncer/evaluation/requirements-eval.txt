@@ -1,0 +1,36 @@
+# Deep-Guard -- evaluation-only dependencies (never needed to run the server).
+#
+# Install into the same venv as the app, on top of app/requirements.txt:
+#     pip install -r evaluation/requirements-eval.txt
+#     pip install --no-deps invisible-watermark==0.2.0
+# The second line is separate on purpose: invisible-watermark's own
+# requirements pull in opencv-python, which clashes with the app's
+# opencv-python-headless (two copies of cv2). Everything it needs --
+# cv2, numpy, PyWavelets -- is already installed by the lines here.
+# Screenshots use the Chrome already on the machine (playwright's
+# channel="chrome"), so no `playwright install` step either.
+# On Windows, set PYTHONUTF8=1 if a package fails to build with a
+# UnicodeDecodeError while reading its README.
+
+# snapshot.py -- full-page screenshots of the running app
+playwright>=1.47
+
+# build_exam_set.py -- reads the OpenFake dataset's Parquet shards and the
+# CNNDetection / GenImage zips straight from the Hugging Face Hub
+pyarrow>=17
+huggingface_hub>=0.24
+
+# build_exam_set.py -- known watermark positives for Layer 1 (Step 3):
+# Adobe TrustMark; Stable Diffusion XL's reference mark (invisible-watermark,
+# installed with --no-deps above, needs PyWavelets). Meta Video Seal needs no
+# package: its TorchScript model is downloaded on first use.
+trustmark>=0.9
+PyWavelets>=1.6
+
+# run_exam.py -- AUC, bootstrap intervals and Platt scaling; the charts
+scikit-learn>=1.4
+matplotlib>=3.8
+
+# build_exam_set.py -- the machine-labelled 'subject' column (CLIP zero-shot,
+# the same OpenCLIP weights the registry's namer uses)
+open_clip_torch>=3.0

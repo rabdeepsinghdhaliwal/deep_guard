@@ -1,0 +1,41 @@
+analyze/ai1.consistency_mean: 0.0439 -> 0.0471  [random by design]
+analyze/ai1.consistency_std: 0.0368 -> 0.0432  [random by design]
+analyze/dalle3_000.attribution_answer: None -> 'unknown'  [CHANGED]
+analyze/midjourney_002.attribution_answer: None -> 'unknown'  [CHANGED]
+analyze/midjourney_002.consistency_mean: 0.9959 -> 0.994  [random by design]
+analyze/midjourney_002.consistency_std: 0.0022 -> 0.0034  [random by design]
+analyze/mona_lisa.attribution_answer: None -> 'unknown'  [CHANGED]
+analyze/mona_lisa.consistency_mean: 0.8985 -> 0.8798  [random by design]
+analyze/mona_lisa.consistency_std: 0.0478 -> 0.0345  [random by design]
+analyze/real1.consistency_std: 0.0057 -> 0.0032  [random by design]
+analyze/real3.consistency_mean: 0.0101 -> 0.0078  [random by design]
+analyze/real3.consistency_std: 0.0045 -> 0.0022  [random by design]
+new field    analyze.ai1.calibrated_probability_fake
+new field    analyze.ai1.calibration_temperature
+new field    analyze.ai3.calibrated_probability_fake
+new field    analyze.ai3.calibration_temperature
+new field    analyze.dalle3_000.calibrated_probability_fake
+new field    analyze.dalle3_000.calibration_temperature
+new field    analyze.dalle3_000.generator_attribution.answer
+new field    analyze.dalle3_000.generator_attribution.unknown_threshold
+new field    analyze.midjourney_002.calibrated_probability_fake
+new field    analyze.midjourney_002.calibration_temperature
+new field    analyze.midjourney_002.generator_attribution.answer
+new field    analyze.midjourney_002.generator_attribution.unknown_threshold
+new field    analyze.mona_lisa.calibrated_probability_fake
+new field    analyze.mona_lisa.calibration_temperature
+new field    analyze.mona_lisa.generator_attribution.answer
+new field    analyze.mona_lisa.generator_attribution.unknown_threshold
+new field    analyze.real1.calibrated_probability_fake
+new field    analyze.real1.calibration_temperature
+new field    analyze.real3.calibrated_probability_fake
+new field    analyze.real3.calibration_temperature
+bias map: 4 value(s) differ (expected only when the exam was re-scored)
+screen 01_home.jpg: 0.00% of pixels differ
+screen 02_analyze_real3.jpg: 0.31% of pixels differ
+screen 03_analyze_ai1.jpg: 0.31% of pixels differ
+screen 04_analyze_dalle3_000.jpg: 2.38% of pixels differ (size (1280, 3214) -> (1280, 3178))
+screen 05_analyze_canary_video.jpg: 0.26% of pixels differ
+screen 06_registry.jpg: 0.00% of pixels differ
+screen 07_registry_check_mona_copy.jpg: 0.00% of pixels differ
+screen 08_bias_map.jpg: 4.58% of pixels differ (size (1280, 2193) -> (1280, 6137))
