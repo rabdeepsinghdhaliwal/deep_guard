@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep-Guard — Provenance Ledger</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="/ledger-static/ledger.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="/">
+      <svg class="brand__mark" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M13 2.5 3.5 6.2v6.4c0 5.6 3.9 10.2 9.5 11.4 5.6-1.2 9.5-5.8 9.5-11.4V6.2L13 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M9.3 12.8l2.6 2.6 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand__name">Deep-Guard</span>
+    </a>
+    <nav class="site-nav">
+      <a class="site-nav__link" href="/">Analysis</a>
+      <a class="site-nav__link" href="/registry">Registry</a>
+      <a class="site-nav__link is-current" href="/ledger">Ledger</a>
+      <a class="site-nav__link" href="/explorer">Explorer</a>
+    </nav>
+  </header>
+
+  <main class="main dgl-wide">
+
+    <section class="intro reveal">
+      <p class="intro__kicker">Stage 3 · Provenance before prediction</p>
+      <h1 class="intro__title">Provenance Ledger</h1>
+      <p class="intro__body">
+        The analysis page <strong>guesses</strong> whether a picture is AI-made. This page
+        <strong>proves</strong> where a picture came from, if its creator wrote it down here first.
+        Registering writes a signed record of the file's fingerprints into a <strong>block</strong>; blocks are
+        chained together by their hashes, so nobody can change an old record without it showing. Checking a file
+        looks it up by those fingerprints and answers with one of four verdicts &mdash; and only when nothing is
+        found does it fall back to the AI detector, clearly marked as a guess.
+      </p>
+      <div class="dgl-flow" aria-label="How a registration travels">
+        <div class="dgl-flow__step"><span class="dgl-flow__n">1</span><b>Fingerprint</b>SHA-256 (exact file) + pHash (looks-like) + SSCD (content)</div>
+        <div class="dgl-flow__step"><span class="dgl-flow__n">2</span><b>Creator signs</b>Your own Ed25519 key signs the record</div>
+        <div class="dgl-flow__step"><span class="dgl-flow__n">3</span><b>Sealed in a block</b>Merkle root + previous block's hash, signed by Deep-Guard</div>
+        <div class="dgl-flow__step"><span class="dgl-flow__n">4</span><b>Witnesses co-sign</b>Two independent copies note the block's hash</div>
+        <div class="dgl-flow__step"><span class="dgl-flow__n">5</span><b>Anyone verifies</b>In the explorer, in your browser, or offline</div>
+      </div>
+    </section>
+
+    <div class="dgl-grid2 reveal">
+      <section class="dgl-card">
+        <h2 class="dgl-section__title">Register a file</h2>
+        <p class="dgl-section__hint">Write a photo or video onto the ledger under your name. The file itself is never stored &mdash; only its fingerprints.</p>
+        <form id="registerForm" class="dgl-form">
+          <label>File (image or video)<input type="file" id="regFile" accept="image/*,video/*" required /></label>
+          <label>Title<input type="text" id="regTitle" maxlength="200" placeholder="e.g. Sunset at Marine Drive" required /></label>
+          <label>Your creator name
+            <input type="text" id="regCreator" list="creatorList" maxlength="40" placeholder="e.g. Rabdeep" required />
+            <datalist id="creatorList"></datalist>
+          </label>
+          <div class="dgl-choices" role="radiogroup" aria-label="What is this file?">
+            <span class="dgl-small" style="font-weight:600;color:var(--ink-soft)">What is this file?</span>
+            <label class="dgl-choice"><input type="radio" name="origin" value="camera" checked /> <span>Camera original<small>Straight from a camera or phone</small></span></label>
+            <label class="dgl-choice"><input type="radio" name="origin" value="edited" /> <span>Edited by me<small>My own photo, retouched or cropped</small></span></label>
+            <label class="dgl-choice"><input type="radio" name="origin" value="ai-generated" /> <span>AI-generated (declared)<small>Honestly labelled synthetic &mdash; gives verdict 4 later</small></span></label>
+          </div>
+          <label class="dgl-check"><input type="checkbox" id="regSeal" checked /> Seal into a new block right away</label>
+          <button class="dgl-btn" type="submit" id="regBtn">Register on the ledger</button>
+        </form>
+        <p class="dgl-error" id="regError" hidden></p>
+      </section>
+
+      <section class="dgl-card">
+        <h2 class="dgl-section__title">Verify a file</h2>
+        <p class="dgl-section__hint">Upload any copy &mdash; the original, a WhatsApp re-save, a crop. The ledger is searched by exact hash, then by look-alike hash, then by content.</p>
+        <form id="verifyForm" class="dgl-form">
+          <label>File (image or video)<input type="file" id="verFile" accept="image/*,video/*" required /></label>
+          <label class="dgl-check"><input type="checkbox" id="verAi" checked /> If no record is found, run the AI detector as a fallback</label>
+          <button class="dgl-btn dgl-btn--indigo" type="submit" id="verBtn">Check against the ledger</button>
+        </form>
+        <p class="dgl-error" id="verError" hidden></p>
+        <div class="dgl-four" aria-label="The four possible verdicts">
+          <div class="dgl-four__item v1"><b>1 · Authentic &amp; unaltered</b>exact file registered</div>
+          <div class="dgl-four__item v2"><b>2 · File modified</b>same picture, different file</div>
+          <div class="dgl-four__item v3"><b>3 · No provenance</b>AI guess only</div>
+          <div class="dgl-four__item v4"><b>4 · Declared AI</b>honest synthetic</div>
+        </div>
+      </section>
+    </div>
+
+    <section class="dgl-section" id="resultSection" hidden style="margin-top:36px" aria-live="polite"></section>
+
+    <section class="dgl-section reveal" style="margin-top:48px">
+      <h2 class="dgl-section__title">Corrections are new records, never edits</h2>
+      <p class="dgl-section__hint">
+        Nothing on the ledger is ever changed or deleted. A creator can <strong>revoke</strong> their own registration,
+        anyone can <strong>dispute</strong> one, and Deep-Guard writes down its <strong>resolution</strong>.
+        Each of these is a new signed record in a new block, pointing at the record it is about.
+        Record IDs are shown in every result and in the explorer.
+      </p>
+      <div class="dgl-grid3">
+        <form class="dgl-card dgl-form" id="revokeForm">
+          <h3 class="registry__panel-title">Revoke my registration</h3>
+          <label>Record ID<input type="text" name="target_record_id" required /></label>
+          <label>Your creator name<input type="text" name="creator" list="creatorList" required /></label>
+          <label>Reason<textarea name="reason" maxlength="500" placeholder="optional"></textarea></label>
+          <button class="dgl-btn dgl-btn--ghost" type="submit">Revoke</button>
+          <p class="dgl-small" data-out></p>
+        </form>
+        <form class="dgl-card dgl-form" id="disputeForm">
+          <h3 class="registry__panel-title">Dispute a registration</h3>
+          <label>Record ID<input type="text" name="target_record_id" required /></label>
+          <label>Your creator name<input type="text" name="creator" list="creatorList" required /></label>
+          <label>Why is it wrong?<textarea name="reason" maxlength="500" required placeholder="e.g. I took this photo; here is my original…"></textarea></label>
+          <button class="dgl-btn dgl-btn--ghost" type="submit">File dispute</button>
+          <p class="dgl-small" data-out></p>
+        </form>
+        <form class="dgl-card dgl-form" id="resolveForm">
+          <h3 class="registry__panel-title">Resolve a dispute <span class="dgl-pill">Deep-Guard admin</span></h3>
+          <label>Dispute record ID<input type="text" name="dispute_record_id" required /></label>
+          <label>Outcome
+            <select name="outcome"><option value="upheld">Upheld (the disputer is right)</option><option value="rejected">Rejected</option></select>
+          </label>
+          <label>Note<textarea name="note" maxlength="500" placeholder="optional"></textarea></label>
+          <button class="dgl-btn dgl-btn--ghost" type="submit">Write resolution</button>
+          <p class="dgl-small" data-out></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer reveal">
+    <p>The ledger stores fingerprints, signatures and hashes &mdash; never your pictures. Its files live in
+      <code>deepguard-ledger/ledger_data/</code>. Open the <a href="/explorer">explorer</a> to check every block yourself.</p>
+  </footer>
+
+  <script src="/static/motion.js"></script>
+  <script src="/ledger-static/dgcrypto.js"></script>
+  <script src="/ledger-static/ledger.js"></script>
+</body>
+</html>

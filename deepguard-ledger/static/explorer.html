@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep-Guard — Ledger Explorer</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="/ledger-static/ledger.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="/">
+      <svg class="brand__mark" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M13 2.5 3.5 6.2v6.4c0 5.6 3.9 10.2 9.5 11.4 5.6-1.2 9.5-5.8 9.5-11.4V6.2L13 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M9.3 12.8l2.6 2.6 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand__name">Deep-Guard</span>
+    </a>
+    <nav class="site-nav">
+      <a class="site-nav__link" href="/">Analysis</a>
+      <a class="site-nav__link" href="/registry">Registry</a>
+      <a class="site-nav__link" href="/ledger">Ledger</a>
+      <a class="site-nav__link is-current" href="/explorer">Explorer</a>
+    </nav>
+  </header>
+
+  <main class="main dgl-wide">
+
+    <section class="intro reveal">
+      <p class="intro__kicker">Block explorer · check everything yourself</p>
+      <h1 class="intro__title">Ledger Explorer</h1>
+      <p class="intro__body">
+        Every block of the ledger, drawn in order. Each one stores the hash of the block before it &mdash; the
+        arrows &mdash; so changing anything in an old block breaks the arrow after it. Press
+        <strong>Re-check in my browser</strong> and this page recomputes every hash, Merkle root and signature itself
+        with your browser's own cryptography; it does not take the server's word for anything.
+      </p>
+    </section>
+
+    <div class="dgl-stats" id="stats"></div>
+
+    <div class="dgl-toolbar">
+      <button class="dgl-btn" id="browserCheckBtn" type="button">Re-check in my browser</button>
+      <button class="dgl-btn dgl-btn--ghost" id="serverCheckBtn" type="button">Ask the server to verify</button>
+      <button class="dgl-btn dgl-btn--ghost" id="syncBtn" type="button">Sync witnesses</button>
+      <button class="dgl-btn dgl-btn--ghost" id="sealBtn" type="button">Seal pending records</button>
+      <button class="dgl-btn dgl-btn--ghost" id="reloadBtn" type="button">Reload</button>
+    </div>
+    <p class="dgl-statusline" id="statusLine" aria-live="polite"></p>
+
+    <section class="dgl-section">
+      <div class="dgl-chainwrap" id="chainWrap"><div class="dgl-chain" id="chain"></div></div>
+      <div class="dgl-toolbar">
+        <input type="search" id="search" placeholder="Search records: title, creator, record ID, SHA-256…" aria-label="Search records" />
+      </div>
+      <div id="searchResults"></div>
+    </section>
+
+    <section class="dgl-section" id="blockPanel" hidden></section>
+    <section class="dgl-section" id="recordPanel" hidden></section>
+
+    <section class="dgl-section reveal">
+      <h2 class="dgl-section__title">Witnesses</h2>
+      <p class="dgl-section__hint">
+        Two independent copy-keepers. Each one checked every block when it arrived, wrote its hash in its own notebook
+        and signed it. Their notebooks are fetched <strong>straight from your browser</strong>, not through the
+        Deep-Guard server, and compared with the chain above. If Deep-Guard ever rewrote history &mdash; even with its
+        real key &mdash; the witnesses would disagree.
+      </p>
+      <div class="dgl-grid2" id="witnesses"></div>
+    </section>
+
+    <section class="dgl-section reveal">
+      <h2 class="dgl-section__title">Tamper lab</h2>
+      <p class="dgl-section__hint">
+        Try to cheat. Pick an attack and a block; it runs on a <strong>copy</strong> of the chain (your real files are
+        not touched) and the copy is checked exactly like the real one. For the real thing, open
+        <code>deepguard-ledger/ledger_data/chain.jsonl</code> in VS Code, change one letter in an old block, save, and
+        press <strong>Re-check in my browser</strong>. Undo the change to make it green again.
+      </p>
+      <div class="dgl-card">
+        <form class="dgl-form" id="tamperForm" style="flex-direction:row;flex-wrap:wrap;align-items:flex-end">
+          <label style="flex:2 1 320px">Attack<select id="attack"></select></label>
+          <label style="flex:1 1 120px">Block<select id="attackBlock"></select></label>
+          <button class="dgl-btn" type="submit" id="tamperBtn">Run the attack</button>
+        </form>
+        <p class="dgl-small dgl-muted" id="attackHint" style="margin:10px 0 0"></p>
+        <div id="tamperResult"></div>
+      </div>
+    </section>
+
+    <section class="dgl-section reveal">
+      <h2 class="dgl-section__title">Check a receipt</h2>
+      <p class="dgl-section__hint">
+        A receipt is a small JSON file you can download for any sealed record. It holds the record, its Merkle path,
+        the block header and the signatures &mdash; enough to prove the record is on the ledger without the ledger.
+        Drop one here to check it in your browser, or offline with
+        <code>python tools/verify_ledger.py receipt &lt;file&gt; &lt;public key&gt;</code>.
+      </p>
+      <div class="dgl-card">
+        <form class="dgl-form"><label>Receipt file (.json)<input type="file" id="receiptFile" accept=".json,application/json" /></label></form>
+        <div id="receiptResult"></div>
+      </div>
+    </section>
+
+    <section class="dgl-section reveal">
+      <h2 class="dgl-section__title">Creators &amp; keys</h2>
+      <p class="dgl-section__hint">Everyone who has filed a record, with the short ID of their public key. Deep-Guard's own key is the one that signs every block.</p>
+      <div class="dgl-card" id="keys"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer reveal">
+    <p>A ledger of fingerprints, signatures and hashes &mdash; no pictures, no cryptocurrency, no mining. Every check
+      on this page is also available offline in <code>deepguard-ledger/tools/verify_ledger.py</code>.</p>
+  </footer>
+
+  <script src="/static/motion.js"></script>
+  <script src="/ledger-static/dgcrypto.js"></script>
+  <script src="/ledger-static/explorer.js"></script>
+</body>
+</html>

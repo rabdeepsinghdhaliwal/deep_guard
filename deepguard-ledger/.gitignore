@@ -1,0 +1,5 @@
+# The ledger's data (blocks, creator keys, witness notebooks) is made on
+# first start and holds private keys -- never commit it.
+ledger_data/
+__pycache__/
+.pytest_cache/
