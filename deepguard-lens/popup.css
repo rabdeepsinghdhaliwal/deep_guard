@@ -1,0 +1,31 @@
+/* Deep-Guard Lens popup: the app's paper, ink and one indigo. */
+:root {
+  --paper: #FBF9F5; --raised: #FFFFFF; --ink: #1C1A17; --ink-soft: #55504A; --ink-faint: #8A837A;
+  --rule: #E6E1D8; --rule-strong: #D2CBBE; --indigo: #3A4CB4; --indigo-soft: #EEF0FB;
+  --v1: #2E7D5B; --v2: #2F6BA8; --v3: #B07A1E; --v4: #6A4AB0; --bad: #B23B34;
+}
+* { box-sizing: border-box; }
+body { margin: 0; width: 340px; padding: 14px 16px 16px; background: var(--paper); color: var(--ink);
+       font: 13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { display: flex; align-items: center; gap: 8px; color: var(--indigo); }
+h1 { font-size: 16px; margin: 0; color: var(--ink); font-family: Georgia, "Times New Roman", serif; }
+h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-faint); margin: 16px 0 6px; }
+.hint { color: var(--ink-soft); margin: 8px 0 12px; }
+label { display: block; font-weight: 600; font-size: 12px; margin-bottom: 4px; }
+.row { display: flex; gap: 6px; }
+input { flex: 1; min-width: 0; font: 13px ui-monospace, Consolas, monospace; padding: 6px 8px; border: 1px solid var(--rule-strong);
+        border-radius: 4px; background: var(--raised); color: var(--ink); }
+button { font: 600 13px system-ui, sans-serif; border: 1px solid var(--rule-strong); background: var(--raised); color: var(--ink);
+         border-radius: 4px; padding: 6px 10px; cursor: pointer; }
+button:hover { border-color: var(--ink-faint); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--indigo); outline-offset: 1px; }
+button.primary { width: 100%; margin-top: 12px; padding: 9px; background: var(--ink); color: var(--paper); border-color: var(--ink); }
+button:disabled { opacity: .6; cursor: default; }
+.status { margin: 6px 0 0; font-size: 12px; color: var(--ink-soft); min-height: 1em; }
+.status.ok { color: var(--v1); } .status.bad { color: var(--bad); }
+ol { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+li { background: var(--raised); border: 1px solid var(--rule); border-left: 4px solid var(--rule-strong); border-radius: 4px; padding: 6px 8px; }
+li.v1 { border-left-color: var(--v1); } li.v2 { border-left-color: var(--v2); } li.v3 { border-left-color: var(--v3); } li.v4 { border-left-color: var(--v4); }
+li.none { border-left-color: var(--rule); color: var(--ink-faint); }
+li b { display: block; font-size: 12.5px; }
+li small { color: var(--ink-faint); display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

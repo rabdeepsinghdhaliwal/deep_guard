@@ -206,10 +206,63 @@ const DG = (() => {
     return { ok: checks.every((c) => c.ok !== false), checks, leaf };
   }
 
+  // ------------------------------------------------------- Bitcoin anchors
+  // Replays an OpenTimestamps path (anchoring.attestation_paths) on a starting
+  // hash, the same operations the proof file holds. Returns the final hex, or
+  // null when the path needs an operation Web Crypto doesn't have
+  // (ripemd160 or keccak256, found in older proofs): the server's check is
+  // shown for those instead.
+  async function replayOts(startHex, ops) {
+    let msg = hexToBytes(startHex);
+    for (const step of ops || []) {
+      if (step.op === "append") msg = concat(msg, hexToBytes(step.arg));
+      else if (step.op === "prepend") msg = concat(hexToBytes(step.arg), msg);
+      else if (step.op === "sha256") msg = new Uint8Array(await crypto.subtle.digest("SHA-256", msg));
+      else return null;
+    }
+    return bytesToHex(msg);
+  }
+  // Explorers print a Merkle root byte-reversed; a proof ends on it as stored in the block header.
+  const reverseHex = (hex) => (String(hex).match(/../g) || []).reverse().join("");
+
+  async function getWithTimeout(url, kind) {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 12000);
+    try {
+      const r = await fetch(url, { signal: ctrl.signal });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return kind === "json" ? await r.json() : (await r.text()).trim();
+    } finally { clearTimeout(t); }
+  }
+  // Bitcoin block `height`, fetched by this page from two explorers run by
+  // different companies (not through the Deep-Guard server). They must agree.
+  async function bitcoinBlock(height) {
+    const sources = [
+      ["blockstream.info", async () => {
+        const id = await getWithTimeout(`https://blockstream.info/api/block-height/${height}`, "text");
+        const b = await getWithTimeout(`https://blockstream.info/api/block/${id}`, "json");
+        return { block_hash: b.id, merkle_root: b.merkle_root, time: b.timestamp };
+      }],
+      ["blockcypher.com", async () => {
+        const b = await getWithTimeout(`https://api.blockcypher.com/v1/btc/main/blocks/${height}?txstart=0&limit=1`, "json");
+        return { block_hash: b.hash, merkle_root: b.mrkl_root, time: Math.floor(new Date(b.time).getTime() / 1000) };
+      }],
+    ];
+    const got = [];
+    for (const [name, lookup] of sources) {
+      try { got.push([name, await lookup()]); } catch (e) { /* unreachable: try the next */ }
+    }
+    if (!got.length) throw new Error("no block explorer answered this browser (offline?)");
+    for (const [name, b] of got.slice(1)) {
+      if (b.merkle_root !== got[0][1].merkle_root) throw new Error(`the explorers disagree (${got[0][0]} vs ${name})`);
+    }
+    return { ...got[0][1], height, sources: got.map(([name]) => name) };
+  }
+
   return {
     canonical, sha256, leafHash, nodeHash, merkleLevels, merkleRoot, verifyProof, blockHash, header,
     verifySig, keyId, ed25519Supported, witnessStatement, creatorSignatureOk, checkBlock, checkChain,
-    verifyReceipt, hexToBytes, short,
+    verifyReceipt, hexToBytes, short, replayOts, reverseHex, bitcoinBlock,
   };
 })();
 

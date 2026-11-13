@@ -102,7 +102,12 @@
         Each of these is a new signed record in a new block, pointing at the record it is about.
         Record IDs are shown in every result and in the explorer.
       </p>
-      <div class="dgl-grid3">
+      <p class="dgl-public-only dgl-card dgl-small">
+        On the public link, corrections are filed from the laptop running the demo: this server holds every
+        creator's key, so here anyone could type someone else's name. Every revocation and dispute is still
+        shown in the <a href="/explorer">explorer</a>.
+      </p>
+      <div class="dgl-grid3 dgl-owner-only">
         <form class="dgl-card dgl-form" id="revokeForm">
           <h3 class="registry__panel-title">Revoke my registration</h3>
           <label>Record ID<input type="text" name="target_record_id" required /></label>
@@ -141,6 +146,7 @@
 
   <script src="/static/motion.js"></script>
   <script src="/ledger-static/dgcrypto.js"></script>
+  <script src="/ledger-static/crview.js"></script>
   <script src="/ledger-static/ledger.js"></script>
 </body>
 </html>

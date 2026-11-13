@@ -25,9 +25,15 @@ How a check works — provenance first, prediction last (blueprint s.4):
                                                      clearly labelled a prediction
   4. match to a record DECLARED AI-generated      -> registered as AI-generated
 
+Stage 4 adds, on the same server:
+  /api/ledger/anchor*   anchoring blocks in Bitcoin through OpenTimestamps
+                        (anchoring.py), shown on the explorer page
+
 Start everything (server + two witnesses) with:  python run_deepguard.py
 """
 
+import asyncio
+import base64
 import io
 import json
 import os
@@ -36,14 +42,15 @@ import threading
 import urllib.error
 import urllib.request
 import uuid
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
 
 import numpy as np
-from fastapi import Body, File, Form, HTTPException, UploadFile
+from fastapi import Body, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
-from PIL import Image
+from PIL import Image, ImageOps
 
 HERE = Path(__file__).resolve().parent
 BOUNCER_APP_DIR = HERE.parent / "deepguard-bouncer" / "app"
@@ -55,10 +62,122 @@ import calibration  # noqa: E402
 import content_registry  # noqa: E402
 import fingerprint  # noqa: E402
 
+import anchoring  # noqa: E402
 import creators  # noqa: E402
+import credentials  # noqa: E402
 import ledger_core  # noqa: E402
+import public_mode  # noqa: E402
+import watermark  # noqa: E402
 
 app = bouncer.app
+
+WATERMARKER = watermark.Watermarker()
+_bouncer_lifespan = app.router.lifespan_context
+
+
+@asynccontextmanager
+async def _lifespan(app_):
+    """The bouncer's own startup (its models), then TrustMark warming up in
+    the background so the first registration doesn't wait ~15 s for it."""
+    async with _bouncer_lifespan(app_):
+        threading.Thread(target=WATERMARKER.warm_up, name="trustmark-warm-up", daemon=True).start()
+        yield
+
+
+app.router.lifespan_context = _lifespan
+
+# ---------------------------------------------------------------------------
+# The public link (Stage 4, public_mode.py): limits for requests that came
+# through the Cloudflare tunnel. The laptop's own requests skip every limit,
+# but while the link is open their heavy checks take turns with visitors'.
+# Without --public, every request passes straight through.
+# ---------------------------------------------------------------------------
+
+_LIMITER = public_mode.RateLimiter()
+_HEAVY_JOBS = asyncio.Semaphore(public_mode.HEAVY_AT_ONCE)
+
+
+async def _in_turn(request: Request, call_next, bucket: str, wait: Optional[float]):
+    """Heavy checks take turns (see public_mode.py for why). wait=None: as
+    long as it takes (the presenter); otherwise give up with a 503."""
+    if bucket == "any":
+        return await call_next(request)
+    try:
+        await asyncio.wait_for(_HEAVY_JOBS.acquire(), timeout=wait)
+    except asyncio.TimeoutError:
+        return JSONResponse({"detail": "The demo laptop is busy with other visitors' checks. Try again in a few "
+                                       "seconds."}, status_code=503, headers={"Retry-After": "10"})
+    try:
+        return await call_next(request)
+    finally:
+        _HEAVY_JOBS.release()
+
+
+@app.middleware("http")
+async def _public_guard(request: Request, call_next):
+    if not public_mode.ENABLED:
+        return await call_next(request)
+    path, method = request.url.path, request.method
+    bucket = public_mode.bucket_of(method, path)
+    if not public_mode.is_public_request(request.headers):
+        return await _in_turn(request, call_next, bucket, wait=None)
+
+    if path in public_mode.BLOCKED_PATHS:
+        return JSONResponse({"detail": public_mode.BLOCKED_PATHS[path]}, status_code=403)
+    too_big = JSONResponse({"detail": f"On the public link files are limited to "
+                                      f"{public_mode.MAX_UPLOAD_BYTES // (1024 * 1024)} MB."}, status_code=413)
+    length = request.headers.get("content-length")
+    if method == "POST" and length is not None:
+        try:
+            if int(length) > public_mode.MAX_UPLOAD_BYTES:
+                return too_big
+        except ValueError:
+            return JSONResponse({"detail": "Bad Content-Length."}, status_code=400)
+
+    network = public_mode.network_of(request.headers, request.client.host if request.client else None)
+    browser = public_mode.browser_of(request.cookies)
+    if not _LIMITER.admit(public_mode.limits_for(network, browser, bucket)):
+        return JSONResponse({"detail": "That's a lot of checks in a minute. Wait a moment and try again."},
+                            status_code=429, headers={"Retry-After": "30"})
+    if method == "POST" and length is None and len(await request.body()) > public_mode.MAX_UPLOAD_BYTES:
+        # Sent in chunks with no length up front: read it (Cloudflare itself
+        # stops a request body at 100 MB) and measure. The body read here is
+        # handed on to the endpoint unchanged.
+        return too_big
+
+    response = await _in_turn(request, call_next, bucket, wait=public_mode.HEAVY_WAIT_SECONDS)
+    if browser is None:
+        response.set_cookie(public_mode.COOKIE, public_mode.new_browser_id(), max_age=public_mode.COOKIE_MAX_AGE,
+                            httponly=True, secure=True, samesite="lax")
+    return response
+
+
+def _with_banner(html: str, request: Request) -> str:
+    """Pages opened through the public link say so, at the top."""
+    if not public_mode.is_public_request(request.headers):
+        return html
+    start = html.find("<body")
+    end = html.find(">", start) + 1 if start >= 0 else 0
+    return html[:end] + "\n" + public_mode.BANNER + html[end:]
+
+
+def _public_witness_urls() -> dict:
+    """DEEPGUARD_WITNESS_PUBLIC_URLS = "Witness A=https://...,Witness B=https://..."
+    (set by run_deepguard.py --public): the addresses visitors' browsers use
+    to ask the witnesses directly, while the server keeps the local ones."""
+    out = {}
+    for part in os.environ.get("DEEPGUARD_WITNESS_PUBLIC_URLS", "").split(","):
+        if "=" in part:
+            name, url = part.split("=", 1)
+            out[name.strip()] = url.strip().rstrip("/")
+    return out
+
+
+def _witnesses_for(request: Optional[Request]) -> list[dict]:
+    if request is None or not public_mode.is_public_request(request.headers):
+        return WITNESSES
+    public = _public_witness_urls()
+    return [{**w, "url": public.get(w["name"], w["url"])} for w in WITNESSES]
 
 DATA_DIR = Path(os.environ.get("DEEPGUARD_LEDGER_DIR", HERE / "ledger_data"))
 STATIC_DIR = HERE / "static"
@@ -93,7 +212,7 @@ def _witness_config() -> list[dict]:
 
 WITNESSES = _witness_config()
 
-STATE = {"ledger": None, "creators": None}
+STATE = {"ledger": None, "creators": None, "anchors": None}
 _INIT_LOCK = threading.Lock()
 # Proxies are switched off: the witnesses are on this machine, and a system
 # proxy must never sit between the ledger and its witnesses.
@@ -110,6 +229,7 @@ def get_ledger() -> ledger_core.Ledger:
             STATE["ledger"] = ledger_core.Ledger(
                 DATA_DIR, bouncer.STATE["signer_private_key"], bouncer.STATE["signer_public_key"])
             STATE["creators"] = creators.CreatorBook(DATA_DIR)
+            STATE["anchors"] = anchoring.AnchorBook(DATA_DIR)
             (DATA_DIR / "content_vectors").mkdir(parents=True, exist_ok=True)
     return STATE["ledger"]
 
@@ -119,18 +239,38 @@ def get_creators() -> creators.CreatorBook:
     return STATE["creators"]
 
 
+def get_anchors() -> anchoring.AnchorBook:
+    get_ledger()
+    return STATE["anchors"]
+
+
+def get_credentials() -> credentials.CredentialStore:
+    """Content Credentials (C2PA): this installation's demo CA is made on
+    first use, in DEEPGUARD_CREDENTIALS_DIR (default deepguard-ledger/credentials/)."""
+    with _INIT_LOCK:
+        if STATE.get("credentials") is None:
+            STATE["credentials"] = credentials.CredentialStore(
+                Path(os.environ.get("DEEPGUARD_CREDENTIALS_DIR", HERE / "credentials")))
+    return STATE["credentials"]
+
+
+MIME_BY_EXTENSION = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp",
+                     ".bmp": "image/bmp"}
+
+
 # ---------------------------------------------------------------------------
 # Pages: the two new ones, plus the bridge script on the three old ones
 # ---------------------------------------------------------------------------
 
 BRIDGE_TAGS = ('<link rel="stylesheet" href="/ledger-static/ledger.css" />\n'
+               '<script src="/ledger-static/crview.js" defer></script>\n'
                '<script src="/ledger-static/bridge.js" defer></script>\n')
 
 
 def _with_bridge(page_file: str):
-    def serve():
+    def serve(request: Request):
         html = (bouncer.STATIC_DIR / page_file).read_text(encoding="utf-8")
-        return HTMLResponse(html.replace("</body>", BRIDGE_TAGS + "</body>", 1))
+        return HTMLResponse(_with_banner(html.replace("</body>", BRIDGE_TAGS + "</body>", 1), request))
     return serve
 
 
@@ -142,13 +282,38 @@ for _path, _file in (("/", "index.html"), ("/registry", "registry.html"), ("/bia
 
 
 @app.get("/ledger", include_in_schema=False)
-def ledger_page():
-    return FileResponse(str(STATIC_DIR / "ledger.html"))
+def ledger_page(request: Request):
+    return HTMLResponse(_with_banner((STATIC_DIR / "ledger.html").read_text(encoding="utf-8"), request))
 
 
 @app.get("/explorer", include_in_schema=False)
-def explorer_page():
-    return FileResponse(str(STATIC_DIR / "explorer.html"))
+def explorer_page(request: Request):
+    return HTMLResponse(_with_banner((STATIC_DIR / "explorer.html").read_text(encoding="utf-8"), request))
+
+
+@app.get("/share", include_in_schema=False)
+def share_page(request: Request):
+    """For the projector: the public link as a big QR code."""
+    return HTMLResponse(_with_banner((STATIC_DIR / "share.html").read_text(encoding="utf-8"), request))
+
+
+@app.get("/api/public/status")
+def public_status():
+    import segno  # only needed for the share page
+    url = public_mode.PUBLIC_URL
+    svg = None
+    if url:
+        buffer = io.BytesIO()
+        # omitsize: a viewBox instead of a fixed width, so the code shrinks to
+        # fit a phone screen instead of being cut off.
+        segno.make(url, error="m").save(buffer, kind="svg", scale=10, border=2, dark="#1C1A17", light="#FFFFFF",
+                                        xmldecl=False, svgclass=None, lineclass=None, omitsize=True)
+        svg = buffer.getvalue().decode("utf-8")
+    return {"public": public_mode.ENABLED, "url": url or None, "qr_svg": svg,
+            "limits": {"upload_mb": public_mode.MAX_UPLOAD_BYTES // (1024 * 1024),
+                       "heavy_checks_per_minute": public_mode.RATES["heavy"][0],
+                       "registrations_per_minute": public_mode.RATES["write"][0],
+                       "owner_only": sorted(public_mode.BLOCKED_PATHS)}}
 
 
 app.mount("/ledger-static", StaticFiles(directory=str(STATIC_DIR)), name="ledger-static")
@@ -221,6 +386,63 @@ def _detector_reading(frames: list) -> Optional[dict]:
         reading["calibrated_probability_fake"] = round(calibration.apply_temperature(
             logits[0], bouncer.STATE["calibration"]["detector_temperature"]), 4)
     return reading
+
+
+def _credentialed_copy(file_bytes: bytes, filename: str, bits: str, record: dict, creator_handle: str) -> dict:
+    """The copy a creator shares (Stage 4): the original with the hidden ID
+    in its pixels (watermark.py) and Content Credentials signed by Deep-Guard
+    (credentials.py) that name the ID and this record. It is upright (EXIF
+    rotation applied, since the copy is saved without EXIF), JPEG at quality
+    95 unless the original was a PNG. Its own fingerprints and content vector
+    go into the record too, so the copy itself is recognised exactly, and
+    crops of it by content."""
+    source = ImageOps.exif_transpose(Image.open(io.BytesIO(file_bytes))).convert("RGB")
+    marked = WATERMARKER.embed(source, bits)
+    as_png = Path(filename).suffix.lower() == ".png"
+    mime = "image/png" if as_png else "image/jpeg"
+    name = f"{Path(filename).stem[:100]}.credentialed{'.png' if as_png else '.jpg'}"
+    buffer = io.BytesIO()
+    if as_png:
+        marked.save(buffer, "PNG")
+    else:
+        marked.save(buffer, "JPEG", quality=95, subsampling=0)
+    data = buffer.getvalue()
+    signed_c2pa = False
+    try:
+        store = get_credentials()
+        sign = dict(title=name, record_id=record["record_id"], creator=creator_handle,
+                    declared_origin=record["declared_origin"], watermark_alg=watermark.ALG,
+                    watermark_schema_code=watermark.SCHEMA_CODE, watermark_bits=bits,
+                    ledger_key_id=get_ledger().key_id)
+        parent_mime = MIME_BY_EXTENSION.get(Path(filename).suffix.lower())
+        try:
+            data = store.sign(data, mime, **sign, parent=(file_bytes, parent_mime, Path(filename).name[:120])
+                              if parent_mime else None)
+        except Exception:  # noqa: BLE001 — e.g. a parent format the SDK can't read: sign without it
+            data = store.sign(data, mime, **sign, parent=None)
+        signed_c2pa = True
+    except Exception:  # noqa: BLE001 — additive: the watermarked copy still works without credentials
+        bouncer.logger.exception("Couldn't sign the credentialed copy's Content Credentials")
+    decoded = Image.open(io.BytesIO(data)).convert("RGB")
+    vector = _content_vector(decoded)
+    info = {"file_name": name, "mime": mime, "content_credentials": "c2pa" if signed_c2pa else None,
+            **fingerprint.compute_file_fingerprint(data), "phash": fingerprint.compute_image_phash(decoded)}
+    if vector is not None:
+        info["content_vector_sha256"] = _vector_sha256(vector)
+    return {"bytes": data, "info": info, "vector": vector}
+
+
+def _read_watermark(image: Optional[Image.Image]) -> Optional[str]:
+    """The hidden ID in an upload's pixels as hex, or None (no ID, a video,
+    or the watermark model unavailable)."""
+    if image is None or not WATERMARKER.available:
+        return None
+    try:
+        bits = WATERMARKER.read(image)
+    except Exception:  # noqa: BLE001 — additive: verification works without it
+        bouncer.logger.exception("Couldn't read a watermark")
+        return None
+    return watermark.id_hex(bits) if bits else None
 
 
 def _reading_for_record(reading: Optional[dict]) -> Optional[dict]:
@@ -320,28 +542,62 @@ def _seal_and_sync() -> tuple[Optional[dict], list[dict]]:
 # Matching an upload against the ledger
 # ---------------------------------------------------------------------------
 
-def _load_vector(record: dict) -> Optional[np.ndarray]:
-    path = DATA_DIR / "content_vectors" / f"{record['record_id']}.npy"
-    if not path.exists():
+def _load_vector(record: dict, copy: bool = False) -> Optional[np.ndarray]:
+    """The original's SSCD vector, or with copy=True the credentialed copy's."""
+    if copy:
+        expected = (record.get("credentialed_copy") or {}).get("content_vector_sha256")
+        path = DATA_DIR / "content_vectors" / f"{record['record_id']}.copy.npy"
+    else:
+        expected = record.get("content_vector_sha256")
+        path = DATA_DIR / "content_vectors" / f"{record['record_id']}.npy"
+    if not expected or not path.exists():
         return None
     vector = np.load(path).astype("<f4")
     # The vector file lives off the chain (512 numbers is too big for a
     # block), but its hash is on the chain — a swapped file is ignored.
-    return vector if _vector_sha256(vector) == record.get("content_vector_sha256") else None
+    return vector if _vector_sha256(vector) == expected else None
 
 
-def _match(ledger, upload: dict, vector: Optional[np.ndarray], blocks: list[dict]) -> list[dict]:
+def _content_similarity(record: dict, vector: Optional[np.ndarray]) -> Optional[float]:
+    """SSCD similarity to the record's original or to its credentialed copy,
+    whichever is higher (a copy of the copy is closest to the copy)."""
+    if vector is None:
+        return None
+    scores = [float(np.dot(vector, stored)) for stored in (_load_vector(record), _load_vector(record, copy=True))
+              if stored is not None]
+    return max(scores) if scores else None
+
+
+def _match(ledger, upload: dict, vector: Optional[np.ndarray], blocks: list[dict],
+           watermark_id: Optional[str] = None) -> tuple[list[dict], list[dict]]:
+    """Every registration this upload matches, best first, plus the
+    registrations whose hidden ID was read but whose content does NOT match
+    (an ID by chance, or a watermark lifted onto a different picture)."""
     info = upload["info"]
-    candidates = []
+    candidates, unconfirmed = [], []
     for record, block_index, position in ledger.iter_records(blocks):
         if record.get("type") != "registration":
             continue
-        match = {"record": record, "block_index": block_index, "position": position,
-                 "kind": None, "phash_bits_different": None, "content_similarity": None}
+        copy = record.get("credentialed_copy") or {}
+        match = {"record": record, "block_index": block_index, "position": position, "kind": None,
+                 "exact_file": None, "watermark_id": None, "phash_bits_different": None, "content_similarity": None}
         if record.get("sha256_merkle_root") == info["sha256_merkle_root"]:
-            match["kind"] = "exact"
+            match.update(kind="exact", exact_file="original")
+        elif copy.get("sha256_merkle_root") == info["sha256_merkle_root"]:
+            match.update(kind="exact", exact_file="credentialed_copy")
+        similarity = _content_similarity(record, vector)
+        if similarity is not None:
+            match["content_similarity"] = round(similarity, 4)
+        if watermark_id and (record.get("watermark") or {}).get("id") == watermark_id:
+            match["watermark_id"] = watermark_id
+            if similarity is not None and similarity >= CONTENT_MATCH_THRESHOLD:
+                match["kind"] = match["kind"] or "watermark"
+            else:
+                unconfirmed.append({"record_id": record.get("record_id"), "title": record.get("title"),
+                                    "creator_handle": record.get("creator_handle"), "block_index": block_index,
+                                    "content_similarity": match["content_similarity"]})
         if info["media_type"] == "image" and record.get("phash"):
-            bits = fingerprint.hamming_distance(info["phash"], record["phash"])
+            bits = min(fingerprint.hamming_distance(info["phash"], h) for h in (record["phash"], copy.get("phash")) if h)
             match["phash_bits_different"] = bits
             if match["kind"] is None and bits <= PHASH_MATCH_MAX_BITS:
                 match["kind"] = "visual"
@@ -350,18 +606,13 @@ def _match(ledger, upload: dict, vector: Optional[np.ndarray], blocks: list[dict
             match["phash_bits_different"] = round(mean_bits, 1)
             if match["kind"] is None and mean_bits <= VIDEO_PHASH_MATCH_MAX_BITS:
                 match["kind"] = "visual"
-        if vector is not None and record.get("content_vector_sha256"):
-            stored = _load_vector(record)
-            if stored is not None:
-                similarity = float(np.dot(vector, stored))
-                match["content_similarity"] = round(similarity, 4)
-                if match["kind"] is None and similarity >= CONTENT_MATCH_THRESHOLD:
-                    match["kind"] = "content"
+        if match["kind"] is None and similarity is not None and similarity >= CONTENT_MATCH_THRESHOLD:
+            match["kind"] = "content"
         if match["kind"] is not None:
             candidates.append(match)
-    order = {"exact": 0, "visual": 1, "content": 2}
+    order = {"exact": 0, "watermark": 1, "visual": 2, "content": 3}
     candidates.sort(key=lambda m: (order[m["kind"]], m["phash_bits_different"] or 0, -(m["content_similarity"] or 0)))
-    return candidates
+    return candidates, unconfirmed
 
 
 VERDICTS = {
@@ -397,10 +648,11 @@ def _describe_match(ledger, match: dict, blocks: list[dict]) -> dict:
 # ---------------------------------------------------------------------------
 
 @app.get("/api/ledger/summary")
-def ledger_summary():
+def ledger_summary(request: Request):
     ledger = get_ledger()
     blocks = ledger.read_blocks()
     good = [b for b in blocks if not b.get("_unreadable")]
+    public = public_mode.is_public_request(request.headers)
     return {
         "block_count": len(blocks),
         "record_count": sum(len(b.get("records") or []) for b in good),
@@ -408,15 +660,16 @@ def ledger_summary():
         "last_block": ledger_core.block_header(good[-1]) | {"block_hash": good[-1].get("block_hash")} if good else None,
         "service_public_key": ledger.public_pem_str,
         "service_key_id": ledger.key_id,
-        "witnesses": WITNESSES,
+        "witnesses": _witnesses_for(request),
         "declared_origins": DECLARED_ORIGINS,
         "thresholds": {"phash_bits": PHASH_MATCH_MAX_BITS, "content_similarity": CONTENT_MATCH_THRESHOLD},
-        "data_dir": str(DATA_DIR),
+        "data_dir": None if public else str(DATA_DIR),
+        "public_link": public,
     }
 
 
 @app.get("/api/ledger/chain")
-def ledger_chain():
+def ledger_chain(request: Request):
     ledger = get_ledger()
     return {
         "blocks": ledger.read_blocks(),
@@ -424,7 +677,7 @@ def ledger_chain():
         "cosignatures": ledger.read_cosignatures(),
         "service_public_key": ledger.public_pem_str,
         "service_key_id": ledger.key_id,
-        "witnesses": WITNESSES,
+        "witnesses": _witnesses_for(request),
     }
 
 
@@ -441,7 +694,7 @@ def ledger_verify_chain():
 
 
 @app.post("/api/ledger/register")
-def ledger_register(file: UploadFile = File(...), title: str = Form(...), creator: str = Form(...),
+def ledger_register(request: Request, file: UploadFile = File(...), title: str = Form(...), creator: str = Form(...),
                     declared_origin: str = Form("camera"), seal_now: bool = Form(True)):
     ledger = get_ledger()
     book = get_creators()
@@ -450,28 +703,59 @@ def ledger_register(file: UploadFile = File(...), title: str = Form(...), creato
         raise HTTPException(status_code=400, detail="Give the file a title.")
     if declared_origin not in DECLARED_ORIGINS:
         raise HTTPException(status_code=400, detail=f"declared_origin must be one of {sorted(DECLARED_ORIGINS)}")
+    public = public_mode.is_public_request(request.headers)
+    browser = public_mode.browser_tag(public_mode.browser_of(request.cookies)) if public else None
     try:
-        identity, created = book.get_or_create(creator)
+        identity, created = book.get_or_create(
+            creator, extra={"public_visitor": True, "public_browser": browser} if public else None)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if public and not created:
+        # On the public link a name is a visitor's own: names from the laptop
+        # are reserved, and a visitor's name stays with the browser that made
+        # it (the server holds every creator's key, so a typed name is all it
+        # would otherwise take).
+        if not identity.get("public_visitor"):
+            raise HTTPException(status_code=403, detail="That creator name already belongs to someone on this "
+                                                        "laptop. Register under a name of your own.")
+        if identity.get("public_browser") != browser:
+            raise HTTPException(status_code=403, detail="Another visitor already registers under that name. "
+                                                        "Pick a different one.")
 
     file_bytes, filename = _read_upload(file)
     upload = _fingerprint_upload(file_bytes, filename)
     info = upload["info"]
 
     # First registration wins. A second person claiming the same exact file
-    # has to file a dispute against the first record instead.
+    # (or the credentialed copy someone else was given) has to file a
+    # dispute against the first record instead.
     blocks = ledger.read_blocks()
+
+    def refuse(record, block_index, why):
+        where = f"block #{block_index}" if block_index is not None else "the pending pool"
+        raise HTTPException(status_code=409, detail={
+            "message": f"{why} '{record['title']}' by {record.get('creator_handle')} ({where}). If that is wrong, "
+                       f"file a dispute against it.", "record_id": record["record_id"], "block_index": block_index})
+
     for record, block_index, _ in ledger.iter_records(blocks):
-        if (record.get("type") == "registration" and record.get("sha256_merkle_root") == info["sha256_merkle_root"]
-                and not ledger.status_of(record["record_id"], blocks)["revoked"]):
-            where = f"block #{block_index}" if block_index is not None else "the pending pool"
-            raise HTTPException(status_code=409, detail={
-                "message": f"This exact file is already registered as '{record['title']}' by "
-                           f"{record.get('creator_handle')} ({where}). If that is wrong, file a dispute against it.",
-                "record_id": record["record_id"], "block_index": block_index})
+        if record.get("type") != "registration" or ledger.status_of(record["record_id"], blocks)["revoked"]:
+            continue
+        if record.get("sha256_merkle_root") == info["sha256_merkle_root"]:
+            refuse(record, block_index, "This exact file is already registered as")
+        if (record.get("credentialed_copy") or {}).get("sha256_merkle_root") == info["sha256_merkle_root"]:
+            refuse(record, block_index, "This is the credentialed copy of")
 
     vector = _content_vector(upload["image"])
+    # The same rule for re-saved and cropped copies of a credentialed copy:
+    # if the pixels carry someone's hidden ID, confirmed by the content, the
+    # picture is theirs.
+    hidden = _read_watermark(upload["image"])
+    if hidden:
+        owners, _ = _match(ledger, upload, vector, blocks, watermark_id=hidden)
+        for owner in owners:
+            if owner["watermark_id"] == hidden and not ledger.status_of(owner["record"]["record_id"], blocks)["revoked"]:
+                refuse(owner["record"], owner["block_index"], f"This picture carries the hidden ID {hidden} of")
+
     reading = _detector_reading(upload["frames"])
     record = {"type": "registration", "record_id": uuid.uuid4().hex, "title": title,
               "declared_origin": declared_origin, "registered_at": ledger_core.now_iso(), **info}
@@ -480,6 +764,22 @@ def ledger_register(file: UploadFile = File(...), title: str = Form(...), creato
         np.save(DATA_DIR / "content_vectors" / f"{record['record_id']}.npy", vector)
     if reading is not None:
         record["detector_reading"] = _reading_for_record(reading)
+
+    copy, watermark_note = None, None
+    if info["media_type"] == "image" and WATERMARKER.available:
+        try:
+            bits = watermark.new_id()
+            copy = _credentialed_copy(file_bytes, filename, bits, record, identity["handle"])
+            record["watermark"] = {"alg": watermark.ALG, "schema": watermark.SCHEMA, "id": watermark.id_hex(bits)}
+            record["credentialed_copy"] = copy["info"]
+            if copy["vector"] is not None:
+                np.save(DATA_DIR / "content_vectors" / f"{record['record_id']}.copy.npy", copy["vector"])
+        except Exception:  # noqa: BLE001 — additive: register without a watermark rather than not at all
+            bouncer.logger.exception("Couldn't make the credentialed copy")
+            copy, watermark_note = None, "The hidden ID couldn't be added this time; the file is registered without it."
+    elif info["media_type"] == "image":
+        watermark_note = f"The watermark model is unavailable ({WATERMARKER.load_error}); registered without a hidden ID."
+
     signed = book.sign_record(identity["handle"], record)
     ledger.add_pending(signed)
 
@@ -498,6 +798,10 @@ def ledger_register(file: UploadFile = File(...), title: str = Form(...), creato
         "block": ledger_core.block_header(block) | {"block_hash": block["block_hash"]} if block else None,
         "proof": ledger.proof_bundle(signed["record_id"]) if block else None,
         "witnesses": witnesses,
+        # The copy to share, returned once and never stored (the ledger keeps no pictures).
+        "credentialed_copy": {"file_name": copy["info"]["file_name"], "mime": copy["info"]["mime"],
+                              "base64": base64.b64encode(copy["bytes"]).decode("ascii")} if copy else None,
+        "watermark_note": watermark_note,
     }
 
 
@@ -515,7 +819,9 @@ def ledger_verify(file: UploadFile = File(...), ai_fallback: bool = Form(True)):
     upload = _fingerprint_upload(file_bytes, filename)
     blocks = ledger.read_blocks()
     vector = _content_vector(upload["image"])
-    candidates = [_describe_match(ledger, m, blocks) for m in _match(ledger, upload, vector, blocks)]
+    hidden = _read_watermark(upload["image"])
+    matches, unconfirmed = _match(ledger, upload, vector, blocks, watermark_id=hidden)
+    candidates = [_describe_match(ledger, m, blocks) for m in matches]
     valid = [c for c in candidates if not c["status"]["revoked"]]
     best = valid[0] if valid else None
 
@@ -542,6 +848,18 @@ def ledger_verify(file: UploadFile = File(...), ai_fallback: bool = Form(True)):
     revoked_only = [c for c in candidates if c["status"]["revoked"]]
     if number == 3 and revoked_only:
         notes.append("It matches a registration that its creator has since revoked, so that record no longer counts.")
+    for claim in unconfirmed:
+        notes.append(f"A Deep-Guard hidden ID ({hidden}) was read from the pixels, but this picture's content does not "
+                     f"match the record it names ('{claim['title']}' by {claim['creator_handle']}): the ID may have "
+                     f"been copied onto a different picture, so it is not trusted.")
+
+    content_credentials = _read_credentials(file_bytes)
+    named = (content_credentials.get("deepguard") or {}).get("record_id")
+    if named and not (best and best["record"].get("record_id") == named):
+        found, _, _ = ledger.find_record(named, blocks)
+        notes.append(f"Its Content Credentials name Deep-Guard record {named[:12]}…, " +
+                     ("which this ledger holds but this file does not match." if found else
+                      "which this ledger does not hold (another Deep-Guard server, or invented)."))
 
     info = {k: v for k, v in upload["info"].items() if k not in ("phash_frames",)}
     return {
@@ -549,7 +867,39 @@ def ledger_verify(file: UploadFile = File(...), ai_fallback: bool = Form(True)):
         "notes": notes, "upload": info, "match": best, "other_matches": [c for c in candidates if c is not best][:5],
         "detector": detector, "thresholds": {"phash_bits": PHASH_MATCH_MAX_BITS,
                                              "content_similarity": CONTENT_MATCH_THRESHOLD},
+        "watermark": {"id": hidden, "matched": any(m["watermark_id"] for m in matches), "unconfirmed": unconfirmed},
+        "credentials": content_credentials,
     }
+
+
+# ---------------------------------------------------------------------------
+# Content Credentials (Stage 4, credentials.py)
+# ---------------------------------------------------------------------------
+
+def _read_credentials(file_bytes: bytes) -> dict:
+    try:
+        summary = get_credentials().read(file_bytes)
+        summary["evidence"] = credentials.to_evidence(summary)
+        return summary
+    except Exception:  # noqa: BLE001 — additive: a check must never fail over the credentials panel
+        bouncer.logger.exception("Couldn't read Content Credentials")
+        return {"present": False, "verdict": "error", "headline": credentials.VERDICT_TEXT["error"], "issues": []}
+
+
+@app.post("/api/credentials/read")
+def credentials_read(file: UploadFile = File(...)):
+    """Any file's Content Credentials, in plain words (the CR card on the
+    analysis page and the Lens extension use this)."""
+    file_bytes, _ = _read_upload(file)
+    return _read_credentials(file_bytes)
+
+
+@app.get("/api/credentials/ca")
+def credentials_ca():
+    """This installation's demo certificate authority (public part only), for
+    anyone who chooses to trust Deep-Guard's credentials in another C2PA tool."""
+    return HTMLResponse(get_credentials().ca_pem.decode("ascii"), media_type="application/x-pem-file", headers={
+        "Content-Disposition": 'attachment; filename="deep-guard-demo-root-ca.pem"'})
 
 
 def _target_registration(ledger, target_record_id: str, blocks):
@@ -701,17 +1051,147 @@ def ledger_tamper_lab(payload: dict = Body(...)):
     except (ValueError, TypeError) as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     report = ledger.verify(tampered)
-    witnesses = [{"name": w["name"], "online": w["online"],
-                  **(ledger_core.compare_with_witness(tampered, w["hashes"]) if w["online"] else {})}
-                 for w in _witness_hashes()]
+    colluding = payload.get("attack") == "collusion_rewrite"
+    if colluding:
+        # The witnesses are assumed to go along: they would re-sign whatever
+        # Deep-Guard shows them, so their notebooks prove nothing here.
+        witnesses = [{"name": w["name"], "online": True, "colluding": True, "first_mismatch": None} for w in WITNESSES]
+    else:
+        witnesses = [{"name": w["name"], "online": w["online"],
+                      **(ledger_core.compare_with_witness(tampered, w["hashes"]) if w["online"] else {})}
+                     for w in _witness_hashes()]
+    anchors = _anchor_view(tampered)
     caught_by_witness = any(w.get("first_mismatch") is not None for w in witnesses)
+    caught_by_anchor = [a for a in anchors if not a["agrees"]]
     if not report["ok"]:
         verdict = f"Caught by the chain itself at block #{report['first_bad_index']}."
     elif caught_by_witness:
         verdict = ("The rewritten chain checks out perfectly on its own — only the witnesses catch it, because "
                    "their copies still hold the original hashes.")
+    elif caught_by_anchor:
+        first = caught_by_anchor[0]
+        where = (f"Bitcoin block #{first['bitcoin_height']}" if first["status"] == anchoring.STATUS_CONFIRMED
+                 else "the OpenTimestamps calendars (Bitcoin confirmation still pending)")
+        verdict = (f"The chain checks out and the witnesses agree with it — only the anchor of block "
+                   f"#{first['block_index']} catches it: the hash written into {where} no longer matches.")
+    elif colluding:
+        verdict = ("Nothing catches this one yet: no anchor covers the rewritten blocks. Anchor the newest block to "
+                   "Bitcoin to close the gap.")
     else:
         verdict = ("The rewritten chain checks out on its own, and no online witness has seen these blocks — start "
                    "the witnesses (run_deepguard.py) and sync them to catch this attack.")
     return {"attack": payload.get("attack"), "description": description, "verdict": verdict,
-            "report": report, "witnesses": witnesses, "blocks": tampered}
+            "report": report, "witnesses": witnesses, "anchors": anchors, "blocks": tampered}
+
+
+# ---------------------------------------------------------------------------
+# Bitcoin anchors (Stage 4, anchoring.py)
+# ---------------------------------------------------------------------------
+
+def _anchor_view(blocks: list[dict]) -> list[dict]:
+    """Each anchor against a chain (the real one or a tamper-lab copy): does
+    the chain still hold the block hash that was anchored?"""
+    out = []
+    for entry in get_anchors().entries():
+        i = entry["block_index"]
+        current = blocks[i].get("block_hash") if 0 <= i < len(blocks) else None
+        out.append({"block_index": i, "status": entry["status"], "anchored_hash": entry["block_hash"],
+                    "current_hash": current, "agrees": current == entry["block_hash"],
+                    "bitcoin_height": (entry.get("bitcoin") or {}).get("height")})
+    return out
+
+
+def _anchor_or_404(index: int) -> dict:
+    entry = get_anchors().entry(index)
+    if entry is None:
+        raise HTTPException(status_code=404, detail=f"Block #{index} has no anchor.")
+    return entry
+
+
+@app.get("/api/ledger/anchors")
+def ledger_anchors():
+    """Every anchor, checked offline (no network on a page load): the files
+    still hash to the anchored block, the chain still holds that block, and
+    the proof's path. Bitcoin itself is looked up by anchors/upgrade, and the
+    result is kept, so the page works in a classroom with no internet."""
+    ledger = get_ledger()
+    book = get_anchors()
+    blocks = ledger.read_blocks()
+    out = []
+    for entry in book.entries():
+        i = entry["block_index"]
+        current = blocks[i].get("block_hash") if 0 <= i < len(blocks) else None
+        try:
+            header, proof = book.files(entry)
+            result = anchoring.verify_files(header, proof, anchored_hash=entry["block_hash"], chain_hash=current,
+                                            lookup=None)
+        except OSError as exc:
+            result = {"checks": [{"name": "Anchor files can be read", "ok": False, "detail": str(exc)}], "paths": []}
+        out.append({**entry, "current_block_hash": current, "chain_agrees": current == entry["block_hash"],
+                    "checks": result["checks"], "paths": result["paths"]})
+    good = [b for b in blocks if not b.get("_unreadable")]
+    newest = good[-1]["index"] if good else None
+    return {"anchors": out, "newest_block": newest,
+            "newest_anchored": newest is not None and any(a["block_index"] == newest for a in out),
+            "pending_records": len(ledger.read_pending()),
+            "calendars": list(anchoring.CALENDARS), "explorers": [name for name, _ in anchoring.EXPLORERS],
+            "block_url": "https://blockstream.info/block/"}
+
+
+@app.post("/api/ledger/anchor")
+def ledger_anchor():
+    """Sends the newest block's (salted) hash to the OpenTimestamps calendars."""
+    ledger = get_ledger()
+    blocks = ledger.read_blocks()
+    report = ledger.verify(blocks)
+    if not report["ok"]:
+        raise HTTPException(status_code=409, detail=f"The chain fails verification at block "
+                                                    f"#{report['first_bad_index']}. Fix that first: an anchor would "
+                                                    f"only preserve the damage.")
+    newest = blocks[-1]
+    try:
+        entry = get_anchors().create(newest, calendars=anchoring.CALENDARS, submit=anchoring.submit_to_calendar)
+    except anchoring.AnchorError as exc:
+        code = 409 if "already anchored" in str(exc) else 502
+        raise HTTPException(status_code=code, detail=str(exc)) from exc
+    pending = len(ledger.read_pending())
+    accepted = sum(1 for c in entry["calendars"] if c["ok"])
+    message = (f"Sent block #{entry['block_index']}'s hash to {accepted} public calendar"
+               f"{'' if accepted == 1 else 's'}. It is usually in Bitcoin within a few hours; press "
+               f"“Check for Bitcoin confirmation” later.")
+    if pending:
+        message += f" {pending} pending record{'' if pending == 1 else 's'} are not covered: seal them first."
+    return {"anchor": entry, "message": message}
+
+
+@app.post("/api/ledger/anchors/upgrade")
+def ledger_anchors_upgrade(recheck: bool = False):
+    """Asks the calendars about pending anchors and looks their Bitcoin
+    blocks up on the explorers. Confirmed anchors are only looked up again
+    with recheck=true."""
+    book = get_anchors()
+    results = []
+    for entry in book.entries():
+        if entry["status"] == anchoring.STATUS_CONFIRMED and not recheck:
+            continue
+        try:
+            updated, notes = book.upgrade(entry["block_index"], fetch=anchoring.fetch_upgrade,
+                                          lookup=anchoring.bitcoin_block, force=recheck)
+        except anchoring.AnchorError as exc:
+            updated, notes = entry, [str(exc)]
+        results.append({"block_index": entry["block_index"], "status": updated["status"], "notes": notes})
+    return {"results": results, **ledger_anchors()}
+
+
+@app.get("/api/ledger/anchors/{index}/header")
+def ledger_anchor_header(index: int):
+    entry = _anchor_or_404(index)
+    return FileResponse(str(get_anchors().header_path(entry)), media_type="application/json",
+                        filename=entry["header_file"])
+
+
+@app.get("/api/ledger/anchors/{index}/proof")
+def ledger_anchor_proof(index: int):
+    entry = _anchor_or_404(index)
+    return FileResponse(str(get_anchors().proof_path(entry)), media_type="application/octet-stream",
+                        filename=entry["proof_file"])

@@ -3,7 +3,8 @@
 
 const $ = (id) => document.getElementById(id);
 const esc = DGUI.esc;
-const S = { chain: null, check: null, checkSource: null, selectedBlock: null, selectedRecord: null, creators: [], witnessView: [] };
+const S = { chain: null, check: null, checkSource: null, selectedBlock: null, selectedRecord: null, creators: [], witnessView: [], anchors: null };
+const anchorOf = (index) => (S.anchors ? S.anchors.anchors.find((a) => a.block_index === index) : null);
 
 const blocks = () => (S.chain ? S.chain.blocks : []);
 const pinned = () => S.chain.service_public_key;
@@ -14,16 +15,19 @@ function setStatus(html) { $("statusLine").innerHTML = html; }
 // --------------------------------------------------------------- loading --
 
 async function load({ recheck = true, newIndex = null } = {}) {
-  const [chain, creators] = await Promise.all([
+  const [chain, creators, anchors] = await Promise.all([
     fetch("/api/ledger/chain").then((r) => r.json()),
     fetch("/api/ledger/creators").then((r) => r.json()),
+    fetch("/api/ledger/anchors").then((r) => r.json()).catch(() => null),
   ]);
   S.chain = chain;
   S.creators = creators.creators;
+  S.anchors = anchors;
   renderStats();
   renderChain(newIndex);
   fillTamperBlocks();
   renderKeys();
+  renderAnchors();
   if (recheck) await browserCheck();
   loadWitnesses();
   if (S.selectedBlock !== null && S.selectedBlock < blocks().length) await selectBlock(S.selectedBlock, { scroll: false });
@@ -50,12 +54,16 @@ function renderStats() {
   const online = S.witnessView.filter((w) => w.online);
   const agree = online.filter((w) => w.agrees);
   const wit = S.witnessView.length ? `${agree.length}/${S.witnessView.length}` : "…";
+  const anchored = S.anchors && S.anchors.anchors.length ? S.anchors.anchors[S.anchors.anchors.length - 1] : null;
+  const anchorStat = !anchored ? '<span class="dgl-muted">none</span>'
+    : `#${anchored.block_index} <span class="dgl-stat__tag ${anchored.status === "confirmed" ? "is-btc" : ""}">${anchored.status === "confirmed" ? "in Bitcoin" : esc(anchored.status)}</span>`;
   $("stats").innerHTML = [
     [bl.length, "blocks (incl. genesis #0)"],
     [records, "records sealed"],
     [(S.chain.pending || []).length, "records waiting (pending)"],
     [chainState, "chain status"],
     [wit, "witnesses agree"],
+    [anchorStat, "newest Bitcoin anchor"],
   ].map(([n, l]) => `<div class="dgl-stat"><div class="dgl-stat__n">${n}</div><div class="dgl-stat__l">${l}</div></div>`).join("");
 }
 
@@ -88,6 +96,10 @@ function chainHtml(list, report, { mini = false, cosignatures = {}, witnesses = 
       const has = cos.some((c) => c.witness === w.name);
       return `<span class="${has ? "is-ok" : ""}" title="${esc(w.name)} ${has ? "co-signed" : "has not co-signed"}">${esc(shortName(w.name))}${has ? " ✓" : ""}</span>`;
     }).join("");
+    const anchor = mini ? null : anchorOf(b.index);
+    const btc = !anchor ? "" : anchor.status === "confirmed"
+      ? `<span class="dgl-pill dgl-pill--btc" style="align-self:flex-start" title="Anchored in Bitcoin block #${esc(anchor.bitcoin && anchor.bitcoin.height)}">₿ in Bitcoin</span>`
+      : `<span class="dgl-pill dgl-pill--warn" style="align-self:flex-start" title="Sent to the OpenTimestamps calendars; waiting for Bitcoin">₿ ${esc(anchor.status)}</span>`;
     parts.push(`<button type="button" class="dgl-block ${state} ${i === newIndex ? "is-new" : ""}" data-index="${i}" ${mini ? 'tabindex="-1"' : ""}
         aria-label="Block ${i}${r ? (r.ok ? ", passes all checks" : ", fails a check") : ""}">
       <span class="dgl-block__num">#${esc(b._unreadable ? "?" : b.index)}</span>
@@ -96,6 +108,7 @@ function chainHtml(list, report, { mini = false, cosignatures = {}, witnesses = 
       <span class="dgl-block__meta">${(b.records || []).length} record${(b.records || []).length === 1 ? "" : "s"} · ${esc(DGUI.time(b.timestamp))}</span>
       ${r ? `<span class="dgl-pill ${r.ok ? "dgl-pill--ok" : "dgl-pill--bad"}" style="align-self:flex-start">${r.ok ? "✓ checks pass" : "✗ " + esc((r.checks.find((c) => c.ok === false) || {}).name || "fails")}</span>` : ""}
       ${isForged ? '<span class="dgl-pill dgl-pill--warn" style="align-self:flex-start">≠ witnesses’ copy</span>' : ""}
+      ${btc}
       ${wit ? `<span class="dgl-block__wit">${wit}</span>` : ""}
     </button>`);
   });
@@ -305,6 +318,8 @@ async function selectRecord(id) {
   add("phash", rec.phash ? `<span class="dgl-mono">${esc(rec.phash)}</span>` : null);
   add("phash_frames", rec.phash_frames ? `${rec.phash_frames.length} frame hashes` : null);
   add("content_vector_sha256", rec.content_vector_sha256 ? `<span class="dgl-mono">${esc(rec.content_vector_sha256)}</span>` : null);
+  add("watermark", rec.watermark ? `hidden ID <span class="dgl-mono">${esc(rec.watermark.id)}</span> <span class="dgl-muted">· ${esc(rec.watermark.alg)}, ${esc(rec.watermark.schema)}</span>` : null);
+  add("credentialed_copy", rec.credentialed_copy ? `${esc(rec.credentialed_copy.file_name)} · SHA-256 <span class="dgl-mono">${esc(DG.short(rec.credentialed_copy.sha256_merkle_root))}</span>` : null);
   add("detector_reading", rec.detector_reading ? `${esc(rec.detector_reading.ai_probability_percent)}% AI at registration${rec.detector_reading.calibrated_percent ? ` (calibrated ${esc(rec.detector_reading.calibrated_percent)}%)` : ""}` : null);
   add("target_record_id", rec.target_record_id ? `<a href="#record=${esc(rec.target_record_id)}" class="dgl-mono">${esc(rec.target_record_id)}</a>` : null);
   add("reason", esc(rec.reason));
@@ -350,7 +365,7 @@ $("search").addEventListener("input", () => {
   document.querySelectorAll("#chain .dgl-block").forEach((el) => el.classList.remove("is-hit"));
   if (q.length < 2) { $("searchResults").innerHTML = ""; return; }
   const hits = allRecords().filter((x) => ["title", "creator_handle", "record_id", "sha256_merkle_root", "type", "reason", "file_name"]
-    .some((k) => String(x.record[k] || "").toLowerCase().includes(q)));
+    .some((k) => String(x.record[k] || "").toLowerCase().includes(q)) || String((x.record.watermark || {}).id || "").includes(q));
   hits.forEach((x) => { if (x.block !== null) { const el = document.querySelector(`#chain .dgl-block[data-index="${x.block}"]`); if (el) el.classList.add("is-hit"); } });
   $("searchResults").innerHTML = hits.length
     ? `<table class="dgl-table">${hits.slice(0, 20).map((x) => `<tr class="is-click" data-record="${esc(x.record.record_id)}"><td><span class="dgl-type dgl-type--${esc(x.record.type)}">${esc(x.record.type)}</span></td>
@@ -419,12 +434,111 @@ async function seal() {
   location.hash = `block=${d.block.index}`;
 }
 
+// --------------------------------------------------------- Bitcoin anchors --
+
+function anchorStatusHtml(a) {
+  if (a.status === "confirmed" && a.bitcoin) {
+    return `<span class="dgl-pill dgl-pill--btc">✓ In Bitcoin block #${esc(a.bitcoin.height)}</span>
+      <span class="dgl-small">mined ${esc(DGUI.time(a.bitcoin.time_utc))} · checked on ${esc((a.bitcoin.sources || []).join(" and "))}${a.bitcoin.single_source ? " (one explorer only)" : ""}</span>`;
+  }
+  if (a.status === "claimed") return '<span class="dgl-pill dgl-pill--warn">In Bitcoin, not looked up yet</span> <span class="dgl-small">press “Check for Bitcoin confirmation” while online</span>';
+  if (a.status === "failed") return '<span class="dgl-pill dgl-pill--bad">✗ The proof does not reach Bitcoin</span>';
+  const n = (a.calendars || []).filter((c) => c.ok).length;
+  return `<span class="dgl-pill dgl-pill--warn">Waiting for Bitcoin</span> <span class="dgl-small">sent ${esc(DGUI.time(a.anchored_at))} to ${n} calendar${n === 1 ? "" : "s"}; usually confirmed within a few hours</span>`;
+}
+
+function renderAnchors() {
+  const box = $("anchors");
+  if (!S.anchors) { box.innerHTML = '<p class="dgl-error">Couldn’t load the anchors.</p>'; return; }
+  const list = S.anchors.anchors;
+  const newest = S.anchors.newest_block;
+  $("anchorBtn").disabled = newest === null || S.anchors.newest_anchored;
+  $("anchorBtn").textContent = S.anchors.newest_anchored ? `Block #${newest} is already anchored` : `Anchor block #${newest} to Bitcoin`;
+  $("upgradeBtn").disabled = !list.length;
+  if (!list.length) {
+    box.innerHTML = '<p class="dgl-small dgl-muted" style="margin:14px 0 0">No block is anchored yet. Anchoring needs internet; the proof can be checked offline afterwards.</p>';
+    return;
+  }
+  box.innerHTML = `<table class="dgl-table" style="margin-top:14px">
+    <tr><th>Block</th><th>Status</th><th>Still on the chain?</th><th>Proof files</th><th></th></tr>
+    ${list.slice().reverse().map((a) => `<tr>
+      <td><a href="#block=${a.block_index}">#${a.block_index}</a><div class="dgl-mono dgl-muted">${esc(DG.short(a.block_hash))}</div></td>
+      <td>${anchorStatusHtml(a)}</td>
+      <td>${a.chain_agrees ? '<span class="dgl-pill dgl-pill--ok">✓ same block hash</span>' : '<span class="dgl-pill dgl-pill--bad">✗ the chain changed after anchoring</span>'}</td>
+      <td class="dgl-small" style="white-space:nowrap"><a href="/api/ledger/anchors/${a.block_index}/header">${esc(a.header_file)}</a><br><a href="/api/ledger/anchors/${a.block_index}/proof">${esc(a.proof_file)}</a></td>
+      <td>${a.status === "confirmed" ? `<button type="button" class="dgl-btn dgl-btn--ghost dgl-btn--small" data-anchor-check="${a.block_index}">Re-check in my browser</button>` : ""}</td>
+    </tr><tr class="dgl-anchor-out" hidden data-anchor-out="${a.block_index}"><td colspan="5"></td></tr>`).join("")}
+  </table>
+  <p class="dgl-small dgl-muted">Check it without Deep-Guard: download both files for a block and drop them on opentimestamps.org,
+    or run <code>python tools/verify_ledger.py anchors</code>.</p>`;
+  box.querySelectorAll("[data-anchor-check]").forEach((btn) => btn.addEventListener("click", () => browserCheckAnchor(Number(btn.dataset.anchorCheck))));
+}
+
+// The anchor checked by this page alone: the block's header is re-hashed
+// here, the proof's steps are replayed here, and the Bitcoin block's Merkle
+// root is fetched by this browser straight from two block explorers.
+async function browserCheckAnchor(index) {
+  const a = anchorOf(index);
+  const row = $("anchors").querySelector(`[data-anchor-out="${index}"]`);
+  const cell = row.querySelector("td");
+  row.hidden = false;
+  cell.innerHTML = '<p class="dgl-small">Re-checking in your browser…</p>';
+  const checks = [];
+  const block = blocks()[index];
+  const hash = block ? await DG.blockHash(block) : null;
+  checks.push({ name: `Block #${index}'s header hashes to the anchored hash`, ok: hash === a.block_hash, detail: `recomputed here: ${DG.short(hash)}` });
+  const path = (a.paths || []).find((p) => p.attestation.type === "bitcoin");
+  if (!path) checks.push({ name: "The proof reaches Bitcoin", ok: false, detail: "no Bitcoin attestation in the proof" });
+  else {
+    const end = await DG.replayOts(a.block_hash, path.ops);
+    if (end === null) checks.push({ name: `${path.ops.length} proof steps replayed`, ok: null, detail: "this proof uses an operation browsers can't compute; the server checked it" });
+    else checks.push({ name: `${path.ops.length} proof steps replayed`, ok: end === path.msg, detail: `they end on ${DG.short(end)}` });
+    try {
+      const btc = await DG.bitcoinBlock(path.attestation.height);
+      const ok = end !== null && end === DG.reverseHex(btc.merkle_root);
+      checks.push({ name: `That is the Merkle root of Bitcoin block #${btc.height}`, ok: end === null ? null : ok,
+        detail: `${btc.sources.join(" and ")} say the root is ${DG.short(btc.merkle_root)} (shown byte-reversed); mined ${DGUI.time(new Date(btc.time * 1000).toISOString())}` });
+    } catch (e) {
+      checks.push({ name: "Bitcoin block looked up from this browser", ok: null, detail: String(e.message || e) });
+    }
+  }
+  cell.innerHTML = DGUI.checksHtml(checks) + `<p class="dgl-small dgl-muted">Nothing above came from the Deep-Guard server except the proof file, and a wrong proof can't end on a real Bitcoin Merkle root.</p>`;
+}
+
+$("anchorBtn").addEventListener("click", async () => {
+  const btn = $("anchorBtn");
+  btn.disabled = true;
+  $("anchorStatus").textContent = "Sending the block hash to the OpenTimestamps calendars…";
+  try {
+    const r = await fetch("/api/ledger/anchor", { method: "POST" });
+    if (!r.ok) { $("anchorStatus").innerHTML = `<span class="dgl-error">${esc(await DGUI.errorText(r))}</span>`; return; }
+    const d = await r.json();
+    $("anchorStatus").textContent = d.message;
+    await load({ recheck: false });
+  } finally { btn.disabled = S.anchors ? S.anchors.newest_anchored : false; }
+});
+
+$("upgradeBtn").addEventListener("click", async () => {
+  const btn = $("upgradeBtn");
+  btn.disabled = true;
+  $("anchorStatus").textContent = "Asking the calendars and looking the Bitcoin blocks up…";
+  try {
+    const r = await fetch("/api/ledger/anchors/upgrade", { method: "POST" });
+    if (!r.ok) { $("anchorStatus").innerHTML = `<span class="dgl-error">${esc(await DGUI.errorText(r))}</span>`; return; }
+    const d = await r.json();
+    $("anchorStatus").textContent = d.results.length
+      ? d.results.map((x) => `Block #${x.block_index}: ${x.status}. ${(x.notes || []).slice(-1)[0] || ""}`).join(" · ")
+      : "Every anchor is already confirmed.";
+    await load({ recheck: false });
+  } finally { btn.disabled = false; }
+});
+
 // ------------------------------------------------------------ tamper lab --
 
 let ATTACKS = {};
 async function loadAttacks() {
   ATTACKS = (await (await fetch("/api/ledger/attacks")).json()).attacks;
-  const names = { edit_record: "1 · Edit an old record", edit_and_rehash: "2 · Edit it and recompute the hashes (no key)", delete_block: "3 · Delete a block", insider_rewrite: "4 · Insider rewrite with the real key" };
+  const names = { edit_record: "1 · Edit an old record", edit_and_rehash: "2 · Edit it and recompute the hashes (no key)", delete_block: "3 · Delete a block", insider_rewrite: "4 · Insider rewrite with the real key", collusion_rewrite: "5 · Insider rewrite, and the witnesses collude" };
   $("attack").innerHTML = Object.keys(ATTACKS).map((k) => `<option value="${k}">${esc(names[k] || k)}</option>`).join("");
   $("attackHint").textContent = ATTACKS[$("attack").value];
 }
@@ -450,19 +564,29 @@ $("tamperForm").addEventListener("submit", async (e) => {
     // the browser checks the tampered copy too — it should agree with the server
     const mine = await DG.checkChain(d.blocks, pinned());
     const bad = d.report.first_bad_index;
-    const caught = !d.report.ok || d.witnesses.some((w) => w.first_mismatch !== null && w.first_mismatch !== undefined);
+    const caught = !d.report.ok || d.witnesses.some((w) => w.first_mismatch !== null && w.first_mismatch !== undefined)
+      || (d.anchors || []).some((x) => !x.agrees);
     $("tamperResult").innerHTML = `
       <p class="dgl-note ${caught ? "dgl-note--good" : ""}" style="margin-top:16px"><b>What the attacker did:</b> ${esc(d.description)}<br><b>Result:</b> ${esc(d.verdict)}</p>
       <div class="dgl-chainwrap"><div class="dgl-chain">${chainHtml(d.blocks, d.report, { mini: true, forged: new Set(d.blocks.map((b, i) => (blocks()[i] && blocks()[i].block_hash === b.block_hash ? -1 : i)).filter((i) => i >= 0)) })}</div></div>
-      <p class="dgl-small dgl-muted">Amber blocks have a different hash from the real chain — the one the witnesses wrote down.</p>
-      <div class="dgl-grid2">
+      <p class="dgl-small dgl-muted">${d.attack === "collusion_rewrite"
+        ? "Amber blocks have a different hash from the real chain. Colluding witnesses would sign them anyway; an anchor made before the rewrite still holds the original hash."
+        : "Amber blocks have a different hash from the real chain — the one the witnesses wrote down."}</p>
+      <div class="dgl-grid3">
         <div><h3 class="registry__panel-title">${bad !== null ? `Block #${bad} on the tampered copy` : "The tampered copy"}</h3>
           ${bad !== null ? DGUI.checksHtml(d.report.blocks[bad].checks) : '<p class="dgl-small">Every block passes on its own.</p>'}
           <p class="dgl-small dgl-muted">Your browser checked the same copy and ${mine.ok === d.report.ok && mine.first_bad_index === bad ? "agrees" : "DISAGREES"} with the server.</p></div>
         <div><h3 class="registry__panel-title">The witnesses</h3>
-          ${DGUI.checksHtml(d.witnesses.map((w) => !w.online ? { name: `${w.name} is offline`, ok: null, detail: "start it to see it catch rewrites" }
+          ${DGUI.checksHtml(d.witnesses.map((w) => w.colluding ? { name: `${w.name} goes along with it`, ok: null, detail: "colluding (simulated): it signs whatever it is shown" }
+            : !w.online ? { name: `${w.name} is offline`, ok: null, detail: "start it to see it catch rewrites" }
             : w.first_mismatch !== null && w.first_mismatch !== undefined ? { name: `${w.name} catches it`, ok: true, detail: `its notebook holds a different hash for block #${w.first_mismatch}` }
             : { name: `${w.name} sees no difference`, ok: null, detail: w.witness_height ? `it holds ${w.witness_height} blocks and they all still match` : "it has not seen any blocks yet — press Sync witnesses" }))}
+        </div>
+        <div><h3 class="registry__panel-title">The Bitcoin anchors</h3>
+          ${(d.anchors || []).length ? DGUI.checksHtml(d.anchors.map((x) => x.agrees
+            ? { name: `Anchor of block #${x.block_index} sees no difference`, ok: null, detail: x.block_index < Number($("attackBlock").value) ? "the rewrite is newer than this anchor" : "the anchored hash still matches" }
+            : { name: `Anchor of block #${x.block_index} catches it`, ok: true, detail: x.status === "confirmed" ? `Bitcoin block #${x.bitcoin_height} holds the original hash` : "the calendars hold the original hash (Bitcoin confirmation pending)" }))
+            : '<p class="dgl-small dgl-muted">No block is anchored yet. Anchor one above to protect against attack 5.</p>'}
         </div>
       </div>
       <p class="dgl-small dgl-muted">Your real ledger was not changed. Reload the page: it is still intact.</p>`;

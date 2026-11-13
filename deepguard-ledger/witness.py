@@ -30,6 +30,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 import ledger_core
+import public_mode
 
 HERE = Path(__file__).resolve().parent
 NAME = os.environ.get("DEEPGUARD_WITNESS_NAME", "Witness A")
@@ -103,6 +104,14 @@ def hashes():
 
 @app.post("/witness/blocks")
 async def receive_blocks(request: Request):
+    if public_mode.is_public_request(request.headers):
+        # `run_deepguard.py --public` gives each witness a tunnel of its own
+        # so visitors' browsers can ask it directly. That tunnel is for
+        # reading: blocks come only from the ledger on this laptop, or a
+        # visitor could post a forged block and fill the alarm log that the
+        # explorer shows with false "history was rewritten" alarms.
+        raise HTTPException(status_code=403, detail="Blocks reach this witness only from the Deep-Guard ledger on "
+                                                    "its own laptop, not over the public link.")
     body = await request.json()
     blocks = body.get("blocks") or []
     if not SERVICE_PUBLIC_KEY_PATH.exists():

@@ -3,3 +3,12 @@
 ledger_data/
 __pycache__/
 .pytest_cache/
+
+# This installation's Content Credentials certificate authority and signing
+# key (credentials.py) -- private keys, made on first use, never committed.
+credentials/
+
+# cloudflared for `run_deepguard.py --public`, if saved here (a 55 MB
+# program from Cloudflare's releases page, not ours to commit).
+tools/cloudflared.exe
+tools/cloudflared

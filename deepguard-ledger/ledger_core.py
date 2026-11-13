@@ -534,6 +534,8 @@ ATTACKS = {
     "insider_rewrite": "Deep-Guard itself (holding the real key) quietly erases a record from an old block "
                        "and re-signs that block and every block after it, so the chain checks out perfectly "
                        "on its own. (Editing a record instead would break its creator's signature.)",
+    "collusion_rewrite": "The same insider rewrite, but this time the witnesses go along with it and sign the new "
+                         "history too. Only a Bitcoin anchor made before the rewrite still disagrees.",
 }
 
 
@@ -574,7 +576,8 @@ def simulate_attack(blocks: list[dict], attack: str, index: int, private_pem: by
         del chain[index]
         return chain, f"Removed block #{index} entirely; the blocks after it moved up one place."
 
-    # insider_rewrite: a perfectly re-signed alternative history. Editing a
+    # insider_rewrite (and collusion_rewrite, the same chain with witnesses
+    # who go along): a perfectly re-signed alternative history. Editing a
     # record would break its creator's signature, which Deep-Guard cannot
     # forge — but erasing a whole record (or backdating an empty block)
     # leaves nothing inside the chain to complain.

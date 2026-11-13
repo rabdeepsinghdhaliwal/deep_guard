@@ -75,6 +75,29 @@
       <div class="dgl-grid2" id="witnesses"></div>
     </section>
 
+    <section class="dgl-section reveal" id="anchorSection">
+      <h2 class="dgl-section__title">Anchored in Bitcoin</h2>
+      <p class="dgl-section__hint">
+        The witnesses stop Deep-Guard from rewriting history on its own. An anchor stops everyone, witnesses
+        included: the newest block's hash goes to the public OpenTimestamps calendars, which write it into a
+        Bitcoin transaction. Once that is mined, usually within a few hours, the block provably existed before
+        that Bitcoin block, and because every block holds the hash of the one before it, so did the whole chain
+        up to it. Only a salted copy of the hash leaves this computer.
+      </p>
+      <div class="dgl-card">
+        <div class="dgl-btnrow dgl-owner-only" style="margin-top:0">
+          <button class="dgl-btn" id="anchorBtn" type="button">Anchor the newest block to Bitcoin</button>
+          <button class="dgl-btn dgl-btn--ghost" id="upgradeBtn" type="button">Check for Bitcoin confirmation</button>
+        </div>
+        <p class="dgl-public-only dgl-small" style="margin-top:0">
+          Anchoring a new block is done from the laptop running the demo. A confirmed anchor below can be
+          re-checked against Bitcoin from your own browser.
+        </p>
+        <p class="dgl-small" id="anchorStatus" aria-live="polite"></p>
+        <div id="anchors"></div>
+      </div>
+    </section>
+
     <section class="dgl-section reveal">
       <h2 class="dgl-section__title">Tamper lab</h2>
       <p class="dgl-section__hint">

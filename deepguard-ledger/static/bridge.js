@@ -88,15 +88,19 @@
     } catch (e) { card.innerHTML += '<p class="dgl-error">Couldn\'t reach the ledger.</p>'; return; }
 
     const m = d.match;
+    const how = !m ? "" : m.kind === "exact" ? (m.exact_file === "credentialed_copy" ? "the credentialed copy itself" : "exact same file")
+      : m.kind === "watermark" ? `hidden ID ${m.watermark_id} read from its pixels`
+      : m.kind === "visual" ? `looks the same (${m.phash_bits_different}/256 bits differ)` : `same content (similarity ${m.content_similarity})`;
     const matchLine = m
       ? `Matches <b>“${esc(m.record.title)}”</b> registered by <b>${esc(m.record.creator_handle)}</b>
-         ${m.sealed ? `in block #${m.block_index}` : "(pending)"} · ${m.kind === "exact" ? "exact same file" : m.kind === "visual" ? `looks the same (${m.phash_bits_different}/256 bits differ)` : `same content (similarity ${m.content_similarity})`}.`
+         ${m.sealed ? `in block #${m.block_index}` : "(pending)"} · ${esc(how)}.`
       : "Nothing on the ledger matches this file, so the detector's guess above is all there is.";
     card.innerHTML = `
       <div class="dgl-bridge__kicker">Provenance · Deep-Guard ledger · verdict ${d.verdict_number} of 4</div>
       <div class="dgl-bridge__head" style="color:${VERDICT_COLOURS[d.verdict_number]}">${esc(d.headline)}</div>
       <p>${matchLine}</p>
       ${d.notes.map((n) => `<p class="dgl-note">${esc(n)}</p>`).join("")}
+      ${window.DGCR ? DGCR.cardHtml(d.credentials) : ""}
       <div class="dgl-btnrow">
         ${m ? `<a class="dgl-btn dgl-btn--indigo dgl-btn--small" href="/explorer#record=${esc(m.record.record_id)}">See the proof in the explorer</a>` : ""}
         <a class="dgl-btn dgl-btn--ghost dgl-btn--small" href="/ledger">Open the Ledger page</a>
@@ -134,6 +138,21 @@
     });
   }
 
+  // On the public link the content registry is filled from the laptop only
+  // (public_mode.py), so its register form gives way to a note.
+  function publicLinkNotes() {
+    if (!document.querySelector(".dgl-public-banner") || location.pathname !== "/registry") return;
+    const form = document.getElementById("registerForm");
+    if (!form) return;
+    form.style.display = "none";
+    const note = document.createElement("p");
+    note.className = "registry__panel-hint";
+    note.innerHTML = 'On the public link the registry is filled from the laptop running the demo. To register a ' +
+      'picture of your own, use the <a href="/ledger">Ledger</a>: it records you as its creator.';
+    form.after(note);
+  }
+
   addNav();
   provenanceCard();
+  publicLinkNotes();
 })();

@@ -1,0 +1,856 @@
+{
+ "measured_at": "2026-11-04T19:15:26+00:00",
+ "watermark": {
+  "alg": "com.adobe.trustmark.Q",
+  "schema": "BCH_5",
+  "id_bits": 61
+ },
+ "conditions": {
+  "untouched": "untouched",
+  "whatsapp": "whatsapp",
+  "half_q70": "half_q70",
+  "crop80_whatsapp": "crop80_whatsapp",
+  "screenshot": "screenshot",
+  "greyscale": "greyscale"
+ },
+ "seconds": 58.4,
+ "summary": {
+  "untouched": "55/55",
+  "whatsapp": "55/55",
+  "half_q70": "48/55",
+  "crop80_whatsapp": "55/55",
+  "screenshot": "55/55",
+  "greyscale": "52/55",
+  "half_q70_short_side_at_least_512px": "33/35",
+  "chance_ids_in_unmarked_originals": "0/55",
+  "psnr_db_median": 39.0,
+  "psnr_db_lowest": 34.5
+ },
+ "per_image": [
+  {
+   "image": "test_images/ai1.png",
+   "size": [
+    346,
+    267
+   ],
+   "psnr_db": 43.0,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": false,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "test_images/ai2.png",
+   "size": [
+    326,
+    273
+   ],
+   "psnr_db": 43.3,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": false,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "test_images/ai3.png",
+   "size": [
+    304,
+    327
+   ],
+   "psnr_db": 43.9,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "test_images/ai4.png",
+   "size": [
+    297,
+    308
+   ],
+   "psnr_db": 42.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "test_images/real1.png",
+   "size": [
+    257,
+    337
+   ],
+   "psnr_db": 44.3,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": false,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "test_images/real2.jpg",
+   "size": [
+    356,
+    381
+   ],
+   "psnr_db": 43.2,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "test_images/real3.jpg",
+   "size": [
+    2000,
+    1500
+   ],
+   "psnr_db": 43.4,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "test_images/real4.jpg",
+   "size": [
+    1500,
+    2000
+   ],
+   "psnr_db": 43.4,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_000.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 39.0,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_001.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 39.5,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_002.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 41.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_003.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 38.8,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": false
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_004.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 34.5,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_005.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 39.0,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_006.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 34.8,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_007.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 36.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_008.webp",
+   "size": [
+    990,
+    792
+   ],
+   "psnr_db": 39.3,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_009.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 37.3,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_010.webp",
+   "size": [
+    1024,
+    576
+   ],
+   "psnr_db": 37.6,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_011.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 34.9,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_012.webp",
+   "size": [
+    1012,
+    1019
+   ],
+   "psnr_db": 35.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_013.webp",
+   "size": [
+    1024,
+    576
+   ],
+   "psnr_db": 39.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_014.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 38.1,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": false,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_015.webp",
+   "size": [
+    1024,
+    1792
+   ],
+   "psnr_db": 36.8,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_016.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 38.8,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_017.webp",
+   "size": [
+    1024,
+    1367
+   ],
+   "psnr_db": 35.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_018.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 37.2,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": false,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_019.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 39.1,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": false
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_020.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 35.5,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_021.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 40.6,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_022.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 38.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_023.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 38.8,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_024.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 35.3,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": false
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_025.webp",
+   "size": [
+    1024,
+    696
+   ],
+   "psnr_db": 38.2,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_026.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 38.8,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_027.webp",
+   "size": [
+    1024,
+    1024
+   ],
+   "psnr_db": 39.1,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_028.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 37.0,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/dalle3/dalle3_029.webp",
+   "size": [
+    1024,
+    585
+   ],
+   "psnr_db": 37.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_002.webp",
+   "size": [
+    384,
+    509
+   ],
+   "psnr_db": 42.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_003.webp",
+   "size": [
+    384,
+    509
+   ],
+   "psnr_db": 37.2,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_005.webp",
+   "size": [
+    384,
+    509
+   ],
+   "psnr_db": 34.9,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_007.webp",
+   "size": [
+    384,
+    576
+   ],
+   "psnr_db": 39.8,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": false,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_010.webp",
+   "size": [
+    384,
+    576
+   ],
+   "psnr_db": 39.8,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_012.webp",
+   "size": [
+    384,
+    576
+   ],
+   "psnr_db": 36.9,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_015.webp",
+   "size": [
+    384,
+    480
+   ],
+   "psnr_db": 39.0,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_019.webp",
+   "size": [
+    384,
+    480
+   ],
+   "psnr_db": 40.2,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_020.webp",
+   "size": [
+    384,
+    384
+   ],
+   "psnr_db": 39.2,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": false,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_021.webp",
+   "size": [
+    384,
+    384
+   ],
+   "psnr_db": 39.4,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_022.webp",
+   "size": [
+    384,
+    685
+   ],
+   "psnr_db": 41.5,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_023.webp",
+   "size": [
+    384,
+    384
+   ],
+   "psnr_db": 40.3,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_029.webp",
+   "size": [
+    384,
+    685
+   ],
+   "psnr_db": 39.0,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "generalization_test/held_out_images/midjourney/midjourney-v5_034.webp",
+   "size": [
+    384,
+    384
+   ],
+   "psnr_db": 38.0,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "deepguard-bouncer/demo_artworks/great_wave.jpg",
+   "size": [
+    960,
+    662
+   ],
+   "psnr_db": 38.7,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "deepguard-bouncer/demo_artworks/mona_lisa.jpg",
+   "size": [
+    960,
+    1452
+   ],
+   "psnr_db": 40.9,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  },
+  {
+   "image": "deepguard-bouncer/demo_artworks/starry_night.jpg",
+   "size": [
+    960,
+    760
+   ],
+   "psnr_db": 36.6,
+   "chance_id_in_unmarked_original": false,
+   "untouched": true,
+   "whatsapp": true,
+   "half_q70": true,
+   "crop80_whatsapp": true,
+   "screenshot": true,
+   "greyscale": true
+  }
+ ]
+}

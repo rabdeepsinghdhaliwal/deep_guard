@@ -55,8 +55,9 @@ class CreatorBook:
             return None
         return json.loads(public_path.read_text(encoding="utf-8"))
 
-    def get_or_create(self, handle: str) -> tuple[dict, bool]:
-        """Returns (public identity, created_now)."""
+    def get_or_create(self, handle: str, extra: dict = None) -> tuple[dict, bool]:
+        """Returns (public identity, created_now). `extra` is kept with a new
+        identity (e.g. {"public_visitor": True} for one made over the public link)."""
         handle = clean_handle(handle)
         with self.lock:
             existing = self.get(handle)
@@ -65,6 +66,7 @@ class CreatorBook:
             private_pem, public_pem = ledger_core.generate_keypair()
             public_path, private_path = self._paths(handle)
             identity = {
+                **(extra or {}),
                 "handle": handle,
                 "creator_id": slug_of(handle),
                 "public_key": public_pem.decode("ascii"),

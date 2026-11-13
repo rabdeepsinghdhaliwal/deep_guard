@@ -88,6 +88,23 @@ $("registerForm").addEventListener("submit", async (e) => {
   }
 });
 
+// The credentialed copy arrives once, inside the answer (the ledger keeps no
+// pictures), and is offered as a download made in the browser.
+let copyUrl = null;
+function copyBoxHtml(copy) {
+  if (!copy) return "";
+  if (copyUrl) URL.revokeObjectURL(copyUrl);
+  const bytes = Uint8Array.from(atob(copy.base64), (c) => c.charCodeAt(0));
+  copyUrl = URL.createObjectURL(new Blob([bytes], { type: copy.mime }));
+  return `<div class="dgl-copybox">
+      <div><b>Share this copy, not the original</b>
+        <p class="dgl-small">It carries Content Credentials (C2PA) signed by this Deep-Guard server, naming its hidden ID
+          and this record, so any C2PA reader can show where it came from. Its pixels carry the hidden ID itself, so a
+          WhatsApp copy, a screenshot or a crop can still be traced back here after the credentials are stripped.</p></div>
+      <a class="dgl-btn" href="${copyUrl}" download="${esc(copy.file_name)}">Download ${esc(copy.file_name)}</a>
+    </div>`;
+}
+
 async function renderRegistered(d) {
   if (!SUMMARY) await loadSummary();
   const rec = d.record;
@@ -100,6 +117,9 @@ async function renderRegistered(d) {
     ["Media", esc(rec.media_type) + " · " + esc(rec.file_name)],
     ...fingerprintRows(rec),
   ];
+  if (rec.watermark) {
+    rows.push(["Hidden ID (watermark)", `<span class="dgl-mono">${esc(rec.watermark.id)}</span> <span class="dgl-muted">· 61 bits in the pixels of the credentialed copy (TrustMark Q)</span>`]);
+  }
   if (d.detector) {
     rows.push(["AI detector at the door", `${pct(d.detector.probability_fake)} AI${d.detector.calibrated_probability_fake !== null ? ` <span class="dgl-muted">(calibrated ${pct(d.detector.calibrated_probability_fake)})</span>` : ""} <span class="dgl-muted">— written down beside the claim, not a judgement</span>`]);
   }
@@ -122,6 +142,8 @@ async function renderRegistered(d) {
         ? "The record is signed by you, sealed into a block signed by Deep-Guard, and chained to every block before it."
         : "The record is signed by you and waiting. Seal the pending pool from the explorer to put it in a block."}</p>
       ${d.warning ? `<p class="dgl-note">${esc(d.warning)}</p>` : ""}
+      ${d.watermark_note ? `<p class="dgl-note">${esc(d.watermark_note)}</p>` : ""}
+      ${copyBoxHtml(d.credentialed_copy)}
       ${fieldsHtml(rows)}
       ${witnessHtml(d.witnesses)}
       ${proof}
@@ -161,7 +183,9 @@ $("verifyForm").addEventListener("submit", async (e) => {
 });
 
 function howMatched(m, thresholds) {
+  if (m.kind === "exact" && m.exact_file === "credentialed_copy") return "Exact: the credentialed copy issued at registration, byte for byte";
   if (m.kind === "exact") return "Exact: SHA-256 identical — the very same bytes";
+  if (m.kind === "watermark") return `Hidden ID ${m.watermark_id} read from the pixels, confirmed by content similarity ${m.content_similarity} (≥ ${thresholds.content_similarity})`;
   if (m.kind === "visual") return `Looks-like: pHash differs by ${m.phash_bits_different} of 256 bits (match ≤ ${thresholds.phash_bits})`;
   return `Content: SSCD similarity ${m.content_similarity} (match ≥ ${thresholds.content_similarity}) — a crop or edit of it`;
 }
@@ -184,6 +208,7 @@ async function renderVerdict(d) {
       <div class="dgl-verdict__headline">${esc(d.headline)}</div>
       <p class="dgl-verdict__text">${esc(d.explanation)}</p>
       ${d.notes.map((n) => `<p class="dgl-note ${n.startsWith("WARNING") ? "dgl-note--bad" : ""}">${esc(n)}</p>`).join("")}
+      ${DGCR.cardHtml(d.credentials)}
     </div>`);
 
   const m = d.match;
@@ -201,6 +226,12 @@ async function renderVerdict(d) {
       ["Your file's SHA-256", `<span class="dgl-mono">${esc(d.upload.sha256_merkle_root)}</span>`],
       ["Registered SHA-256", `<span class="dgl-mono">${esc(rec.sha256_merkle_root)}</span> ${rec.sha256_merkle_root === d.upload.sha256_merkle_root ? '<span class="dgl-pill dgl-pill--ok">identical</span>' : '<span class="dgl-pill dgl-pill--mod">different file</span>'}`],
     ];
+    const cc = rec.credentialed_copy;
+    if (cc) rows.push(["Credentialed copy's SHA-256", `<span class="dgl-mono">${esc(cc.sha256_merkle_root)}</span> ${cc.sha256_merkle_root === d.upload.sha256_merkle_root ? '<span class="dgl-pill dgl-pill--ok">identical</span>' : '<span class="dgl-pill dgl-pill--mod">different file</span>'}`]);
+    if (rec.watermark) {
+      const found = d.watermark && d.watermark.id === rec.watermark.id;
+      rows.push(["Hidden ID", `<span class="dgl-mono">${esc(rec.watermark.id)}</span> ${found ? '<span class="dgl-pill dgl-pill--ok">read from your file’s pixels</span>' : '<span class="dgl-pill">not in your file</span>'}`]);
+    }
     if (rec.detector_reading) rows.push(["AI detector when registered", `${esc(rec.detector_reading.ai_probability_percent)}% AI`]);
     let proof = "";
     if (m.sealed) {

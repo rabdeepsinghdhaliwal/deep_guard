@@ -11,6 +11,9 @@
   --dgl-mod:       #2F6BA8;
   --dgl-mod-soft:  #E8F0F9;
   --dgl-code-bg:   #F4F1EA;
+  /* Bitcoin's orange, darkened enough to read as text on paper */
+  --dgl-btc:       #A85A06;
+  --dgl-btc-soft:  #FDF0E1;
 }
 
 .dgl-wide { max-width: 1120px; }
@@ -92,6 +95,68 @@
 .dgl-pill--warn { color: var(--unsure); border-color: rgba(176,122,30,.35); background: var(--unsure-soft); }
 .dgl-pill--ai { color: var(--dgl-ai); border-color: rgba(106,74,176,.35); background: var(--dgl-ai-soft); }
 .dgl-pill--mod { color: var(--dgl-mod); border-color: rgba(47,107,168,.35); background: var(--dgl-mod-soft); }
+.dgl-pill--btc { color: var(--dgl-btc); border-color: rgba(168,90,6,.35); background: var(--dgl-btc-soft); }
+
+/* the Content Credentials (C2PA) card: our own drawn "cr" mark */
+.dgl-cr {
+  flex: 0 0 auto; display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
+  background: var(--ink); color: var(--paper-raised); font: 700 13px/1 var(--sans); letter-spacing: .02em;
+}
+.dgl-cr-card {
+  display: flex; gap: 14px; align-items: flex-start; margin: 16px 0 0; padding: 14px 16px;
+  border: 1px solid var(--rule); border-radius: var(--radius); background: var(--paper-raised);
+}
+.dgl-cr-card.is-ok { border-color: rgba(46,125,91,.4); }
+.dgl-cr-card.is-warn { border-color: rgba(176,122,30,.45); }
+.dgl-cr-card.is-bad { border-color: rgba(178,59,52,.45); background: var(--false-soft); }
+.dgl-cr-card.is-none { background: transparent; border-style: dashed; }
+.dgl-cr-card.is-none .dgl-cr { background: var(--rule-strong); }
+.dgl-cr-card__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.dgl-cr-card p { margin: 4px 0 6px; }
+.dgl-cr-card .dgl-fields { margin-top: 4px; }
+
+/* the public link: a notice on every page a visitor opens, and the projector page */
+.dgl-public-banner {
+  background: var(--indigo-soft); color: var(--ink); border-bottom: 1px solid var(--indigo-ring);
+  padding: 9px max(16px, env(safe-area-inset-left, 0px)); font-size: 13.5px; text-align: center;
+}
+.dgl-share { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 48px; align-items: center; padding: 48px 0; }
+.dgl-share__qr { background: #fff; border: 1px solid var(--rule); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow-card); }
+.dgl-share__qr svg { display: block; width: 100%; height: auto; }
+.dgl-share__url { font-family: var(--mono); font-size: 18px; word-break: break-all; color: var(--indigo); margin: 10px 0 18px; }
+.dgl-share__steps { padding-left: 1.2rem; display: grid; gap: 8px; font-size: 16px; }
+@media (max-width: 860px) { .dgl-share { grid-template-columns: 1fr; gap: 24px; padding: 24px 0; } }
+/* The server adds the banner only for visitors, so the banner itself switches
+   the owner's controls off and the notes about them on. */
+.dgl-public-only { display: none; }
+body:has(.dgl-public-banner) .dgl-public-only { display: block; }
+body:has(.dgl-public-banner) .dgl-owner-only { display: none !important; }
+
+/* phones: the ledger and explorer pages are used over the public link too */
+@media (max-width: 560px) {
+  /* With Ledger and Explorer added, the analysis page's menu no longer fits
+     beside the logo: let it move to a line of its own. */
+  .site-header { flex-wrap: wrap; row-gap: 10px; }
+  .site-nav { flex-wrap: wrap; row-gap: 6px; }
+  .site-nav__link { white-space: nowrap; }
+  /* Wide tables (anchors, records, creators) scroll sideways inside their
+     card instead of pushing the whole page wider than the phone. */
+  .dgl-table { display: block; overflow-x: auto; }
+  .dgl-card { padding: 16px 14px; }
+  .dgl-section__title { font-size: 21px; }
+  .dgl-copybox .dgl-btn { width: 100%; text-align: center; }
+  .dgl-fields { grid-template-columns: 1fr; }
+  .dgl-fields dt { margin-top: 6px; }
+}
+
+/* the credentialed copy to share, right under a registration */
+.dgl-copybox {
+  display: flex; gap: 18px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  margin: 16px 0 6px; padding: 14px 16px; border: 1px solid var(--indigo-ring); border-radius: var(--radius);
+  background: var(--indigo-soft);
+}
+.dgl-copybox > div { flex: 1 1 320px; min-width: 0; }
+.dgl-copybox p { margin: 4px 0 0; color: var(--ink-soft); }
 .dgl-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; display: inline-block; }
 
 pre.dgl-json {
@@ -163,8 +228,11 @@ details.dgl-details summary { cursor: pointer; font-size: 13.5px; font-weight: 6
 
 /* ----------------------------------------------------------- the chain -- */
 
-.dgl-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 0 0 22px; }
-@media (max-width: 860px) { .dgl-stats { grid-template-columns: repeat(2, 1fr); } }
+.dgl-stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin: 0 0 22px; }
+@media (max-width: 1020px) { .dgl-stats { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .dgl-stats { grid-template-columns: repeat(2, 1fr); } }
+.dgl-stat__tag { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--unsure); vertical-align: 4px; }
+.dgl-stat__tag.is-btc { color: var(--dgl-btc); }
 .dgl-stat { border: 1px solid var(--rule); background: var(--paper-raised); padding: 14px 16px; border-radius: var(--radius); }
 .dgl-stat__n { font-family: var(--serif); font-size: 28px; font-weight: 600; line-height: 1.1; }
 .dgl-stat__l { font-size: 12.5px; color: var(--ink-faint); margin-top: 2px; }

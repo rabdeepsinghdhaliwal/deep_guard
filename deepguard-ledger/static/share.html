@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep-Guard — Try it on your phone</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="/ledger-static/ledger.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">
+      <svg class="brand__mark" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <path d="M13 2.5 3.5 6.2v6.4c0 5.6 3.9 10.2 9.5 11.4 5.6-1.2 9.5-5.8 9.5-11.4V6.2L13 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M9.3 12.8l2.6 2.6 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand__name">Deep-Guard</span>
+    </a>
+    <nav class="site-nav">
+      <a class="site-nav__link" href="/">Analysis</a>
+      <a class="site-nav__link" href="/ledger">Ledger</a>
+      <a class="site-nav__link" href="/explorer">Explorer</a>
+    </nav>
+  </header>
+
+  <main class="main dgl-wide">
+    <section class="dgl-share">
+      <div class="dgl-share__qr" id="qr" aria-label="QR code for the public link"></div>
+      <div class="dgl-share__text">
+        <p class="intro__kicker">Live demo · try it yourself</p>
+        <h1 class="intro__title">Scan to use Deep-Guard on your phone</h1>
+        <p class="dgl-share__url" id="url">…</p>
+        <ol class="dgl-share__steps">
+          <li><b>Analysis:</b> take or pick a photo and ask “is this AI?”</li>
+          <li><b>Ledger:</b> register a photo under your own name and download its credentialed copy.</li>
+          <li>Send that copy to yourself on WhatsApp, then check the WhatsApp copy: the hidden ID still finds your record.</li>
+        </ol>
+        <p class="dgl-small dgl-muted" id="limits"></p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (async () => {
+      const d = await (await fetch("/api/public/status")).json();
+      const url = document.getElementById("url");
+      if (!d.url) {
+        url.textContent = "Not public right now. Start Deep-Guard with: python run_deepguard.py --public";
+        document.getElementById("qr").innerHTML = '<p class="dgl-small dgl-muted" style="padding:24px">No public link yet.</p>';
+        return;
+      }
+      url.textContent = d.url;
+      document.getElementById("qr").innerHTML = d.qr_svg;
+      document.getElementById("limits").textContent =
+        `Visitors can upload files up to ${d.limits.upload_mb} MB and run about ${d.limits.heavy_checks_per_minute} checks a minute. ` +
+        "Pictures are processed on this laptop and never stored. The link lasts until the laptop stops the demo.";
+    })();
+  </script>
+</body>
+</html>
