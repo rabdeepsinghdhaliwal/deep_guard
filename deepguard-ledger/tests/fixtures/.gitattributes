@@ -1,0 +1,5 @@
+# These files are compared byte for byte: a timestamp proof is a proof about
+# exact bytes, so one changed line ending makes it a proof of something else.
+# Git on Windows (core.autocrlf) turns "\n" into "\r\n" when it checks a text
+# file out; this stops it doing that to anything in this folder.
+* -text

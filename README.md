@@ -1,14 +1,50 @@
 # Deep-Guard
 
-A local web app that answers three separate questions about a photo or
-video someone shows you: **is this AI-generated**, **has this exact
-file been tampered with since it was checked**, and **is this a crop,
-edit, or reuse of something already registered**. All three run
-locally — nothing you upload is stored or sent anywhere.
+A local web app that checks a photo or video someone shows you, and shows
+its work. It asks four questions, in this order:
+
+1. **Where did it come from?** If its creator registered it, a signed,
+   tamper-evident ledger proves who registered it and when — even after
+   WhatsApp has re-saved it or someone has cropped it (Stages 3 and 4).
+2. **Has this exact file been changed?** Exact and look-alike
+   fingerprints (Stage 2).
+3. **Is it a copy of something registered?** Content matching that
+   survives crops, flips and colour changes (Stage 2).
+4. **Is it AI-generated?** A detector with heatmaps and other
+   explanations (Stage 1) — always labelled a guess, because a detector
+   can only guess.
+
+*Provenance first, prediction last:* the detector's guess is the fallback
+for a picture nobody registered, not the headline.
+
+```
+ a photo is made ──► its creator registers it ──► fingerprints + a hidden ID in the pixels
+                                                  + Content Credentials (the "CR" label)
+                              │
+                              ▼
+        sealed in a signed block ──► co-signed by witnesses ──► anchored in Bitcoin
+                              │
+                              ▼
+ anyone checks a copy: the Ledger page · the Explorer, in their own browser ·
+ a right-click with the Lens extension · their phone, through the public link
+                              │
+                              ▼
+ no record anywhere? ──► the AI detector's guess, with its explanations
+```
+
+Everything runs on your own laptop. Pictures are never stored, only the
+fingerprints of registered ones. The internet is used only when you ask
+for it: to anchor a block's hash in Bitcoin, or to open a public link.
 
 This document covers the whole project as it stands today. If you only
 want to run it, skip to **Quick start**. If you want the reasoning
 behind each feature, skip to **What's actually in here**.
+
+**Showing it to someone?** [`docs/demo-runbook.html`](docs/demo-runbook.html)
+is the demo manual: why each part exists, how to set everything up on a
+Windows laptop, and a tested script for every act, from the detector to the
+QR code. GitHub shows it as source, so download it (or open it from your
+clone) and double-click it to read it in any browser, with no internet needed.
 
 ---
 
@@ -34,11 +70,14 @@ venv\Scripts\activate          # Windows (cmd/PowerShell)
 source venv/bin/activate        # macOS/Linux
 ```
 
-**3. Install the dependencies.**
+**3. Install the dependencies.** The second line adds the ledger's own
+few packages: Bitcoin timestamps, the hidden ID, Content Credentials and
+the QR code.
 
 ```bash
 cd app
 pip install -r requirements.txt
+pip install -r ../../deepguard-ledger/requirements.txt
 ```
 
 On Linux, a plain `pip install torch` fetches the multi-gigabyte CUDA
@@ -62,17 +101,29 @@ pip install -r requirements-dev.txt
 python ../tools/build_concept_labeler.py
 ```
 
-**5. Start the server.** (If you build the namer later, restart the
-server so it picks it up.)
+**5. Start Deep-Guard.** The ledger's launcher starts the server and its
+two witnesses together. (If you build the namer later, restart it so it
+picks the namer up.)
 
 ```bash
-uvicorn main:app --reload
+cd ../../deepguard-ledger
+python run_deepguard.py
 ```
 
 Open **http://127.0.0.1:8000**. The status pill at the top right
 should read "Ready" with a green dot within a few seconds — that means
 the base detector loaded correctly. If it reads "Model unavailable,"
-see **Troubleshooting** below.
+see **Troubleshooting** below. The very first start also downloads the
+hidden-ID model (about 65 MB, from Adobe's server); the server window
+says `Hidden-ID model (TrustMark Q) ready` when it has. `Ctrl+C` stops
+everything.
+
+To let anyone try it from their phone, start it with
+`python run_deepguard.py --public` instead: it prints a public link and a
+QR code (this needs Cloudflare's free `cloudflared` program; see
+[the ledger README](deepguard-ledger/README.md#a-live-public-link-stage-4)).
+The detector on its own, without the ledger, still starts the old way:
+`uvicorn main:app --reload` inside `deepguard-bouncer/app`.
 
 ### What you need, and where it comes from
 
@@ -84,6 +135,11 @@ see **Troubleshooting** below.
 | Registry namer (`deepguard-bouncer/models/concept_labeler_*`) | Optional — built once by `deepguard-bouncer/tools/build_concept_labeler.py` (step 4) |
 | Signing key pair (`deepguard-bouncer/models/demo_signer_*.pem`) | Created by the server on first start — every installation signs with its own key |
 | Registry index, records and stored points (`deepguard-bouncer/models/content_registry*`) | Created on first start, seeded with the three demo paintings |
+| The ledger: blocks, witness notebooks, creator keys, anchors (`deepguard-ledger/ledger_data/`) | Created on first start by `run_deepguard.py`; gitignored (it holds private keys) |
+| Hidden-ID model weights (TrustMark, about 65 MB) | Downloaded from Adobe's server into the `trustmark` package on the first start |
+| Content Credentials certificate authority (`deepguard-ledger/credentials/`) | Created on first use — every installation has its own; gitignored |
+| C2PA trust lists (`deepguard-ledger/trust/`) | In the repo, pinned; `tools/update_trust_lists.py` refreshes them |
+| `cloudflared` (only for `--public`) | Optional — `winget install --id Cloudflare.cloudflared`, or saved as `deepguard-ledger/tools/cloudflared.exe` (gitignored) |
 
 Because every installation gets its own signing key, after your first
 start git shows `deepguard-bouncer/models/demo_signer_public.pem` as changed. That file is
@@ -92,13 +148,20 @@ it**: it would replace the key the original server's signatures are
 checked against. Your private key is gitignored and never leaves
 `deepguard-bouncer/models/`.
 
-Three other pages exist off the same server:
+The pages, all off the same server:
 
 | Page | What it's for |
 |---|---|
-| `/` | Upload a photo/video, get the AI-verdict + fingerprint + explainability panels |
+| `/` | Upload a photo/video, get the AI-verdict + fingerprint + explainability panels, and (under every result) what the ledger knows about it |
+| `/ledger` | Register a file under your name; verify any copy of it (four verdicts); revoke, dispute, resolve |
+| `/explorer` | The whole chain drawn and re-checked in your own browser: witnesses, Bitcoin anchors, the tamper lab, receipts |
+| `/share` | With `--public`: the public link as a big QR code, for a projector |
 | `/bias-map` | See the detector's accuracy sliced by category instead of one aggregate number |
 | `/registry` | Register an image's content, or check whether an upload is a crop/edit of something already registered |
+
+The **Deep-Guard Lens** browser extension (`deepguard-lens/`) adds a
+right-click *Check with Deep-Guard* to every picture on every website;
+installing it takes a minute ([its README](deepguard-lens/README.md)).
 
 ---
 
@@ -319,6 +382,50 @@ now shows the exam set instead of 8 placeholder images.
 `app/evidence.py` defines the one answer format every layer of the
 trust check will return.
 
+### Stage 3 — the provenance ledger
+
+A detector can only guess. The ledger *proves* where a picture came
+from — if its creator wrote it down first. It lives in
+`deepguard-ledger/`, beside the bouncer, without a single bouncer file
+changed; [its README](deepguard-ledger/README.md) has the details.
+
+- **Registering** a file writes its three fingerprints (SHA-256, pHash,
+  and the hash of its SSCD vector), its creator's claim (camera
+  original, edited, or AI-generated) and what the detector saw, signed
+  with the creator's own Ed25519 key. The picture itself is never stored.
+- **Blocks.** Records are sealed into blocks: a Merkle root over the
+  records plus the previous block's hash, signed by Deep-Guard. Change
+  one letter in an old block and the checks fail from that block on.
+- **Witnesses.** Two separate servers check every block, write its hash
+  in their own notebooks and co-sign it. Even Deep-Guard, holding the
+  real key, can't quietly rewrite history — the idea behind Certificate
+  Transparency.
+- **Four verdicts, provenance first:** 1 authentic & unaltered (the exact
+  file); 2 the same picture in a modified file (re-saved or cropped);
+  3 no provenance (only now does the detector run, labelled a
+  prediction); 4 registered as AI-generated (honest synthetic content).
+- **Check it yourself.** The Explorer recomputes every hash, Merkle root
+  and signature in your own browser; `tools/verify_ledger.py` does it
+  offline; a receipt proves one record with no server at all; a tamper
+  lab runs five attacks on a copy of the chain.
+
+### Stage 4 — durable provenance
+
+A Stage 3 record holds while a copy still looks like the original and
+everyone trusts the laptop. Stage 4 makes it hold up outside, in the
+places pictures actually travel:
+
+| Feature | The question it answers | How |
+|---|---|---|
+| **Anchored in Bitcoin** | "Could Deep-Guard and its witnesses agree to backdate a record?" | A block's hash is written into Bitcoin through OpenTimestamps. Your browser replays the proof and looks the Bitcoin block up itself. Block #2 of the demo ledger is in Bitcoin block 974545. |
+| **A hidden ID in the pixels** | "WhatsApp stripped everything — whose photo is this?" | Registering hands back a *credentialed copy* carrying an invisible 61-bit TrustMark ID. Reading any later copy's pixels gives the ID back, and the ID points at the record — but only counts when the picture's content agrees. It survived a WhatsApp re-save, an 80% crop sent through WhatsApp, and a screenshot, on all 55 test images. |
+| **Content Credentials (C2PA)** | "Can other apps read our label, and can we read theirs?" | Every checked file is read for a C2PA manifest against the official trust lists, and the credentialed copy carries one. Adobe's own Verify site reads ours: "This image was generated with an AI tool", for a picture declared AI-made. |
+| **Deep-Guard Lens** | "Do I have to download a picture to check it?" | A Chrome/Edge extension: right-click any picture on any website, and a badge shows the verdict on the picture itself. |
+| **A live public link** | "Can my audience try it on their own phones?" | `run_deepguard.py --public` opens a Cloudflare quick tunnel and puts a QR code on the projector. Visitors get fair-use limits and none of the owner's actions. |
+
+The details: [the ledger README](deepguard-ledger/README.md) and
+[the Lens README](deepguard-lens/README.md).
+
 ---
 
 ## Project structure
@@ -362,6 +469,24 @@ deepguard-bouncer/
 │   └── verify_offline.py          # Check a signed record with only a public key, no server
 └── models/                     # See PUT_WEIGHTS_HERE.md — the three core files included,
                                 #   plus detector_calibration.json (fitted by run_exam.py --fit)
+
+deepguard-ledger/               # Stages 3 and 4, beside the bouncer (whose app it imports unchanged)
+├── run_deepguard.py            # Starts the server and two witnesses (--public: also the public link)
+├── ledger_app.py               # Adds /ledger, /explorer, /share and /api/ledger/* to the bouncer's app
+├── ledger_core.py              # Blocks, hash chain, Merkle proofs, signatures, verification, tamper lab
+├── creators.py                 # One Ed25519 key pair per creator (a simulated PKI)
+├── witness.py                  # An independent witness: checks, records and co-signs every block
+├── anchoring.py                # Stage 4 — Bitcoin anchors through OpenTimestamps
+├── watermark.py                # Stage 4 — the hidden ID in the pixels (TrustMark)
+├── credentials.py              # Stage 4 — Content Credentials (C2PA): read, verify, sign
+├── public_mode.py, tunnel.py   # Stage 4 — the public link: visitors' rules, Cloudflare tunnels
+├── static/                     # The pages; dgcrypto.js redoes every check in the browser
+├── tools/                      # verify_ledger.py (offline checks), measure_watermark.py, update_trust_lists.py
+├── trust/                      # The C2PA trust lists, pinned
+├── measurements/               # watermark_robustness.json — the hidden ID on 55 images
+└── tests/                      # 112 tests
+
+deepguard-lens/                 # Stage 4 — the browser extension (load it unpacked in Edge or Chrome)
 ```
 
 At the repo root, next to `deepguard-bouncer/`: `test_images/` (the 8
@@ -408,6 +533,19 @@ persisted files are redirected to a temp directory for the test run —
 running the suite never touches the real `deepguard-bouncer/models/content_registry*`
 files. Takes about 40 seconds, dominated by loading the real model
 weights once at session start.
+
+The ledger has its own 112 tests, from `deepguard-ledger/`:
+
+```bash
+python -m pytest tests -q
+```
+
+They cover the ledger's maths and every tamper-lab attack, Bitcoin anchors
+(against the official OpenTimestamps example and the demo ledger's real
+proof), Content Credentials (against the official C2PA test files), the
+hidden ID (a WhatsApp copy, a crop, an ID lifted onto another picture), the
+public link's rules, and the whole app with real models and real witness
+servers. They use a throwaway folder, so they never touch your ledger.
 
 ---
 
@@ -511,3 +649,19 @@ list is worth more than pretending everything is finished:
 - **Stored distinctive points are sensitive data.** The registry keeps
   no pixels, but research has reconstructed rough pictures from SIFT
   descriptors (Weinzaepfel et al., CVPR 2011).
+- **The ledger's identities are simulated.** The server holds every
+  creator's private key, like a custodial wallet, and nobody checks who a
+  creator really is. The ledger proves who wrote a picture down *first*,
+  not who took it — that is what disputes are for.
+- **The witnesses run on the same laptop.** They are separate processes
+  with separate keys and notebooks, enough to show the mechanism; real
+  witnesses would be other people's machines (the next planned step).
+- **Our Content Credentials come from a demo certificate authority**, so
+  other C2PA tools show our manifest but call its issuer "unrecognized":
+  only members of the C2PA conformance programme are on the official list.
+- **The hidden ID can be removed** by TrustMark's own public remover model;
+  that is why it only ever points *to* a record whose fingerprints must
+  also match.
+- **The public link is a Cloudflare quick tunnel**: free and account-less,
+  but with no uptime guarantee and a new address on every start. The Lens
+  extension is loaded by hand, not from the Chrome or Edge stores.

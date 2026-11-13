@@ -26,11 +26,15 @@ durable credentials. TrustMark also ships a remover model; anyone with it can
 strip the mark, which is why the fingerprints stay the fallback.
 """
 
+import logging
 import secrets
 import threading
+import time
 from typing import Optional
 
 from PIL import Image
+
+log = logging.getLogger("deepguard")  # the bouncer's logger: its lines appear in the server window
 
 ALG = "com.adobe.trustmark.Q"   # the C2PA soft-binding algorithm name for this variant
 SCHEMA = "BCH_5"                # 61 data bits, corrects up to 5 bit errors
@@ -73,12 +77,16 @@ class Watermarker:
 
     def warm_up(self) -> None:
         """Load the model now (e.g. in a background thread at startup), so
-        the first registration doesn't pay for it."""
+        the first registration doesn't pay for it. Says so in the server
+        window, because on a new machine this is when the weights download."""
+        started = time.monotonic()
         try:
             with self._lock:
                 self._model()
+            log.info("Hidden-ID model (TrustMark Q) ready in %.0f s", time.monotonic() - started)
         except Exception as exc:  # noqa: BLE001 — additive: the ledger works without watermarks
             self.load_error = f"{exc.__class__.__name__}: {exc}"
+            log.warning("Hidden-ID model unavailable, so registrations get no hidden ID: %s", self.load_error)
 
     @property
     def available(self) -> bool:
